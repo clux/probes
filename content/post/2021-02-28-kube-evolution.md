@@ -51,7 +51,7 @@ async fn main() -> anyhow::Result<()> {
     let client = Client::try_default().await?;
     let foos: Api<Foo> = Api::namespaced(client, "default");
 
-    let ss_apply = PatchParams::apply("kube").force()
+    let ss_apply = PatchParams::apply("kube").force();
     let patch = serde_json::json!({
         "apiVersion": "clux.dev/v1",
         "kind": "Foo",
