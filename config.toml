@@ -39,35 +39,6 @@ external_links_no_follow = false   # rel="nofollow"
 external_links_no_referrer = false # rel="noreferrer"
 smart_punctuation = false          # `...` to `…`, `"quote"` to `“curly”` etc
 
-# Any Extra language you do not use, delete or comment out the extra language sections:
-[languages.fr]
-title = "Abridge"
-description = "Abridge est un thème Zola rapide et léger utilisant le html sémantique, le CSS abridge.css class-light et aucun JS obligatoire."
-generate_feed = true
-build_search_index = true
-search.include_title = true # include title of page/section in index
-search.include_description = true # include description of page/section in index
-search.include_content = true # include rendered content of page/section in index
-# search.truncate_content_length = 100 # Truncate at nth character. May be useful if index is getting too large.
-taxonomies = [
-#    {name = "categories", feed = true},
-    {name = "tags", feed = true},
-]
-
-[languages.es]
-title = "Abridge"
-description = "Abridge es un tema de Zola rápido y liviano que utiliza HTML semántico, CSS ligero de clase abridge.css y JS no obligatorio."
-generate_feed = true
-build_search_index = true
-search.include_title = true # include title of page/section in index
-search.include_description = true # include description of page/section in index
-search.include_content = true # include rendered content of page/section in index
-# search.truncate_content_length = 100 # Truncate at nth character. May be useful if index is getting too large.
-taxonomies = [
-#    {name = "categories", feed = true},
-    {name = "tags", feed = true},
-]
-
 [extra]
 ###############################################################################
 ### Layout & Format
@@ -79,7 +50,7 @@ taxonomies = [
 menu = [
 #    {url = "blog", name = "Blog", slash = true, blank = false, size="s110"},
     {url = "about", name = "About", slash = true, blank = false, size="s110"},
-    {url = "archive", name = "Posts", slash = true, blank = false, size="s110"},
+    {url = "post", name = "Posts", slash = true, blank = false, size="s110"},
 #    {url = "categories", name = "Categories", slash = true, blank = false, size="s110"},
     {url = "tags", name = "Tags", slash = true, blank = false, size="s110"},
 ]
@@ -130,8 +101,8 @@ foothr = true # show or hide horizontal rule above footer
 ###############################################################################
 
 title_separator = "|"  # Separator between title and title_addition, set as |, -, _, etc
-title_addition = "Fast & Lightweight Zola Theme" # a default value for title addition
-author = "Jake G" # Put Your Name here
+title_addition = "into the brain of eirik"
+author = "clux"
 keywords = "Abridge, Abridge.css, Zola, Theme, Zola Theme, getzola, Semantic Html, Fast, lightweight" # used for the primary site index
 banner = "banner.png" # Used as default image for OpenGraph/Twitter if page specific image is undefined.
 twitter_meta = "your-user-name" # for SEO: twitter:site and twitter:creator
@@ -147,37 +118,18 @@ seo = true  # enable or disable seo-related meta tags: opengraph, facebook, twit
 ###############################################################################
 
 feed = true # this adds the RSS feed icon in the footer.
-mail = "name@example.com"
-mastodon = "@your-user-name"
-element = "matrix.example.com"
-buymeacoffee = "your-user-name"
-kofi = "your-user-name"
-discord = "your-discord" # Everything after https://discord.com/   eg: invite/my-server  *or*  servers/my-server-id
-twitter = "your-user-name"
-facebook = "your-user-name"
-linkedin = "your-user-name"
-gitlab = "your-user-name"
-github = "your-user-name"
-codeberg = "your-user-name" # Everything after https://codeberg.org/   eg: username  *or*  username/repository
-github_sponsor = "your-user-name"
-bitbucket = "your-user-name"
-python = "your-user-name"
-docker = "your-user-name"
-stack = "your-user-name"
-instagram = "your-user-name"
-pinterest = "your-user-name"
-twitch = "your-user-name"
-youtube = "channel/your-channel-id"
-researchgate = "your-profile-id"
-
-
-###############################################################################
-### Commenting System for visitors to leave comments on pages.
-###   hyvor talk
-###############################################################################
-
-#comments.hyvor = "9366" # hyvor website id, comment out to disable.
-#comments.hyvorcolor = "os" # set the color property for hyvor
+#mail = "sszynrae@gmail.com"
+mastodon = "@clux"
+#element = "matrix.example.com"
+#kofi = "your-user-name"
+discord = "tokio"
+linkedin = "🗑-eirik-albrigtsen-b279863a"
+github = "clux"
+github_sponsor = "clux"
+# see https://github.com/Jieiku/abridge/issues/94 for social addons
+strava = "49770219" #TODO: not working
+steam = "sszynrae" #TODO: not working
+youtube = "channel/UCLpykMxkxuPUR9CciheipZg"
 
 
 ###############################################################################
@@ -200,7 +152,7 @@ researchgate = "your-profile-id"
 ###############################################################################
 
 # do NOT include a trailing slash on the online URL
-online_url="https://abridge.netlify.app"
+online_url="https://clux.dev"
 offline = false # implies uglyurls=true and integrity=false, when true NPM/node will automatically set the path for the base_url, it will build the site, then set the base_url back to what it was.
 
 uglyurls = false # if set to true then links are generated with the full path. eg https://abridge.netlify.app/index.html

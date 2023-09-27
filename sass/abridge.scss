@@ -4,9 +4,9 @@
 
   /// Enable a centered viewport for <header>, <main>, <footer> inside <body>
   /// Fluid layout until a defined size, then becomes centered viewport.
-  //$enable-maxwidth: true,
-  $mw: 70%,// max-width
-  //$mb: 1200px,// value at which to switch from fluid layout to max-width
+  $enable-maxwidth: true,
+  $mw: 60%,// max-width
+  $mb: 1200px,// value at which to switch from fluid layout to max-width
 
   $abridgeMode: "switcher",//valid values: switcher, auto, dark, light
   $syntax-mode: "auto",// Force syntax mode: auto, dark, light
@@ -22,27 +22,27 @@
 
   $icon-rss: true,
   $icon-mail: false,// e-mail
-  $icon-mastodon: false,
+  $icon-mastodon: true,
   $icon-element: false,
   $icon-matrix: false,
   $icon-buymeacoffee: false,
   $icon-kofi: false,
   $icon-twitter: false,
   $icon-facebook: false,
-  $icon-linkedin: false,
+  $icon-linkedin: true,
   $icon-codeberg: false,
   $icon-gitlab: false,
-  $icon-github: false,
-  $icon-github-sponsor: false,
+  $icon-github: true,
+  $icon-github-sponsor: true,
   $icon-bitbucket: false,
   $icon-python: false,
   $icon-docker: false,
   $icon-stack: false,
   $icon-instagram: false,
   $icon-pinterest: false,
-  $icon-discord: false,
+  $icon-discord: true,
   $icon-twitch: false,
-  $icon-youtube: false,
+  $icon-youtube: true,
   $icon-researchgate: false,
 
   //$icon-x: true,// x symbol, used to close search results page.
