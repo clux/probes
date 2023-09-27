@@ -12,7 +12,7 @@ An easter egg for the Dungeon Siege 2 Broken World expansion.
 
 <!--more-->
 
-![](/imgs/therayne/overview1.jpg)
+{{ img(src="/imgs/therayne/overview1.jpg") }}
 
 After doing the first two rooms of the Treasure Hunt quest in part 2, you can take two additional puzzles of the same type, but these are ridiculously hard. If you made the second one, you have no doubt noticed that these are much trickier than the general lightning reflection puzzle in the original DS2. The third should be possible with  a manageable dose of trial and error - still too much for what's essentially a mindless hack'n slash game - but the last one is almost impossible. So I present the way to solve it - if patience is not your virtue - namely; mathematically. First three are just solutions that was just included for completeness, the method used is described in the last section.
 
@@ -21,22 +21,25 @@ After doing the first two rooms of the Treasure Hunt quest in part 2, you can ta
 Every node has an even amount of connections, so this solution is trivial; simply click each node once.
 
 ## Double square
-![](/imgs/therayne/overview2.jpg)
-![](/imgs/therayne/square-diagram.gif)
+{{ img(src="/imgs/therayne/overview2.jpg") }}
+{{ img(src="/imgs/therayne/square-diagram.gif") }}
+
 Also quite easy, but here's the matrix solution (forgot the one I used, and needed to generalize the method for the larger polygons)
 A,C,F,H (press those once, in whatever order)
 
 ## Octagon
-![](/imgs/therayne/overview3.jpg)
-![](/imgs/therayne/octagon-diagram.gif)
+{{ img(src="/imgs/therayne/overview3.jpg") }}
+{{ img(src="/imgs/therayne/octagon-diagram.gif") }}
+
 just the solution here
 B,E,G,I,J,K,L - in whatever order, the one found by trial and error
 or from mathematica
 B,C,D,G,I,K,L
 
 ## Dodecagon from hell
-![](/imgs/therayne/overview4.jpg)
-![](/imgs/therayne/dodecagon-diagram.gif)
+{{ img(src="/imgs/therayne/overview4.jpg") }}
+{{ img(src="/imgs/therayne/dodecagon-diagram.gif") }}
+
 Every block must be inverted an odd number of times, and since inverting twice is the same as not doing anything, these operations are equivalent to addition mod 2.
 
 Each row j in matrix V represents which lights are inverted by f(j).

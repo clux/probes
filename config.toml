@@ -1,11 +1,10 @@
-# do NOT include a trailing slash on the base URL
-base_url="https://abridge.netlify.app"
+base_url="https://clux.github.io/probes.zola"
 # Usable site directly from disk, Including Search: "/home/jieiku/.dev/abridge/public"
 # Also set index_format = "elasticlunr_javascript", and in [extra] uglyurls = true, integrity = false
 # If you use the npm/node script then all you have to do is set offline = true, and everything else is automatic.
 
 title = "Abridge"
-description = "Abridge is a fast and lightweight Zola theme using semantic html, abridge.css class-light CSS, and No Mandatory JS."
+description = "into the brain of Eirik"
 theme = "abridge"
 
 default_language = "en"
@@ -18,10 +17,10 @@ taxonomies = [
     {name = "tags", feed = true},
 ]
 
-#feed_filename = "atom.xml"
-#output_dir = "public"
-#ignored_content = ["*.{graphml,xlsx}", "temp.*"]
-#hard_link_static = false # set to true to hard link instead of copying, useful for very large files.
+feed_filename = "atom.xml"
+output_dir = "public"
+ignored_content = ["*.{graphml,xlsx}", "temp.*"]
+#hard_link_static = true # set to true to hard link instead of copying, useful for very large files.
 
 [search]                # Options specific to elasticlunr search.
 index_format = "elasticlunr_json" # elasticlunr_json, elasticlunr_javascript
@@ -56,7 +55,6 @@ menu = [
 ]
 menu_footer = [
     {url = "about", name = "About", slash = true, blank = false},
-    {url = "contact", name = "Contact", slash = true, blank = false},
     {url = "privacy", name = "Privacy", slash = true, blank = false},
     {url = "sitemap.xml", name = "Sitemap", slash = false, blank = true},
 ]
@@ -81,16 +79,16 @@ footer_credit = true
 
 ### Uncomment one of the below lines, or neither, depending on which type of logo you want to use:
 #logo = { file="logo.svg", width="32", height="32", alt="Abridge", text="bridge" }
-#textlogo = '<font color="#f90">A</font>bridge'
-textlogo = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#f90" viewBox="0 0 96 96" width="28" height="28"><path stroke-width="14" d="M14 99 46 7h4l32 92"/><path stroke-width="9" d="M-3 82c43-26 59-26 102 0"/><path stroke-linecap="round" stroke-width="1.5" d="M94 72v7m-5-9.8v7m-5-9.8v7.1M79 64v7M63 57.7v7m-5-8.2v7m-5-7.8v7m-5-7.2v7m-5-6.7v7m-5-6.3v7m-5-5.8v7M17 64v7m-5-4.6v7m-5-4.2v7M2 72v7"/></svg>bridge'
+#textlogo = 'Probesᐸcl<font color="#f90">u</font>xᐳ'
+textlogo = 'Probes'
+#textlogo = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#f90" viewBox="0 0 96 96" width="28" height="28"><path stroke-width="14" d="M14 99 46 7h4l32 92"/><path stroke-width="9" d="M-3 82c43-26 59-26 102 0"/><path stroke-linecap="round" stroke-width="1.5" d="M94 72v7m-5-9.8v7m-5-9.8v7.1M79 64v7M63 57.7v7m-5-8.2v7m-5-7.8v7m-5-7.2v7m-5-6.7v7m-5-6.3v7m-5-5.8v7M17 64v7m-5-4.6v7m-5-4.2v7M2 72v7"/></svg>bridge'
 
-sitedesc = false # enables or disables the display of the site description below the logo.
+sitedesc = true # enables or disables the display of the site description below the logo.
 headhr = false # show or hide horizontal rule below header
 foothr = true # show or hide horizontal rule above footer
 
-### $CURRENT_YEAR and $SITE_TITLE can be used anywhere within the copyright, you can change their position or you can also delete them and type whatever you want instead.
-#copyright = false # set to false to disable the copyright.
-#copyright_override = '© 2019-$CURRENT_YEAR $SITE_TITLE'
+copyright = false
+copyright_override = '© $CURRENT_YEAR clux'
 #copyright_override = '© $CURRENT_YEAR $SITE_TITLE • Website content is licensed <a rel="noopener" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.'
 
 
@@ -100,15 +98,15 @@ foothr = true # show or hide horizontal rule above footer
 ### To always set the page title exactly eg "Abridge" then comment out title_addition or set to false (not recommend, bad for SEO)
 ###############################################################################
 
-title_separator = "|"  # Separator between title and title_addition, set as |, -, _, etc
+title_separator = "|"
 title_addition = "into the brain of eirik"
 author = "clux"
-keywords = "Abridge, Abridge.css, Zola, Theme, Zola Theme, getzola, Semantic Html, Fast, lightweight" # used for the primary site index
-banner = "banner.png" # Used as default image for OpenGraph/Twitter if page specific image is undefined.
-twitter_meta = "your-user-name" # for SEO: twitter:site and twitter:creator
-google = "Your Google Site verification code."
-bing = "Your Bing Site verification code."
-seo = true  # enable or disable seo-related meta tags: opengraph, facebook, twitter
+keywords = "Kubernetes, Cloud, Rust, Theorycraft, Blog"
+#banner = "banner.png" # Used as default image for OpenGraph/Twitter if page specific image is undefined.
+#twitter_meta = "your-user-name" # for SEO: twitter:site and twitter:creator
+#google = "Your Google Site verification code."
+#bing = "Your Bing Site verification code."
+seo = false # enable or disable seo-related meta tags: opengraph, facebook, twitter
 #dev = false # development mode, if true then robots.txt should prevent search indexing.
 
 
@@ -119,7 +117,7 @@ seo = true  # enable or disable seo-related meta tags: opengraph, facebook, twit
 
 feed = true # this adds the RSS feed icon in the footer.
 #mail = "sszynrae@gmail.com"
-mastodon = "@clux"
+mastodon = "https://hachyderm.io/@clux"
 #element = "matrix.example.com"
 #kofi = "your-user-name"
 discord = "tokio"
@@ -152,7 +150,8 @@ youtube = "channel/UCLpykMxkxuPUR9CciheipZg"
 ###############################################################################
 
 # do NOT include a trailing slash on the online URL
-online_url="https://clux.dev"
+#online_url="https://clux.dev"
+online_url="https://clux.github.io/probes.zola"
 offline = false # implies uglyurls=true and integrity=false, when true NPM/node will automatically set the path for the base_url, it will build the site, then set the base_url back to what it was.
 
 uglyurls = false # if set to true then links are generated with the full path. eg https://abridge.netlify.app/index.html
@@ -296,11 +295,11 @@ favicon16 = "favicon-16x16.png" # favicon-16x16.png
 ### Otherwise you will load the katex related javascript on every page!
 ###############################################################################
 
-#katex_options = "js/katexoptions.js"
-#katex_bundle = "js/katexbundle.min.js"
+katex_options = "js/katexoptions.js"
+katex_bundle = "js/katexbundle.min.js"
 
 ### Load Katex Local Resources
-#katex_css = "katex.min.css" # Fonts - load the css/fonts locally
+katex_css = "katex.min.css" # Fonts - load the css/fonts locally
 #katex_js = "js/katex.min.js" # use local js, so that we dont have to whitelist cdn.jsdelivr.net for script src in CSP
 #mathtex_js = "js/mathtex-script-type.min.js" # use local js, so that we dont have to whitelist cdn.jsdelivr.net for script src in CSP
 #katex_autorender_js = "js/katex-auto-render.min.js"
@@ -315,5 +314,5 @@ favicon16 = "favicon-16x16.png" # favicon-16x16.png
 #mathtex_js = "https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/mathtex-script-type.min.js"
 #mathtex_js_integrity = "sha384-jiBVvJ8NGGj5n7kJaiWwWp9AjC+Yh8rhZY3GtAX8yU28azcLgoRo4oukO87g7zDT"
 
-#math = false # Recommended setting false, and enable on per page bases instead.
-#math_auto_render = false # Recommended setting false, and enable on per page bases instead.
+math = false # Recommended setting false, and enable on per page bases instead.
+math_auto_render = false # Recommended setting false, and enable on per page bases instead.
