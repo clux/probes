@@ -10,3 +10,9 @@ serve:
 
 build:
   echo TODO
+
+update:
+  git submodule update --remote themes/abridge
+  rsync themes/abridge/COPY-TO-ROOT-SASS/* sass/
+  rsync themes/abridge/package_abridge.js package_abridge.js
+  rsync themes/abridge/package.json package.json
