@@ -11,7 +11,7 @@ import() {
     | yq -t '.description = .subtitle | .taxonomies = { "tags": .tags, "categories": .categories } | .extra = { "toc": true } | del(.subtitle, .categories, .tags)' \
     >> tmp.toml
   echo "+++" >> tmp.toml
-  sd "^---[\r\n\w\W]*---^[\r\n]" "" "content/${file}"
+  sd "^---[\r\n\w\W]*---[\r\n]" "" "content/${file}"
   cat "content/${file}" >> tmp.toml
   mv tmp.toml "content/${file}"
 }
