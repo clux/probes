@@ -1,11 +1,12 @@
 +++
 title = "Vault of Therayne"
-subtitle = "How to not brute force a dungeon"
+description = "How to not brute force a dungeon"
 date = "2006-08-09"
 
 [taxonomies]
 tags = ["math"]
 categories = ["gaming"]
+
 [extra]
 toc = true
 math = true
@@ -13,14 +14,15 @@ math_auto_render = true
 thumbnail = "/imgs/therayne/overview1.jpg"
 +++
 
-An easter egg for the Dungeon Siege 2 Broken World expansion.
+An easter egg and puzzle solution for `Dungeon Siege 2 Broken World`.
 
-<!--more-->
+<!-- more -->
 
 {{ img(src="/imgs/therayne/overview1.jpg") }}
 
-After doing the first two rooms of the Treasure Hunt quest in part 2, you can take two additional puzzles of the same type, but these are ridiculously hard. If you made the second one, you have no doubt noticed that these are much trickier than the general lightning reflection puzzle in the original DS2. The third should be possible with  a manageable dose of trial and error - still too much for what's essentially a mindless hack'n slash game - but the last one is almost impossible. So I present the way to solve it - if patience is not your virtue - namely; mathematically. First three are just solutions that was just included for completeness, the method used is described in the last section.
+After doing the first two rooms of the Treasure Hunt quest, you can attempt two additional puzzles of the same type, but these are ridiculously hard. If you made the second one, you have no doubt noticed that these are much trickier than the general lightning reflection puzzle in the original DS2. The third is manageable with a good dose of trial and error - still more than expected for an otherwise mindless hack'n slash game - but the last one is almost impossible.
 
+So I present a mathematical way to solve it. First three solutions are included for completeness, the method used is at the end.
 
 ## R1: Square
 Click each node once.
@@ -47,9 +49,11 @@ The one that necessitated math.
 {{ img(src="/imgs/therayne/overview4.jpg") }}
 {{ img(src="/imgs/therayne/dodecagon-diagram.gif") }}
 
-Solution from mathematica $B,E,F,G,I,J,K,N,O$
+Derived solution: $B,E,F,G,I,J,K,N,O$
 
-Solution received from developer: $B,C,D,E,G,K,P$
+Developer solution: $B,C,D,E,G,K,P$
+
+Pick one, and press each node once in any order.
 
 ## Method
 Every block must be inverted an odd number of times, and since inverting twice is the same as not doing anything, these operations are equivalent to addition mod 2.
@@ -76,16 +80,15 @@ V={{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1},
   {1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1}}
 ```
 
-Solving the equation $\mathbf{Vx} ={1,1,....1} \mod{2}$ reveals how many times one must utilize $f(j)$ to invert every light source.
+Solving the equation $\mathbf{Vx} = {1,1,....1} \mod{2}$ reveals how many times one must utilize $f(j)$ to invert every light source.
 
 ```cpp
-x={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+i={1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
 
-LinearSolve[V, x, Modulus -> 2]
+LinearSolve[V, i, Modulus -> 2]
 Answer: {0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0}
 ```
 
 in other words: $B,E,F,G,I,J,K,N,O$
 
-This post was later found by one of the game developers who sent me their solution:
-$B,C,D,E,G,K,P$ (which yields all odds when taking the dot product with $V$).
+This post was later found by one of the game developers who sent me their solution; $B,C,D,E,G,K,P$, and this yields all odds when taking the dot product with $V$.
