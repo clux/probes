@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -exuo pipefail
 
 # migration script from sibling dir probes (hugo format)
 # swaps the yaml header hugo uses for a toml header that zola likes
@@ -7,11 +7,11 @@ import() {
   local -r file="${1}"
   cp "../probes/content/post/${file}" content/
   echo "+++" > tmp.toml
-  sed -n '/---/, /---/p' "content/${file}" | head -n -1 \
+  sed -n '/^---$/, /^---$/p' "content/${file}" | head -n -1 \
     | yq -t '.description = .subtitle | .taxonomies = { "tags": .tags, "categories": .categories } | .extra = { "toc": true } | del(.subtitle, .categories, .tags)' \
     >> tmp.toml
   echo "+++" >> tmp.toml
-  sd "^---[\r\n\w\W]*---" "" "content/${file}"
+  sd "^---[\r\n\w\W]*---^[\r\n]" "" "content/${file}"
   cat "content/${file}" >> tmp.toml
   mv tmp.toml "content/${file}"
 }
@@ -43,3 +43,5 @@ for f in "${files_to_migrate[@]}"; do
   echo "$f"
   import "$f"
 done
+
+cp ../probes/static/imgs content/ -r
