@@ -13,7 +13,7 @@ minify_html = false
 build_search_index = true
 generate_feed = true
 taxonomies = [
-#    {name = "categories", feed = true},
+    {name = "categories", feed = true},
     {name = "tags", feed = true},
 ]
 
@@ -50,7 +50,7 @@ menu = [
 #    {url = "blog", name = "Blog", slash = true, blank = false, size="s110"},
     {url = "about", name = "About", slash = true, blank = false, size="s110"},
     {url = "post", name = "Posts", slash = true, blank = false, size="s110"},
-#    {url = "categories", name = "Categories", slash = true, blank = false, size="s110"},
+    {url = "categories", name = "Categories", slash = true, blank = false, size="s110"},
     {url = "tags", name = "Tags", slash = true, blank = false, size="s110"},
 ]
 menu_footer = [
@@ -88,9 +88,6 @@ headhr = false # show or hide horizontal rule below header
 foothr = true # show or hide horizontal rule above footer
 
 copyright = false
-copyright_override = '© $CURRENT_YEAR clux'
-#copyright_override = '© $CURRENT_YEAR $SITE_TITLE • Website content is licensed <a rel="noopener" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.'
-
 
 ###############################################################################
 ### meta/seo/analytic tags
