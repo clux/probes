@@ -25,7 +25,7 @@ We could also record with [OBS](https://obsproject.com/). So in fact, from the p
 
 Inlining an external embed here to the wrap-up episode below.
 
-{{< youtube 9HRCumVEHQU >}}
+{{ youtube(id="9HRCumVEHQU") }}
 [part 2 here](https://www.youtube.com/watch?v=_toA4XCp--U).
 
 This could be interesting if you want to cross reference with navigation in the brain / want to see how the tools fit together (map top left, discord dice bot bottom left), or you were a previous player (I don't assume it would be super interesting to anyone else).

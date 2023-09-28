@@ -45,3 +45,8 @@ for f in "${files_to_migrate[@]}"; do
 done
 
 cp ../probes/static/imgs content/ -r
+
+for folder in $(fd . content/imgs --type d); do
+  echo "${folder}"
+  echo -e "+++\nrender = false\n+++" > "${folder}/_index.md"
+done

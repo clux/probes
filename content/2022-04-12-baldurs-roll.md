@@ -279,7 +279,7 @@ The only complication here is that BG performs **internal buffering** of clicks,
 
 Running the script (with a terminal showing the script output overlayed) looks like this:
 
-{{< youtube 849xInj3GmI >}}
+{{  youtube(id="849xInj3GmI") }}
 
 On my machine, we get just over **15 rolls per second**.
 
