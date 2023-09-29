@@ -84,7 +84,9 @@ And that's once you've gotten over how frurstrating it can be to write helm temp
 ## Limitations
 While validation is a fixable annoyance, a bigger observation is that these helm values files become a really interesting, but entirely **accidental abstraction**. These files become the canonical representation of your services, but you have no useful logic around it. You have very little validation, almost no definition of what's allowed in there (`helm lint` is lackluster), you have no process of standardisation, it's hard to test sprawling automation scripts around the values files, and you do not have any sane way of evolving these charts.
 
-## Building a CLI Validator
+## Enter shipcat
+[![shipcat logo](https://github.com/clux/shipcat/raw/master/logo/shipcat_logo.png)](https://github.com/clux/shipcat)
+
 What if if we could take the general idea that developers just write simplified _yaml manifests_ for their app, but we actually **define** that API instead? By actually defining the structs we can provide a bunch of security checking and validation on top of it, and we will have a well-defined boundary for automation / ci / dev tools.
 
 By defining all our syntax in a library we can have cli tools for automation, and executables running as kubernetes operators using the same definitions. It effectively provides a way to versioning the platform.
