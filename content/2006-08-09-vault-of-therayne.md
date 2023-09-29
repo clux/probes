@@ -2,6 +2,7 @@
 title = "Vault of Therayne"
 description = "How to not brute force a dungeon"
 date = "2006-08-09"
+slug = "2006-08-09-vault-of-therayne"
 
 [taxonomies]
 tags = ["math"]

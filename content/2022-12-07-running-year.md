@@ -49,12 +49,12 @@ Garmin [report](https://connect.garmin.com/modern/report/17/all/last_year) for t
 | Nov   | 349k    | 58     |
 | Dec   | 10k     | covid  |
 
-## Q1/Q2
+### Q1/Q2: Volume Building
 
 The year started slow, but increased a little too fast initially without muscle training and ended up spending a lot more time on an elliptical in February.
 Back in London, when my foot muscles started catching up, I was able to raise the mileage quite a bit come summer (with an average of 60k weekly in July). This gave me confidence to start a pretty ambitious training plan from the end of July.
 
-### Q3; London Parks Half Training
+### Q3: Royal Parks
 
 Combined ideas from two generally available training plans:
 
@@ -88,7 +88,7 @@ and calculated the following zonal paces:
 - 4:16/km -> 14.1km/h ~= Z3 for HM (1:29:47)
 - 5:00/km -> 12km/h ~= Z2
 
-My journal for these weeks:
+My journal with key-workouts for these weeks:
 
 - *1*; [`6x1k` at ~4:10/km moltemyr](https://www.strava.com/activities/7493451283), [24k long tromøy](https://www.strava.com/activities/7519890766), 60km
 - *2*; [`6x400m` at 3:32/km (aimed for 1:24)](https://www.strava.com/activities/7530520601), [20min fast `lysløypa`](https://www.strava.com/activities/7541421546), [21k long](https://www.strava.com/activities/7558263435), 61km
@@ -113,9 +113,9 @@ and ended up feeling OK after the race. Got one blood-shot big toenail to show o
 
 2 weeks of pretty low effort (40k, 50k), no speed, run every other day.
 
-### Chiang Mai Half Training
+### Q4: Chiang Mai
 
-Second block. 8w. A bit of an impromptu registration, and a bit of fun that to test how my training translate across continents to a new humid environment. Unfortunately, this block got cancelled near the end.
+Second block. 8w. A bit of an impromptu registration for the Chiang Mai Marathon (Half), and a bit of fun that to test how my training translate across continents to a new humid environment. Unfortunately, this block got cancelled near the end.
 
 - *1*: [`6x1k` at 4:00/km](https://www.strava.com/activities/8016708080), [19k long](https://www.strava.com/activities/8042805169), 67k
 - *2*: [`7x1k` at 3:57/km](https://www.strava.com/activities/8052372984), [21k long](https://www.strava.com/activities/8071743943), 80k (last in London)
@@ -128,7 +128,7 @@ Got covid two weeks ahead of the race. First time, but there are [ample](https:/
 
 On the positive side, with an ungodly `4AM start` for this race and a `90%` average humidity (which tanked my running efficiency); having to cancel a difficult masochistic exercise you set purely for yourself is not universally a negative.
 
-### Covid
+### Q4: Covid
 
 Unfortunately, it had been one full year since my last (3rd) vaccination shot - and along with probably being hit with one of the `Q` variants in southeast asia - this disease was not fun. Just as one symptom disappeared another came in to replace it.
 

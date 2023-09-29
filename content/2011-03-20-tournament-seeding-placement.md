@@ -1,10 +1,11 @@
 +++
 date = "2011-03-20"
 description = "Building elimination flows"
+slug = "2011-03-20-tournament-seeding-placement"
 title = "Tournament Seeding Placement"
+updated = "2018-12-09"
 
 [extra]
-toc = true
 math = true
 
 [taxonomies]
@@ -87,6 +88,7 @@ var evenSeed = function (i, p) {
 };
 ```
 
-Still and magical and confusing to everyone as ever.
+Still as __confusing__ (if it wasn't for this accompanying blog post).
 
-Clearly, there's probably a more elegant method to be deduced. The method here is just emulating the pattern we see in the binary representation after all. Still, funny what you can do with strings and patterns.
+There's probably a more elegant method to be deduced.
+The method here is just emulating the pattern we see in the binary representation after all. Still, funny what you can do with strings and patterns.

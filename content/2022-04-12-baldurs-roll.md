@@ -2,6 +2,7 @@
 date = "2022-04-12"
 description = "Auto-rolling and getting nerd sniped before venturing forth"
 title = "Baldur's Gate: Multinomial Edition"
+slug = "2022-04-12-baldurs-roll"
 
 [extra]
 toc = true
