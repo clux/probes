@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <script src="https://clux.github.io/probes.zola/js/theme.min.js" integrity="sha384-pb++s6uBRKaQv+iAXpgA/H3IlpLZdO14tTwuCI7uXmz4aaZdByoCcM+6BhynMq/1"></script>
-  <link rel="stylesheet" href="https://clux.github.io/probes.zola/abridge.css?h=5cd2e708e811917bd981" />
+  <link rel="stylesheet" href="https://clux.github.io/probes.zola/abridge.css?h=e626a7be1c78b8b8ae68" />
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -72,7 +72,7 @@
 <p>In a <del>brief</del> bout of escapism from the world and responsibilities, I booted up <a rel="noopener" target="_blank" href="https://store.steampowered.com/app/257350/Baldurs_Gate_II_Enhanced_Edition/">Baldur's Gate 2</a> with my brother. It's an amazing game, once you have figured out how to <strong><a rel="noopener" target="_blank" href="https://old.reddit.com/r/baldursgate/search?q=roll&amp;restrict_sr=on">roll</a></strong> your character.</p>
 <p>For today's installment; rather than telling you about the game, let's talk about the <strong>maths</strong> behind rolling a <code>2e</code> character for <code>BG2</code>, and then running simulations with weird <code>X</code>-based linux tools.</p>
 <!--more-->
-<script src="https://cdn.plot.ly/plotly-2.9.0.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
 <h2 id="rolling-a-character">Rolling a character</h2>
 <p>The <code>BG2</code> character generation mechanics is almost entirely based on the rules from <code>AD&amp;D 2e</code>. You get <code>6</code> ability scores, and each ability score is rolled as the sum of <code>3d6</code>.</p>
 <blockquote>
@@ -281,13 +281,13 @@ console.log("Precise Truncated Expectation and variance for 18d6", expectation_t
     <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">9c3720b9d3ab1d7f0d11dfb9771a1aef*</span></span><span class="z-meta z-function-call z-shell"></span>) <span class="z-variable z-other z-readwrite z-assignment z-shell">CURRENT_ROLL</span><span class="z-keyword z-operator z-assignment z-shell">=</span><span class="z-string z-unquoted z-shell">99</span> <span class="z-meta z-function-call z-shell"></span><span class="z-meta z-function-call z-shell"></span>;<span class="z-keyword z-operator z-logical z-continue z-shell">;</span>
     <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">3ef9bf6cd4d9946d89765870e5b21566*</span></span><span class="z-meta z-function-call z-shell"></span>) <span class="z-variable z-other z-readwrite z-assignment z-shell">CURRENT_ROLL</span><span class="z-keyword z-operator z-assignment z-shell">=</span><span class="z-string z-unquoted z-shell">100</span> <span class="z-meta z-function-call z-shell"></span><span class="z-meta z-function-call z-shell"></span>;<span class="z-keyword z-operator z-logical z-continue z-shell">;</span>
 </span></code></pre>
-<h2 id="clicking">Clicking</h2>
+<h3 id="clicking">Clicking</h3>
 <p>Automating a click is simply:</p>
 <pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">xdotool</span></span><span class="z-meta z-function-call z-arguments z-shell"> mousemove <span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-variable z-other z-readwrite z-shell">REROLL_BTN_X</span></span><span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span> <span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-variable z-other z-readwrite z-shell">REROLL_BTN_Y</span></span><span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span> click<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>delay</span><span class="z-keyword z-operator z-assignment z-option z-shell">=</span>0 1</span>
 </span></code></pre>
 <p>where the <code>--delay=0</code> overrides a builtin delay between clicks.</p>
 <p>The only complication here is that BG performs <strong>internal buffering</strong> of clicks, so this allows us to blast through numbers faster than the screen can display them. This means we have to compensate with a <code>sleep 0.001</code> after clicking to ensure we can grab the <code>scrot</code> of the roll before another click is registered.</p>
-<h2 id="showcase">Showcase</h2>
+<h3 id="showcase">Showcase</h3>
 <p>Running the script (with a terminal showing the script output overlayed) looks like this:</p>
 <div class="yv">
     <iframe src="https://www.youtube-nocookie.com/embed/849xInj3GmI" title="Youtube" class="yvi" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
@@ -390,7 +390,7 @@ Plotly.newPlot(document.getElementById('probhist4'), data, layout);
 </blockquote>
 <p>However, what's up with the paladins and rangers? Time for a more painful math detour.</p>
 <p><img src="/imgs/bg/amicat1-math.gif" alt="sweat mile cat math" /></p>
-<h3 id="class-race-variance">Class/Race Variance</h3>
+<h2 id="class-variance">Class Variance</h2>
 <p>The reason for the discrepancy is simple: <a rel="noopener" target="_blank" href="https://rpg.stackexchange.com/questions/165377/how-do-baldurs-gate-and-baldurs-gate-2s-rolling-for-stats-actually-get-gene">stat floors based on races/class</a>.</p>
 <p>These stat floors are insignificant in some cases, but highly significant in others. Some highly floored classes actually push the uncensored mean above the <code>75</code> cutoff even though it's a whole 12 points above the mean of the original underlying distribution.</p>
 <p>The floors for a some of the classes:</p>
@@ -406,7 +406,7 @@ Plotly.newPlot(document.getElementById('probhist4'), data, layout);
 <p>Sidenote: in <code>2e</code> you actually rolled stats first, and <strong>only if</strong> you met the <strong>requirements</strong> could you become a Paladin / Ranger. It's an interesting choice. Would not call this fun.</p>
 </blockquote>
 <p>Anyway. Is it possible to incorporate these floors into our modelling?</p>
-<h2 id="floored-ability-distributions">Floored Ability Distributions</h2>
+<h2 id="ability-distributions">Ability Distributions</h2>
 <p>If floors are involved at earlier stages, we have to take a step back and look at the distributions that make up the sum. We <strong>can</strong> compute distributions for <strong>individual ability scores</strong> (even if floored) if we use the distribution for $P(x, 3, 6)$ from <a rel="noopener" target="_blank" href="https://mathworld.wolfram.com/Dice.html">mathworld/Dice</a> where <code>s=6</code> and <code>n=3</code> and censor it at a cutoff point similar to how we censor the total distribution.</p>
 <p>Computing the value without a floor follows the same setup as when we did 18 dice; use <a rel="noopener" target="_blank" href="https://www.wolframalpha.com/input?i2d=true&amp;i=+Divide%5B1%2CPower%5B6%2C3%5D%5DSum%5BPower%5B%5C%2840%29-1%5C%2841%29%2Ck%5D+*binomial%5C%2840%293%5C%2844%29+k%5C%2841%29*binomial%5C%2840%2910-6k-1%5C%2844%29+2%5C%2841%29%2C%7Bk%2C0%2Cfloor%5C%2840%29Divide%5B%5C%2840%2910-3%5C%2841%29%2C6%5D%5C%2841%29%7D%5D">wolfram alpha</a> and tabulate for $[3, \ldots, 18]$:</p>
 <div id="probhist3roll" style="width:600px;height:450px;"></div>
@@ -499,7 +499,8 @@ Plotly.newPlot(document.getElementById('probhist3rolltruncs'), data, layout);
 <li>$Var(X^{\lfloor14\rfloor}) = 1.2000$</li>
 <li>$Var(X^{\lfloor17\rfloor}) = 0.1875$</li>
 </ul>
-<h3 id="sum-of-floored-ability-distributions">Sum of Floored Ability Distributions</h3>
+<h3 id="sum-of-ability-distributions">Sum of Ability Distributions</h3>
+<p>To get a distribution for the total score, we need to create a sum distribution of the distributions for their six base stats at their given class floors.</p>
 <p>Define $Z_{paladin}$, $Z_{ranger}$ and $Z_{fighter}$ as:</p>
 <p>$$Z_{paladin} = X_1^{\lfloor17\rfloor} + X_2^{\lfloor13\rfloor} + X_3^{\lfloor12\rfloor} + X_4^{\lfloor9\rfloor} + X_5^{\lfloor3\rfloor} + X_6^{\lfloor3\rfloor}$$
 $$Z_{ranger} = X_1^{\lfloor14\rfloor} + X_2^{\lfloor14\rfloor} + X_3^{\lfloor13\rfloor} + X_4^{\lfloor13\rfloor} + X_5^{\lfloor3\rfloor} + X_6^{\lfloor3\rfloor}$$
@@ -534,7 +535,7 @@ $$Z_{fighter} = X_1^{\lfloor9\rfloor} + X_2^{\lfloor3\rfloor} + X_3^{\lfloor3\rf
 <p>Let $X_{12} = X_1^{\lfloor17\rfloor} + X_2^{\lfloor13\rfloor}$. We can generate values for the pmf $p_{X_{12}}$ for $X_{12}$ via the pmfs $p_{X_i}$ for $X_1^{\lfloor17\rfloor}$ and $X_2^{\lfloor13\rfloor}$ via the convolution formula:</p>
 <p>$$P(X_{12} = n) = (p_{X_1} * p_{X_2})(n) = \sum_{m=-\infty}^{\infty}P(X_1=m)P(X_2 = n-m)$$</p>
 <p>This step is particularly easy for the paladin, because $X_1^{\lfloor17\rfloor}$ only takes two values (i.e. $m=17$ ahd $m=18$ are the only non-zero parts in the sum).</p>
-<p>The rest is less easy to do by hand, as the sums get increasingly large while we iterate towards $Z=P_{123456}$ by repeatedly applying convolution to the remaining $X_i$:</p>
+<p>The rest is more laborious to do by hand, as the sums get increasingly large while we iterate towards $Z=P_{123456}$ by repeatedly applying convolution to the remaining $X_i$:</p>
 <p>$$P(X_{123} = n) = (p_{X_{12}} * p_{X_3})(n) \sum_{m=-\infty}^{\infty}P(X_{12}=m)P(X_3 = n-m)$$</p>
 <p>$$P(X_{1234} = n) = (p_{X_{123}} * p_{X_4})(n) \sum_{m=-\infty}^{\infty}P(X_{123}=m)P(X_4 = n-m)$$</p>
 <p>$$P(X_{12345} = n) = (p_{X_{1234}} * p_{X_5})(n) \sum_{m=-\infty}^{\infty}P(X_{1234}=m)P(X_5 = n-m)$$</p>
@@ -1019,23 +1020,23 @@ Plotly.newPlot(document.getElementById('probhistappdxfig'), data, layout);
         <div class="hpad">
           <a href="#roll-tables"><small>- Roll Tables</small></a>
         </div>
-        <div>
-          <a href="#clicking">Clicking</a>
+        <div class="hpad">
+          <a href="#clicking"><small>- Clicking</small></a>
         </div>
-        <div>
-          <a href="#showcase">Showcase</a>
+        <div class="hpad">
+          <a href="#showcase"><small>- Showcase</small></a>
         </div>
         <div>
           <a href="#sampling">Sampling</a>
         </div>
-        <div class="hpad">
-          <a href="#class-race-variance"><small>- Class&#x2F;Race Variance</small></a>
+        <div>
+          <a href="#class-variance">Class Variance</a>
         </div>
         <div>
-          <a href="#floored-ability-distributions">Floored Ability Distributions</a>
+          <a href="#ability-distributions">Ability Distributions</a>
         </div>
         <div class="hpad">
-          <a href="#sum-of-floored-ability-distributions"><small>- Sum of Floored Ability Distributions</small></a>
+          <a href="#sum-of-ability-distributions"><small>- Sum of Ability Distributions</small></a>
         </div>
         <div class="hpad">
           <a href="#class-distributions"><small>- Class Distributions</small></a>
