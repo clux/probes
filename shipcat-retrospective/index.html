@@ -28,7 +28,7 @@
   <meta name="author" content="clux" />
   <meta name="copyright" content="probes" />
   <meta name="description" content="Building a microservice YAML api for kubernetes in 2018" />
-  <link rel="canonical" href="https://clux.github.io/probes.zola/shipcat-introduction/" />
+  <link rel="canonical" href="https://clux.github.io/probes.zola/shipcat-retrospective/" />
   <meta name="keywords" content="Kubernetes, Cloud, Rust, Theorycraft, Blog" />
   <script defer src="https://clux.github.io/probes.zola/js/abridge.min.js?h=52ceec8ac36fe25defe7" integrity="sha384-H1IaFs2MvG0ayi+Bq0d66Ih118nLUFESwUke1UH1uKzTiJwcgE8hXpONzAG3kqHj"></script>
   <noscript><link rel="stylesheet" href="https://clux.github.io/probes.zola/nojs.css" /></noscript>
@@ -60,7 +60,7 @@
   </header>
   <main>
     <article>
-      <h1><a href="https://clux.github.io/probes.zola/shipcat-introduction/">shipcat retrospective</a></h1>
+      <h1><a href="https://clux.github.io/probes.zola/shipcat-retrospective/">shipcat retrospective</a></h1>
 
       <span class="s95"> clux <span class="rpad"></span> December 15, 2018 <span class="rpad"></span>Updated: September 28, 2023 <span class="rpad"></span> [<a href="https://clux.github.io/probes.zola/categories/software/">software</a>] #<a href="https://clux.github.io/probes.zola/tags/rust/">rust</a>  #<a href="https://clux.github.io/probes.zola/tags/kubernetes/">kubernetes</a> </span>
 
@@ -246,7 +246,7 @@
 <pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">shipcat</span></span><span class="z-meta z-function-call z-arguments z-shell"> diff myapp <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> diff templated yaml against current cluster</span><span class="z-comment z-line z-number-sign z-shell">
 </span></span><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">shipcat</span></span><span class="z-meta z-function-call z-arguments z-shell"> apply myapp <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> kubectl apply the template - providing a diff and a progress bar</span><span class="z-comment z-line z-number-sign z-shell">
 </span></span></span></code></pre>
-<p>The upgrade was much nicer than any other CLI that existed at the time, it <a rel="noopener" target="_blank" href="https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/track.rs#L415-L508">tracked upgrades with deployment-replica progress bars</a>, <a rel="noopener" target="_blank" href="https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/apply.rs#L312-L335">bubbled up errors, captured error logs</a>, <a rel="noopener" target="_blank" href="https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/apply.rs#L262-L291">provided inline diffs pre-upgrade</a>, gated on validation, shiped successful rollout notifications to devs to slack.</p>
+<p>The upgrade was much nicer than any other CLI that existed at the time, it <a rel="noopener" target="_blank" href="https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/track.rs#L415-L508">tracked upgrades with deployment-replica progress bars</a>, <a rel="noopener" target="_blank" href="https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/apply.rs#L312-L335">bubbled up errors, captured error logs</a>, <a rel="noopener" target="_blank" href="https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/apply.rs#L262-L291">provided inline diffs pre-upgrade</a>, gated on validation, sent <a rel="noopener" target="_blank" href="https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/slack.rs#L138-L255">successful rollout notifications</a> to maintainers on slack.</p>
 <blockquote>
 <p>This was imo its biggest selling point (and possibly prevented a revolt against a ops-led mandated tool). In my later jobs, achieving the same would take multiple microservices talking to flux.</p>
 </blockquote>
