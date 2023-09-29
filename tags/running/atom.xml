@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>probes - running</title>
+    <link href="https://clux.github.io/probes.zola/tags/running/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://clux.github.io/probes.zola"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2022-12-07T00:00:00+00:00</updated>
+    <id>https://clux.github.io/probes.zola/tags/running/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Running 2022</title>
+        <published>2022-12-07T00:00:00+00:00</published>
+        <updated>2022-12-07T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://clux.github.io/probes.zola/running-year/" type="text/html"/>
+        <id>https://clux.github.io/probes.zola/running-year/</id>
+        
+        <content type="html">&lt;p&gt;In an attempt to torture my chair shaped husk of a body, I somehow ran almost 2500km this year. Mostly to see what would happen, but also to take part in the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.royalparkshalf.com&#x2F;&quot;&gt;Royal Parks Half Marathon in London&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;!--more--&gt;
+&lt;h2 id=&quot;milestones&quot;&gt;Milestones&lt;&#x2F;h2&gt;
+&lt;p&gt;In the process of going up to 70km weeks - something which became routine remarkably quickly - I ended up beating pretty much all of my endurance records:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;del&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7274508726&quot;&gt;41:51 10k&lt;&#x2F;a&gt;&lt;&#x2F;del&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7750969909&#x2F;overview&quot;&gt;39:29 10k&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7878906931&#x2F;overview&quot;&gt;11:15 3k&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7934772777#21922284308&quot;&gt;1:29:34 HM&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The Half Marathon was my first longer event and feel I ran it cleanly:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;running22&#x2F;hr-cadence-hm.jpeg&quot; alt=&quot;almost straight line for heart rate and cadence&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The 3k PB is also a &lt;code&gt;3200m&lt;&#x2F;code&gt; &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Cooper_test&quot;&gt;Cooper test&lt;&#x2F;a&gt; which, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;exrx.net&#x2F;Calculators&#x2F;MinuteRun&quot;&gt;heuristically&lt;&#x2F;a&gt;, puts my VO2max at 60. All in all, very pleased with the progress. Particularly getting 10k sub 40 and HM sub 90.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;mileage&quot;&gt;Mileage&lt;&#x2F;h2&gt;
+&lt;p&gt;Garmin &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;connect.garmin.com&#x2F;modern&#x2F;report&#x2F;17&#x2F;all&#x2F;last_year&quot;&gt;report&lt;&#x2F;a&gt; for the year:&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Month&lt;&#x2F;th&gt;&lt;th&gt;Mileage&lt;&#x2F;th&gt;&lt;th&gt;VO2max&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Jan&lt;&#x2F;td&gt;&lt;td&gt;117k&lt;&#x2F;td&gt;&lt;td&gt;51&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Feb&lt;&#x2F;td&gt;&lt;td&gt;65k&lt;&#x2F;td&gt;&lt;td&gt;52&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Mar&lt;&#x2F;td&gt;&lt;td&gt;142k&lt;&#x2F;td&gt;&lt;td&gt;53&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Apr&lt;&#x2F;td&gt;&lt;td&gt;144k&lt;&#x2F;td&gt;&lt;td&gt;54&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;May&lt;&#x2F;td&gt;&lt;td&gt;190k&lt;&#x2F;td&gt;&lt;td&gt;55&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Jun&lt;&#x2F;td&gt;&lt;td&gt;157k&lt;&#x2F;td&gt;&lt;td&gt;54&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Jul&lt;&#x2F;td&gt;&lt;td&gt;266k&lt;&#x2F;td&gt;&lt;td&gt;56&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Aug&lt;&#x2F;td&gt;&lt;td&gt;322k&lt;&#x2F;td&gt;&lt;td&gt;57&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Sep&lt;&#x2F;td&gt;&lt;td&gt;333k&lt;&#x2F;td&gt;&lt;td&gt;58&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Oct&lt;&#x2F;td&gt;&lt;td&gt;249k&lt;&#x2F;td&gt;&lt;td&gt;58&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Nov&lt;&#x2F;td&gt;&lt;td&gt;349k&lt;&#x2F;td&gt;&lt;td&gt;58&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Dec&lt;&#x2F;td&gt;&lt;td&gt;10k&lt;&#x2F;td&gt;&lt;td&gt;covid&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;h2 id=&quot;q1-q2&quot;&gt;Q1&#x2F;Q2&lt;&#x2F;h2&gt;
+&lt;p&gt;The year started slow, but increased a little too fast initially without muscle training and ended up spending a lot more time on an elliptical in February.
+Back in London, when my foot muscles started catching up, I was able to raise the mileage quite a bit come summer (with an average of 60k weekly in July). This gave me confidence to start a pretty ambitious training plan from the end of July.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;q3-london-parks-half-training&quot;&gt;Q3; London Parks Half Training&lt;&#x2F;h3&gt;
+&lt;p&gt;Combined ideas from two generally available training plans:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.ageuk.org.uk&#x2F;contentassets&#x2F;73784215f4ee46beb3d357eed3fdcc31&#x2F;sub-1_30_half_marathon_training_schedules.pdf&quot;&gt;AgeUk&#x27;s Sub 1:30 12w&lt;&#x2F;a&gt; - for general setup, but taking out some of the races&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.nspcc.org.uk&#x2F;globalassets&#x2F;documents&#x2F;support-us&#x2F;training-gym&#x2F;running-plans&#x2F;half-marathon&#x2F;20171301-pe-training-sheet-2018_half-marathon-sub-1.30-aw2.pdf&quot;&gt;NSPCC Sub 1:30 14w&lt;&#x2F;a&gt; - for negative split long runs and more thresholds&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;also incorporated ~two sessions of muscle strength training a week (single leg dead lifts, weighted squats, hungarian squats, heel&#x2F;soleus raises, plus misc core&#x2F;oblique strength exercises).&lt;&#x2F;p&gt;
+&lt;p&gt;Ended up averaging &lt;code&gt;71k&lt;&#x2F;code&gt; weekly mileage during this block.&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Week&lt;&#x2F;th&gt;&lt;th&gt;Mileage&lt;&#x2F;th&gt;&lt;th&gt;VO2max&lt;&#x2F;th&gt;&lt;th&gt;Fast %&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;&lt;em&gt;1&lt;&#x2F;em&gt;&lt;&#x2F;td&gt;&lt;td&gt;60k&lt;&#x2F;td&gt;&lt;td&gt;56&lt;&#x2F;td&gt;&lt;td&gt;6k (10%)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;em&gt;2&lt;&#x2F;em&gt;&lt;&#x2F;td&gt;&lt;td&gt;61k&lt;&#x2F;td&gt;&lt;td&gt;56&lt;&#x2F;td&gt;&lt;td&gt;7k (11%)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;em&gt;3&lt;&#x2F;em&gt;&lt;&#x2F;td&gt;&lt;td&gt;66k&lt;&#x2F;td&gt;&lt;td&gt;56&lt;&#x2F;td&gt;&lt;td&gt;11k (17%)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;em&gt;4&lt;&#x2F;em&gt;&lt;&#x2F;td&gt;&lt;td&gt;67k&lt;&#x2F;td&gt;&lt;td&gt;57&lt;&#x2F;td&gt;&lt;td&gt;14k (20%)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;em&gt;5&lt;&#x2F;em&gt;&lt;&#x2F;td&gt;&lt;td&gt;74k&lt;&#x2F;td&gt;&lt;td&gt;57&lt;&#x2F;td&gt;&lt;td&gt;13k (17%)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;em&gt;6&lt;&#x2F;em&gt;&lt;&#x2F;td&gt;&lt;td&gt;79k&lt;&#x2F;td&gt;&lt;td&gt;56&lt;&#x2F;td&gt;&lt;td&gt;14k (18%)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;em&gt;7&lt;&#x2F;em&gt;&lt;&#x2F;td&gt;&lt;td&gt;69k&lt;&#x2F;td&gt;&lt;td&gt;57&lt;&#x2F;td&gt;&lt;td&gt;20k (29%)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;em&gt;8&lt;&#x2F;em&gt;&lt;&#x2F;td&gt;&lt;td&gt;79k&lt;&#x2F;td&gt;&lt;td&gt;57&lt;&#x2F;td&gt;&lt;td&gt;10k (13%)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;em&gt;9&lt;&#x2F;em&gt;&lt;&#x2F;td&gt;&lt;td&gt;77k&lt;&#x2F;td&gt;&lt;td&gt;57&lt;&#x2F;td&gt;&lt;td&gt;17k (22%)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;em&gt;10&lt;&#x2F;em&gt;&lt;&#x2F;td&gt;&lt;td&gt;89k&lt;&#x2F;td&gt;&lt;td&gt;58&lt;&#x2F;td&gt;&lt;td&gt;24k (27%)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;em&gt;11&lt;&#x2F;em&gt;&lt;&#x2F;td&gt;&lt;td&gt;79k&lt;&#x2F;td&gt;&lt;td&gt;58&lt;&#x2F;td&gt;&lt;td&gt;17k (21%)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;em&gt;12&lt;&#x2F;em&gt;&lt;&#x2F;td&gt;&lt;td&gt;57k&lt;&#x2F;td&gt;&lt;td&gt;58&lt;&#x2F;td&gt;&lt;td&gt;24k (42%)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;and calculated the following zonal paces:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;3:32&#x2F;km -&amp;gt; 17km&#x2F;h ~= Z6 for mile?&lt;&#x2F;li&gt;
+&lt;li&gt;3:45&#x2F;km -&amp;gt; 16km&#x2F;h ~= Z5 for 5k (18:45)&lt;&#x2F;li&gt;
+&lt;li&gt;4:00&#x2F;km -&amp;gt; 15km&#x2F;h ~= Z4 for 10k (40:00)&lt;&#x2F;li&gt;
+&lt;li&gt;4:16&#x2F;km -&amp;gt; 14.1km&#x2F;h ~= Z3 for HM (1:29:47)&lt;&#x2F;li&gt;
+&lt;li&gt;5:00&#x2F;km -&amp;gt; 12km&#x2F;h ~= Z2&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;My journal for these weeks:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;1&lt;&#x2F;em&gt;; &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7493451283&quot;&gt;&lt;code&gt;6x1k&lt;&#x2F;code&gt; at ~4:10&#x2F;km moltemyr&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7519890766&quot;&gt;24k long tromøy&lt;&#x2F;a&gt;, 60km&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;2&lt;&#x2F;em&gt;; &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7530520601&quot;&gt;&lt;code&gt;6x400m&lt;&#x2F;code&gt; at 3:32&#x2F;km (aimed for 1:24)&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7541421546&quot;&gt;20min fast &lt;code&gt;lysløypa&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7558263435&quot;&gt;21k long&lt;&#x2F;a&gt;, 61km&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;3&lt;&#x2F;em&gt;; &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7569275392&quot;&gt;&lt;code&gt;4x1M&lt;&#x2F;code&gt; at 4:05&#x2F;km greenwhich&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7583152332&quot;&gt;&lt;code&gt;1x5k&lt;&#x2F;code&gt; at 4:15 track&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7597044380&quot;&gt;15k long&lt;&#x2F;a&gt;, 66km&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;4&lt;&#x2F;em&gt;; &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7607373914&quot;&gt;&lt;code&gt;4x1M&lt;&#x2F;code&gt; at 4:04&#x2F;km&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7618813323&quot;&gt;&lt;code&gt;fartlek ~5k&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, (swapped out 10k race), &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7635075131&quot;&gt;20k long with &lt;code&gt;3k&lt;&#x2F;code&gt;@4:15&lt;&#x2F;a&gt;, 67k&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;5&lt;&#x2F;em&gt;: &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7646230166&quot;&gt;&lt;code&gt;5x1k&lt;&#x2F;code&gt; at 3:45&#x2F;km&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7658563450&quot;&gt;&lt;code&gt;5k&lt;&#x2F;code&gt; at 4:08&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7667675129&quot;&gt;minor &lt;code&gt;hills&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7673723360&quot;&gt;20k long&lt;&#x2F;a&gt;, 74k&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;6&lt;&#x2F;em&gt;: &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7684661347&quot;&gt;&lt;code&gt;8x500m&lt;&#x2F;code&gt; at 3:42&#x2F;km&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7699165724&quot;&gt;&lt;code&gt;5k&lt;&#x2F;code&gt; at 4:35&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7713200531&quot;&gt;21k long with &lt;code&gt;5k&lt;&#x2F;code&gt; at 4:08&lt;&#x2F;a&gt;, 77k&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;7&lt;&#x2F;em&gt;: &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7724007694&quot;&gt;&lt;code&gt;8x1k&lt;&#x2F;code&gt; at 4:09&#x2F;km&lt;&#x2F;a&gt; (stitch), &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7735503391&quot;&gt;&lt;code&gt;6x1min&lt;&#x2F;code&gt; at 3:29&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7750969909&quot;&gt;10k race at 3:57&lt;&#x2F;a&gt;, 69k&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;8&lt;&#x2F;em&gt;: &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7768156089&quot;&gt;&lt;code&gt;6x1k&lt;&#x2F;code&gt; at 4:09&#x2F;km&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7783411830&quot;&gt;10x1min at 3:40&#x2F;km&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7790261377&quot;&gt;18k long with 1k@4:18&lt;&#x2F;a&gt;, 79k&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;9&lt;&#x2F;em&gt;: &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7800292329&quot;&gt;&lt;code&gt;2x3k&lt;&#x2F;code&gt;+ &lt;code&gt;2x1500&lt;&#x2F;code&gt; at 4:04&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7826632615&quot;&gt;21k long with 8k at 4:15&lt;&#x2F;a&gt;, 77k&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;10&lt;&#x2F;em&gt;: &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7842666966&quot;&gt;&lt;code&gt;2x3k&lt;&#x2F;code&gt;+&lt;code&gt;2x2k&lt;&#x2F;code&gt; at 4:07&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7854021660&quot;&gt;2x2x400m at 3:30&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7863642045&quot;&gt;21k long with 10k at 4:15&lt;&#x2F;a&gt;, 89k&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;11&lt;&#x2F;em&gt;: &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7878906931&quot;&gt;5k race attempt&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7888706732&quot;&gt;4x1M at 4:01&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7900273246&quot;&gt;18k long with 6k at 4:15&lt;&#x2F;a&gt; (big headwind), 79k&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;12&lt;&#x2F;em&gt; taper week (intensive, but short mileage 60%, muscle monday only, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7908624435&quot;&gt;2k speed&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7919221158&quot;&gt;1k hills&lt;&#x2F;a&gt;), then &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;7934772777&quot;&gt;HM&lt;&#x2F;a&gt;, 57k&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;By many metrics (Garmin VO2max estimate, Strava fitness), I peaked nicely for the race:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;running22&#x2F;fitness-hm.png&quot; alt=&quot;Strava fitness graph climbing from 15 to 34 in a year, peaking at 34 at the half marathon day&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;and ended up feeling OK after the race. Got one blood-shot big toenail to show off for a year, but will leave you with the mental image.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;recovery&quot;&gt;Recovery&lt;&#x2F;h4&gt;
+&lt;p&gt;2 weeks of pretty low effort (40k, 50k), no speed, run every other day.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;chiang-mai-half-training&quot;&gt;Chiang Mai Half Training&lt;&#x2F;h3&gt;
+&lt;p&gt;Second block. 8w. A bit of an impromptu registration, and a bit of fun that to test how my training translate across continents to a new humid environment. Unfortunately, this block got cancelled near the end.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;1&lt;&#x2F;em&gt;: &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;8016708080&quot;&gt;&lt;code&gt;6x1k&lt;&#x2F;code&gt; at 4:00&#x2F;km&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;8042805169&quot;&gt;19k long&lt;&#x2F;a&gt;, 67k&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;2&lt;&#x2F;em&gt;: &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;8052372984&quot;&gt;&lt;code&gt;7x1k&lt;&#x2F;code&gt; at 3:57&#x2F;km&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;8071743943&quot;&gt;21k long&lt;&#x2F;a&gt;, 80k (last in London)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;3&lt;&#x2F;em&gt;: &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;8084716741&quot;&gt;&lt;code&gt;3.5x1M&lt;&#x2F;code&gt; at 4:05&#x2F;km&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;8109412998&quot;&gt;700m climb long&lt;&#x2F;a&gt;, 72k (Chiang Mai)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;4&lt;&#x2F;em&gt;: &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;8124189835&quot;&gt;&lt;code&gt;4x1M&lt;&#x2F;code&gt; at 4:05&#x2F;km&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;8142151676&quot;&gt;20k long&lt;&#x2F;a&gt;, 85k&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;5&lt;&#x2F;em&gt;: &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;8155702793&quot;&gt;&lt;code&gt;4x1M&lt;&#x2F;code&gt; at 4:03&#x2F;km&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;8173542205&quot;&gt;22k long&lt;&#x2F;a&gt;, 92k&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;6&lt;&#x2F;em&gt;: 8K recovery week, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;8187100758&quot;&gt;&lt;code&gt;8k&lt;&#x2F;code&gt; MAF test&lt;&#x2F;a&gt;, and covid 🪦, 38k&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Got covid two weeks ahead of the race. First time, but there are &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;old.reddit.com&#x2F;r&#x2F;AdvancedRunning&#x2F;comments&#x2F;xr60mg&#x2F;an_athletes_guide_to_managing_covid_risks_by_matt&#x2F;&quot;&gt;ample&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;old.reddit.com&#x2F;r&#x2F;AdvancedRunning&#x2F;comments&#x2F;yn5ypp&#x2F;tested_covid_positive_10_days_before_a_marathon&#x2F;&quot;&gt;warnings&lt;&#x2F;a&gt; about running hard post-covid.&lt;&#x2F;p&gt;
+&lt;p&gt;On the positive side, with an ungodly &lt;code&gt;4AM start&lt;&#x2F;code&gt; for this race and a &lt;code&gt;90%&lt;&#x2F;code&gt; average humidity (which tanked my running efficiency); having to cancel a difficult masochistic exercise you set purely for yourself is not universally a negative.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;covid&quot;&gt;Covid&lt;&#x2F;h3&gt;
+&lt;p&gt;Unfortunately, it had been one full year since my last (3rd) vaccination shot - and along with probably being hit with one of the &lt;code&gt;Q&lt;&#x2F;code&gt; variants in southeast asia - this disease was not fun. Just as one symptom disappeared another came in to replace it.&lt;&#x2F;p&gt;
+&lt;p&gt;While &lt;strong&gt;my&lt;&#x2F;strong&gt; stress graph on the worst day looked pretty benign (mostly medium stress), my partner&#x27;s stress graph on Garmin was the worst I have ever seen (with &amp;gt;10 hours of high stress in one day). Still, the fever was pretty bad for me, and am now getting light headed doing easy things 6 days on, so it&#x27;s definitely not &amp;quot;just a cold&amp;quot;.&lt;&#x2F;p&gt;
+&lt;p&gt;BMJ has a &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;blogs.bmj.com&#x2F;bjsm&#x2F;2022&#x2F;04&#x2F;23&#x2F;graduated-return-to-play-after-sars-cov-2-infection-what-have-we-learned-and-why-weve-updated-the-guidance&#x2F;&quot;&gt;Graduated Return To Play Guidance Protocol&lt;&#x2F;a&gt; and based on only having some &amp;quot;below-the-neck&amp;quot; systemic symptoms (fever), I am only planning on doing light jogging during the second half of December if&#x2F;once 🤞 it&#x27;s possible to:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;complete all activities of daily living without excessive fatigue and&#x2F;or breathlessness and be able to walk on the flat without getting breathless&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;So, yeah. Use your masks while indoors people. &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.reuters.com&#x2F;business&#x2F;healthcare-pharmaceuticals&#x2F;repeat-covid-is-riskier-than-first-infection-study-finds-2022-11-10&#x2F;&quot;&gt;Each time you get reinfected, the risks increase&lt;&#x2F;a&gt;. Hopefully, I can find a way back.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;random-thoughts&quot;&gt;Random Thoughts&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;next-year&quot;&gt;Next year&lt;&#x2F;h3&gt;
+&lt;p&gt;Provided recovery allows; I hope to keep the volume. It &lt;strong&gt;is a bit much&lt;&#x2F;strong&gt; - and just doing a fraction of it will for sure be enough to just stay healthy - but I kind of want to see how far I can stretch it for a bit longer. It&#x27;s also made me feel sharper.&lt;&#x2F;p&gt;
+&lt;p&gt;Want to train specifically for shorter distances like 1M &#x2F; 3000 &#x2F; 5k, even though beating PBs at this points does come with 8+ hours of mandatory training a week and injury risks so how much this is carried on next year is heavily conditional on nothing bad happening - a statement generally not served with good odds in the 2020s.&lt;&#x2F;p&gt;
+&lt;p&gt;Not planning on higher distance events like marathons just because of how detrimental it seems to be to your overall &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;pubmed.ncbi.nlm.nih.gov&#x2F;17465622&#x2F;&quot;&gt;immune system&lt;&#x2F;a&gt; and how much recovery you need. My current line of thinking is; why train for 4 months for an event that takes you out of the game for 2-4 weeks? Better find a smooth average that you can sustain.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;brain: he says this while planning on beating PBs; requiring the opposite of smooth averages.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Anyway, running has been a fun side-project that&#x27;s not been software related. It&#x27;s been interested reading about &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;sportsmedicine-open.springeropen.com&#x2F;articles&#x2F;10.1186&#x2F;s40798-022-00438-7&quot;&gt;how professionals train&lt;&#x2F;a&gt;, and seeing effects first hand.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;shoes&quot;&gt;Shoes&lt;&#x2F;h3&gt;
+&lt;p&gt;The silliest thing about this &lt;strong&gt;accessible sport&lt;&#x2F;strong&gt; though; is the amount of shoes you burn through. If you run &lt;code&gt;100k&lt;&#x2F;code&gt; a week, and follow the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.runnersworld.com&#x2F;gear&#x2F;a33233314&#x2F;how-many-miles-do-running-shoes-last&#x2F;&quot;&gt;500-800k&lt;&#x2F;a&gt; recommendation for max shoe mileage, you&#x27;ll blast through 5-10 pairs of running shoes a year, costing you somewhere from &lt;code&gt;£500-2000&lt;&#x2F;code&gt; per year for high end shoes. The &lt;code&gt;£60&lt;&#x2F;code&gt; I paid to run in Royal Parks was actually worth it just for the &lt;code&gt;15% off&lt;&#x2F;code&gt; coupon at a running shoe store.&lt;&#x2F;p&gt;
+&lt;p&gt;On the plus side, this is temporary, and at least I&#x27;m not some elitist playing golf.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

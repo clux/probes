@@ -1,0 +1,1014 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>probes - math</title>
+    <link href="https://clux.github.io/probes.zola/tags/math/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://clux.github.io/probes.zola"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2022-04-12T00:00:00+00:00</updated>
+    <id>https://clux.github.io/probes.zola/tags/math/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Baldur&#x27;s Gate: Multinomial Edition</title>
+        <published>2022-04-12T00:00:00+00:00</published>
+        <updated>2022-04-12T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://clux.github.io/probes.zola/baldurs-roll/" type="text/html"/>
+        <id>https://clux.github.io/probes.zola/baldurs-roll/</id>
+        
+        <content type="html">&lt;p&gt;In a &lt;del&gt;brief&lt;&#x2F;del&gt; bout of escapism from the world and responsibilities, I booted up &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;store.steampowered.com&#x2F;app&#x2F;257350&#x2F;Baldurs_Gate_II_Enhanced_Edition&#x2F;&quot;&gt;Baldur&#x27;s Gate 2&lt;&#x2F;a&gt; with my brother. It&#x27;s an amazing game, once you have figured out how to &lt;strong&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;old.reddit.com&#x2F;r&#x2F;baldursgate&#x2F;search?q=roll&amp;amp;restrict_sr=on&quot;&gt;roll&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt; your character.&lt;&#x2F;p&gt;
+&lt;p&gt;For today&#x27;s installment; rather than telling you about the game, let&#x27;s talk about the &lt;strong&gt;maths&lt;&#x2F;strong&gt; behind rolling a &lt;code&gt;2e&lt;&#x2F;code&gt; character for &lt;code&gt;BG2&lt;&#x2F;code&gt;, and then running simulations with weird &lt;code&gt;X&lt;&#x2F;code&gt;-based linux tools.&lt;&#x2F;p&gt;
+&lt;!--more--&gt;
+&lt;script src=&quot;https:&#x2F;&#x2F;cdn.plot.ly&#x2F;plotly-2.9.0.min.js&quot;&gt;&lt;&#x2F;script&gt;
+&lt;h2 id=&quot;rolling-a-character&quot;&gt;Rolling a character&lt;&#x2F;h2&gt;
+&lt;p&gt;The &lt;code&gt;BG2&lt;&#x2F;code&gt; character generation mechanics is almost entirely based on the rules from &lt;code&gt;AD&amp;amp;D 2e&lt;&#x2F;code&gt;. You get &lt;code&gt;6&lt;&#x2F;code&gt; ability scores, and each ability score is rolled as the sum of &lt;code&gt;3d6&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Probablistically; this &lt;strong&gt;should&lt;&#x2F;strong&gt; give you a character with an expected &lt;code&gt;63&lt;&#x2F;code&gt; total ability points (as a result of rolling &lt;code&gt;18d6&lt;&#x2F;code&gt;).&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Mechanically, you are in this screen:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;bg&#x2F;rolling.png&quot; alt=&quot;bg2 stat rolling screen&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;...and they have given you a &lt;code&gt;reroll&lt;&#x2F;code&gt; button.&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s a strange design idea to port the rolling mechanics from &lt;code&gt;d&amp;amp;d&lt;&#x2F;code&gt; into this game. In a normal campaign you&#x27;d usually get one chance rolling, but here, there&#x27;s no downside to keeping going; encouraging excessive time investment (the irony in writing a blog post on this is not lost on me). &lt;small&gt;The character creation in BG2 would probably have been less perfection focused if they&#x27;d gone for something like &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;chicken-dinner.com&#x2F;5e&#x2F;5e-point-buy.html&quot;&gt;5e point buy&lt;&#x2F;a&gt;.&lt;&#x2F;small&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Anyway, &lt;strong&gt;suppose&lt;&#x2F;strong&gt; you want learn how to automate this, or you just want to think about combinatorics, multinomials, and weird &lt;code&gt;X&lt;&#x2F;code&gt; tools for a while, then this is the right place. You will also figure out &lt;strong&gt;how long it&#x27;s expected to take&lt;&#x2F;strong&gt; to roll high.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;HINT: ..it&#x27;s less time than it took to write this blogpost&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;disclaimer&quot;&gt;Disclaimer&lt;&#x2F;h2&gt;
+&lt;p&gt;Using the script used herein to achieve higher rolls than you have patience for, is on some level; cheating. That said, it&#x27;s a fairly pointless effort:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;this is an &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Baldur%27s_Gate_II:_Shadows_of_Amn&quot;&gt;old&lt;&#x2F;a&gt;, unranked rpg with difficulty settings&lt;&#x2F;li&gt;
+&lt;li&gt;having &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;tvtropes.org&#x2F;pmwiki&#x2F;pmwiki.php&#x2F;Main&#x2F;DumpStat&quot;&gt;dump stats&lt;&#x2F;a&gt; is not heavily penalized in the game&lt;&#x2F;li&gt;
+&lt;li&gt;early items nullify effects of common dump stats (&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;baldursgate.fandom.com&#x2F;wiki&#x2F;Girdle_of_Hill_Giant_Strength&quot;&gt;19 STR girdle&lt;&#x2F;a&gt; or &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;baldursgate.fandom.com&#x2F;wiki&#x2F;Ring_of_Human_Influence&quot;&gt;18 CHA ring&lt;&#x2F;a&gt;)&lt;&#x2F;li&gt;
+&lt;li&gt;you can get &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=5dDmh98lmkA&quot;&gt;max stats in 20 minutes&lt;&#x2F;a&gt; with by abusing inventory+stat &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;baldursgate.fandom.com&#x2F;wiki&#x2F;Exploits#Potion_Swap_Glitch&quot;&gt;underflow&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;some &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;baldursgate.fandom.com&#x2F;wiki&#x2F;Edwin_Odesseiron&quot;&gt;NPCS&lt;&#x2F;a&gt; come with &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;baldursgate.fandom.com&#x2F;wiki&#x2F;Edwin%27s_Amulet&quot;&gt;gear&lt;&#x2F;a&gt; that blows &lt;strong&gt;marginally better stats&lt;&#x2F;strong&gt; out of the water&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;So assuming you have a reason to be here despite this; let&#x27;s dive in to some maths.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;multinomials-and-probabilities&quot;&gt;Multinomials and probabilities&lt;&#x2F;h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;How likely are you to get a 90&#x2F;95&#x2F;100?&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;The sum of rolling 18 six-sided dice follows an easier variant of the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Multinomial_distribution&quot;&gt;multinomial distribution&lt;&#x2F;a&gt; where we have equal event probabilities. We are going to follow the &lt;em&gt;simpler&lt;&#x2F;em&gt; multinomial expansion from &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;mathworld.wolfram.com&#x2F;Dice.html&quot;&gt;mathworld&#x2F;Dice&lt;&#x2F;a&gt; for &lt;code&gt;s=6&lt;&#x2F;code&gt; and &lt;code&gt;n=18&lt;&#x2F;code&gt; and find $P(x, 18, 6)$ which we will denote as $P(X = x)$; the chance of rolling a sum equal to $x$:&lt;&#x2F;p&gt;
+&lt;p&gt;$$P(X = x) = \frac{1}{6^{18}} \sum_{k=0}^{\lfloor(x-18)&#x2F;6\rfloor} (-1)^k \binom{18}{k} \binom{x-6k-1}{17}$$
+$$ = \sum_{k=0}^{\lfloor(x-18)&#x2F;6\rfloor} (-1)^k \frac{18}{k!(18-k)!} \frac{(x-6k-1)!}{(x-6k-18)!}$$&lt;&#x2F;p&gt;
+&lt;p&gt;If we were to expand this expression, we would get 15 different expressions depending on how big of an $x$ you want to determine. So rather than trying to reduce this to a polynomial expression over $p$, we will &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.wolframalpha.com&#x2F;input?i2d=true&amp;amp;i=+Divide%5B1%2CPower%5B6%2C18%5D%5DSum%5BPower%5B%5C%2840%29-1%5C%2841%29%2Ck%5D+*binomial%5C%2840%2918%5C%2844%29+k%5C%2841%29*binomial%5C%2840%2991-6k-1%5C%2844%29+17%5C%2841%29%2C%7Bk%2C0%2Cfloor%5C%2840%29Divide%5B%5C%2840%2991-18%5C%2841%29%2C6%5D%5C%2841%29%7D%5D&quot;&gt;paste values into wolfram alpha&lt;&#x2F;a&gt; and tabulate for $[18, \ldots, 108]$.&lt;&#x2F;p&gt;
+&lt;p&gt;You can see the &lt;a href=&quot;#appendix&quot;&gt;appendix&lt;&#x2F;a&gt; for the numbers. Here we will just plot the values:&lt;&#x2F;p&gt;
+&lt;div id=&quot;probhist&quot; style=&quot;width:600px;height:450px;&quot;&gt;&lt;&#x2F;div&gt;
+&lt;script&gt;
+&#x2F;&#x2F; keys [18, 108]
+var ALL_X = [...Array(109).keys()].slice(18);
+
+&#x2F;&#x2F; probabilities for p=18 up to p=108 (sums to 0.9999999999999999 \o&#x2F;)
+var MAIN_PROBS = [1&#x2F;101559956668416, 1&#x2F;5642219814912, 19&#x2F;11284439629824, 95&#x2F;8463329722368, 665&#x2F;11284439629824, 1463&#x2F;5642219814912, 33643&#x2F;33853318889472, 9605&#x2F;2821109907456, 119833&#x2F;11284439629824, 1552015&#x2F;50779978334208, 308465&#x2F;3761479876608, 97223&#x2F;470184984576, 2782169&#x2F;5642219814912, 1051229&#x2F;940369969152, 4550747&#x2F;1880739938304, 786505&#x2F;156728328192, 37624655&#x2F;3761479876608, 36131483&#x2F;1880739938304, 1206294965&#x2F;33853318889472, 20045551&#x2F;313456656384, 139474379&#x2F;1253826625536, 1059736685&#x2F;5642219814912, 128825225&#x2F;417942208512, 17143871&#x2F;34828517376, 8640663457&#x2F;11284439629824, 728073331&#x2F;626913312768, 2155134523&#x2F;1253826625536, 3942228889&#x2F;1586874322944, 4949217565&#x2F;1410554953728, 3417441745&#x2F;705277476864, 27703245169&#x2F;4231664861184, 3052981465&#x2F;352638738432, 126513483013&#x2F;11284439629824, 240741263447&#x2F;16926659444736, 199524184055&#x2F;11284439629824, 60788736553&#x2F;2821109907456, 2615090074301&#x2F;101559956668416, 56759069113&#x2F;1880739938304, 130521904423&#x2F;3761479876608, 110438453753&#x2F;2821109907456, 163027882055&#x2F;3761479876608, 88576807769&#x2F;1880739938304, 566880747559&#x2F;11284439629824, 24732579319&#x2F;470184984576, 101698030955&#x2F;1880739938304, 461867856157&#x2F;8463329722368, 101698030955&#x2F;1880739938304, 24732579319&#x2F;470184984576, 566880747559&#x2F;11284439629824, 88576807769&#x2F;1880739938304, 163027882055&#x2F;3761479876608, 110438453753&#x2F;2821109907456, 130521904423&#x2F;3761479876608, 56759069113&#x2F;1880739938304, 2615090074301&#x2F;101559956668416, 60788736553&#x2F;2821109907456, 199524184055&#x2F;11284439629824, 240741263447&#x2F;16926659444736, 126513483013&#x2F;11284439629824, 3052981465&#x2F;352638738432, 27703245169&#x2F;4231664861184, 3417441745&#x2F;705277476864, 4949217565&#x2F;1410554953728, 3942228889&#x2F;1586874322944, 2155134523&#x2F;1253826625536, 728073331&#x2F;626913312768, 8640663457&#x2F;11284439629824, 17143871&#x2F;34828517376, 128825225&#x2F;417942208512, 1059736685&#x2F;5642219814912, 139474379&#x2F;1253826625536, 20045551&#x2F;313456656384, 1206294965&#x2F;33853318889472, 36131483&#x2F;1880739938304, 37624655&#x2F;3761479876608, 786505&#x2F;156728328192, 4550747&#x2F;1880739938304, 1051229&#x2F;940369969152, 2782169&#x2F;5642219814912, 97223&#x2F;470184984576, 308465&#x2F;3761479876608, 1552015&#x2F;50779978334208, 119833&#x2F;11284439629824, 9605&#x2F;2821109907456, 33643&#x2F;33853318889472, 1463&#x2F;5642219814912, 665&#x2F;11284439629824, 95&#x2F;8463329722368, 19&#x2F;11284439629824, 1&#x2F;5642219814912, 1&#x2F;101559956668416];
+
+var MAIN_LEGEND = MAIN_PROBS.map(x =&gt; &quot;expected once in &quot; + Intl.NumberFormat().format(Math.floor(1&#x2F;x)) + &quot; rolls&quot;)
+
+var trace = {
+  x: ALL_X,
+  y: MAIN_PROBS,
+  name: &#x27;probability&#x27;,
+  text: MAIN_LEGEND,
+  opacity: 0.8,
+  type: &quot;scatter&quot;,
+};
+
+
+var data = [trace];
+var layout = {
+  title: &quot;Distribution for the sum of 18d6 dice rolls&quot;,
+  xaxis: {title: &quot;Roll&quot;},
+  yaxis: {title: &quot;Probability&quot;},
+};
+Plotly.newPlot(document.getElementById(&#x27;probhist&#x27;), data, layout);
+
+&#x2F;&#x2F; extra: precise expectation and variance
+var expectation_orig = MAIN_PROBS.map((x,i) =&gt; (i+18)*x).reduce((acc, e) =&gt; acc+e, 0);
+var variance_orig = MAIN_PROBS.map((x,i) =&gt; Math.pow(i+18 - expectation_orig, 2)*x).reduce((acc, e) =&gt; acc+e, 0);
+console.log(&quot;Precise Expectation and variance for 18d6&quot;, expectation_orig, variance_orig);
+&lt;&#x2F;script&gt;
+&lt;p&gt;and with the precise distribution we can also calculation expectation and variance:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;$E(X) = 63$&lt;&#x2F;li&gt;
+&lt;li&gt;$Var(X) = 52.5 \thickapprox 7.24^2$&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;This is how things &lt;strong&gt;should&lt;&#x2F;strong&gt; look on paper. From the chart you can extract:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;108&lt;&#x2F;code&gt; would be a once in &lt;code&gt;101 trillion&lt;&#x2F;code&gt; ($6^{18}$) event&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;107&lt;&#x2F;code&gt; would be a once in &lt;code&gt;5 trillion&lt;&#x2F;code&gt; event (&lt;code&gt;6^18&#x2F;18&lt;&#x2F;code&gt;)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;106&lt;&#x2F;code&gt; would be a once in &lt;code&gt;600 billion&lt;&#x2F;code&gt; event (5s in two places, or 4 in one place)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;105&lt;&#x2F;code&gt; would be a once in &lt;code&gt;90 billion&lt;&#x2F;code&gt; event (3x5s, or 1x4 and 1x5, or 1x3)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;104&lt;&#x2F;code&gt; would be a once in &lt;code&gt;16 billion&lt;&#x2F;code&gt; event (4x5s, 2x5s and 1x4, 2x4s, 1x5 and 1x3, 1x2)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;103&lt;&#x2F;code&gt; would be a once in &lt;code&gt;4 billion&lt;&#x2F;code&gt; event (...)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;102&lt;&#x2F;code&gt; would be a once in &lt;code&gt;1 billion&lt;&#x2F;code&gt; event&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;101&lt;&#x2F;code&gt; would be a once in &lt;code&gt;290 million&lt;&#x2F;code&gt; event&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;100&lt;&#x2F;code&gt; would be a once in &lt;code&gt;94 million&lt;&#x2F;code&gt; event&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;99&lt;&#x2F;code&gt; would be a once in &lt;code&gt;32 million&lt;&#x2F;code&gt; event&lt;&#x2F;li&gt;
+&lt;li&gt;$\ldots$&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;95&lt;&#x2F;code&gt; would be a once in &lt;code&gt;900k&lt;&#x2F;code&gt; event (first number with prob &amp;lt; 1 in a million)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;strong&gt;But is this really right for BG?&lt;&#x2F;strong&gt; A &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;old.reddit.com&#x2F;r&#x2F;baldursgate&#x2F;comments&#x2F;svnyy5&#x2F;this_is_why_i_let_my_gf_roll_my_stats_lol&#x2F;hxhde5k&#x2F;&quot;&gt;lot&lt;&#x2F;a&gt; of &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;old.reddit.com&#x2F;r&#x2F;baldursgate&#x2F;comments&#x2F;tak2m7&#x2F;say_hello_to_my_archer_roll&#x2F;&quot;&gt;people&lt;&#x2F;a&gt; have &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;old.reddit.com&#x2F;r&#x2F;baldursgate&#x2F;comments&#x2F;rjnw22&#x2F;less_than_a_minute_of_rolling_this_is_my_alltime&#x2F;&quot;&gt;all&lt;&#x2F;a&gt; rolled nineties in just a few hundred rolls, and many even getting &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;old.reddit.com&#x2F;r&#x2F;baldursgate&#x2F;comments&#x2F;phr68a&#x2F;my_new_highest_roll_10049_elf_mclovin_fightermage&#x2F;&quot;&gt;100&lt;&#x2F;a&gt; or &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;old.reddit.com&#x2F;r&#x2F;baldursgate&#x2F;comments&#x2F;sq54wo&#x2F;how_high_can_you_roll&#x2F;&quot;&gt;more&lt;&#x2F;a&gt;..was that extreme luck, or are higher numbers more likely than what this distribution says?&lt;&#x2F;p&gt;
+&lt;p&gt;Well, let&#x27;s start with the obvious:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;The distribution is &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Censoring_(statistics)&quot;&gt;censored&lt;&#x2F;a&gt;. We don&#x27;t see the rolls below $75$.&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;div id=&quot;probhist2&quot; style=&quot;width:600px;height:450px;&quot;&gt;&lt;&#x2F;div&gt;
+&lt;script&gt;
+var data = [{
+  x: ALL_X,
+  y: MAIN_PROBS,
+  name: &#x27;probability&#x27;,
+  text: MAIN_LEGEND,
+  opacity: 0.8,
+  type: &quot;scatter&quot;,
+}];
+var layout = {
+  annotations: [
+   {
+     y: 1&#x2F;70,
+     x: 75,
+     xref: &#x27;x&#x27;,
+     yref: &#x27;y&#x27;,
+     text: &#x27;cutoff&#x27;,
+     showarrow: true,
+     arrowhead: 7,
+     arrowcolor: &quot;blue&quot;,
+     ax: 0,
+     ay: -40
+   },
+  ],
+  xaxis: {title: &quot;Roll&quot;},
+  yaxis: {title: &quot;Probability&quot;},
+};
+Plotly.newPlot(document.getElementById(&#x27;probhist2&#x27;), data, layout);
+&lt;&#x2F;script&gt;
+&lt;p&gt;What&#x27;s &lt;strong&gt;left of this cutoff&lt;&#x2F;strong&gt; actually accounts for around &lt;code&gt;94%&lt;&#x2F;code&gt; of the distribution. &lt;strong&gt;If&lt;&#x2F;strong&gt; the game &lt;strong&gt;did not do this&lt;&#x2F;strong&gt;, you&#x27;d be as likely getting &lt;code&gt;36&lt;&#x2F;code&gt; as a &lt;code&gt;90&lt;&#x2F;code&gt;. We are effectively throwing away &amp;quot;19 bad rolls&amp;quot; on every roll.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;AD&amp;amp;D 2e&lt;&#x2F;code&gt; had its &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;advanced-dungeons-dragons-2nd-edition.fandom.com&#x2F;wiki&#x2F;Rolling_Ability_Scores&quot;&gt;own ways to tilt the distribution&lt;&#x2F;a&gt; in a way that resulted in more powerful characters.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;How such a truncation or censoring is performed is at the mercy of the BG engine. We will &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Rectified_Gaussian_distribution&quot;&gt;rectify&lt;&#x2F;a&gt; the distribution by &lt;strong&gt;scaling up&lt;&#x2F;strong&gt; the truncated version of our distribution, and show that this is correct later.&lt;&#x2F;p&gt;
+&lt;div id=&quot;probhist3&quot; style=&quot;width:600px;height:450px;&quot;&gt;&lt;&#x2F;div&gt;
+&lt;script&gt;
+var prob_over_74 = MAIN_PROBS.slice(75-18).reduce((acc, e) =&gt; acc + e, 0);
+var SCALED_PROBS = MAIN_PROBS.slice(75-18).map(x =&gt; x &#x2F; prob_over_74); &#x2F;&#x2F; scale up by whats left
+
+var scaled_legend = SCALED_PROBS.map(x =&gt; &quot;expected once in &quot; + Intl.NumberFormat().format(Math.floor(1&#x2F;x)) + &quot; rolls&quot;);
+
+&#x2F;&#x2F;console.log(&quot;probability of rolling gte 75&quot;, prob_over_74);
+&#x2F;&#x2F;console.log(SCALED_PROBS.reduce((acc, e) =&gt; acc + e, 0)); &#x2F;&#x2F; 1!
+var trace = {
+  x: ALL_X.slice(75-18),
+  y: SCALED_PROBS,
+  name: &#x27;probability&#x27;,
+  text: scaled_legend,
+  opacity: 0.8,
+  type: &quot;scatter&quot;,
+};
+
+var data = [trace];
+var layout = {
+  title: &quot;Scaled Distribution&quot;,
+  xaxis: {title: &quot;Roll&quot;},
+  yaxis: {title: &quot;Probability&quot;},
+};
+Plotly.newPlot(document.getElementById(&#x27;probhist3&#x27;), data, layout);
+
+&#x2F;&#x2F; extra: precise expectation and variance
+var expectation_trunc = SCALED_PROBS.map((x,i) =&gt; (i+75)*x).reduce((acc, e) =&gt; acc+e, 0);
+var variance_trunc = SCALED_PROBS.map((x,i) =&gt; Math.pow(i+75 - expectation_trunc, 2)*x).reduce((acc, e) =&gt; acc+e, 0);
+console.log(&quot;Precise Truncated Expectation and variance for 18d6&quot;, expectation_trunc, variance_trunc);
+
+&lt;&#x2F;script&gt;
+&lt;p&gt;Here we have divided by the sum of the probabilities of the right hand side of the graph $P(X \ge 75)$ to get the new probability sum to &lt;code&gt;1&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Using this scaled data, we can get precise, truncated distribution parameters:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;$E(X_T) = 77.525$&lt;&#x2F;li&gt;
+&lt;li&gt;$Var(X_T) = 2.61^2$&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;This &lt;em&gt;censored 18d6 multinomial distribution&lt;&#x2F;em&gt; is actually very close for certain cases, and we will &lt;strong&gt;demonstrate&lt;&#x2F;strong&gt; this.&lt;&#x2F;p&gt;
+&lt;p&gt;But first, we are going to need to press the &lt;code&gt;reroll&lt;&#x2F;code&gt; button a lot...&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;automating-rolling&quot;&gt;Automating Rolling&lt;&#x2F;h2&gt;
+&lt;p&gt;The simulation script &#x2F; hacks we made is &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Thhethssmuz&#x2F;bg2ee-stat-roll&quot;&gt;found here&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;tools&quot;&gt;Tools&lt;&#x2F;h3&gt;
+&lt;p&gt;We are playing on &lt;strong&gt;Linux&lt;&#x2F;strong&gt; with &lt;code&gt;X&lt;&#x2F;code&gt; and some obscure associated tooling:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;scrot&lt;&#x2F;code&gt; - X screenshot utility&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;xdotool&lt;&#x2F;code&gt; - X CLI automation tool&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;xwininfo&lt;&#x2F;code&gt; - X window information utility&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Basic strategy;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;find out where buttons are with &lt;code&gt;xwininfo&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;press the &lt;code&gt;reroll&lt;&#x2F;code&gt; button with &lt;code&gt;xdotool&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;take screenshot of the &lt;code&gt;total&lt;&#x2F;code&gt; number with &lt;code&gt;scrot&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;compare screenshot to previous rolls&lt;&#x2F;li&gt;
+&lt;li&gt;press &lt;code&gt;store&lt;&#x2F;code&gt; when a new maximum is found&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The script also does some extra stuff to determine the strength roll, but that&#x27;s not relevant here.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;initialization&quot;&gt;Initialization&lt;&#x2F;h3&gt;
+&lt;p&gt;To standardise what we are taking screenshots of, we need a consistent frame of reference.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;xwininfo&lt;&#x2F;code&gt; will give us the &lt;code&gt;x,y&lt;&#x2F;code&gt; coordinates of the top left corner of the game window, and then hard-code the offsets from that because the game has a consistent layout. There is &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Thhethssmuz&#x2F;bg2ee-stat-roll&#x2F;blob&#x2F;5a023de83c468224aa999b5b3c60f224aae76b97&#x2F;roll.sh#L20-L84&quot;&gt;some complexity&lt;&#x2F;a&gt; in doing this, but it has so far worked well.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Caveat&lt;&#x2F;strong&gt;: You need to have &lt;strong&gt;scaled the window&lt;&#x2F;strong&gt; to size &amp;gt;= 1024x768 to avoid UI downscaling.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;The standardised approach also helps with dealing with rolls, and it let us populate a roll-table quickly.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;roll-tables&quot;&gt;Roll Tables&lt;&#x2F;h3&gt;
+&lt;p&gt;Taking screenshots is pretty easy. Use &lt;code&gt;scrot&lt;&#x2F;code&gt; at an &lt;code&gt;x,y&lt;&#x2F;code&gt; coordinate followed by lenghts; &lt;code&gt;,width,height&lt;&#x2F;code&gt; as remaining arguments defining the square to screenshot:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh z-code&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;scrot&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;a&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-double z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-expansion z-parameter z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-expansion z-parameter z-begin z-shell&quot;&gt;{&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-expansion z-parameter z-shell&quot;&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-shell&quot;&gt;STR_TOP_LEFT_X&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-expansion z-parameter z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-expansion z-parameter z-end z-shell&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;,&lt;span class=&quot;z-meta z-group z-expansion z-parameter z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-expansion z-parameter z-begin z-shell&quot;&gt;{&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-expansion z-parameter z-shell&quot;&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-shell&quot;&gt;STR_TOP_LEFT_Y&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-expansion z-parameter z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-expansion z-parameter z-end z-shell&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;,49,17&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; -&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;the output of this can be piped to a &lt;code&gt;.png&lt;&#x2F;code&gt; and passed to &lt;code&gt;compare&lt;&#x2F;code&gt; (part of &lt;code&gt;imagemagick&lt;&#x2F;code&gt; package), to compare values based on thresholds. However, this idea is actually overkill..&lt;&#x2F;p&gt;
+&lt;p&gt;The menu background is &lt;strong&gt;static&lt;&#x2F;strong&gt; and the resulting screenshots are actually &lt;strong&gt;completely deterministic per value&lt;&#x2F;strong&gt;, so we can instead just compare them by their hashes in one big &lt;code&gt;switch&lt;&#x2F;code&gt; (i.e. after piping to &lt;code&gt;md5&lt;&#x2F;code&gt;) and use that as our &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Thhethssmuz&#x2F;bg2ee-stat-roll&#x2F;blob&#x2F;5a023de83c468224aa999b5b3c60f224aae76b97&#x2F;roll.sh#L130-L159&quot;&gt;roll table&lt;&#x2F;a&gt;, Excerpt:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh z-code&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;    &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;d74939b47327e4f2c1b781d64e2ab28d*&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;) &lt;span class=&quot;z-variable z-other z-readwrite z-assignment z-shell&quot;&gt;CURRENT_ROLL&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-shell&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-unquoted z-shell&quot;&gt;90&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;;&lt;span class=&quot;z-keyword z-operator z-logical z-continue z-shell&quot;&gt;;&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;ca49ce8b4c9c0f814dab24668f7313fe*&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;) &lt;span class=&quot;z-variable z-other z-readwrite z-assignment z-shell&quot;&gt;CURRENT_ROLL&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-shell&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-unquoted z-shell&quot;&gt;91&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;;&lt;span class=&quot;z-keyword z-operator z-logical z-continue z-shell&quot;&gt;;&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;3e6f8127ac0634bb1fc20acf40c95c48*&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;) &lt;span class=&quot;z-variable z-other z-readwrite z-assignment z-shell&quot;&gt;CURRENT_ROLL&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-shell&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-unquoted z-shell&quot;&gt;92&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;;&lt;span class=&quot;z-keyword z-operator z-logical z-continue z-shell&quot;&gt;;&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;7f849edd84a4be895f5c58b4f5b20d4e*&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;) &lt;span class=&quot;z-variable z-other z-readwrite z-assignment z-shell&quot;&gt;CURRENT_ROLL&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-shell&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-unquoted z-shell&quot;&gt;93&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;;&lt;span class=&quot;z-keyword z-operator z-logical z-continue z-shell&quot;&gt;;&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;b8f90179e2a0e975fc2647bc7439d9c6*&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;) &lt;span class=&quot;z-variable z-other z-readwrite z-assignment z-shell&quot;&gt;CURRENT_ROLL&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-shell&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-unquoted z-shell&quot;&gt;94&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;;&lt;span class=&quot;z-keyword z-operator z-logical z-continue z-shell&quot;&gt;;&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;b1d3b73de16d750b265f5c63000ccd54*&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;) &lt;span class=&quot;z-variable z-other z-readwrite z-assignment z-shell&quot;&gt;CURRENT_ROLL&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-shell&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-unquoted z-shell&quot;&gt;95&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;;&lt;span class=&quot;z-keyword z-operator z-logical z-continue z-shell&quot;&gt;;&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;87413f7310bd06b0b66fb4d2e61c5c7a*&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;) &lt;span class=&quot;z-variable z-other z-readwrite z-assignment z-shell&quot;&gt;CURRENT_ROLL&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-shell&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-unquoted z-shell&quot;&gt;96&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;;&lt;span class=&quot;z-keyword z-operator z-logical z-continue z-shell&quot;&gt;;&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;b489ad2a17456f8eebe843e4b7e3e685*&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;) &lt;span class=&quot;z-variable z-other z-readwrite z-assignment z-shell&quot;&gt;CURRENT_ROLL&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-shell&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-unquoted z-shell&quot;&gt;97&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;;&lt;span class=&quot;z-keyword z-operator z-logical z-continue z-shell&quot;&gt;;&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;25112e67464791f24f9e2e99d38ef9d7*&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;) &lt;span class=&quot;z-variable z-other z-readwrite z-assignment z-shell&quot;&gt;CURRENT_ROLL&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-shell&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-unquoted z-shell&quot;&gt;98&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;;&lt;span class=&quot;z-keyword z-operator z-logical z-continue z-shell&quot;&gt;;&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;9c3720b9d3ab1d7f0d11dfb9771a1aef*&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;) &lt;span class=&quot;z-variable z-other z-readwrite z-assignment z-shell&quot;&gt;CURRENT_ROLL&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-shell&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-unquoted z-shell&quot;&gt;99&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;;&lt;span class=&quot;z-keyword z-operator z-logical z-continue z-shell&quot;&gt;;&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;3ef9bf6cd4d9946d89765870e5b21566*&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;) &lt;span class=&quot;z-variable z-other z-readwrite z-assignment z-shell&quot;&gt;CURRENT_ROLL&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-shell&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-unquoted z-shell&quot;&gt;100&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;;&lt;span class=&quot;z-keyword z-operator z-logical z-continue z-shell&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;clicking&quot;&gt;Clicking&lt;&#x2F;h2&gt;
+&lt;p&gt;Automating a click is simply:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh z-code&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;xdotool&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; mousemove &lt;span class=&quot;z-string z-quoted z-double z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-expansion z-parameter z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-shell&quot;&gt;REROLL_BTN_X&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-double z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-expansion z-parameter z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-shell&quot;&gt;REROLL_BTN_Y&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; click&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;delay&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-option z-shell&quot;&gt;=&lt;&#x2F;span&gt;0 1&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;where the &lt;code&gt;--delay=0&lt;&#x2F;code&gt; overrides a builtin delay between clicks.&lt;&#x2F;p&gt;
+&lt;p&gt;The only complication here is that BG performs &lt;strong&gt;internal buffering&lt;&#x2F;strong&gt; of clicks, so this allows us to blast through numbers faster than the screen can display them. This means we have to compensate with a &lt;code&gt;sleep 0.001&lt;&#x2F;code&gt; after clicking to ensure we can grab the &lt;code&gt;scrot&lt;&#x2F;code&gt; of the roll before another click is registered.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;showcase&quot;&gt;Showcase&lt;&#x2F;h2&gt;
+&lt;p&gt;Running the script (with a terminal showing the script output overlayed) looks like this:&lt;&#x2F;p&gt;
+&lt;div class=&quot;yv&quot;&gt;
+    &lt;iframe src=&quot;https:&#x2F;&#x2F;www.youtube-nocookie.com&#x2F;embed&#x2F;849xInj3GmI&quot; title=&quot;Youtube&quot; class=&quot;yvi&quot; webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;&#x2F;iframe&gt;
+&lt;&#x2F;div&gt;
+&lt;p&gt;On my machine, we get just over &lt;strong&gt;15 rolls per second&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;sampling&quot;&gt;Sampling&lt;&#x2F;h2&gt;
+&lt;p&gt;We rolled a human &lt;code&gt;fighter&lt;&#x2F;code&gt;, &lt;code&gt;paladin&lt;&#x2F;code&gt;, and a &lt;code&gt;ranger&lt;&#x2F;code&gt; overnight with roughly half a million rolls each (see &lt;a href=&quot;#appendix&quot;&gt;appendix&lt;&#x2F;a&gt;), and we got these values:&lt;&#x2F;p&gt;
+&lt;div id=&quot;rollhist&quot; style=&quot;width:600px;height:450px;&quot;&gt;&lt;&#x2F;div&gt;
+&lt;script&gt;
+&#x2F;&#x2F; keys [75, 108]
+var x = [...Array(109).keys()].slice(75);
+
+&#x2F;&#x2F; number of samples per class
+var samples = {
+  &#x2F;&#x2F;  fighter (75 -&gt; 98)
+  &quot;fighter&quot;: [137379, 109198, 85620, 65004, 48256, 35041, 24987, 17545, 11981, 7883, 5007, 3139, 1946, 1138, 670, 368, 199, 103, 49, 26, 12, 6, 2, 1],
+  &#x2F;&#x2F; paladin (75 -&gt; 102)
+  &quot;paladin&quot;: [50888, 54911, 57338, 57442, 55589, 52357, 47503, 41339, 34458, 28599, 21997, 16722, 12322, 8697, 5997, 3774, 2371, 1489, 822, 465, 251, 129, 56, 24, 12, 4, 1, 1],
+
+  &#x2F;&#x2F; ranger (75 -&gt; 100)
+  &quot;ranger&quot;: [32296, 37790, 43118, 46609, 48108, 47589, 45774, 41963, 36876, 30973, 25272, 19904, 14730, 10430, 7285, 4667, 2991, 1696, 986, 529, 254, 121, 56, 26, 10, 1],
+};
+
+var trace_observations = function(klss) {
+  var sample_klss = samples[klss];
+  let num_samples = sample_klss.reduce((acc, e) =&gt; acc+e, 0);
+  var observed_probs = sample_klss.map(x =&gt; x &#x2F; num_samples);
+
+  &#x2F;&#x2F; TODO: estimate expecation and variance here?
+  return {
+    x: x,
+    y: observed_probs,
+    name: &#x27;observed &#x27; + klss,
+    text: observed_probs.map(x =&gt; &quot;occurred once in &quot; + Math.floor(1&#x2F;x) + &quot; rolls&quot;),
+    opacity: 0.8,
+    type: &quot;scatter&quot;,
+  };
+};
+
+var trace_obs_fighter = trace_observations(&#x27;fighter&#x27;);
+var trace_obs_paladin = trace_observations(&#x27;paladin&#x27;);
+var trace_obs_ranger = trace_observations(&#x27;ranger&#x27;);
+
+var data = [trace_obs_fighter, trace_obs_paladin, trace_obs_ranger];
+var layout = {
+  title: &quot;Roll Results&quot;,
+  xaxis: {title: &quot;Roll&quot;},
+  yaxis: {title: &quot;Observed probability&quot;},
+};
+Plotly.newPlot(document.getElementById(&#x27;rollhist&#x27;), data, layout);
+&lt;&#x2F;script&gt;
+&lt;p&gt;Let&#x27;s start with the &lt;strong&gt;fighter&lt;&#x2F;strong&gt;. If we compare the fighter graph with our precise, censored multinomial distribution, they are &lt;strong&gt;very close&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;div id=&quot;probhist4&quot; style=&quot;width:600px;height:450px;&quot;&gt;&lt;&#x2F;div&gt;
+&lt;script&gt;
+var prob_over_74 = MAIN_PROBS.slice(75-18).reduce((acc, e) =&gt; acc + e, 0);
+var SCALED_PROBS = MAIN_PROBS.slice(75-18).map(x =&gt; x &#x2F; prob_over_74); &#x2F;&#x2F; scale up by whats left
+
+var scaled_legend = SCALED_PROBS.map(x =&gt; &quot;expected once in &quot; + Intl.NumberFormat().format(Math.floor(1&#x2F;x)) + &quot; rolls&quot;);
+
+let trace_single_trunc = {
+  x: ALL_X.slice(75-18),
+  y: SCALED_PROBS,
+  name: &#x27;fighter multinomial 18d6&#x27;,
+  text: scaled_legend,
+  opacity: 0.8,
+  type: &quot;scatter&quot;,
+};
+
+var data = [trace_single_trunc, trace_obs_fighter];
+var layout = {
+  title: &quot;Distribution vs. Observed Fighter&quot;,
+  xaxis: {title: &quot;Roll&quot;},
+  yaxis: {title: &quot;Probability&quot;},
+};
+Plotly.newPlot(document.getElementById(&#x27;probhist4&#x27;), data, layout);
+&lt;&#x2F;script&gt;
+&lt;p&gt;So for &lt;strong&gt;fighters&lt;&#x2F;strong&gt;, we can be pretty happy with the calculations we have done, and can use the precise probabilities as a guide.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;How long would it take you to achieve &amp;gt;95 for a fighter using the script?&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;108&lt;&#x2F;code&gt; is a once in &lt;code&gt;5 trillion&lt;&#x2F;code&gt; event (10,000 years)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;107&lt;&#x2F;code&gt; is a once in &lt;code&gt;300 billion&lt;&#x2F;code&gt; event (600 years)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;106&lt;&#x2F;code&gt; is a once in &lt;code&gt;33 billion&lt;&#x2F;code&gt; event (69 years)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;105&lt;&#x2F;code&gt; is a once in &lt;code&gt;5 billion&lt;&#x2F;code&gt; event (10 years)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;104&lt;&#x2F;code&gt; is a once in &lt;code&gt;900 million&lt;&#x2F;code&gt; event (2 years)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;103&lt;&#x2F;code&gt; is a once in &lt;code&gt;200 million&lt;&#x2F;code&gt; event (5 months)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;102&lt;&#x2F;code&gt; is a once in &lt;code&gt;50 million&lt;&#x2F;code&gt; event (5 weeks)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;101&lt;&#x2F;code&gt; is a once in &lt;code&gt;16 million&lt;&#x2F;code&gt; event (2 weeks)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;100&lt;&#x2F;code&gt; is a once in &lt;code&gt;5 million&lt;&#x2F;code&gt; event (4 days)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;99&lt;&#x2F;code&gt; is a once in &lt;code&gt;2 million&lt;&#x2F;code&gt; event (1.5 day)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;98&lt;&#x2F;code&gt; is a once in &lt;code&gt;700k&lt;&#x2F;code&gt; event (12h)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;97&lt;&#x2F;code&gt; is a once in &lt;code&gt;270k&lt;&#x2F;code&gt; event (5h)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;96&lt;&#x2F;code&gt; is a once in &lt;code&gt;110k&lt;&#x2F;code&gt; event (2h)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;95&lt;&#x2F;code&gt; is a once in &lt;code&gt;50k&lt;&#x2F;code&gt; event (55m)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;So if we only look at human fighters or mages, we can stop here:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We are actually quite a lot more likely to get a good roll early than what just the pure dice math would indicate thanks to censoring (50k rolls =&amp;gt; likely &lt;code&gt;95&lt;&#x2F;code&gt; rather than estimated &lt;code&gt;90&lt;&#x2F;code&gt; without censoring).&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;However, what&#x27;s up with the paladins and rangers? Time for a more painful math detour.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;bg&#x2F;amicat1-math.gif&quot; alt=&quot;sweat mile cat math&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;class-race-variance&quot;&gt;Class&#x2F;Race Variance&lt;&#x2F;h3&gt;
+&lt;p&gt;The reason for the discrepancy is simple: &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;rpg.stackexchange.com&#x2F;questions&#x2F;165377&#x2F;how-do-baldurs-gate-and-baldurs-gate-2s-rolling-for-stats-actually-get-gene&quot;&gt;stat floors based on races&#x2F;class&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;These stat floors are insignificant in some cases, but highly significant in others. Some highly floored classes actually push the uncensored mean above the &lt;code&gt;75&lt;&#x2F;code&gt; cutoff even though it&#x27;s a whole 12 points above the mean of the original underlying distribution.&lt;&#x2F;p&gt;
+&lt;p&gt;The floors for a some of the classes:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;fighter&lt;&#x2F;strong&gt; mins: &lt;code&gt;STR=9&lt;&#x2F;code&gt;, rest &lt;code&gt;3&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;mage&lt;&#x2F;strong&gt; mins: &lt;code&gt;INT=9&lt;&#x2F;code&gt;, rest &lt;code&gt;3&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;paladin&lt;&#x2F;strong&gt; mins: &lt;code&gt;CHA=17&lt;&#x2F;code&gt;, &lt;code&gt;WIS=13&lt;&#x2F;code&gt;, &lt;code&gt;STR=12&lt;&#x2F;code&gt;, &lt;code&gt;CON=9&lt;&#x2F;code&gt;, rest &lt;code&gt;3&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;ranger&lt;&#x2F;strong&gt; mins: &lt;code&gt;CON=14&lt;&#x2F;code&gt;, &lt;code&gt;WIS=14&lt;&#x2F;code&gt;, &lt;code&gt;STR=13&lt;&#x2F;code&gt;, &lt;code&gt;DEX=13&lt;&#x2F;code&gt;, rest &lt;code&gt;3&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;old.reddit.com&#x2F;r&#x2F;baldursgate&#x2F;comments&#x2F;reevp6&#x2F;everyone_enjoys_a_good_high_ability_score_role_so&#x2F;&quot;&gt;other classes&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt; mins: generally light floors&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;em&gt;In other words&lt;&#x2F;em&gt;: paladins and rangers have significantly higher rolls on average.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Sidenote: in &lt;code&gt;2e&lt;&#x2F;code&gt; you actually rolled stats first, and &lt;strong&gt;only if&lt;&#x2F;strong&gt; you met the &lt;strong&gt;requirements&lt;&#x2F;strong&gt; could you become a Paladin &#x2F; Ranger. It&#x27;s an interesting choice. Would not call this fun.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Anyway. Is it possible to incorporate these floors into our modelling?&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;floored-ability-distributions&quot;&gt;Floored Ability Distributions&lt;&#x2F;h2&gt;
+&lt;p&gt;If floors are involved at earlier stages, we have to take a step back and look at the distributions that make up the sum. We &lt;strong&gt;can&lt;&#x2F;strong&gt; compute distributions for &lt;strong&gt;individual ability scores&lt;&#x2F;strong&gt; (even if floored) if we use the distribution for $P(x, 3, 6)$ from &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;mathworld.wolfram.com&#x2F;Dice.html&quot;&gt;mathworld&#x2F;Dice&lt;&#x2F;a&gt; where &lt;code&gt;s=6&lt;&#x2F;code&gt; and &lt;code&gt;n=3&lt;&#x2F;code&gt; and censor it at a cutoff point similar to how we censor the total distribution.&lt;&#x2F;p&gt;
+&lt;p&gt;Computing the value without a floor follows the same setup as when we did 18 dice; use &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.wolframalpha.com&#x2F;input?i2d=true&amp;amp;i=+Divide%5B1%2CPower%5B6%2C3%5D%5DSum%5BPower%5B%5C%2840%29-1%5C%2841%29%2Ck%5D+*binomial%5C%2840%293%5C%2844%29+k%5C%2841%29*binomial%5C%2840%2910-6k-1%5C%2844%29+2%5C%2841%29%2C%7Bk%2C0%2Cfloor%5C%2840%29Divide%5B%5C%2840%2910-3%5C%2841%29%2C6%5D%5C%2841%29%7D%5D&quot;&gt;wolfram alpha&lt;&#x2F;a&gt; and tabulate for $[3, \ldots, 18]$:&lt;&#x2F;p&gt;
+&lt;div id=&quot;probhist3roll&quot; style=&quot;width:600px;height:450px;&quot;&gt;&lt;&#x2F;div&gt;
+&lt;script&gt;
+var THREEROLL_X = [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18];
+&#x2F;&#x2F; probabilities for p=3 up to p=18 (also sums to 0.9999999999999999)
+var THREEROLL_PROBS = [1&#x2F;216, 1&#x2F;72, 1&#x2F;36, 5&#x2F;108, 5&#x2F;72, 7&#x2F;72, 25&#x2F;216, 1&#x2F;8, 1&#x2F;8, 25&#x2F;216, 7&#x2F;72, 5&#x2F;72, 5&#x2F;108, 1&#x2F;36, 1&#x2F;72, 1&#x2F;216];
+console.log(&quot;probability sum for 3d6 =&quot;, THREEROLL_PROBS.reduce((acc, e) =&gt; acc+e, 0));
+
+var expectation_unt = THREEROLL_PROBS.map((x,i) =&gt; (i+3)*x).reduce((acc, e) =&gt; acc+e, 0);
+var variance_unt = THREEROLL_PROBS.map((x,i) =&gt; Math.pow(i+3 - expectation_unt, 2)*x).reduce((acc, e) =&gt; acc+e, 0);
+console.log(&quot;Expectation, variance for untruncated 3d6&quot;, expectation_unt, variance_unt);
+
+var trace = {
+  x: THREEROLL_X,
+  y: THREEROLL_PROBS,
+  name: &#x27;probability&#x27;,
+  text: THREEROLL_PROBS.map(x =&gt; &quot;expected once in &quot; + Intl.NumberFormat().format(Math.floor(1&#x2F;x)) + &quot; rolls&quot;),
+  opacity: 0.8,
+  type: &quot;scatter&quot;,
+};
+var data = [trace];
+var layout = {
+  title: &quot;Distribution for the sum of 3d6 dice rolls&quot;,
+  xaxis: {title: &quot;Roll&quot;},
+  yaxis: {title: &quot;Probability&quot;},
+};
+Plotly.newPlot(document.getElementById(&#x27;probhist3roll&#x27;), data, layout);
+&lt;&#x2F;script&gt;
+&lt;p&gt;then we truncate + scale this at the observed floor points &lt;code&gt;9&lt;&#x2F;code&gt;, &lt;code&gt;12&lt;&#x2F;code&gt;, &lt;code&gt;13&lt;&#x2F;code&gt;, &lt;code&gt;14&lt;&#x2F;code&gt;, and &lt;code&gt;17&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;div id=&quot;probhist3rolltruncs&quot; style=&quot;width:600px;height:450px;&quot;&gt;&lt;&#x2F;div&gt;
+&lt;script&gt;
+var TRUNCATED_DISTS = {};
+TRUNCATED_DISTS[0] = THREEROLL_PROBS.slice();
+TRUNCATED_DISTS[3] = THREEROLL_PROBS.slice(); &#x2F;&#x2F; no truncation == truncation at 3
+var truncated_trace = function (t) {
+  &#x2F;&#x2F; calculate probability up to cutoff point:
+  var TRUNC_T_SUM = THREEROLL_PROBS.slice(t-3).reduce((acc, e) =&gt; acc+e, 0);
+  &#x2F;&#x2F; truncate and scale (rectify) the right side of the distribution:
+  var THREE_TRUNC_T = THREEROLL_PROBS.slice(t-3).map(x =&gt; x &#x2F; TRUNC_T_SUM);
+  &#x2F;&#x2F; sanity sum (all 1)
+  &#x2F;&#x2F;console.log(&quot;Sum of 3d6 truncated at &quot;, t, &quot;:&quot;, THREE_TRUNC_T.reduce((acc, e)=&gt;acc+e, 0));
+  var expectation = THREE_TRUNC_T.map((x,i) =&gt; (i+t)*x).reduce((acc, e) =&gt; acc+e, 0);
+  var variance = THREE_TRUNC_T.map((x,i) =&gt; Math.pow(i+t - expectation, 2)*x).reduce((acc, e) =&gt; acc+e, 0);
+  console.log(&quot;Expectation, variance for truncated 3d6 at&quot;, t, expectation, variance);
+  TRUNCATED_DISTS[t] = THREE_TRUNC_T;
+  var trace = {
+    x: THREEROLL_X.slice(t-3),
+    y: THREE_TRUNC_T,
+    name: &#x27;floor &#x27; + t,
+    text: THREE_TRUNC_T.map(x =&gt; &quot;expected once in &quot; + Intl.NumberFormat(&#x27;en-IN&#x27;, {maximumSignificantDigits: 2}).format(1&#x2F;x) + &quot; rolls&quot;),
+    opacity: 0.8,
+    type: &quot;scatter&quot;,
+  };
+  return trace;
+};
+
+let trace_9 = truncated_trace(9);
+let trace_12 = truncated_trace(12);
+let trace_13 = truncated_trace(13);
+let trace_14 = truncated_trace(14);
+let trace_17 = truncated_trace(17);
+
+var data = [trace_9, trace_12, trace_13, trace_14, trace_17];
+var layout = {
+  title: &quot;Rectified Distribution for the sum of 3d6 dice rolls&quot;,
+  xaxis: {title: &quot;Roll&quot;},
+  yaxis: {title: &quot;Probability&quot;},
+};
+Plotly.newPlot(document.getElementById(&#x27;probhist3rolltruncs&#x27;), data, layout);
+&lt;&#x2F;script&gt;
+&lt;p&gt;To avoid having to write out conditionals $P(X = x| X\ge k)$ everywhere we will denote $X^{\lfloor k \rfloor}$ as one of these graphed multinomial distributions for the sum of &lt;code&gt;3d6&lt;&#x2F;code&gt; floored at $k$:&lt;&#x2F;p&gt;
+&lt;p&gt;$$X^{\lfloor k \rfloor} \sim \mathcal{M}^{\lfloor k \rfloor}(3d6)$$&lt;&#x2F;p&gt;
+&lt;p&gt;Note also that an unfloored ability score $X$ is equal to $X^{\lfloor3\rfloor}$.&lt;&#x2F;p&gt;
+&lt;p&gt;We can then compute precise conditional expectations by floor:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;$\mathbb{E}(X^{\lfloor3\rfloor}) = \mathbb{E}(X) = 3\sum_{k=1}^{6}\frac{k}{6} = 3*3.5 = 10.5$&lt;&#x2F;li&gt;
+&lt;li&gt;$\mathbb{E}(X^{\lfloor9\rfloor}) = 11.8125$&lt;&#x2F;li&gt;
+&lt;li&gt;$\mathbb{E}(X^{\lfloor12\rfloor}) = 13.5555$&lt;&#x2F;li&gt;
+&lt;li&gt;$\mathbb{E}(X^{\lfloor13\rfloor}) = 14.2500$&lt;&#x2F;li&gt;
+&lt;li&gt;$\mathbb{E}(X^{\lfloor14\rfloor}) = 15.0000$&lt;&#x2F;li&gt;
+&lt;li&gt;$\mathbb{E}(X^{\lfloor17\rfloor}) = 17.2500$&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Similarly, we can compute precise variances:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;$Var(X^{\lfloor3\rfloor}) = Var(X) = 3\sum_{k=1}^6\frac{(x_i - 3.5)^2}{6} = 3*2.92 = 8.75$&lt;&#x2F;li&gt;
+&lt;li&gt;$Var(X^{\lfloor9\rfloor}) = 4.5773$&lt;&#x2F;li&gt;
+&lt;li&gt;$Var(X^{\lfloor12\rfloor}) = 2.2469$&lt;&#x2F;li&gt;
+&lt;li&gt;$Var(X^{\lfloor13\rfloor}) = 1.6875$&lt;&#x2F;li&gt;
+&lt;li&gt;$Var(X^{\lfloor14\rfloor}) = 1.2000$&lt;&#x2F;li&gt;
+&lt;li&gt;$Var(X^{\lfloor17\rfloor}) = 0.1875$&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;sum-of-floored-ability-distributions&quot;&gt;Sum of Floored Ability Distributions&lt;&#x2F;h3&gt;
+&lt;p&gt;Define $Z_{paladin}$, $Z_{ranger}$ and $Z_{fighter}$ as:&lt;&#x2F;p&gt;
+&lt;p&gt;$$Z_{paladin} = X_1^{\lfloor17\rfloor} + X_2^{\lfloor13\rfloor} + X_3^{\lfloor12\rfloor} + X_4^{\lfloor9\rfloor} + X_5^{\lfloor3\rfloor} + X_6^{\lfloor3\rfloor}$$
+$$Z_{ranger} = X_1^{\lfloor14\rfloor} + X_2^{\lfloor14\rfloor} + X_3^{\lfloor13\rfloor} + X_4^{\lfloor13\rfloor} + X_5^{\lfloor3\rfloor} + X_6^{\lfloor3\rfloor}$$
+$$Z_{fighter} = X_1^{\lfloor9\rfloor} + X_2^{\lfloor3\rfloor} + X_3^{\lfloor3\rfloor} + X_4^{\lfloor3\rfloor} + X_5^{\lfloor3\rfloor} + X_6^{\lfloor3\rfloor}$$&lt;&#x2F;p&gt;
+&lt;p&gt;for floored 3d6 based random variables $X_i^{\lfloor N \rfloor}  \sim \mathcal{M}^{\lfloor N \rfloor}(3d6)$.&lt;&#x2F;p&gt;
+&lt;p&gt;Using the computed expectations above to sum across the 6 main stats:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;$\mathbb{E}(Fighter) = \mathbb{E}(X^{\lfloor9\rfloor}) + 5\mathbb{E}(X) = 64.31$&lt;&#x2F;li&gt;
+&lt;li&gt;$\mathbb{E}(Ranger) = 2\mathbb{E}(X^{\lfloor14\rfloor}) + 2\mathbb{E}(X^{\lfloor13\rfloor}) + 2\mathbb{E}(X) = 79.5$&lt;&#x2F;li&gt;
+&lt;li&gt;$\mathbb{E}(Paladin) = \mathbb{E}(X^{\lfloor17\rfloor}) + \mathbb{E}(X^{\lfloor13\rfloor}) + \mathbb{E}(X^{\lfloor12\rfloor}) + \mathbb{E}(X^{\lfloor9\rfloor})+ 2\mathbb{E}(X) = 77.86$&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;and similarly for variance:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;$Var(Fighter) = Var(X^{\lfloor9\rfloor}) + 5Var(X) \thickapprox 6.95^2$&lt;&#x2F;li&gt;
+&lt;li&gt;$Var(Ranger) = 2Var(X^{\lfloor14\rfloor}) + 2Var(X^{\lfloor13\rfloor}) + 2Var(X) \thickapprox 4.82^2$&lt;&#x2F;li&gt;
+&lt;li&gt;$Var(Paladin) = Var(X^{\lfloor17\rfloor}) + Var(X^{\lfloor13\rfloor}) + Var(X^{\lfloor12\rfloor}) + Var(X^{\lfloor3\rfloor})+ 2Var(X) \thickapprox 5.12^2$&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;noting that variables are independent under the observed two stage censoring.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Why can we rely on two stage censoring and their independence? If any of these internal mechanisms used some kind of &lt;code&gt;if&lt;&#x2F;code&gt; condition or &lt;code&gt;min&lt;&#x2F;code&gt; function, it would be immediately obvious from the distribution. The paladin distribution of charisma is clearly a &lt;code&gt;~1&#x2F;4&lt;&#x2F;code&gt; for an &lt;code&gt;18&lt;&#x2F;code&gt;, and &lt;code&gt;~3&#x2F;4&lt;&#x2F;code&gt; for a &lt;code&gt;17&lt;&#x2F;code&gt;; it would have been much rarer to see an 18 otherwise.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Thus, the distributions of our classes are based on multinomal-based distributions with the following first moments:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;$Uncensored\ Fighter \sim \mathcal{M}(\mu = 64.31, \sigma^2 = 6.95^2)$&lt;&#x2F;li&gt;
+&lt;li&gt;$Uncensored\ Ranger \sim \mathcal{M}(\mu = 79.5, \sigma^2 = 4.82^2)$&lt;&#x2F;li&gt;
+&lt;li&gt;$Uncensored\ Paladin \sim \mathcal{M}(\mu = 77.86, \sigma^2 = 5.12^2)$&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;This is nice as a quick overview of what&#x27;s best in the higher ranges, but it&#x27;s not very precise. Without the &lt;strong&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Probability_mass_function&quot;&gt;PMF&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt; for the &lt;strong&gt;sum of our ability scores&lt;&#x2F;strong&gt;, it&#x27;s hard to give good values for what the truncated version will look like (we are censoring in two stages). In particular, these heavily floored random variables end up giving us quite asymmetrical distributions in the tails.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;class-distributions&quot;&gt;Class Distributions&lt;&#x2F;h3&gt;
+&lt;p&gt;Thankfully, it is possible to inductively compute the pmf of $Z_{class}$ via &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Convolution#Discrete_convolution&quot;&gt;convolution&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Some internet digging notwithstanding; most answers found online for this required &lt;strong&gt;either&lt;&#x2F;strong&gt; &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;stats.stackexchange.com&#x2F;questions&#x2F;3614&#x2F;how-to-easily-determine-the-results-distribution-for-multiple-dice&#x2F;3684#3684&quot;&gt;mathematica functions&lt;&#x2F;a&gt; (that we do not have here in our inlined source), &lt;strong&gt;or&lt;&#x2F;strong&gt; a slightly more laborious manual convolution. We will follow the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;stats.libretexts.org&#x2F;Bookshelves&#x2F;Probability_Theory&#x2F;Book%3A_Introductory_Probability_(Grinstead_and_Snell)&#x2F;07%3A_Sums_of_Random_Variables&#x2F;7.01%3A_Sums_of_Discrete_Random_Variables&quot;&gt;inductive convolution approach&lt;&#x2F;a&gt; which we can solve with recursion. Paladin case:&lt;&#x2F;p&gt;
+&lt;p&gt;Let $X_{12} = X_1^{\lfloor17\rfloor} + X_2^{\lfloor13\rfloor}$. We can generate values for the pmf $p_{X_{12}}$ for $X_{12}$ via the pmfs $p_{X_i}$ for $X_1^{\lfloor17\rfloor}$ and $X_2^{\lfloor13\rfloor}$ via the convolution formula:&lt;&#x2F;p&gt;
+&lt;p&gt;$$P(X_{12} = n) = (p_{X_1} * p_{X_2})(n) = \sum_{m=-\infty}^{\infty}P(X_1=m)P(X_2 = n-m)$$&lt;&#x2F;p&gt;
+&lt;p&gt;This step is particularly easy for the paladin, because $X_1^{\lfloor17\rfloor}$ only takes two values (i.e. $m=17$ ahd $m=18$ are the only non-zero parts in the sum).&lt;&#x2F;p&gt;
+&lt;p&gt;The rest is less easy to do by hand, as the sums get increasingly large while we iterate towards $Z=P_{123456}$ by repeatedly applying convolution to the remaining $X_i$:&lt;&#x2F;p&gt;
+&lt;p&gt;$$P(X_{123} = n) = (p_{X_{12}} * p_{X_3})(n) \sum_{m=-\infty}^{\infty}P(X_{12}=m)P(X_3 = n-m)$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$P(X_{1234} = n) = (p_{X_{123}} * p_{X_4})(n) \sum_{m=-\infty}^{\infty}P(X_{123}=m)P(X_4 = n-m)$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$P(X_{12345} = n) = (p_{X_{1234}} * p_{X_5})(n) \sum_{m=-\infty}^{\infty}P(X_{1234}=m)P(X_5 = n-m)$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$P(X_{123456} = n) = (p_{X_{12345}} * p_{X_5})(n) \sum_{m=-\infty}^{\infty}P(X_{12345}=m)P(X_6 = n-m)$$&lt;&#x2F;p&gt;
+&lt;p&gt;The hard work is correctly matching indexes in our probability arrays that serve as our mass functions to the sum, and defaulting to zero when accessing out of bounds:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;js&quot; class=&quot;language-js z-code&quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;z-source z-ts&quot;&gt;&lt;span class=&quot;z-comment z-line z-double-slash z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-ts&quot;&gt;&#x2F;&#x2F;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-double-slash z-ts&quot;&gt; given pXi = [0.75, 0.25], pXj = [0.375, 0.2678, 0.1786, 0.1071, 0.05357, 0.01786]&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-comment z-line z-double-slash z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-ts&quot;&gt;&#x2F;&#x2F;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-double-slash z-ts&quot;&gt; (approximations of the first two truncated paladin probability arrays for CHA + WIS)&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-meta z-var z-expr z-ts&quot;&gt;&lt;span class=&quot;z-storage z-type z-ts&quot;&gt;var&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-var-single-variable z-expr z-ts&quot;&gt;&lt;span class=&quot;z-meta z-definition z-variable z-ts&quot;&gt;&lt;span class=&quot;z-entity z-name z-function z-ts&quot;&gt;convolve&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-ts&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function z-expression z-ts&quot;&gt;&lt;span class=&quot;z-storage z-type z-function z-ts&quot;&gt;function&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-parameters z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameters z-begin z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-ts&quot;&gt;pXi&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-parameter z-ts&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-parameter z-ts&quot;&gt;pXj&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-parameters z-end z-ts&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-block z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-block z-ts&quot;&gt;{&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-punctuation z-whitespace z-comment z-leading z-ts&quot;&gt;  &lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-double-slash z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-ts&quot;&gt;&#x2F;&#x2F;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-double-slash z-ts&quot;&gt; pre-allocate a zero-indexed array where our probabilities will go&lt;&#x2F;span&gt;
+  &lt;span class=&quot;z-meta z-var z-expr z-ts&quot;&gt;&lt;span class=&quot;z-storage z-type z-ts&quot;&gt;var&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-var-single-variable z-expr z-ts&quot;&gt;&lt;span class=&quot;z-meta z-definition z-variable z-ts&quot;&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;pXij&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-ts&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-array z-literal z-ts&quot;&gt; &lt;span class=&quot;z-meta z-brace z-square z-ts&quot;&gt;[&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-spread z-ts&quot;&gt;...&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-ts&quot;&gt;&lt;span class=&quot;z-support z-class z-builtin z-ts&quot;&gt;Array&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-object z-ts&quot;&gt;pXi&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-accessor z-ts&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-variable z-property z-ts&quot;&gt;length&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-ts&quot;&gt;+&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-object z-ts&quot;&gt;pXj&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-accessor z-ts&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-variable z-property z-ts&quot;&gt;length&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-ts&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-decimal z-ts&quot;&gt;1&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-accessor z-ts&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-dom z-ts&quot;&gt;keys&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-square z-ts&quot;&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-statement z-ts&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-punctuation z-whitespace z-comment z-leading z-ts&quot;&gt;  &lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-double-slash z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-ts&quot;&gt;&#x2F;&#x2F;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-double-slash z-ts&quot;&gt; loop to generate P(Xij = n) for all n&lt;&#x2F;span&gt;
+  &lt;span class=&quot;z-keyword z-control z-loop z-ts&quot;&gt;for&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-var z-expr z-ts&quot;&gt;&lt;span class=&quot;z-storage z-type z-ts&quot;&gt;let&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-var-single-variable z-expr z-ts&quot;&gt;&lt;span class=&quot;z-meta z-definition z-variable z-ts&quot;&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;n&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-ts&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-decimal z-ts&quot;&gt;0&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-statement z-ts&quot;&gt;;&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;n&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-relational z-ts&quot;&gt;&amp;lt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-object z-ts&quot;&gt;pXi&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-accessor z-ts&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-variable z-property z-ts&quot;&gt;length&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-ts&quot;&gt;+&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-object z-ts&quot;&gt;pXj&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-accessor z-ts&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-variable z-property z-ts&quot;&gt;length&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-ts&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-decimal z-ts&quot;&gt;1&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-statement z-ts&quot;&gt;;&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;n&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-assignment z-compound z-ts&quot;&gt;+=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-decimal z-ts&quot;&gt;1&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-block z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-block z-ts&quot;&gt;{&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;pXij&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-array z-literal z-ts&quot;&gt;&lt;span class=&quot;z-meta z-brace z-square z-ts&quot;&gt;[&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;n&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-square z-ts&quot;&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-assignment z-ts&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-decimal z-ts&quot;&gt;0&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-statement z-ts&quot;&gt;;&lt;&#x2F;span&gt; &lt;span class=&quot;z-comment z-line z-double-slash z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-ts&quot;&gt;&#x2F;&#x2F;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-double-slash z-ts&quot;&gt; init to zero&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-punctuation z-whitespace z-comment z-leading z-ts&quot;&gt;    &lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-double-slash z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-ts&quot;&gt;&#x2F;&#x2F;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-double-slash z-ts&quot;&gt; loop to do sum over m, first variable determines length of this sum&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-keyword z-control z-loop z-ts&quot;&gt;for&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-var z-expr z-ts&quot;&gt;&lt;span class=&quot;z-storage z-type z-ts&quot;&gt;let&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-var-single-variable z-expr z-ts&quot;&gt;&lt;span class=&quot;z-meta z-definition z-variable z-ts&quot;&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;m&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-ts&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-decimal z-ts&quot;&gt;0&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-statement z-ts&quot;&gt;;&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;m&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-relational z-ts&quot;&gt;&amp;lt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-object z-ts&quot;&gt;pXi&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-accessor z-ts&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-variable z-property z-ts&quot;&gt;length&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-statement z-ts&quot;&gt;;&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;m&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-assignment z-compound z-ts&quot;&gt;+=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-decimal z-ts&quot;&gt;1&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-block z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-block z-ts&quot;&gt;{&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-punctuation z-whitespace z-comment z-leading z-ts&quot;&gt;      &lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-double-slash z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-ts&quot;&gt;&#x2F;&#x2F;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-double-slash z-ts&quot;&gt; we do defaulting outside range with `|| 0`&lt;&#x2F;span&gt;
+      &lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;pXij&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-array z-literal z-ts&quot;&gt;&lt;span class=&quot;z-meta z-brace z-square z-ts&quot;&gt;[&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;n&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-square z-ts&quot;&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-assignment z-compound z-ts&quot;&gt;+=&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;pXi&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-array z-literal z-ts&quot;&gt;&lt;span class=&quot;z-meta z-brace z-square z-ts&quot;&gt;[&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;m&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-square z-ts&quot;&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-logical z-ts&quot;&gt;||&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-decimal z-ts&quot;&gt;0&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-ts&quot;&gt;*&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;pXj&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-array z-literal z-ts&quot;&gt;&lt;span class=&quot;z-meta z-brace z-square z-ts&quot;&gt;[&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;n&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-arithmetic z-ts&quot;&gt;-&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;m&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-square z-ts&quot;&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-logical z-ts&quot;&gt;||&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-decimal z-ts&quot;&gt;0&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-statement z-ts&quot;&gt;;&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-punctuation z-definition z-block z-ts&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+  &lt;span class=&quot;z-punctuation z-definition z-block z-ts&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+  &lt;span class=&quot;z-keyword z-control z-flow z-ts&quot;&gt;return&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;pXij&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-statement z-ts&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-punctuation z-definition z-block z-ts&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-statement z-ts&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-comment z-line z-double-slash z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-ts&quot;&gt;&#x2F;&#x2F;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-double-slash z-ts&quot;&gt; returns [0.28125, 0.29464, 0.2009, 0.125, 0.06696, 0.02678, 0.004464]&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Using this, we can compute the PMF for $Z_{class} = X_{123456}$:&lt;&#x2F;p&gt;
+&lt;p&gt;$$P(Z_{class} = z) = (((((p_{X_1} * p_{X_2}) * p_{X_3}) * p_{X_4}) * p_{X_5}) * p_{X_6}) (z)$$&lt;&#x2F;p&gt;
+&lt;p&gt;and we graph them for various classes:&lt;&#x2F;p&gt;
+&lt;div id=&quot;probhist3convolved&quot; style=&quot;width:600px;height:450px;&quot;&gt;&lt;&#x2F;div&gt;
+&lt;script&gt;
+&#x2F;&#x2F; The first one is easy, P_1 only has 2 values =&gt; m={0,1}
+&#x2F;&#x2F;let pX1 = TRUNCATED_DISTS[17]; &#x2F;&#x2F; 2 values, for 17,18
+&#x2F;&#x2F;let pX2 = TRUNCATED_DISTS[13]; &#x2F;&#x2F; 6 values, for 13,...,18
+&#x2F;&#x2F;console.log(&quot;convolving&quot;, pX1, pX2)
+&#x2F;&#x2F; new dist starts at 17+13 and goes to 18x2
+&#x2F;&#x2F;let pX12 = [];
+&#x2F;&#x2F;pX12[0] = pX1[0] * pX2[0]; &#x2F;&#x2F; 17+13 || 18+12 (zero)
+&#x2F;&#x2F;pX12[1] = pX1[0] * pX2[1] + pX1[1]*pX2[0]; &#x2F;&#x2F; 17+14 || 18+13
+&#x2F;&#x2F;pX12[2] = pX1[0] * pX2[2] + pX1[1]*pX2[1]; &#x2F;&#x2F; 17+15 || 18+14
+&#x2F;&#x2F;pX12[3] = pX1[0] * pX2[3] + pX1[1]*pX2[2]; &#x2F;&#x2F; 17+16 || 18+15
+&#x2F;&#x2F;pX12[4] = pX1[0] * pX2[4] + pX1[1]*pX2[3]; &#x2F;&#x2F; 17+17 || 18+16
+&#x2F;&#x2F;pX12[5] = pX1[0] * pX2[5] + pX1[1]*pX2[4]; &#x2F;&#x2F; 17+18 || 18+17
+&#x2F;&#x2F;pX12[6] =                 + pX1[1]*pX2[5]; &#x2F;&#x2F; 17+19 (zero) || 18+18
+&#x2F;&#x2F;console.log(pX12, pX12.reduce((acc,e)=&gt;acc+e,0)); &#x2F;&#x2F; perfect
+
+&#x2F;&#x2F; then do P_{12} + P_3
+&#x2F;&#x2F;pX12 has 7 values, for 30, 31, 32, 33, 34, 35, 36
+&#x2F;&#x2F;let pX3 = TRUNCATED_DISTS[12]; &#x2F;&#x2F; has 7 values, for 12,13,14,15,16,17,18
+&#x2F;&#x2F; new dist starts at 30+12 and goes to 18x3 i.e. length (13)
+&#x2F;&#x2F;let pX123 = [];
+&#x2F;&#x2F;pX123[0] = pX12[0]*pX3[0]; &#x2F;&#x2F; 42 : 30+12
+&#x2F;&#x2F;pX123[1] = pX12[0]*pX3[1] + pX12[1]*pX3[0]; &#x2F;&#x2F; 43: 30+13 || 31+12
+&#x2F;&#x2F;pX123[2] = pX12[0]*pX3[2] + pX12[1]*pX3[1] + pX12[2]*pX3[0]; &#x2F;&#x2F; 44: 30+14 || 31+13 || 32+12
+&#x2F;&#x2F;pX123[3] = pX12[0]*pX3[3] + pX12[1]*pX3[2] + pX12[2]*pX3[1] + pX12[3] +pX3[0]; &#x2F;&#x2F; 45: 30+15 || 31+14 || 32+13 || 33+12
+&#x2F;&#x2F; ok... clearly not a hand written thing, but matches convolve result
+
+&#x2F;&#x2F; what am i doing with my life
+var convolve = function (pXi, pXj) {
+  &#x2F;&#x2F; pre-allocate a zero-indexed array where our probabilities will go
+  var pXij = [...Array(pXi.length + pXj.length - 1).keys()];
+  &#x2F;&#x2F; loop to generate P(Xij = n) for all n
+  for (let n = 0; n &lt; pXi.length + pXj.length - 1; n += 1) {
+    pXij[n] = 0; &#x2F;&#x2F; init to zero
+    &#x2F;&#x2F; loop to do sum over m, first variable determines length of this sum
+    for (let m = 0; m &lt; pXi.length; m += 1) {
+      &#x2F;&#x2F; we do defaulting outside range with `|| 0`
+      pXij[n] += (pXi[m] || 0) * (pXj[n-m] || 0);
+    }
+  }
+  return pXij;
+}
+
+&#x2F;&#x2F; doing paladin from function above:
+&#x2F;&#x2F;let pX1 = TRUNCATED_DISTS[17]; &#x2F;&#x2F; 2 values; 17,18
+&#x2F;&#x2F;let pX2 = TRUNCATED_DISTS[13]; &#x2F;&#x2F; 6 values; 13,...,18
+&#x2F;&#x2F;let pX3 = TRUNCATED_DISTS[12]; &#x2F;&#x2F; 7 values; 12,13,14,15,16,17,18
+&#x2F;&#x2F;let pX4 = TRUNCATED_DISTS[9]; &#x2F;&#x2F; 10 values; 9,...,18
+&#x2F;&#x2F;let pX5 = TRUNCATED_DISTS[3]; &#x2F;&#x2F; 16 values; 3,...,18
+&#x2F;&#x2F;let pX6 = TRUNCATED_DISTS[3]; &#x2F;&#x2F; ditto
+&#x2F;&#x2F;let gen12 = convolve(pX1, pX2); &#x2F;&#x2F; dist from 30 -&gt; 36
+&#x2F;&#x2F;let gen123 = convolve(gen12, pX3); &#x2F;&#x2F; dist from 42 -&gt; 54
+&#x2F;&#x2F;let gen1234 = convolve(gen123, pX4); &#x2F;&#x2F; dist from 51 -&gt; 72
+&#x2F;&#x2F;let gen12345 = convolve(gen1234, pX5); &#x2F;&#x2F; dist from 54 -&gt; 90
+&#x2F;&#x2F;let gen123456 = convolve(gen12345, pX6); &#x2F;&#x2F; dist from 57 -&gt; 108
+&#x2F;&#x2F;console.log(gen123456, gen123456.length)
+
+&#x2F;&#x2F; automating class convolution
+CONVOLVED_DISTS = {};
+var gen_convolved_trace_for_class_dist = function(dists, klss) {
+  var pX1 = TRUNCATED_DISTS[dists[0]];
+  var pX2 = TRUNCATED_DISTS[dists[1]];
+  var pX3 = TRUNCATED_DISTS[dists[2]];
+  var pX4 = TRUNCATED_DISTS[dists[3]];
+  var pX5 = TRUNCATED_DISTS[dists[4]];
+  var pX6 = TRUNCATED_DISTS[dists[5]];
+  var start = dists.reduce((acc, e) =&gt; acc+e, 0); &#x2F;&#x2F; start at sum of floors
+
+  let gen12 = convolve(pX1, pX2);
+  let gen123 = convolve(gen12, pX3);
+  let gen1234 = convolve(gen123, pX4);
+  let gen12345 = convolve(gen1234, pX5);
+  let gen123456 = convolve(gen12345, pX6);
+  CONVOLVED_DISTS[klss] = gen123456;
+
+  return {
+    x: gen123456.slice().map((x,i)=&gt; i + start),
+    y: gen123456,
+    name: klss,
+    text: gen123456.map(x =&gt; &quot;expected once in &quot; + Intl.NumberFormat().format(Math.floor(1&#x2F;x)) + &quot; rolls&quot;),
+    opacity: 0.8,
+    type: &quot;scatter&quot;,
+  };
+}
+var trace_paladin = gen_convolved_trace_for_class_dist([17,13,12,9,3,3], &#x27;paladin&#x27;);
+var trace_ranger = gen_convolved_trace_for_class_dist([14,14,13,13,3,3], &#x27;ranger&#x27;);
+var trace_fighter = gen_convolved_trace_for_class_dist([9,3,3,3,3,3], &#x27;fighter&#x27;);
+trace_fighter.visible = &#x27;legendonly&#x27;; &#x2F;&#x2F; default off since we&#x27;ve kind of covered it
+var data = [trace_paladin, trace_ranger, trace_fighter];
+var layout = {
+  title: &quot;Convolved Ability Distributions for Classes&quot;,
+  xaxis: {title: &quot;Roll&quot;},
+  yaxis: {title: &quot;Probability&quot;},
+};
+Plotly.newPlot(document.getElementById(&#x27;probhist3convolved&#x27;), data, layout);
+&lt;&#x2F;script&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Notice the heavily tilted ranger&#x2F;paladin distributions whose lean is distinctively more to the right.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;The last thing that&#x27;s left now is to rectify $Z_c$ at &lt;code&gt;75&lt;&#x2F;code&gt; to get our &lt;strong&gt;true, final distributions&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;div id=&quot;probhist3convolvedtrunc&quot; style=&quot;width:600px;height:450px;&quot;&gt;&lt;&#x2F;div&gt;
+&lt;script&gt;
+var truncated_klass = function (klss) {
+  let CONVOLVED = CONVOLVED_DISTS[klss];
+  &#x2F;&#x2F; calculate probability up to cutoff point:
+  let TRUNC_SUM = CONVOLVED.slice(-(108-75+1)).reduce((acc, e) =&gt; acc+e, 0);
+  &#x2F;&#x2F; truncate and scale (rectify) the right side of the distribution:
+  let TRUNC_CONV = CONVOLVED.slice(-(108-75+1)).map(x =&gt; x &#x2F; TRUNC_SUM);
+  &#x2F;&#x2F; sanity sum (all 1)
+  console.log(&quot;Sum of convolved truncated&quot;, klss, TRUNC_CONV.reduce((acc, e)=&gt;acc+e, 0));
+  &#x2F;&#x2F;let expectation = TRUNC_CONV.map((x,i) =&gt; (i+t)*x).reduce((acc, e) =&gt; acc+e, 0);
+  &#x2F;&#x2F;let variance = TRUNC_CONV.map((x,i) =&gt; Math.pow(i+t - expectation, 2)*x).reduce((acc, e) =&gt; acc+e, 0);
+  &#x2F;&#x2F;console.log(&quot;Expectation, variance for conv truncated&quot;, klss, expectation, variance);
+  return {
+    x: TRUNC_CONV.map((x,i) =&gt; i +75),
+    y: TRUNC_CONV,
+    name: &#x27;true &#x27; + klss,
+    text: TRUNC_CONV.map(x =&gt; &quot;expected once in &quot; + Intl.NumberFormat().format(Math.floor(1&#x2F;x)) + &quot; rolls&quot;),
+    opacity: 0.8,
+    type: &quot;scatter&quot;,
+  };
+};
+let trace_trunconv_paladin = truncated_klass(&#x27;paladin&#x27;);
+let trace_trunconv_fighter = truncated_klass(&#x27;fighter&#x27;);
+let trace_trunconv_ranger = truncated_klass(&#x27;ranger&#x27;);
+trace_trunconv_fighter.visible = &#x27;legendonly&#x27;;
+var data = [trace_trunconv_paladin, trace_trunconv_fighter, trace_trunconv_ranger];
+var layout = {
+  title: &quot;True Roll Distributions for Classes&quot;,
+  xaxis: {title: &quot;Roll&quot;},
+  yaxis: {title: &quot;Probability&quot;},
+};
+Plotly.newPlot(document.getElementById(&#x27;probhist3convolvedtrunc&#x27;), data, layout);
+&lt;&#x2F;script&gt;
+&lt;p&gt;These match the sampled data almost perfectly as can be seen in more detailed comparisons in the &lt;a href=&quot;#appendix&quot;&gt;appendix&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;As can be seen; &lt;code&gt;ranger&lt;&#x2F;code&gt; is faster at getting high numbers, particularly in the 90 -&amp;gt; 97 range, but if you want rolls &amp;gt;= 100, &lt;strong&gt;&lt;code&gt;paladin&lt;&#x2F;code&gt; rolls the highest&lt;&#x2F;strong&gt; at the fastest rate.&lt;&#x2F;p&gt;
+&lt;p&gt;We end with the expected time to roll above a certain threshold where we use the most efficient class based on the number:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;108&lt;&#x2F;code&gt; paladin rolls once in &lt;code&gt;100 billion&lt;&#x2F;code&gt; ⇒ 210y&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;107&lt;&#x2F;code&gt; paladin rolls once in &lt;code&gt;5 billion&lt;&#x2F;code&gt; ⇒ 10y&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;106&lt;&#x2F;code&gt; paladin rolls once in &lt;code&gt;600 million&lt;&#x2F;code&gt; ⇒ 1y&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;105&lt;&#x2F;code&gt; paladin rolls once in &lt;code&gt;100 million&lt;&#x2F;code&gt; ⇒ 11w&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;104&lt;&#x2F;code&gt; paladin rolls once in &lt;code&gt;19 million&lt;&#x2F;code&gt; ⇒ 2w&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;103&lt;&#x2F;code&gt; paladin rolls once in &lt;code&gt;5 million&lt;&#x2F;code&gt; ⇒ 4d&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;102&lt;&#x2F;code&gt; paladin rolls once in &lt;code&gt;1.4 million&lt;&#x2F;code&gt; ⇒ 1d&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;101&lt;&#x2F;code&gt; paladin rolls once in &lt;code&gt;400k&lt;&#x2F;code&gt; ⇒ 7h&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;100&lt;&#x2F;code&gt; paladin&#x2F;ranger rolls once in &lt;code&gt;150k&lt;&#x2F;code&gt; ⇒ 3h&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;99&lt;&#x2F;code&gt; ranger rolls once in &lt;code&gt;57k&lt;&#x2F;code&gt; ⇒ 1h&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;98&lt;&#x2F;code&gt; ranger rolls once in &lt;code&gt;23k&lt;&#x2F;code&gt; ⇒ 25m&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;97&lt;&#x2F;code&gt; ranger rolls once in &lt;code&gt;10k&lt;&#x2F;code&gt; ⇒ 11m&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;96&lt;&#x2F;code&gt; ranger rolls once in &lt;code&gt;5k&lt;&#x2F;code&gt; ⇒ 5m&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;95&lt;&#x2F;code&gt; ranger rolls once in &lt;code&gt;2k&lt;&#x2F;code&gt; ⇒ 2m&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Hope you have enjoyed this random brain dump on probability. Don&#x27;t think I have ever been nerd sniped this hard before.. I just wanted to play a game and take a break.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;small&gt;&#x2F;me closes 20 tabs&lt;&#x2F;small&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;appendix&quot;&gt;Appendix&lt;&#x2F;h2&gt;
+&lt;details&gt;&lt;summary style=&quot;cursor:pointer&quot;&gt;&lt;b&gt;1. Raw simulation data&lt;&#x2F;b&gt;&lt;&#x2F;summary&gt;
+&lt;p&gt;
+&lt;p&gt;10 hour paladin roll (&lt;code&gt;555558&lt;&#x2F;code&gt; rolls in &lt;code&gt;601m&lt;&#x2F;code&gt;)&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;yaml&quot; class=&quot;language-yaml z-code&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;75&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;50888&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;76&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;54911&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;77&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;57338&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;78&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;57442&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;79&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;55589&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;80&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;52357&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;81&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;47503&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;82&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;41339&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;83&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;34458&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;84&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;28599&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;85&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;21997&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;86&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;16722&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;87&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;12322&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;88&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;8697&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;89&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;5997&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;90&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;3774&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;91&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;2371&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;92&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;1489&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;93&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;822&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;94&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;465&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;95&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;251&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;96&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;129&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;97&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;56&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;98&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;24&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;99&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;12&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;100&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;4&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;101&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;1&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;102&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;1&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;10 hour fighter roll (&lt;code&gt;555560&lt;&#x2F;code&gt; rolls in &lt;code&gt;608m&lt;&#x2F;code&gt;)&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;yaml&quot; class=&quot;language-yaml z-code&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;75&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;137379&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;76&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;109198&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;77&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;85620&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;78&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;65004&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;79&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;48256&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;80&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;35041&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;81&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;24987&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;82&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;17545&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;83&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;11981&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;84&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;7883&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;85&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;5007&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;86&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;3139&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;87&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;1946&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;88&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;1138&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;89&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;670&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;90&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;368&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;91&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;199&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;92&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;103&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;93&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;49&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;94&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;26&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;95&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;12&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;96&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;6&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;97&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;2&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;98&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;1&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;9 hour ranger roll (&lt;code&gt;500054&lt;&#x2F;code&gt; rolls in &lt;code&gt;548m&lt;&#x2F;code&gt;)&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;yaml&quot; class=&quot;language-yaml z-code&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;75&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;32296&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;76&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;37790&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;77&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;43118&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;78&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;46609&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;79&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;48108&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;80&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;47589&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;81&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;45774&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;82&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;41963&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;83&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;36876&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;84&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;30973&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;85&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;25272&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;86&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;19904&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;87&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;14730&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;88&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;10430&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;89&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;7285&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;90&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;4667&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;91&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;2991&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;92&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;1696&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;93&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;986&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;94&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;529&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;95&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;254&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;96&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;121&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;97&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;56&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;98&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;26&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;99&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;10&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;100&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;1&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;p&gt;
+&lt;&#x2F;details&gt;
+&lt;details&gt;&lt;summary style=&quot;cursor:pointer&quot;&gt;&lt;b&gt;2. Tabulated values for 18 dice multinomial probability distribution&lt;&#x2F;b&gt;&lt;&#x2F;summary&gt;
+&lt;p&gt;
+&lt;p&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.wolframalpha.com&#x2F;input?i2d=true&amp;amp;i=+Divide%5B1%2CPower%5B6%2C18%5D%5DSum%5BPower%5B%5C%2840%29-1%5C%2841%29%2Ck%5D+*binomial%5C%2840%2918%5C%2844%29+k%5C%2841%29*binomial%5C%2840%2991-6k-1%5C%2844%29+17%5C%2841%29%2C%7Bk%2C0%2Cfloor%5C%2840%29Divide%5B%5C%2840%2991-18%5C%2841%29%2C6%5D%5C%2841%29%7D%5D&quot;&gt;Wolfram Alpha Query&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;yaml&quot; class=&quot;language-yaml z-code&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;18&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;1&#x2F;101559956668416&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;19&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;1&#x2F;5642219814912&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;20&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;19&#x2F;11284439629824&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;21&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;95&#x2F;8463329722368&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;22&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;665&#x2F;11284439629824&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;23&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;1463&#x2F;5642219814912&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;24&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;33643&#x2F;33853318889472&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;25&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;9605&#x2F;2821109907456&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;26&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;119833&#x2F;11284439629824&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;27&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;1552015&#x2F;50779978334208&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;28&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;308465&#x2F;3761479876608&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;29&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;97223&#x2F;470184984576&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;30&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;2782169&#x2F;5642219814912&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;31&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;1051229&#x2F;940369969152&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;32&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;4550747&#x2F;1880739938304&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;33&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;786505&#x2F;156728328192&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;34&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;37624655&#x2F;3761479876608&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;35&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;36131483&#x2F;1880739938304&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;36&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;1206294965&#x2F;33853318889472&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;37&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;20045551&#x2F;313456656384&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;38&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;139474379&#x2F;1253826625536&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;39&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;1059736685&#x2F;5642219814912&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;40&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;128825225&#x2F;417942208512&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;41&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;17143871&#x2F;34828517376&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;42&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;8640663457&#x2F;11284439629824&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;43&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;728073331&#x2F;626913312768&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;44&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;2155134523&#x2F;1253826625536&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;45&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;3942228889&#x2F;1586874322944&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;46&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;4949217565&#x2F;1410554953728&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;47&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;3417441745&#x2F;705277476864&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;48&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;27703245169&#x2F;4231664861184&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;49&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;3052981465&#x2F;352638738432&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;50&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;126513483013&#x2F;11284439629824&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;51&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;240741263447&#x2F;16926659444736&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;52&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;199524184055&#x2F;11284439629824&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;53&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;60788736553&#x2F;2821109907456&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;54&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;2615090074301&#x2F;101559956668416&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;55&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;56759069113&#x2F;1880739938304&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;56&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;130521904423&#x2F;3761479876608&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;57&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;110438453753&#x2F;2821109907456&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;58&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;163027882055&#x2F;3761479876608&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;59&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;88576807769&#x2F;1880739938304&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;60&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;566880747559&#x2F;11284439629824&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;61&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;24732579319&#x2F;470184984576&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;62&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;101698030955&#x2F;1880739938304&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;63&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;461867856157&#x2F;8463329722368&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;64&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;101698030955&#x2F;1880739938304&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;65&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;24732579319&#x2F;470184984576&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;66&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;566880747559&#x2F;11284439629824&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;67&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;88576807769&#x2F;1880739938304&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;68&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;163027882055&#x2F;3761479876608&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;69&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;110438453753&#x2F;2821109907456&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;70&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;130521904423&#x2F;3761479876608&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;71&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;56759069113&#x2F;1880739938304&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;72&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;2615090074301&#x2F;101559956668416&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;73&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;60788736553&#x2F;2821109907456&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;74&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;199524184055&#x2F;11284439629824&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;75&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;240741263447&#x2F;16926659444736&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;76&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;126513483013&#x2F;11284439629824&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;77&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;3052981465&#x2F;352638738432&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;78&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;27703245169&#x2F;4231664861184&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;79&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;3417441745&#x2F;705277476864&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;80&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;4949217565&#x2F;1410554953728&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;81&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;3942228889&#x2F;1586874322944&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;82&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;2155134523&#x2F;1253826625536&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;83&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;728073331&#x2F;626913312768&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;84&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;8640663457&#x2F;11284439629824&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;85&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;17143871&#x2F;34828517376&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;86&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;128825225&#x2F;417942208512&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;87&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;1059736685&#x2F;5642219814912&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;88&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;139474379&#x2F;1253826625536&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;89&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;20045551&#x2F;313456656384&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;90&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;1206294965&#x2F;33853318889472&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;91&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;36131483&#x2F;1880739938304&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;92&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;37624655&#x2F;3761479876608&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;93&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;786505&#x2F;156728328192&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;94&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;4550747&#x2F;1880739938304&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;95&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;1051229&#x2F;940369969152&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;96&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;2782169&#x2F;5642219814912&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;97&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;97223&#x2F;470184984576&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;98&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;308465&#x2F;3761479876608&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;99&lt;&#x2F;span&gt;  &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;1552015&#x2F;50779978334208&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;100&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;119833&#x2F;11284439629824&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;101&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;9605&#x2F;2821109907456&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;102&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;33643&#x2F;33853318889472&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;103&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;1463&#x2F;5642219814912&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;104&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;665&#x2F;11284439629824&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;105&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;95&#x2F;8463329722368&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;106&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;19&#x2F;11284439629824&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;107&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;1&#x2F;5642219814912&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;108&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;1&#x2F;101559956668416&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;p&gt;
+&lt;&#x2F;details&gt;
+&lt;details&gt;&lt;summary style=&quot;cursor:pointer&quot;&gt;&lt;b&gt;3. Tabulated values for 3 dice multinomial probability distribution&lt;&#x2F;b&gt;&lt;&#x2F;summary&gt;
+&lt;p&gt;
+&lt;p&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.wolframalpha.com&#x2F;input?i2d=true&amp;amp;i=+Divide%5B1%2CPower%5B6%2C3%5D%5DSum%5BPower%5B%5C%2840%29-1%5C%2841%29%2Ck%5D+*binomial%5C%2840%293%5C%2844%29+k%5C%2841%29*binomial%5C%2840%2910-6k-1%5C%2844%29+2%5C%2841%29%2C%7Bk%2C0%2Cfloor%5C%2840%29Divide%5B%5C%2840%2910-3%5C%2841%29%2C6%5D%5C%2841%29%7D%5D&quot;&gt;Wolfram Alpha Query&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;yaml:&quot; class=&quot;language-yaml: z-code&quot;&gt;&lt;code class=&quot;language-yaml:&quot; data-lang=&quot;yaml:&quot;&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;3: 1&#x2F;216
+4: 1&#x2F;72
+5: 1&#x2F;36
+6: 5&#x2F;108
+7: 5&#x2F;72
+8: 7&#x2F;72
+9: 25&#x2F;216
+10: 1&#x2F;8
+11: 1&#x2F;8
+12: 25&#x2F;216
+13: 7&#x2F;72
+14: 5&#x2F;72
+15: 5&#x2F;108
+16: 1&#x2F;36
+17: 1&#x2F;72
+18: 1&#x2F;216
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;p&gt;
+&lt;&#x2F;details&gt;
+&lt;details&gt;&lt;summary style=&quot;cursor:pointer&quot;&gt;&lt;b&gt;4. Comparing observed vs. computed by class&lt;&#x2F;b&gt;&lt;&#x2F;summary&gt;
+&lt;p&gt;
+We compare with the precise $Z_{class}$ distributions worked out by convolution above.
+&lt;div id=&quot;probhistappdxpala&quot; style=&quot;width:600px;height:450px;&quot;&gt;&lt;&#x2F;div&gt;
+&lt;script&gt;
+var data = [trace_trunconv_paladin, trace_obs_paladin];
+var layout = {
+  title: &quot;Theoretical vs Observed Distributions for Paladin&quot;,
+  xaxis: {title: &quot;Roll&quot;},
+  yaxis: {title: &quot;Probability&quot;},
+};
+Plotly.newPlot(document.getElementById(&#x27;probhistappdxpala&#x27;), data, layout);
+&lt;&#x2F;script&gt;
+&lt;div id=&quot;probhistappdxrang&quot; style=&quot;width:600px;height:450px;&quot;&gt;&lt;&#x2F;div&gt;
+&lt;script&gt;
+var data = [trace_trunconv_ranger, trace_obs_ranger];
+var layout = {
+  title: &quot;Theoretical vs Observed Distributions for Ranger&quot;,
+  xaxis: {title: &quot;Roll&quot;},
+  yaxis: {title: &quot;Probability&quot;},
+};
+Plotly.newPlot(document.getElementById(&#x27;probhistappdxrang&#x27;), data, layout);
+&lt;&#x2F;script&gt;
+&lt;p&gt;For fighter we have included the original uncorrected multinomial distribution for 18 dice before doing simulations. It was sufficiently close to the true distribution because flooring a single ability to &lt;code&gt;9&lt;&#x2F;code&gt; amounts to almost nothing in the right tail:&lt;&#x2F;p&gt;
+&lt;div id=&quot;probhistappdxfig&quot; style=&quot;width:600px;height:450px;&quot;&gt;&lt;&#x2F;div&gt;
+&lt;script&gt;
+var data = [trace_trunconv_fighter, trace_obs_fighter, trace_single_trunc];
+var layout = {
+  title: &quot;Theoretical vs Observed Distributions for Fighter&quot;,
+  xaxis: {title: &quot;Roll&quot;},
+  yaxis: {title: &quot;Probability&quot;},
+};
+Plotly.newPlot(document.getElementById(&#x27;probhistappdxfig&#x27;), data, layout);
+&lt;&#x2F;script&gt;
+&lt;p&gt;That said, the true distribution taking into account the single floored stat has a much better fit.&lt;&#x2F;p&gt;
+&lt;&#x2F;p&gt;
+&lt;&#x2F;details&gt;
+&lt;details&gt;&lt;summary style=&quot;cursor:pointer&quot;&gt;&lt;b&gt;5. Normal approximations&lt;&#x2F;b&gt;&lt;&#x2F;summary&gt;
+&lt;p&gt;
+&lt;p&gt;An original idea here was to avoid doing all the faff with convolution above, and &amp;quot;just&amp;quot; approximate the distribution with some normal $\mathcal{N}(μ, σ)$.&lt;&#x2F;p&gt;
+&lt;p&gt;After all, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;mathworld.wolfram.com&#x2F;Dice.html&quot;&gt;this is suggested for high n&lt;&#x2F;a&gt;, and it will hold even for an unequal &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Central_limit_theorem&quot;&gt;sum of independent random variables with sufficient degrees of freedom&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;However, there are many &lt;strong&gt;complications&lt;&#x2F;strong&gt; with this approach:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;we only &lt;strong&gt;sample&lt;&#x2F;strong&gt; the &lt;strong&gt;doubly censored data&lt;&#x2F;strong&gt;, we don&#x27;t see the full normal distribution&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;distributions&lt;&#x2F;strong&gt; are heavily &lt;strong&gt;shifted&lt;&#x2F;strong&gt; (as can be seen with the true paladin distribution)&lt;&#x2F;li&gt;
+&lt;li&gt;estimation of underlying normal distribution relies difficult for classes whose means precedes the truncation point&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;It does looks like there are tools to work with truncated or rectified normals:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;extension methods for &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Rectified_Gaussian_distribution#Extension_to_general_bounds&quot;&gt;rectified normal distributions&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Truncated_normal_distribution#One_sided_truncation_(of_lower_tail)&quot;&gt;formulas for dealing with truncation of a normal distributions&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;rdrr.io&#x2F;cran&#x2F;crch&#x2F;man&#x2F;cnorm.html&quot;&gt;cnorm r library&lt;&#x2F;a&gt; which comes with a &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;cran.r-project.org&#x2F;web&#x2F;packages&#x2F;cNORM&#x2F;cNORM.pdf&quot;&gt;giant pdf&lt;&#x2F;a&gt; as documentation to help remind you of why we need rustdoc&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;But this felt like the wrong path to descend, and the path was littered with arcana:&lt;&#x2F;p&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot; data-dnt=&quot;true&quot; data-theme=&quot;light&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;ah, yes, just a vector. &lt;a href=&quot;https:&#x2F;&#x2F;t.co&#x2F;RvkpS4h0DX&quot;&gt;pic.twitter.com&#x2F;RvkpS4h0DX&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;&amp;mdash; eirik ᐸ&amp;#39;⧖ᐳ (@sszynrae) &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;sszynrae&#x2F;status&#x2F;1512161877698174983?ref_src=twsrc%5Etfw&quot;&gt;April 7, 2022&lt;&#x2F;a&gt;&lt;&#x2F;blockquote&gt; &lt;script async src=&quot;https:&#x2F;&#x2F;platform.twitter.com&#x2F;widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;&#x2F;script&gt;
+&lt;p&gt;That said. If anyone wants to fill in something here, or link to alternate methods, feel free to PR in something &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;probes&#x2F;edit&#x2F;master&#x2F;content&#x2F;post&#x2F;2022-04-12-baldurs-roll.md&quot;&gt;here&lt;&#x2F;a&gt; or write an &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;probes&#x2F;issues&quot;&gt;issue&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;&#x2F;p&gt;
+&lt;&#x2F;details&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Tournament Seeding Placement</title>
+        <published>2011-03-20T00:00:00+00:00</published>
+        <updated>2011-03-20T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://clux.github.io/probes.zola/tournament-seeding-placement/" type="text/html"/>
+        <id>https://clux.github.io/probes.zola/tournament-seeding-placement/</id>
+        
+        <content type="html">&lt;p&gt;A particularly tricky problem with tournament scheduling that made it into &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;duel&quot;&gt;tournament&#x2F;duel&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;This turned out to take a little more mental effort than initially expected and is documented herein for historical reasons.&lt;&#x2F;p&gt;
+&lt;p&gt;The problem of how to order seeds into the tournament brackets seemed almost a bit random. But after some hours on the couch with pen and paper and &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;http:&#x2F;&#x2F;beta.ivc.no&#x2F;blog&#x2F;&quot;&gt;ivc&lt;&#x2F;a&gt; to talk to, we found a sensible solution.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;intro&quot;&gt;Intro&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;seeding&#x2F;blizzcon_single_duel_8p.jpg&quot; alt=&quot;System from BlizzCon (n=3)&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The seeding is the correspondence ${p \mid player} \leftrightarrow {1,2,\ldots,2^n}$ where the number $k(p)\in{1,2,\ldots,2^n}$ is the estimated ranking for player $p$, i.e. player $p$ is expected to beat player $q$ if and only if $k(p) &amp;gt; k(q)$. The main problem is how to sort the players in the first round so that the the best players meet as late as possible (depending on their skill) in the tournament. The image below illustrates this for $2^3$ players. Formally we say:&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;definitions&quot;&gt;Definitions&lt;&#x2F;h2&gt;
+&lt;p&gt;If there are $2^n$ players in the tournament then the ordering is &lt;em&gt;proper&lt;&#x2F;em&gt; if the following hold.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;If the seeding is perfect (perfectly predicts the match outcomes) then only the $2^{n+1-k}$ top seeded players are left in round $k$.&lt;&#x2F;li&gt;
+&lt;li&gt;In each round the sum of the seeds in each match is constant.&lt;&#x2F;li&gt;
+&lt;li&gt;The even seed in each match is placed at the bottom.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;seeding&#x2F;bracket8.gif&quot; alt=&quot;canonical n=3 bracket&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s a bit much to assume that seedings are perfect, but the seeding above needs these three conditions to generate the analogous binary tree in $n$ dimensions, so we will use them. Besides, condition 2 does sort of provide some loose similar quality guarantee: the lower the sum, the most likely the better the games. The image above fills out what will happen in an eight player tournament if the seeding is perfect.&lt;&#x2F;p&gt;
+&lt;p&gt;Knowing that it was these three properties that we wanted, we could at this point just generated the next level in the canonical tree successively until we got to the desired level to (i.e. make an arbitrarily large tournament system), but this would have been inefficient and a bit tedious (compared to finding patterns in numbers at paper, but that might be subjective). I tried first to find a system in the sequence ${(1),(1,2),(1,4,3,2),(1,8,5,4,3,6,7,2),\ldots}$, but this turned out to be very fruitless. Having ivc over, I explained the problem to him and we stared at it for a couple of hours (because that&#x27;s just the kind of inviting friend I am).&lt;&#x2F;p&gt;
+&lt;p&gt;Turns out the key was to look at the match numbers $1,\ldots,2^{n-1}$ by ordering from the top in the brackets. I.e. match 1 is 1 vs. 8, match 2 is 5 vs. 4 etc. The major clue here is that in a match number that is a power of two, the even numbered seed in that match is also a power of two. In fact match $2^k \mapsto 2^{n-k}$, so the hard part is interpolating this function for general match numbers.&lt;&#x2F;p&gt;
+&lt;p&gt;The system becomes clear first when we look at a full 32 player tournament i.e. $n=5$. In the interests of fully testing out the $\LaTeX$, I would ideally write this out, but tables are a bit of a pain in TeX, and I have this paper anyway.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;seeding&#x2F;32bracket.jpg&quot; alt=&quot;canonical n=5 bracket&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;This is expanded uniquely using the three defined properties and the smaller bracket above. The match numbers in the first round are written on the left. Notice that the top players all follow diagonal paths when they reach vastly inferior players.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;seeding&#x2F;16system.jpg&quot; alt=&quot;system for n=5&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The system comes from decomposing the match number $i$ as $i=2^k + l$ where $k = \lfloor \log_2{i} \rfloor$. If we write the even seed as powers of two then they display a binary counting system going up between match numbers that are powers of two. In fact, it&#x27;s the binary representation of $i-2l$ that is required, so let $c_j = bit_j (i-2l)$. We can then verify the final function (sending match number to the even seed in that match).&lt;&#x2F;p&gt;
+&lt;p&gt;$$2^k + l \mapsto \begin{cases} 2^{n-k},&amp;amp; \text{if $l=0$} \\ 2^{n-k-1}+2^n \sum_{j=1} 2^{-j}c_j,&amp;amp; \text{if $0 &amp;lt; l &amp;lt; 2^k$.}\end{cases}$$&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;python-code&quot;&gt;Python code&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;python&quot; class=&quot;language-python z-code&quot;&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;z-source z-python&quot;&gt;&lt;span class=&quot;z-meta z-function z-python&quot;&gt;&lt;span class=&quot;z-storage z-type z-function z-python&quot;&gt;&lt;span class=&quot;z-keyword z-declaration z-function z-python&quot;&gt;def&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-entity z-name z-function z-python&quot;&gt;&lt;span class=&quot;z-meta z-generic-name z-python&quot;&gt;even_seed_from_match_nr&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function z-parameters z-python&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-parameters z-begin z-python&quot;&gt;(&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function z-parameters z-python&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-python&quot;&gt;i&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-parameters z-python&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-parameter z-python&quot;&gt;n&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-parameters z-end z-python&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function z-python&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-function z-begin z-python&quot;&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-comment z-line z-number-sign z-python&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-python&quot;&gt;#&lt;&#x2F;span&gt; match_nr, log2(participants)
+&lt;&#x2F;span&gt;    &lt;span class=&quot;z-comment z-line z-number-sign z-python&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-python&quot;&gt;#&lt;&#x2F;span&gt;decompose i = 2^k + r where 0 &amp;lt;= r &amp;lt; 2^k
+&lt;&#x2F;span&gt;    &lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-meta z-generic-name z-python&quot;&gt;k&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-assignment z-python&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-python&quot;&gt;&lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-variable z-function z-python&quot;&gt;&lt;span class=&quot;z-support z-type z-python&quot;&gt;int&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-python&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-arguments z-begin z-python&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-python&quot;&gt;&lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-meta z-generic-name z-python&quot;&gt;math&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-punctuation z-accessor z-dot z-python&quot;&gt;.&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-variable z-function z-python&quot;&gt;&lt;span class=&quot;z-meta z-generic-name z-python&quot;&gt;floor&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-python&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-arguments z-begin z-python&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-python&quot;&gt;&lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-meta z-generic-name z-python&quot;&gt;math&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-punctuation z-accessor z-dot z-python&quot;&gt;.&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-variable z-function z-python&quot;&gt;&lt;span class=&quot;z-meta z-generic-name z-python&quot;&gt;log&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-python&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-arguments z-begin z-python&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-meta z-generic-name z-python&quot;&gt;i&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-arguments z-python&quot;&gt;,&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-python&quot;&gt;2&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-arguments z-end z-python&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-arguments z-end z-python&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-arguments z-end z-python&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-meta z-generic-name z-python&quot;&gt;r&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-assignment z-python&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-meta z-generic-name z-python&quot;&gt;i&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-python&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-group z-python&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-python&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-python&quot;&gt;1&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-comparison z-python&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-comparison z-python&quot;&gt;&amp;lt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-meta z-generic-name z-python&quot;&gt;k&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-python&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+
+    &lt;span class=&quot;z-meta z-statement z-conditional z-if z-python&quot;&gt;&lt;span class=&quot;z-keyword z-control z-conditional z-if z-python&quot;&gt;if&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-group z-python&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-python&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-meta z-generic-name z-python&quot;&gt;r&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-comparison z-python&quot;&gt;==&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-python&quot;&gt;0&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-python&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-block z-conditional z-if z-python&quot;&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-control z-flow z-return z-python&quot;&gt;return&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-python&quot;&gt;1&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-comparison z-python&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-comparison z-python&quot;&gt;&amp;lt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-meta z-generic-name z-python&quot;&gt;n&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-arithmetic z-python&quot;&gt;-&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-meta z-generic-name z-python&quot;&gt;k&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+
+    &lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-meta z-generic-name z-python&quot;&gt;nr&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-assignment z-python&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-python&quot;&gt;&lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-variable z-function z-python&quot;&gt;&lt;span class=&quot;z-support z-function z-builtin z-python&quot;&gt;bin&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-python&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-arguments z-begin z-python&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-meta z-generic-name z-python&quot;&gt;i&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-python&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-python&quot;&gt;2&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-arithmetic z-python&quot;&gt;*&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-meta z-generic-name z-python&quot;&gt;r&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-arguments z-end z-python&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-item-access z-python&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-brackets z-begin z-python&quot;&gt;[&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-item-access z-arguments z-python&quot;&gt;&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-python&quot;&gt;2&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-slice z-python&quot;&gt;:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-item-access z-python&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-brackets z-end z-python&quot;&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-item-access z-python&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-brackets z-begin z-python&quot;&gt;[&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-item-access z-arguments z-python&quot;&gt;&lt;span class=&quot;z-punctuation z-separator z-slice z-python&quot;&gt;:&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-slice z-python&quot;&gt;:&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-arithmetic z-python&quot;&gt;-&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-python&quot;&gt;1&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-item-access z-python&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-brackets z-end z-python&quot;&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-keyword z-control z-flow z-return z-python&quot;&gt;return&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-python&quot;&gt;&lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-variable z-function z-python&quot;&gt;&lt;span class=&quot;z-support z-type z-python&quot;&gt;int&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-python&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-arguments z-begin z-python&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-meta z-generic-name z-python&quot;&gt;nr&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-arguments z-python&quot;&gt;,&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-python&quot;&gt;2&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-arguments z-end z-python&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-comparison z-python&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-comparison z-python&quot;&gt;&amp;lt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-meta z-generic-name z-python&quot;&gt;n&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-arithmetic z-python&quot;&gt;-&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-python&quot;&gt;&lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-variable z-function z-python&quot;&gt;&lt;span class=&quot;z-support z-function z-builtin z-python&quot;&gt;len&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-python&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-arguments z-begin z-python&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-meta z-generic-name z-python&quot;&gt;nr&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-arguments z-end z-python&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-python&quot;&gt;|&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-python&quot;&gt;1&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-comparison z-python&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-comparison z-python&quot;&gt;&amp;lt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-meta z-generic-name z-python&quot;&gt;n&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-arithmetic z-python&quot;&gt;-&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-qualified-name z-python&quot;&gt;&lt;span class=&quot;z-meta z-generic-name z-python&quot;&gt;k&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-arithmetic z-python&quot;&gt;-&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-python&quot;&gt;1&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;One of the crazier things I have written in python. And as such, it needs a few notes, especially on the non-zero r (denoted as l earlier in doc) case: &lt;code&gt;nr = binary(i-2*r)&lt;&#x2F;code&gt; reversed (remove leading 0b part of string first). Then shift &lt;code&gt;n-k&lt;&#x2F;code&gt; and add in leading term. However, nr should be k bits, so we need to shift more if not (when reversing leading become trailing) so must shift extra &lt;code&gt;len(nr)-k&lt;&#x2F;code&gt; bits. Without the compensation for extra zeroes the return wouldve looked like this: &lt;code&gt;return int(bin(i-2*r)[2:][::-1],2) &amp;lt;&amp;lt; n-k | 1 &amp;lt;&amp;lt; n-k-1&lt;&#x2F;code&gt;. Insane.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;note-from-years-later&quot;&gt;Note from years later&lt;&#x2F;h2&gt;
+&lt;p&gt;This provided a part of my open source &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;duel&quot;&gt;duel tournament&lt;&#x2F;a&gt; library.&lt;&#x2F;p&gt;
+&lt;p&gt;The code that deals with this particular bit now looks like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;js&quot; class=&quot;language-js z-code&quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;z-source z-ts&quot;&gt;&lt;span class=&quot;z-meta z-var z-expr z-ts&quot;&gt;&lt;span class=&quot;z-storage z-type z-ts&quot;&gt;var&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-var-single-variable z-expr z-ts&quot;&gt;&lt;span class=&quot;z-meta z-definition z-variable z-ts&quot;&gt;&lt;span class=&quot;z-entity z-name z-function z-ts&quot;&gt;evenSeed&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-ts&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function z-expression z-ts&quot;&gt;&lt;span class=&quot;z-storage z-type z-function z-ts&quot;&gt;function&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-parameters z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameters z-begin z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-ts&quot;&gt;i&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-parameter z-ts&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-parameter z-ts&quot;&gt;p&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-parameters z-end z-ts&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-block z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-block z-ts&quot;&gt;{&lt;&#x2F;span&gt;
+  &lt;span class=&quot;z-meta z-var z-expr z-ts&quot;&gt;&lt;span class=&quot;z-storage z-type z-ts&quot;&gt;var&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-var-single-variable z-expr z-ts&quot;&gt;&lt;span class=&quot;z-meta z-definition z-variable z-ts&quot;&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;k&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-ts&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-ts&quot;&gt;&lt;span class=&quot;z-support z-constant z-math z-ts&quot;&gt;Math&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-accessor z-ts&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-math z-ts&quot;&gt;floor&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-ts&quot;&gt;&lt;span class=&quot;z-support z-constant z-math z-ts&quot;&gt;Math&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-accessor z-ts&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-math z-ts&quot;&gt;log&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;i&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-ts&quot;&gt;&#x2F;&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-ts&quot;&gt;&lt;span class=&quot;z-support z-constant z-math z-ts&quot;&gt;Math&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-accessor z-ts&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-math z-ts&quot;&gt;log&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric z-decimal z-ts&quot;&gt;2&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-punctuation z-separator z-comma z-ts&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;r&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-assignment z-ts&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;i&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-ts&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-ts&quot;&gt;&lt;span class=&quot;z-support z-constant z-math z-ts&quot;&gt;Math&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-accessor z-ts&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-math z-ts&quot;&gt;pow&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric z-decimal z-ts&quot;&gt;2&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-comma z-ts&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;k&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-statement z-ts&quot;&gt;;&lt;&#x2F;span&gt;
+  &lt;span class=&quot;z-keyword z-control z-conditional z-ts&quot;&gt;if&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;r&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-comparison z-ts&quot;&gt;===&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-decimal z-ts&quot;&gt;0&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-block z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-block z-ts&quot;&gt;{&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-keyword z-control z-flow z-ts&quot;&gt;return&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-ts&quot;&gt;&lt;span class=&quot;z-support z-constant z-math z-ts&quot;&gt;Math&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-accessor z-ts&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-math z-ts&quot;&gt;pow&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric z-decimal z-ts&quot;&gt;2&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-comma z-ts&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;p&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-ts&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;k&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-statement z-ts&quot;&gt;;&lt;&#x2F;span&gt;
+  &lt;span class=&quot;z-punctuation z-definition z-block z-ts&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+  &lt;span class=&quot;z-meta z-var z-expr z-ts&quot;&gt;&lt;span class=&quot;z-storage z-type z-ts&quot;&gt;var&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-var-single-variable z-expr z-ts&quot;&gt;&lt;span class=&quot;z-meta z-definition z-variable z-ts&quot;&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;nr&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-ts&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;i&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-ts&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-decimal z-ts&quot;&gt;2&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-arithmetic z-ts&quot;&gt;*&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;r&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-accessor z-ts&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-ts&quot;&gt;toString&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric z-decimal z-ts&quot;&gt;2&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-accessor z-ts&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-ts&quot;&gt;split&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-single z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-ts&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-end z-ts&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-accessor z-ts&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-ts&quot;&gt;reverse&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-accessor z-ts&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-ts&quot;&gt;join&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-single z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-ts&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-end z-ts&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-statement z-ts&quot;&gt;;&lt;&#x2F;span&gt;
+  &lt;span class=&quot;z-keyword z-control z-flow z-ts&quot;&gt;return&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-ts&quot;&gt;&lt;span class=&quot;z-support z-function z-ts&quot;&gt;parseInt&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;nr&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-comma z-ts&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-decimal z-ts&quot;&gt;2&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-bitwise z-shift z-ts&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;p&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-ts&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-object z-ts&quot;&gt;nr&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-accessor z-ts&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-variable z-property z-ts&quot;&gt;length&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-ts&quot;&gt;+&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-ts&quot;&gt;&lt;span class=&quot;z-support z-constant z-math z-ts&quot;&gt;Math&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-accessor z-ts&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-math z-ts&quot;&gt;pow&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric z-decimal z-ts&quot;&gt;2&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-comma z-ts&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;p&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-ts&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;k&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-ts&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-decimal z-ts&quot;&gt;1&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-statement z-ts&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-punctuation z-definition z-block z-ts&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-statement z-ts&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Still and magical and confusing to everyone as ever.&lt;&#x2F;p&gt;
+&lt;p&gt;Clearly, there&#x27;s probably a more elegant method to be deduced. The method here is just emulating the pattern we see in the binary representation after all. Still, funny what you can do with strings and patterns.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Vault of Therayne</title>
+        <published>2006-08-09T00:00:00+00:00</published>
+        <updated>2006-08-09T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://clux.github.io/probes.zola/vault-of-therayne/" type="text/html"/>
+        <id>https://clux.github.io/probes.zola/vault-of-therayne/</id>
+        
+        <summary type="html">&lt;p&gt;An easter egg and puzzle solution for &lt;code&gt;Dungeon Siege 2 Broken World&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+</summary>
+        
+    </entry>
+</feed>

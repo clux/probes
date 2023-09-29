@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>probes - linux</title>
+    <link href="https://clux.github.io/probes.zola/tags/linux/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://clux.github.io/probes.zola"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2019-07-28T00:00:00+00:00</updated>
+    <id>https://clux.github.io/probes.zola/tags/linux/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Trying out LXDE</title>
+        <published>2019-07-28T00:00:00+00:00</published>
+        <updated>2019-07-28T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://clux.github.io/probes.zola/lxde-experiment/" type="text/html"/>
+        <id>https://clux.github.io/probes.zola/lxde-experiment/</id>
+        
+        <content type="html">&lt;p&gt;Despite having been a lazy Cinnamon customer since the Linux Mint days, recently some &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;old.reddit.com&#x2F;r&#x2F;linux_gaming&#x2F;comments&#x2F;cii545&#x2F;linux_input_lag_analysis_v26des_windows_10_1809&#x2F;&quot;&gt;interesting&lt;&#x2F;a&gt; benchmarks started &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;linux_gaming&#x2F;comments&#x2F;c0ly6b&#x2F;linux_input_lag_analysis7des_tested_windows&#x2F;&quot;&gt;surfacing&lt;&#x2F;a&gt; about input lag in various Window Mangagers, and this made me want to experiment a little.&lt;&#x2F;p&gt;
+&lt;p&gt;This is a log of stuff I needed to tweak to get &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;wiki.archlinux.org&#x2F;index.php&#x2F;LXDE&quot;&gt;LXDE&lt;&#x2F;a&gt; working well.&lt;&#x2F;p&gt;
+&lt;!--more--&gt;
+&lt;h1 id=&quot;lxde&quot;&gt;LXDE&lt;&#x2F;h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;LXDE is a free desktop environment with comparatively low resource requirements. This makes it especially suitable for use on older or resource-constrained personal computers such as netbooks or system on a chip computers.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Alrighty. A &lt;code&gt;C&lt;&#x2F;code&gt; based WM using &lt;code&gt;GTK+ 2&lt;&#x2F;code&gt;. Not used this since Gnome 2, back in the 2012 days.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;installation&quot;&gt;Installation&lt;&#x2F;h2&gt;
+&lt;p&gt;Already had Arch Linux running &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;wiki.archlinux.org&#x2F;index.php&#x2F;LightDM&quot;&gt;LightDM&lt;&#x2F;a&gt; as my Display Manager, so only needed the base install:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh z-code&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; sudo pacman&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;S&lt;&#x2F;span&gt; lxde&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;Packages&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; (24&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;) &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;libfm-1.3.1-1&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;  libfm-extra-1.3.1-1  libfm-gtk2-1.3.1-1  libwnck-2.31.0-2&lt;&#x2F;span&gt;
+              &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;lxmenu-data-0.1.5-2&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;  menu-cache-1.1.0-1  xmms2-0.8DrO_o.949.gca15e830-18&lt;&#x2F;span&gt;
+              &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;gpicview-0.2.5-4&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; lxappearance-0.6.3-2  lxappearance-obconf-0.2.3-2&lt;&#x2F;span&gt;
+              &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;lxde-common-0.99.2-2&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;  lxde-icon-theme-0.5.1-4  lxdm-0.5.3-6  lxhotkey-0.1.0-2&lt;&#x2F;span&gt;
+              &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;lxinput-0.3.5-2&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;  lxlauncher-0.2.5-3 lxmusic-0.4.7-2  lxpanel-0.10.0-1&lt;&#x2F;span&gt;
+              &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;lxrandr-0.3.2-1&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; xsession-1:0.5.4-1  lxtask-0.1.9-1  lxterminal-0.3.2-1&lt;&#x2F;span&gt;
+              &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;openbox-3.6.1-4&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;  pcmanfm-1.3.1-1&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then, logged out of &lt;code&gt;cinnamon&lt;&#x2F;code&gt;, and switched WM from the login screen to &lt;code&gt;LXDE&lt;&#x2F;code&gt;. Easy.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;input-lag&quot;&gt;Input Lag&lt;&#x2F;h2&gt;
+&lt;p&gt;Tested this out immediately to see if it felt better. Funnily enough, I can only tell in certain games that require a bunch of precise inputs. Most of my other currently installed games felt the same. But they aren&#x27;t really twitchy enough to tell.&lt;&#x2F;p&gt;
+&lt;p&gt;That said, &lt;code&gt;Necrodancer&lt;&#x2F;code&gt; definitely felt better. No longer any recogonizable input lag when playing &lt;code&gt;Bolt&lt;&#x2F;code&gt; or &lt;code&gt;Coda&lt;&#x2F;code&gt;, and had issues with those before on &lt;code&gt;cinnamon&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;quirks&quot;&gt;Quirks&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;keyboard-bindings&quot;&gt;Keyboard bindings&lt;&#x2F;h3&gt;
+&lt;p&gt;To be able to use this at all, I need some keyboard shortcuts to move windows between monitors. I tend to use &lt;code&gt;Super+Left&lt;&#x2F;code&gt; and &lt;code&gt;Super+Right&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;It was quite akward to set this up with &lt;code&gt;lxhotkey&lt;&#x2F;code&gt;. The magical incantation (which took almost an hour to figure out) was:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;MoveResizeTo&amp;quot;: &amp;quot;monitor:prev&amp;quot; : &amp;lt;Super&amp;gt;Left&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;MoveResizeTo&amp;quot;: &amp;quot;monitor:next&amp;quot; : &amp;lt;Super&amp;gt;Right&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Interestingly, &lt;code&gt;lxhotkey&lt;&#x2F;code&gt; is a &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;lxde&#x2F;lxhotkey&#x2F;blob&#x2F;master&#x2F;src&#x2F;lxhotkey.c&quot;&gt;700 line .c file&lt;&#x2F;a&gt; last touched 3 years ago.&lt;&#x2F;p&gt;
+&lt;p&gt;No way to bind &lt;code&gt;Super&lt;&#x2F;code&gt; to open the main menu AFAIKT, and man, that was hard to unlearn. Not that it matters, because there&#x27;s no fuzzy start and type on the main menu anyway. Amazing how tied you get to that. Not sure I can deal with not having that now. Maybe there&#x27;s some kind of &lt;code&gt;fzf&lt;&#x2F;code&gt; panel type thing I can install?&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;missing-out-of-the-box&quot;&gt;Missing out of the box&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;screen-locker&quot;&gt;Screen locker&lt;&#x2F;h3&gt;
+&lt;p&gt;Screensaver button kept spinning, timing out. Turns out &lt;code&gt;xscreensaver&lt;&#x2F;code&gt; was not installed. Installing it fixed it, but it also pulled in like 15 perl packages, and looked absolutely awful.&lt;&#x2F;p&gt;
+&lt;p&gt;Ended up installing &lt;code&gt;slock&lt;&#x2F;code&gt; straight from pacman instead. No dependencies there, and &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;git.suckless.org&#x2F;slock&#x2F;file&#x2F;slock.c.html&quot;&gt;it&#x27;s one c file&lt;&#x2F;a&gt;. No user input. Just a tree color screen. Black when locked, blue while typing, red on wrong password.&lt;&#x2F;p&gt;
+&lt;p&gt;Didn&#x27;t have to actually write &lt;code&gt;slock&lt;&#x2F;code&gt; anywhere. It just worked after installing it (&lt;code&gt;lxlock&lt;&#x2F;code&gt; apparently figures this out). I had taken out the broken &lt;code&gt;xscreensaver&lt;&#x2F;code&gt; ref in &lt;code&gt;~&#x2F;.config&#x2F;lxsession&#x2F;LXDE&#x2F;autostart&lt;&#x2F;code&gt; anyway though.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;transparency&quot;&gt;Transparency&lt;&#x2F;h3&gt;
+&lt;p&gt;This is kind of necessary for me for any terminals as I frequently overlay them on code with ~70% opacity. Installing &lt;code&gt;xcompmgr&lt;&#x2F;code&gt; straight from pacman and adding &lt;code&gt;xcompmgr &amp;amp;&lt;&#x2F;code&gt; to &lt;code&gt;~&#x2F;.config&#x2F;lxsession&#x2F;LXDE&#x2F;autostart&lt;&#x2F;code&gt; fixed it.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;look-and-feel&quot;&gt;Look and feel&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;main-panel&quot;&gt;Main panel&lt;&#x2F;h2&gt;
+&lt;p&gt;Needed about 15 minutes of configuration, and it ended up being stored in a 129 line file in &lt;code&gt;~&#x2F;.config&#x2F;lxpanel&#x2F;LXDE&#x2F;panels&#x2F;panel&lt;&#x2F;code&gt; But ended up looking very nice. Transparency on the bar itself was a nice touch.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;wms&#x2F;lxde2-transparency.jpg&quot; alt=&quot;&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Though you can see that it gets confused if you have set a different background on each monitor, which is something you can do for some reason.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;wms&#x2F;lxde2-dual-bg.jpg&quot; alt=&quot;&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;file-manager&quot;&gt;File manager&lt;&#x2F;h2&gt;
+&lt;p&gt;Fine, could make it look like &lt;code&gt;nemo&lt;&#x2F;code&gt; in 5 minutes. You can see it in the background above. Had it&#x27;s config in a tiny: &lt;code&gt;~&#x2F;.config&#x2F;pcmanfm&#x2F;LXDE&#x2F;pcmanfm.conf&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;general-theme&quot;&gt;General Theme&lt;&#x2F;h2&gt;
+&lt;p&gt;Default theme is quite ugly due to the overly glossy black panel, so you probably have to that transparent anyway. Everything kind of only fits the dark theme IMO. Went for the only decent one: &lt;code&gt;Adwaita-dark&lt;&#x2F;code&gt;, but put on &lt;code&gt;Mikachu&lt;&#x2F;code&gt; window borders. Nothing amazing, but completely fine.&lt;&#x2F;p&gt;
+&lt;p&gt;Tiny file in &lt;code&gt;~&#x2F;.config&#x2F;lxsession&#x2F;LXDE&#x2F;desktop.conf&lt;&#x2F;code&gt; controls this.&lt;&#x2F;p&gt;
+&lt;p&gt;Articles &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.addictivetips.com&#x2F;ubuntu-linux-tips&#x2F;lxde-themes&#x2F;&quot;&gt;exist&lt;&#x2F;a&gt; online on how to install themes for it, but that&#x27;s probably the gtk3 version. The few I tried didn&#x27;t work.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;verdict&quot;&gt;Verdict&lt;&#x2F;h1&gt;
+&lt;p&gt;The most awkward thing is the lack of a launcher bar so far. Performance is great. Keybindings are mostly workeable. If some better tiling-like commands can be set up maybe you can make do with &lt;code&gt;alacritty&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Seems completely useable. Most configs &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;dotfiles&#x2F;pull&#x2F;31&#x2F;files&quot;&gt;stashed in this PR&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

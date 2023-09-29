@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://clux.github.io/probes.zola/js/theme.min.js" integrity="sha384-pb++s6uBRKaQv+iAXpgA/H3IlpLZdO14tTwuCI7uXmz4aaZdByoCcM+6BhynMq/1"></script>
+  <link rel="stylesheet" href="https://clux.github.io/probes.zola/abridge.css?h=5cd2e708e811917bd981" />
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="base" content="https://clux.github.io/probes.zola" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="theme-color" content="#333333" />
+  <meta name="msapplication-TileColor" content="#333333" />
+  <link rel="manifest" href="https://clux.github.io/probes.zola/manifest.min.json" />
+  <link rel="mask-icon" href="https://clux.github.io/probes.zola/safari-pinned-tab.svg" color="#ff9900" />
+  <link rel="icon" type="image/svg+xml" href="https://clux.github.io/probes.zola/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://clux.github.io/probes.zola/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://clux.github.io/probes.zola/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://clux.github.io/probes.zola/favicon-16x16.png" />
+  <link rel="alternate" type="application/atom+xml" title="probes Atom/RSS Feed" href="https://clux.github.io/probes.zola/atom.xml" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <title>Evolution of kube | probes</title>
+  <meta name="author" content="clux" />
+  <meta name="copyright" content="probes" />
+  <meta name="description" content="Tower, Hyper, Websockets." />
+  <link rel="canonical" href="https://clux.github.io/probes.zola/kube-evolution/" />
+  <meta name="keywords" content="Kubernetes, Cloud, Rust, Theorycraft, Blog" />
+  <script defer src="https://clux.github.io/probes.zola/js/abridge.min.js?h=52ceec8ac36fe25defe7" integrity="sha384-H1IaFs2MvG0ayi+Bq0d66Ih118nLUFESwUke1UH1uKzTiJwcgE8hXpONzAG3kqHj"></script>
+  <noscript><link rel="stylesheet" href="https://clux.github.io/probes.zola/nojs.css" /></noscript>
+</head>
+<body>
+  <header>
+    <nav>
+      <div><h1><a href="https://clux.github.io/probes.zola" title="probes">Probes</a></h1></div>
+      <div>
+
+        <div>
+          <ul><li><a class="s110" href="https://clux.github.io/probes.zola/about/"> About </a></li><li><a class="s110" href="https://clux.github.io/probes.zola/"> Posts </a></li><li><a class="s110" href="https://clux.github.io/probes.zola/categories/"> Categories </a></li><li><a class="s110" href="https://clux.github.io/probes.zola/tags/"> Tags </a></li><li><i type="reset" id="mode" class="js svgs adjust"></i></ul>
+        </div>
+
+        <div>
+          <div>
+            <form autocomplete=off class="js" name="goSearch" id="searchbox">
+              <div class="searchd">
+                <input id="searchinput" type="text" placeholder="Search" title="Search" />
+                <button type="submit" title="Search" class="svgs search"></button>
+              </div>
+              <div class="results"><div id="suggestions"></div></div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+  <main>
+    <article>
+      <h1><a href="https://clux.github.io/probes.zola/kube-evolution/">Evolution of kube</a></h1>
+
+      <span class="s95"> clux <span class="rpad"></span> February 28, 2021 <span class="rpad"></span> [<a href="https://clux.github.io/probes.zola/categories/software/">software</a>] #<a href="https://clux.github.io/probes.zola/tags/rust/">rust</a>  #<a href="https://clux.github.io/probes.zola/tags/kubernetes/">kubernetes</a> </span>
+
+    
+
+
+<p>After a quarter year of extensive improvements to <a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs">kube</a>, it's time to take a birds-eye view of what we got, and showcase some of the recent improvements. After all, it's been about <a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/releases">40 kube releases</a>, one major version of <a rel="noopener" target="_blank" href="https://tokio.rs/">tokio</a>, one <a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/graphs/contributors">extremely prolific new contributor</a>, and one <a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=JmwnRcc2m2A">kubecon talk</a> since my (very outdated) <a href="/post/2019-06-04-towards-a-generic-kube-client">last blog post</a>.</p>
+<!--more-->
+<h2 id="crates">Crates</h2>
+<p>As of <code>0.51.0</code>, With modules and crates now delineated better, there's now multiple crates in the repository:</p>
+<ul>
+<li><strong>kube</strong>: <code>Api</code> types, and <code>Client</code> library with from a <code>Config</code></li>
+<li><strong>kube-derive</strong>: proc-macro to derive <code>CustomResource</code> necessities from a struct</li>
+<li><strong>kube-runtime</strong>: stream based controller runtime</li>
+</ul>
+<p>Today, we will focus on <code>kube</code>.</p>
+<h3 id="kube-api">kube::Api</h3>
+<p>Let's start with the basic feature you'd expect from a client library, the <strong><a rel="noopener" target="_blank" href="https://docs.rs/kube/latest/kube/struct.Api.html">Api</a></strong>.</p>
+<p>Its goals:</p>
+<ul>
+<li>allow interaction with any kubernetes resource</li>
+<li>stay compatible with any struct from <a rel="noopener" target="_blank" href="https://arnavion.github.io/k8s-openapi/v0.11.x/k8s_openapi/api/index.html">k8s-openapi</a></li>
+<li>defer IO handling to the injected <code>Client</code></li>
+<li>map <code>Client</code> output through <code>serde</code></li>
+</ul>
+<p>We make this generic by making <strong>two assumptions about kubernetes</strong>:</p>
+<ul>
+<li>all objects have metadata from <a rel="noopener" target="_blank" href="https://github.com/kubernetes/apimachinery/blob/master/pkg/apis/meta/v1/types.go">apimachinery/meta/types</a></li>
+<li><code>client-go</code> api generation is generics in disguise (<a rel="noopener" target="_blank" href="https://github.com/kubernetes/client-go/tree/6a251876df7908e387143b57eb15bcbd0d6886e0/kubernetes/typed">generated api</a>)</li>
+</ul>
+<p>We won't cover this now, but you can watch the talk from <a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=JmwnRcc2m2A">KubeCon2020: The Hidden Generics in Kubernetes' API</a> (or <a rel="noopener" target="_blank" href="https://clux.github.io/kubecon2020">read the slides</a>).</p>
+<p>Our <code>Api</code> has been remarkably stable over the past year, despite the internals being restructured heavily.</p>
+<p>One improvement is to the ergonomics of patching, which now has a <a rel="noopener" target="_blank" href="https://docs.rs/kube/0.51.0/kube/api/enum.Patch.html">typed Patch enum</a> for selecting the patch type.</p>
+<p>Despite full support, we always advocate for <a rel="noopener" target="_blank" href="https://kubernetes.io/blog/2020/04/01/kubernetes-1.18-feature-server-side-apply-beta-2/">server-side apply</a> everywhere as a lot of the awkward issues with local patching are generally <a rel="noopener" target="_blank" href="https://github.com/kubernetes/kubernetes/issues/58414">swept under the rug</a> with the clearly superior patch mode present in newer versions of kubernetes.</p>
+<p>Here's how patching looks today:</p>
+<pre data-lang="rust" class="language-rust z-code"><code class="language-rust" data-lang="rust"><span class="z-source z-rust"><span class="z-meta z-annotation z-rust"><span class="z-punctuation z-definition z-annotation z-rust">#</span><span class="z-punctuation z-section z-group z-begin z-rust">[</span><span class="z-variable z-annotation z-rust">tokio</span>::<span class="z-variable z-annotation z-rust">main</span><span class="z-punctuation z-section z-group z-end z-rust">]</span></span>
+async <span class="z-meta z-function z-rust"><span class="z-meta z-function z-rust"><span class="z-storage z-type z-function z-rust">fn</span> </span><span class="z-entity z-name z-function z-rust">main</span></span><span class="z-meta z-function z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-begin z-rust">(</span></span><span class="z-meta z-function z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-end z-rust">)</span></span></span></span><span class="z-meta z-function z-rust"> <span class="z-meta z-function z-return-type z-rust"><span class="z-punctuation z-separator z-rust">-&gt;</span> <span class="z-meta z-path z-rust">anyhow<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-meta z-generic z-rust"><span class="z-support z-type z-rust">Result</span><span class="z-punctuation z-definition z-generic z-begin z-rust">&lt;</span><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-punctuation z-section z-group z-end z-rust">)</span><span class="z-punctuation z-definition z-generic z-end z-rust">&gt;</span></span></span> </span><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+    <span class="z-storage z-type z-rust">let</span> client <span class="z-keyword z-operator z-assignment z-rust">=</span> <span class="z-meta z-path z-rust">Client<span class="z-punctuation z-accessor z-rust">::</span></span>try_default<span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-accessor z-dot z-rust">.</span>await<span class="z-keyword z-operator z-rust">?</span><span class="z-punctuation z-terminator z-rust">;</span>
+    <span class="z-storage z-type z-rust">let</span> foos<span class="z-punctuation z-separator z-rust">:</span> <span class="z-meta z-generic z-rust">Api<span class="z-punctuation z-definition z-generic z-begin z-rust">&lt;</span>Foo<span class="z-punctuation z-definition z-generic z-end z-rust">&gt;</span></span> <span class="z-keyword z-operator z-assignment z-rust">=</span> <span class="z-meta z-path z-rust">Api<span class="z-punctuation z-accessor z-rust">::</span></span>namespaced<span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span>client<span class="z-punctuation z-separator z-rust">,</span> <span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>default<span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+
+    <span class="z-storage z-type z-rust">let</span> ss_apply <span class="z-keyword z-operator z-assignment z-rust">=</span> <span class="z-meta z-path z-rust">PatchParams<span class="z-punctuation z-accessor z-rust">::</span></span>apply<span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>kube<span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">force</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+    <span class="z-storage z-type z-rust">let</span> patch <span class="z-keyword z-operator z-assignment z-rust">=</span> <span class="z-meta z-path z-rust">serde_json<span class="z-punctuation z-accessor z-rust">::</span></span>json<span class="z-keyword z-operator z-logical z-rust">!</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+        <span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>apiVersion<span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span><span class="z-punctuation z-separator z-rust">:</span> <span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>clux.dev/v1<span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span><span class="z-punctuation z-separator z-rust">,</span>
+        <span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>kind<span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span><span class="z-punctuation z-separator z-rust">:</span> <span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>Foo<span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span><span class="z-punctuation z-separator z-rust">,</span>
+        <span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>spec<span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span><span class="z-punctuation z-separator z-rust">:</span> <span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+            <span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>name<span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span><span class="z-punctuation z-separator z-rust">:</span> <span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>foo<span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span><span class="z-punctuation z-separator z-rust">,</span>
+            <span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>replicas<span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span><span class="z-punctuation z-separator z-rust">:</span> <span class="z-constant z-numeric z-integer z-decimal z-rust">2</span>
+        </span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span>
+    </span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+    foos<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">patch</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>myfoo<span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span><span class="z-punctuation z-separator z-rust">,</span> <span class="z-keyword z-operator z-bitwise z-rust">&amp;</span>ss_apply<span class="z-punctuation z-separator z-rust">,</span> <span class="z-keyword z-operator z-bitwise z-rust">&amp;</span><span class="z-meta z-path z-rust">Patch<span class="z-punctuation z-accessor z-rust">::</span></span>Apply<span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span>patch</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-accessor z-dot z-rust">.</span>await<span class="z-keyword z-operator z-rust">?</span><span class="z-punctuation z-terminator z-rust">;</span>
+    <span class="z-support z-type z-rust">Ok</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span>
+</span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span></span>
+</span></code></pre>
+<p>The biggest <code>Api</code> improvement recently was the inclusion of the most complicated <a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/blob/master/kube/src/api/subresource.rs">subresources</a>: <code>Api::exec</code> and <code>Api::attach</code>, and these actually uses a different protocol; <a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/issues/229">websockets</a>.</p>
+<p>Despite the complexities, these details have ended up being generally invisible to the user; you can hit <a rel="noopener" target="_blank" href="https://docs.rs/kube/0.51.0/kube/struct.Api.html#method.exec">Api::exec</a> like any other method, and you'll get the expected streams you can pipe from and pipe to:</p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">kube master: optional websocket support for exec/attach with <a href="https://twitter.com/tokio_rs?ref_src=twsrc%5Etfw">@tokio_rs</a> 1.0. Pipe streams to/from k8s pods. <a href="https://t.co/WhSFlPmm60">pic.twitter.com/WhSFlPmm60</a></p>&mdash; eirik ᐸ&#39;aᐳ (@sszynrae) <a href="https://twitter.com/sszynrae/status/1346122892707319810?ref_src=twsrc%5Etfw">January 4, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<h3 id="kube-config">kube::Config</h3>
+<p>Not to be confused with the file in your home directory, our <a rel="noopener" target="_blank" href="https://docs.rs/kube/latest/kube/struct.Config.html">Config</a> is actually just the relevant parameters we extract from the <a rel="noopener" target="_blank" href="https://docs.rs/kube/latest/kube/config/struct.Kubeconfig.html">kubeconfig file</a> (or <a rel="noopener" target="_blank" href="https://docs.rs/kube/latest/kube/struct.Config.html#method.from_cluster_env">cluster evars</a> when in-cluster), to help us create a <code>Client</code>.</p>
+<p>You generally won't need to instantiate any of these though, nor do you need a <code>Config</code> (as shown above), because <a rel="noopener" target="_blank" href="https://docs.rs/kube/0.51.0/kube/struct.Client.html#method.try_default">Client::try_default</a> will infer the correct one.</p>
+<p>Recent updates to stay compatible with the different config variants which <code>kubectl</code> supports, means we now support <a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/issues/132">stacked kubeconfigs</a>, and <a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/issues/440">multi-document kubeconfigs</a>.</p>
+<h3 id="kube-client">kube::Client</h3>
+<p>One of the most updated parts of <code>kube</code> this year, the <a rel="noopener" target="_blank" href="https://docs.rs/kube/latest/kube/struct.Client.html"><code>Client</code></a> has undergone significant surgery.
+It is now entirely concerned with the <strong>protocol</strong>, and handles the serialization plumbing between the <code>Api</code> and the apiserver.</p>
+<p>Many improvements are only really appreciable internally;</p>
+<ul>
+<li>
+<p><strong>watch</strong> buffering is now using a <a rel="noopener" target="_blank" href="https://docs.rs/tokio-util/0.6.3/tokio_util/codec/index.html">tokio codec</a> to give us a much more readable <a rel="noopener" target="_blank" href="https://docs.rs/kube/0.51.0/src/kube/client/mod.rs.html#204-272">streaming event parser</a>, while still returning a <code>TryStream&lt;Item = Result&lt;WatchEvent&lt;T&gt;&gt;&gt;</code> for <code>Api::watch</code></p>
+</li>
+<li>
+<p><a rel="noopener" target="_blank" href="https://docs.rs/kube/0.51.0/kube/struct.Client.html#method.connect">Client::connect</a> added to give a way to <a rel="noopener" target="_blank" href="https://docs.rs/hyper/0.14.4/hyper/upgrade/index.html">hyper::upgrade</a> an existing <code>http</code> connection (<a rel="noopener" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Upgrade">wtf is upgrading?</a>) to grant a streaming websocket connection from the existing http library. This is the secret sauce behind <code>Api::exec</code>.</p>
+</li>
+</ul>
+<p>Websockets is using <code>tokio-tungstenite</code>, a dependency so light-weight it's <a rel="noopener" target="_blank" href="https://github.com/snapview/tokio-tungstenite/blob/master/Cargo.toml">only pulling</a> in <code>tungstenite</code> without its <a rel="noopener" target="_blank" href="https://github.com/snapview/tungstenite-rs/blob/master/Cargo.toml">default-features</a>. Crucially, this lets us avoid having yet another way to specify tls stacks and cause a corresponding explosion of features (<a rel="noopener" target="_blank" href="https://github.com/rust-lang/cargo/issues/8832">weak-dep-features</a> plz).</p>
+<p>Of course, supporting multiple protocols, tls stacks, and certs from kubeconfigs means that there's considerable tls handling in kube. Fortunately, we have mostly managed to confine it to <a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/blob/11f60c7c5e793a6badc6f8bf3792c0a4e80a500d/kube/src/service/tls.rs">one cursed file</a>.</p>
+<p>..And if websocket support was not enough:</p>
+<blockquote>
+<p>Every api call now goes through <a rel="noopener" target="_blank" href="https://docs.rs/kube/0.51.0/src/kube/client/mod.rs.html#70-91">Client::send</a>'s new Service, rather than <code>reqwest::send</code>, and we no longer depend on <code>reqwest</code>.</p>
+</blockquote>
+<h3 id="kube-service">kube::Service</h3>
+<p>The new <a rel="noopener" target="_blank" href="https://docs.rs/kube/0.51.0/kube/struct.Service.html">Service</a> - injected into the <code>Client</code>, and constructed from an <a rel="noopener" target="_blank" href="https://docs.rs/kube/0.51.0/src/kube/config/mod.rs.html#51-62">arbitrary</a> <code>Config</code> - is what actually deals with the processing of the request call to turn it into a response.</p>
+<p>The <code>Service</code> creates a series of ordered <a rel="noopener" target="_blank" href="https://docs.rs/kube/0.51.0/src/kube/service/mod.rs.html#71-125"><strong>layers</strong></a> to be executed for each request:</p>
+<ol>
+<li>Authentication (extracting tokens, possibly talking to auth providers)</li>
+<li>Url + header mapping from Config to http request</li>
+<li>Dealing with optional compression</li>
+<li>Send it to a <code>HyperClient</code> configured with a <code>Connector</code></li>
+</ol>
+<p>The connector for <code>hyper</code> deals with TLS stack selection + Timeouts + <a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/pull/438">proxying</a></p>
+<p><strong>Why this abstraction?</strong> Well, primarily, less entangling business logic with IO (<a rel="noopener" target="_blank" href="https://sans-io.readthedocs.io/">Sans-IO</a> goals), and <strong><a rel="noopener" target="_blank" href="https://docs.rs/tower-service/0.3.1/tower_service/trait.Service.html">tower</a></strong> provides a robust way to move in that direction.</p>
+<p>There's also code-reuse of <a rel="noopener" target="_blank" href="https://docs.rs/tower/0.4.6/tower/#modules">common service layers</a> (effectively middleware), as well as the ability to <a rel="noopener" target="_blank" href="https://docs.rs/tower-test/0.4.0/tower_test/macro.assert_request_eq.html">mock services out of the box</a>, something that will help create a <a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/issues/429#issuecomment-782957601">better mocking setup</a> down the line.</p>
+<p>For now, however, the end result is a more light-weight http client: <strong><a rel="noopener" target="_blank" href="https://github.com/hyperium/hyper#hyper">hyper</a></strong> over <code>reqwest</code>, and without changing the core api boundaries (inserting <code>Service</code> between <code>Client</code> and <code>Config</code> will not affect the vast majority of users who use <code>Client::try_default</code> as the main start point).</p>
+<h3 id="credits">Credits</h3>
+<p>If you looked at the <a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/graphs/contributors">contributors graph</a>, you'll see we have a new maintainer.</p>
+<p>How did their contributions spike so quickly? Well, check out the prs for <a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/pull/394">tower + hyper rearchitecture</a>, and <a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/pull/360">websocket support</a>. Imagine landing those hugely ambitious beasts <em>so quickly</em>, and still managing to <a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/pulls?q=is%3Apr+is%3Aclosed+author%3Akazk">merge 20+ more prs since january</a> 🤯</p>
+<p><em>...So</em>, having mostly <em>project-managered</em> the ship the past <strong>two months</strong>, it's important to give due <a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/pull/411#issuecomment-777086158">credit</a> while we appreciate how far we've come. Huge thanks to <a rel="noopener" target="_blank" href="https://github.com/kazk">kazk</a>.</p>
+<p>In fact, from the <a rel="noopener" target="_blank" href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/csi-new-client-library-procedure.md#client-capabilities">client capabilities document</a>, we are <a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/issues?q=is%3Aissue+is%3Aopen+label%3Aclient-gold">almost</a> at <img style="display:inline" alt="client gold" src="https://img.shields.io/badge/Kubernetes%20client-Gold-blue.svg?style=plastic&colorB=FFD700&colorA=306CE8"/>.</p>
+<h2 id="end">End</h2>
+<p>TL;DR: A lot has happened. We have dissected parts of <code>kube</code>.</p>
+<p>As a kind of <strong>conclusion</strong>, I would just like to note <strong>how much easier</strong> these complex problems are to tackle in rust now thanks to <strong><a rel="noopener" target="_blank" href="https://tokio.rs/#tk-lib-tokio">tokio.rs</a></strong>. The ecosystem is fantastic now.</p>
+<h2 id="future-addendum">Future Addendum</h2>
+<p>Some key kube related issues that I personally hope will be resolved in 2021:</p>
+<ul>
+<li><a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/issues/428">ergonomics / utils</a></li>
+<li><a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/issues/429">testing / mocking</a></li>
+<li><a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/discussions/423">tracing story</a></li>
+<li>dyn api <a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/pull/385">improvements</a></li>
+<li><a rel="noopener" target="_blank" href="https://github.com/Arnavion/k8s-openapi/issues/72">less Options in generated types</a></li>
+</ul>
+<p>Without being able to give any guarantees. Volunteer work, you know.</p>
+<p>Speaking of; <strong><a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22">help</a> is instrumental</strong> for moving things forward, and always appreciated. Even if you are just fixing <a rel="noopener" target="_blank" href="https://docs.rs/kube/latest/kube/">docs</a> / <a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/tree/master/examples">examples</a> or asking questions.</p>
+<p>Check our <a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/discussions/422">discussions</a>, the <a rel="noopener" target="_blank" href="https://discord.gg/tokio">tokio discord</a>, or the <a rel="noopener" target="_blank" href="https://github.com/clux/kube-rs/issues">issues</a> if interested. Take care ✨🤗</p>
+
+      <nav>
+        <div>
+          <a href="https://clux.github.io/probes.zola/kubecon-la-log/">&#8249; Talk log from KubeCon LA</a>
+        </div>
+        <div>
+          <a href="https://clux.github.io/probes.zola/antimagic-revisited/"> Antimagic and Force Cubes &#8250;</a>
+        </div>
+      </nav>
+    </article>
+
+    <div class="sblock">
+
+      <div class="blockdiv sticky">
+        <a class="b s150" href="#">Index</a>
+        <div>
+          <a href="#crates">Crates</a>
+        </div>
+        <div class="hpad">
+          <a href="#kube-api"><small>- kube::Api</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#kube-config"><small>- kube::Config</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#kube-client"><small>- kube::Client</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#kube-service"><small>- kube::Service</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#credits"><small>- Credits</small></a>
+        </div>
+        <div>
+          <a href="#end">End</a>
+        </div>
+        <div>
+          <a href="#future-addendum">Future Addendum</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <hr />
+    <div class="c">
+      <nav><div><a type="application/atom+xml" href="https://clux.github.io/probes.zola/atom.xml" target="_blank" title="probes Atom/RSS Feed"><i type="Button" class="svg rss" title="probes Atom/RSS Feed"></i></a><a href="https://hachyderm.io/@clux" target="_blank" title="Mastodon" rel="me"><i type="Button" class="svg mastodon" title="Mastodon"></i></a><a href="https://www.linkedin.com/in/🗑-eirik-albrigtsen-b279863a/" target="_blank" title="LinkedIn"><i type="Button" class="svg linkedin" title="LinkedIn"></i></a><a href="https://github.com/clux/" target="_blank" title="Github"><i type="Button" class="svg github" title="Github"></i></a><a href="https://discord.com/tokio/" target="_blank" title="Discord"><i type="Button" class="svg discord" title="Discord"></i></a><a href="https://www.youtube.com/channel&#x2F;UCLpykMxkxuPUR9CciheipZg" target="_blank" title="YouTube"><i type="Button" class="svg youtube" title="YouTube"></i></a><a href="https://github.com/sponsors/clux/" target="_blank" title="GitHub Sponsor"><i type="Button" class="svg github-sponsor" title="GitHub Sponsor"></i></a></div></nav>
+      <nav>
+        <a class="s90" href="https://clux.github.io/probes.zola/about/"> About </a>
+        <a class="s90" href="https://clux.github.io/probes.zola/privacy/"> Privacy </a>
+        <a class="s90" href="https://clux.github.io/probes.zola/sitemap.xml" target="_blank"> Sitemap </a>
+      </nav>
+      <p class="s90">Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a> & <a href="https://github.com/jieiku/abridge/" target="_blank">Abridge</a></p>
+    </div>
+  </footer><span class="topout">
+<span class="topleft"> </span><a href="#" class="top" title="Back to Top"><i class="svgs svgh angu"></i></a>
+</span>
+</body>
+</html>

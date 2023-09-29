@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://clux.github.io/probes.zola/js/theme.min.js" integrity="sha384-pb++s6uBRKaQv+iAXpgA/H3IlpLZdO14tTwuCI7uXmz4aaZdByoCcM+6BhynMq/1"></script>
+  <link rel="stylesheet" href="https://clux.github.io/probes.zola/abridge.css?h=5cd2e708e811917bd981" />
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="base" content="https://clux.github.io/probes.zola" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="theme-color" content="#333333" />
+  <meta name="msapplication-TileColor" content="#333333" />
+  <link rel="manifest" href="https://clux.github.io/probes.zola/manifest.min.json" />
+  <link rel="mask-icon" href="https://clux.github.io/probes.zola/safari-pinned-tab.svg" color="#ff9900" />
+  <link rel="icon" type="image/svg+xml" href="https://clux.github.io/probes.zola/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://clux.github.io/probes.zola/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://clux.github.io/probes.zola/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://clux.github.io/probes.zola/favicon-16x16.png" />
+  <link rel="preload" as="style" class="preStyle" href="https://clux.github.io/probes.zola/katex.min.css" integrity="sha384-ZPe7yZ91iWxYumsBEOn7ieg8q/o+qh/hQpSaPow8T6BwALcXSCS6C6fSRPIAnTQs" />
+  <link rel="alternate" type="application/atom+xml" title="probes Atom/RSS Feed" href="https://clux.github.io/probes.zola/atom.xml" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <title>Tournament Seeding Placement | probes</title>
+  <meta name="author" content="clux" />
+  <meta name="copyright" content="probes" />
+  <meta name="description" content="Building elimination flows" />
+  <link rel="canonical" href="https://clux.github.io/probes.zola/tournament-seeding-placement/" />
+  <meta name="keywords" content="Kubernetes, Cloud, Rust, Theorycraft, Blog" />
+  <script defer src="https://clux.github.io/probes.zola/js/abridge.min.js?h=52ceec8ac36fe25defe7" integrity="sha384-H1IaFs2MvG0ayi+Bq0d66Ih118nLUFESwUke1UH1uKzTiJwcgE8hXpONzAG3kqHj"></script>
+  <script defer src="https://clux.github.io/probes.zola/js/katexbundle.min.js?h=6299b774ae77579e4404" integrity="sha384-w2LtVhWr6g/pnU4E8ZCpuUruGnK6Kw2ykIJojhKGscTSRckItl1/sZigXdTjRkkI"></script>
+  <noscript><link rel="stylesheet" href="https://clux.github.io/probes.zola/nojs.css" /></noscript>
+</head>
+<body>
+  <header>
+    <nav>
+      <div><h1><a href="https://clux.github.io/probes.zola" title="probes">Probes</a></h1></div>
+      <div>
+
+        <div>
+          <ul><li><a class="s110" href="https://clux.github.io/probes.zola/about/"> About </a></li><li><a class="s110" href="https://clux.github.io/probes.zola/"> Posts </a></li><li><a class="s110" href="https://clux.github.io/probes.zola/categories/"> Categories </a></li><li><a class="s110" href="https://clux.github.io/probes.zola/tags/"> Tags </a></li><li><i type="reset" id="mode" class="js svgs adjust"></i></ul>
+        </div>
+
+        <div>
+          <div>
+            <form autocomplete=off class="js" name="goSearch" id="searchbox">
+              <div class="searchd">
+                <input id="searchinput" type="text" placeholder="Search" title="Search" />
+                <button type="submit" title="Search" class="svgs search"></button>
+              </div>
+              <div class="results"><div id="suggestions"></div></div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+  <main>
+    <article>
+      <h1><a href="https://clux.github.io/probes.zola/tournament-seeding-placement/">Tournament Seeding Placement</a></h1>
+
+      <span class="s95"> clux <span class="rpad"></span> March 20, 2011 <span class="rpad"></span> [<a href="https://clux.github.io/probes.zola/categories/software/">software</a>] #<a href="https://clux.github.io/probes.zola/tags/math/">math</a> </span>
+
+    
+
+
+<p>A particularly tricky problem with tournament scheduling that made it into <a rel="noopener" target="_blank" href="https://github.com/clux/duel">tournament/duel</a>.</p>
+<!--more-->
+<p>This turned out to take a little more mental effort than initially expected and is documented herein for historical reasons.</p>
+<p>The problem of how to order seeds into the tournament brackets seemed almost a bit random. But after some hours on the couch with pen and paper and <a rel="noopener" target="_blank" href="http://beta.ivc.no/blog/">ivc</a> to talk to, we found a sensible solution.</p>
+<h2 id="intro">Intro</h2>
+<p><img src="/imgs/seeding/blizzcon_single_duel_8p.jpg" alt="System from BlizzCon (n=3)" /></p>
+<p>The seeding is the correspondence ${p \mid player} \leftrightarrow {1,2,\ldots,2^n}$ where the number $k(p)\in{1,2,\ldots,2^n}$ is the estimated ranking for player $p$, i.e. player $p$ is expected to beat player $q$ if and only if $k(p) &gt; k(q)$. The main problem is how to sort the players in the first round so that the the best players meet as late as possible (depending on their skill) in the tournament. The image below illustrates this for $2^3$ players. Formally we say:</p>
+<h2 id="definitions">Definitions</h2>
+<p>If there are $2^n$ players in the tournament then the ordering is <em>proper</em> if the following hold.</p>
+<ul>
+<li>If the seeding is perfect (perfectly predicts the match outcomes) then only the $2^{n+1-k}$ top seeded players are left in round $k$.</li>
+<li>In each round the sum of the seeds in each match is constant.</li>
+<li>The even seed in each match is placed at the bottom.</li>
+</ul>
+<p><img src="/imgs/seeding/bracket8.gif" alt="canonical n=3 bracket" /></p>
+<p>It's a bit much to assume that seedings are perfect, but the seeding above needs these three conditions to generate the analogous binary tree in $n$ dimensions, so we will use them. Besides, condition 2 does sort of provide some loose similar quality guarantee: the lower the sum, the most likely the better the games. The image above fills out what will happen in an eight player tournament if the seeding is perfect.</p>
+<p>Knowing that it was these three properties that we wanted, we could at this point just generated the next level in the canonical tree successively until we got to the desired level to (i.e. make an arbitrarily large tournament system), but this would have been inefficient and a bit tedious (compared to finding patterns in numbers at paper, but that might be subjective). I tried first to find a system in the sequence ${(1),(1,2),(1,4,3,2),(1,8,5,4,3,6,7,2),\ldots}$, but this turned out to be very fruitless. Having ivc over, I explained the problem to him and we stared at it for a couple of hours (because that's just the kind of inviting friend I am).</p>
+<p>Turns out the key was to look at the match numbers $1,\ldots,2^{n-1}$ by ordering from the top in the brackets. I.e. match 1 is 1 vs. 8, match 2 is 5 vs. 4 etc. The major clue here is that in a match number that is a power of two, the even numbered seed in that match is also a power of two. In fact match $2^k \mapsto 2^{n-k}$, so the hard part is interpolating this function for general match numbers.</p>
+<p>The system becomes clear first when we look at a full 32 player tournament i.e. $n=5$. In the interests of fully testing out the $\LaTeX$, I would ideally write this out, but tables are a bit of a pain in TeX, and I have this paper anyway.</p>
+<p><img src="/imgs/seeding/32bracket.jpg" alt="canonical n=5 bracket" /></p>
+<p>This is expanded uniquely using the three defined properties and the smaller bracket above. The match numbers in the first round are written on the left. Notice that the top players all follow diagonal paths when they reach vastly inferior players.</p>
+<p><img src="/imgs/seeding/16system.jpg" alt="system for n=5" /></p>
+<p>The system comes from decomposing the match number $i$ as $i=2^k + l$ where $k = \lfloor \log_2{i} \rfloor$. If we write the even seed as powers of two then they display a binary counting system going up between match numbers that are powers of two. In fact, it's the binary representation of $i-2l$ that is required, so let $c_j = bit_j (i-2l)$. We can then verify the final function (sending match number to the even seed in that match).</p>
+<p>$$2^k + l \mapsto \begin{cases} 2^{n-k},&amp; \text{if $l=0$} \\ 2^{n-k-1}+2^n \sum_{j=1} 2^{-j}c_j,&amp; \text{if $0 &lt; l &lt; 2^k$.}\end{cases}$$</p>
+<h2 id="python-code">Python code</h2>
+<pre data-lang="python" class="language-python z-code"><code class="language-python" data-lang="python"><span class="z-source z-python"><span class="z-meta z-function z-python"><span class="z-storage z-type z-function z-python"><span class="z-keyword z-declaration z-function z-python">def</span></span> <span class="z-entity z-name z-function z-python"><span class="z-meta z-generic-name z-python">even_seed_from_match_nr</span></span></span><span class="z-meta z-function z-parameters z-python"><span class="z-punctuation z-section z-parameters z-begin z-python">(</span></span><span class="z-meta z-function z-parameters z-python"><span class="z-variable z-parameter z-python">i</span><span class="z-punctuation z-separator z-parameters z-python">,</span> <span class="z-variable z-parameter z-python">n</span><span class="z-punctuation z-section z-parameters z-end z-python">)</span></span><span class="z-meta z-function z-python"><span class="z-punctuation z-section z-function z-begin z-python">:</span></span> <span class="z-comment z-line z-number-sign z-python"><span class="z-punctuation z-definition z-comment z-python">#</span> match_nr, log2(participants)
+</span>    <span class="z-comment z-line z-number-sign z-python"><span class="z-punctuation z-definition z-comment z-python">#</span>decompose i = 2^k + r where 0 &lt;= r &lt; 2^k
+</span>    <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">k</span></span> <span class="z-keyword z-operator z-assignment z-python">=</span> <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-support z-type z-python">int</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">math</span></span><span class="z-meta z-qualified-name z-python"><span class="z-punctuation z-accessor z-dot z-python">.</span></span><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">floor</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">math</span></span><span class="z-meta z-qualified-name z-python"><span class="z-punctuation z-accessor z-dot z-python">.</span></span><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">log</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">i</span></span><span class="z-punctuation z-separator z-arguments z-python">,</span><span class="z-constant z-numeric z-integer z-decimal z-python">2</span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span>
+    <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">r</span></span> <span class="z-keyword z-operator z-assignment z-python">=</span> <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">i</span></span> <span class="z-keyword z-operator z-arithmetic z-python">-</span> <span class="z-meta z-group z-python"><span class="z-punctuation z-section z-group z-begin z-python">(</span><span class="z-constant z-numeric z-integer z-decimal z-python">1</span> <span class="z-keyword z-operator z-comparison z-python">&lt;</span><span class="z-keyword z-operator z-comparison z-python">&lt;</span> <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">k</span></span><span class="z-punctuation z-section z-group z-end z-python">)</span></span>
+
+    <span class="z-meta z-statement z-conditional z-if z-python"><span class="z-keyword z-control z-conditional z-if z-python">if</span> <span class="z-meta z-group z-python"><span class="z-punctuation z-section z-group z-begin z-python">(</span><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">r</span></span> <span class="z-keyword z-operator z-comparison z-python">==</span> <span class="z-constant z-numeric z-integer z-decimal z-python">0</span><span class="z-punctuation z-section z-group z-end z-python">)</span></span><span class="z-punctuation z-section z-block z-conditional z-if z-python">:</span></span> <span class="z-keyword z-control z-flow z-return z-python">return</span> <span class="z-constant z-numeric z-integer z-decimal z-python">1</span> <span class="z-keyword z-operator z-comparison z-python">&lt;</span><span class="z-keyword z-operator z-comparison z-python">&lt;</span> <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">n</span></span><span class="z-keyword z-operator z-arithmetic z-python">-</span><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">k</span></span>
+
+    <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">nr</span></span> <span class="z-keyword z-operator z-assignment z-python">=</span> <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-support z-function z-builtin z-python">bin</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">i</span></span> <span class="z-keyword z-operator z-arithmetic z-python">-</span> <span class="z-constant z-numeric z-integer z-decimal z-python">2</span><span class="z-keyword z-operator z-arithmetic z-python">*</span><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">r</span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span><span class="z-meta z-item-access z-python"><span class="z-punctuation z-section z-brackets z-begin z-python">[</span></span><span class="z-meta z-item-access z-arguments z-python"><span class="z-constant z-numeric z-integer z-decimal z-python">2</span><span class="z-punctuation z-separator z-slice z-python">:</span></span><span class="z-meta z-item-access z-python"><span class="z-punctuation z-section z-brackets z-end z-python">]</span></span><span class="z-meta z-item-access z-python"><span class="z-punctuation z-section z-brackets z-begin z-python">[</span></span><span class="z-meta z-item-access z-arguments z-python"><span class="z-punctuation z-separator z-slice z-python">:</span><span class="z-punctuation z-separator z-slice z-python">:</span><span class="z-keyword z-operator z-arithmetic z-python">-</span><span class="z-constant z-numeric z-integer z-decimal z-python">1</span></span><span class="z-meta z-item-access z-python"><span class="z-punctuation z-section z-brackets z-end z-python">]</span></span>
+    <span class="z-keyword z-control z-flow z-return z-python">return</span> <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-support z-type z-python">int</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">nr</span></span><span class="z-punctuation z-separator z-arguments z-python">,</span><span class="z-constant z-numeric z-integer z-decimal z-python">2</span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span> <span class="z-keyword z-operator z-comparison z-python">&lt;</span><span class="z-keyword z-operator z-comparison z-python">&lt;</span> <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">n</span></span><span class="z-keyword z-operator z-arithmetic z-python">-</span><span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-support z-function z-builtin z-python">len</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">nr</span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span> <span class="z-keyword z-operator z-arithmetic z-python">|</span> <span class="z-constant z-numeric z-integer z-decimal z-python">1</span> <span class="z-keyword z-operator z-comparison z-python">&lt;</span><span class="z-keyword z-operator z-comparison z-python">&lt;</span> <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">n</span></span><span class="z-keyword z-operator z-arithmetic z-python">-</span><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">k</span></span><span class="z-keyword z-operator z-arithmetic z-python">-</span><span class="z-constant z-numeric z-integer z-decimal z-python">1</span>
+</span></code></pre>
+<p>One of the crazier things I have written in python. And as such, it needs a few notes, especially on the non-zero r (denoted as l earlier in doc) case: <code>nr = binary(i-2*r)</code> reversed (remove leading 0b part of string first). Then shift <code>n-k</code> and add in leading term. However, nr should be k bits, so we need to shift more if not (when reversing leading become trailing) so must shift extra <code>len(nr)-k</code> bits. Without the compensation for extra zeroes the return wouldve looked like this: <code>return int(bin(i-2*r)[2:][::-1],2) &lt;&lt; n-k | 1 &lt;&lt; n-k-1</code>. Insane.</p>
+<h2 id="note-from-years-later">Note from years later</h2>
+<p>This provided a part of my open source <a rel="noopener" target="_blank" href="https://github.com/clux/duel">duel tournament</a> library.</p>
+<p>The code that deals with this particular bit now looks like this:</p>
+<pre data-lang="js" class="language-js z-code"><code class="language-js" data-lang="js"><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">var</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-entity z-name z-function z-ts">evenSeed</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-meta z-function z-expression z-ts"><span class="z-storage z-type z-function z-ts">function</span> <span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-variable z-parameter z-ts">i</span><span class="z-punctuation z-separator z-parameter z-ts">,</span> <span class="z-variable z-parameter z-ts">p</span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+  <span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">var</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-readwrite z-ts">k</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-meta z-function-call z-ts"><span class="z-support z-constant z-math z-ts">Math</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-math z-ts">floor</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-meta z-function-call z-ts"><span class="z-support z-constant z-math z-ts">Math</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-math z-ts">log</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-readwrite z-ts">i</span><span class="z-meta z-brace z-round z-ts">)</span> <span class="z-keyword z-operator z-arithmetic z-ts">/</span> <span class="z-meta z-function-call z-ts"><span class="z-support z-constant z-math z-ts">Math</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-math z-ts">log</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-constant z-numeric z-decimal z-ts">2</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-meta z-brace z-round z-ts">)</span></span>
+    <span class="z-punctuation z-separator z-comma z-ts">,</span> <span class="z-variable z-other z-readwrite z-ts">r</span> <span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-variable z-other z-readwrite z-ts">i</span> <span class="z-keyword z-operator z-arithmetic z-ts">-</span> <span class="z-meta z-function-call z-ts"><span class="z-support z-constant z-math z-ts">Math</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-math z-ts">pow</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-constant z-numeric z-decimal z-ts">2</span><span class="z-punctuation z-separator z-comma z-ts">,</span> <span class="z-variable z-other z-readwrite z-ts">k</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+  <span class="z-keyword z-control z-conditional z-ts">if</span> <span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-readwrite z-ts">r</span> <span class="z-keyword z-operator z-comparison z-ts">===</span> <span class="z-constant z-numeric z-decimal z-ts">0</span><span class="z-meta z-brace z-round z-ts">)</span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+    <span class="z-keyword z-control z-flow z-ts">return</span> <span class="z-meta z-function-call z-ts"><span class="z-support z-constant z-math z-ts">Math</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-math z-ts">pow</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-constant z-numeric z-decimal z-ts">2</span><span class="z-punctuation z-separator z-comma z-ts">,</span> <span class="z-variable z-other z-readwrite z-ts">p</span> <span class="z-keyword z-operator z-arithmetic z-ts">-</span> <span class="z-variable z-other z-readwrite z-ts">k</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+  <span class="z-punctuation z-definition z-block z-ts">}</span></span>
+  <span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">var</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-readwrite z-ts">nr</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-readwrite z-ts">i</span> <span class="z-keyword z-operator z-arithmetic z-ts">-</span> <span class="z-constant z-numeric z-decimal z-ts">2</span><span class="z-keyword z-operator z-arithmetic z-ts">*</span><span class="z-variable z-other z-readwrite z-ts">r</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-meta z-function-call z-ts"><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-ts">toString</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-constant z-numeric z-decimal z-ts">2</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-meta z-function-call z-ts"><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-ts">split</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span><span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-meta z-function-call z-ts"><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-ts">reverse</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-meta z-function-call z-ts"><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-ts">join</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span><span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-meta z-brace z-round z-ts">)</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+  <span class="z-keyword z-control z-flow z-ts">return</span> <span class="z-meta z-brace z-round z-ts">(</span><span class="z-meta z-function-call z-ts"><span class="z-support z-function z-ts">parseInt</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-readwrite z-ts">nr</span><span class="z-punctuation z-separator z-comma z-ts">,</span> <span class="z-constant z-numeric z-decimal z-ts">2</span><span class="z-meta z-brace z-round z-ts">)</span> <span class="z-keyword z-operator z-bitwise z-shift z-ts">&lt;&lt;</span> <span class="z-variable z-other z-readwrite z-ts">p</span> <span class="z-keyword z-operator z-arithmetic z-ts">-</span> <span class="z-variable z-other z-object z-ts">nr</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-variable z-property z-ts">length</span><span class="z-meta z-brace z-round z-ts">)</span> <span class="z-keyword z-operator z-arithmetic z-ts">+</span> <span class="z-meta z-function-call z-ts"><span class="z-support z-constant z-math z-ts">Math</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-math z-ts">pow</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-constant z-numeric z-decimal z-ts">2</span><span class="z-punctuation z-separator z-comma z-ts">,</span> <span class="z-variable z-other z-readwrite z-ts">p</span> <span class="z-keyword z-operator z-arithmetic z-ts">-</span> <span class="z-variable z-other z-readwrite z-ts">k</span> <span class="z-keyword z-operator z-arithmetic z-ts">-</span> <span class="z-constant z-numeric z-decimal z-ts">1</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+<span class="z-punctuation z-definition z-block z-ts">}</span></span></span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></code></pre>
+<p>Still and magical and confusing to everyone as ever.</p>
+<p>Clearly, there's probably a more elegant method to be deduced. The method here is just emulating the pattern we see in the binary representation after all. Still, funny what you can do with strings and patterns.</p>
+
+      <nav>
+        <div>
+          <a href="https://clux.github.io/probes.zola/colemak-switchover/">&#8249; Colemak Switchover</a>
+        </div>
+        <div>
+          <a href="https://clux.github.io/probes.zola/vault-of-therayne/"> Vault of Therayne &#8250;</a>
+        </div>
+      </nav>
+    </article>
+
+    <div class="sblock">
+
+      <div class="blockdiv sticky">
+        <a class="b s150" href="#">Index</a>
+        <div>
+          <a href="#intro">Intro</a>
+        </div>
+        <div>
+          <a href="#definitions">Definitions</a>
+        </div>
+        <div>
+          <a href="#python-code">Python code</a>
+        </div>
+        <div>
+          <a href="#note-from-years-later">Note from years later</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <hr />
+    <div class="c">
+      <nav><div><a type="application/atom+xml" href="https://clux.github.io/probes.zola/atom.xml" target="_blank" title="probes Atom/RSS Feed"><i type="Button" class="svg rss" title="probes Atom/RSS Feed"></i></a><a href="https://hachyderm.io/@clux" target="_blank" title="Mastodon" rel="me"><i type="Button" class="svg mastodon" title="Mastodon"></i></a><a href="https://www.linkedin.com/in/🗑-eirik-albrigtsen-b279863a/" target="_blank" title="LinkedIn"><i type="Button" class="svg linkedin" title="LinkedIn"></i></a><a href="https://github.com/clux/" target="_blank" title="Github"><i type="Button" class="svg github" title="Github"></i></a><a href="https://discord.com/tokio/" target="_blank" title="Discord"><i type="Button" class="svg discord" title="Discord"></i></a><a href="https://www.youtube.com/channel&#x2F;UCLpykMxkxuPUR9CciheipZg" target="_blank" title="YouTube"><i type="Button" class="svg youtube" title="YouTube"></i></a><a href="https://github.com/sponsors/clux/" target="_blank" title="GitHub Sponsor"><i type="Button" class="svg github-sponsor" title="GitHub Sponsor"></i></a></div></nav>
+      <nav>
+        <a class="s90" href="https://clux.github.io/probes.zola/about/"> About </a>
+        <a class="s90" href="https://clux.github.io/probes.zola/privacy/"> Privacy </a>
+        <a class="s90" href="https://clux.github.io/probes.zola/sitemap.xml" target="_blank"> Sitemap </a>
+      </nav>
+      <p class="s90">Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a> & <a href="https://github.com/jieiku/abridge/" target="_blank">Abridge</a></p>
+    </div>
+  </footer><span class="topout">
+<span class="topleft"> </span><a href="#" class="top" title="Back to Top"><i class="svgs svgh angu"></i></a>
+</span>
+</body>
+</html>

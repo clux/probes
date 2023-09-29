@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>probes - dnd</title>
+    <link href="https://clux.github.io/probes.zola/tags/dnd/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://clux.github.io/probes.zola"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2020-10-04T00:00:00+00:00</updated>
+    <id>https://clux.github.io/probes.zola/tags/dnd/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Antimagic and Force Cubes</title>
+        <published>2020-10-04T00:00:00+00:00</published>
+        <updated>2020-10-04T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://clux.github.io/probes.zola/antimagic-revisited/" type="text/html"/>
+        <id>https://clux.github.io/probes.zola/antimagic-revisited/</id>
+        
+        <content type="html">&lt;p&gt;In 2018, we introduced the explosive &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Cube%20of%20Force&quot;&gt;Cube of Force&lt;&#x2F;a&gt; into our home campaign. We really did not expect it to cause us&#x2F;me that much grief at the time, but despite long canonicalisation meetings, our interpretation was not even internally consistent.&lt;&#x2F;p&gt;
+&lt;p&gt;At the time we dealt with this by nerfing Cube down into the ground gradually rolling out alternatives, but it&#x27;s time we dug into the concept of D&amp;amp;D &lt;code&gt;antimagic&lt;&#x2F;code&gt; properly.&lt;&#x2F;p&gt;
+&lt;!--more--&gt;
+&lt;h2 id=&quot;words-of-wording&quot;&gt;Words of wording&lt;&#x2F;h2&gt;
+&lt;p&gt;Spell combinations are an inherently powerful thing in D&amp;amp;D, and so any spells that &amp;quot;cancels out magic&amp;quot; - potentially interacting with &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;5thsrd.org&#x2F;spellcasting&#x2F;spells&#x2F;dispel_magic&#x2F;&quot;&gt;Dispel Magic&lt;&#x2F;a&gt; - must be carefully worded. And while &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;company.wizards.com&#x2F;&quot;&gt;Wizards&lt;&#x2F;a&gt; does a good job with this, there are still ambiguities that end up at &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;JeremyECrawford&quot;&gt;JeremyECrawford&lt;&#x2F;a&gt;&#x27;s table:&lt;&#x2F;p&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Have a D&amp;amp;D rules question? There&amp;#39;s a good chance I&amp;#39;ve answered it!&lt;br&gt;&lt;br&gt;1. Search the Sage Advice Compendium: &lt;a href=&quot;https:&#x2F;&#x2F;t.co&#x2F;nlIvbEC7D7&quot;&gt;https:&#x2F;&#x2F;t.co&#x2F;nlIvbEC7D7&lt;&#x2F;a&gt;.&lt;br&gt;2. Search Twitter, typing my handle (&lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;JeremyECrawford?ref_src=twsrc%5Etfw&quot;&gt;@JeremyECrawford&lt;&#x2F;a&gt;) and a relevant term, like &amp;quot;Twinned Spell.&amp;quot;&lt;br&gt;3. Search &lt;a href=&quot;https:&#x2F;&#x2F;t.co&#x2F;5oYKuatgLB&quot;&gt;https:&#x2F;&#x2F;t.co&#x2F;5oYKuatgLB&lt;&#x2F;a&gt;. &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;hashtag&#x2F;DnD?src=hash&amp;amp;ref_src=twsrc%5Etfw&quot;&gt;#DnD&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;t.co&#x2F;JXtO9catjP&quot;&gt;pic.twitter.com&#x2F;JXtO9catjP&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;&amp;mdash; Jeremy Crawford (@JeremyECrawford) &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;JeremyECrawford&#x2F;status&#x2F;931742038474727424?ref_src=twsrc%5Etfw&quot;&gt;November 18, 2017&lt;&#x2F;a&gt;&lt;&#x2F;blockquote&gt; &lt;script async src=&quot;https:&#x2F;&#x2F;platform.twitter.com&#x2F;widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;&#x2F;script&gt;
+&lt;!--shortcode fails on my hugo install..&lt; tweet 931742038474727424 &gt;--&gt;
+&lt;p&gt;the referenced &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;dnd.wizards.com&#x2F;articles&#x2F;sage-advice&#x2F;sage-advice-compendium&quot;&gt;Sage Advice Compendium&lt;&#x2F;a&gt; contains 21 pages of Q&#x2F;A as well as links to erratas for published books.&lt;&#x2F;p&gt;
+&lt;p&gt;We&#x27;ll focus on two spells that deal with antimagic, the philosophy and intent behind them, then we will tackle the Cube.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;forcecage&quot;&gt;ForceCage&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Forcecage&quot;&gt;ForceCage&lt;&#x2F;a&gt; (or &lt;code&gt;FC&lt;&#x2F;code&gt; for short) first; is a &lt;code&gt;7th level&lt;&#x2F;code&gt; mechanism to trap players while also limiting &lt;strong&gt;how&lt;&#x2F;strong&gt; spells can interact with trapped players:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;FC&lt;&#x2F;code&gt;; &amp;quot;creating a solid barrier that prevents any matter from passing through it and blocking any Spells cast into or out of the area&amp;quot;.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;This wording only mentions &lt;strong&gt;the casting&lt;&#x2F;strong&gt;; i.e. the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.dndbeyond.com&#x2F;sources&#x2F;basic-rules&#x2F;spellcasting#Targets&quot;&gt;line from the caster to the point of origin&lt;&#x2F;a&gt;. &lt;code&gt;Fireball&lt;&#x2F;code&gt;&#x27;s blast would extend through, and any damaging concentration spell sitting in the middle before the cage comes down would also keep ticking &lt;strong&gt;every round&lt;&#x2F;strong&gt; without proper recourse.&lt;&#x2F;p&gt;
+&lt;p&gt;It is a deadly combination when used with spells like &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.dnd-spells.com&#x2F;spell&#x2F;hunger-of-hadar&quot;&gt;Hunger of Hadar&lt;&#x2F;a&gt; (10 rounds), &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Cloudkill&quot;&gt;Cloudkill&lt;&#x2F;a&gt; (100 rounds), or &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;5thsrd.org&#x2F;spellcasting&#x2F;spells&#x2F;incendiary_cloud&#x2F;&quot;&gt;higher level clouds if available&lt;&#x2F;a&gt;. Oh, but we&#x27;ll just dispel..&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;FC&lt;&#x2F;code&gt;: This spell can&#x27;t be dispelled by Dispel Magic.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;antimagic&#x2F;hadar.jpg&quot; alt=&quot;hadar&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Scary prospect though it may be, you can wrangle yourself out of it with using; `&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Plane%20Shift#content&quot;&gt;Plane Shift&lt;&#x2F;a&gt; &#x2F; &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Teleport#content&quot;&gt;Teleport&lt;&#x2F;a&gt; &#x2F; &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Misty%20Step#content&quot;&gt;Misty Step&lt;&#x2F;a&gt; &#x2F; &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Dimension%20Door#content&quot;&gt;Dimension Door&lt;&#x2F;a&gt; on a successful charisma check. All it takes is for one player to get outside and stop the mage from hurling spell effects through the boundary. It is also possible to &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Disintegrate&quot;&gt;Disintegrate&lt;&#x2F;a&gt; it.&lt;&#x2F;p&gt;
+&lt;p&gt;Still it highlights a difference with other antimagic. The barrier is not perfect, and the &amp;quot;effect&amp;quot; of the spell &lt;em&gt;leeches through&lt;&#x2F;em&gt; the barrier of the cage, which is perhaps somewhat confusing when you can sometimes interpret the spell effect as &lt;em&gt;matter&lt;&#x2F;em&gt;. This is irrelevant as we&#x27;ll see later; while a spell caster is shaping the underlying magical fabric; the effect is a &lt;em&gt;magical energy&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Don&#x27;t invoke special relativity or thermodynamics. Magic does not have to obey &lt;code&gt;E=mc^2&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;antimagic-field&quot;&gt;Antimagic Field&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Antimagic%20Field&quot;&gt;Antimagic Field&lt;&#x2F;a&gt; (or &lt;code&gt;AMF&lt;&#x2F;code&gt; for short), is an &lt;code&gt;8th level&lt;&#x2F;code&gt; sphere that disallows spells cast in&#x2F;out &lt;strong&gt;as well as&lt;&#x2F;strong&gt; magical effects leeching through! The reason for the great increase in cancellation power is justified by its higher level, careful wording, and its lack of entrapment (people can walk out of it unlike &lt;code&gt;FC&lt;&#x2F;code&gt;).&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;AMF&lt;&#x2F;code&gt;: Any active spell or other magical Effect on a creature or an object in the Sphere is suppressed while the creature or object is in it.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;The blast of a fireball detonating outside an &lt;code&gt;AMF&lt;&#x2F;code&gt; simply disappears into nothing at the boundary of its sphere of influence.&lt;&#x2F;p&gt;
+&lt;p&gt;But what happens if you throw a &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Delayed%20Blast%20Fireball&quot;&gt;Delayed Blast Fireball&lt;&#x2F;a&gt; inside an area, and put an &lt;code&gt;AMF&lt;&#x2F;code&gt; around the area, while powering up the fireball from the outside? This, really claws at the heart of the word &lt;strong&gt;&amp;quot;suppressed&amp;quot;&lt;&#x2F;strong&gt;; is the fireball bead still there? Will it keep working after the &lt;code&gt;AMF&lt;&#x2F;code&gt; disappears? Has it powered up in the mean time? Has the duration elapsed?&lt;&#x2F;p&gt;
+&lt;p&gt;This is a harder corner-case, and requires some more guidance. And as far as corner-cases go, it&#x27;s not alone, just think about:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;class abilities like paladin&#x27;s smite, monk&#x27;s ki points, druid shapeshifting&lt;&#x2F;li&gt;
+&lt;li&gt;monster abilities like dragon&#x27;s breath, beholder rays&lt;&#x2F;li&gt;
+&lt;li&gt;summoned creatures&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;To answer whether these count as &lt;em&gt;magical&lt;&#x2F;em&gt;, we need some disambiguation.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what-is-a-magical-effect&quot;&gt;What is a magical effect?&lt;&#x2F;h2&gt;
+&lt;p&gt;The best source here come from the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;dnd.wizards.com&#x2F;articles&#x2F;features&#x2F;tad-williams-storytelling&quot;&gt;interview with Crawford from 2017&lt;&#x2F;a&gt; about antimagic and what they mean by &lt;code&gt;suppressing&lt;&#x2F;code&gt; magic.&lt;&#x2F;p&gt;
+&lt;p&gt;The short answer is that spells are &lt;strong&gt;not dispelled&lt;&#x2F;strong&gt;, they temporarily stop working, and the &lt;strong&gt;duration of spells keeps ticking&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;He justifies it by describing magic in the D&amp;amp;D world as always existing in the background; a loose weave. Magical effects is &lt;strong&gt;this fabric&lt;&#x2F;strong&gt; formed into a particular shape; &lt;strong&gt;background magic woven into an effect - using a formula&lt;&#x2F;strong&gt;. &amp;quot;AMF introduces a [temporary] bug in this formula.&amp;quot; Whereas &lt;code&gt;Dispel Magic&lt;&#x2F;code&gt; disperses that woven magic from a spell into background magic.&lt;&#x2F;p&gt;
+&lt;p&gt;Because the world is inherently magical - and creatures like dragons and beholders would not make sense without it - &lt;code&gt;AMF&lt;&#x2F;code&gt; could not possibly cancel this type of magic (as this would undo the very nature of the multiverse). Neither could it cancel non-magical effects that were created through the means of past magic. However:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;AMF&lt;&#x2F;code&gt;: &amp;quot;You will not see any effects of magic while inside this field. The area is divorced from the magical energy that suffuses the multiverse&amp;quot;.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;This text establishes a need to distinguish those types of magic from the others. This is where we consult the &lt;strong&gt;heuristic&lt;&#x2F;strong&gt; test from the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;media.wizards.com&#x2F;2020&#x2F;dnd&#x2F;downloads&#x2F;SA-Compendium.pdf&quot;&gt;Sage Advice Compendium&lt;&#x2F;a&gt; inlined below:&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;test-for-magical-effects&quot;&gt;Test for magical effects&lt;&#x2F;h3&gt;
+&lt;p&gt;Answer &lt;code&gt;YES&lt;&#x2F;code&gt; to any of these to be classified as magical (and thus have &lt;code&gt;AMF&lt;&#x2F;code&gt; suppress its effect):&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Is it a &lt;strong&gt;magic item&lt;&#x2F;strong&gt;?&lt;&#x2F;li&gt;
+&lt;li&gt;Is it a &lt;strong&gt;spell&lt;&#x2F;strong&gt;?&lt;&#x2F;li&gt;
+&lt;li&gt;Is it a &lt;strong&gt;spell attack&lt;&#x2F;strong&gt;?&lt;&#x2F;li&gt;
+&lt;li&gt;Is it creating the &lt;strong&gt;effects of a spell mentioned in its description&lt;&#x2F;strong&gt;?&lt;&#x2F;li&gt;
+&lt;li&gt;Is it &lt;strong&gt;fueled by spell slots&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Does the words &lt;code&gt;magic&lt;&#x2F;code&gt; or &lt;code&gt;magical&lt;&#x2F;code&gt; &lt;strong&gt;appear in its description&lt;&#x2F;strong&gt;?&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;examples&quot;&gt;Examples&lt;&#x2F;h3&gt;
+&lt;p&gt;While this seems like a well-thought-out heuristic, the results they mention are interesting:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Conjured creatures relying on concentration are magical&lt;&#x2F;li&gt;
+&lt;li&gt;Summoned creatures with instant cast duration are &lt;strong&gt;NOT&lt;&#x2F;strong&gt; magical&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Because the summoning has already taken place in the latter case.&lt;&#x2F;p&gt;
+&lt;p&gt;The corollary is that:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Conjured creatures (concentration-based) disappear&lt;&#x2F;li&gt;
+&lt;li&gt;Conjured creatures reappear when the field disappear (unless concentration was lost)&lt;&#x2F;li&gt;
+&lt;li&gt;Summoned creatures not concentration-based can traverse the field (they are not persisting because of a spell anymore)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;rpg.stackexchange.com&#x2F;questions&#x2F;93550&#x2F;is-a-concentration-spell-suppressed-when-the-caster-is-in-antimagic-field&quot;&gt;You still have to make concentration checks when hit&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Additionally, the following phenomenons (that at some point required magic to bring into existence) are &lt;strong&gt;not considered magical&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fire created by &lt;code&gt;Prestidigitation&lt;&#x2F;code&gt; (if it has a reason to keep burning)&lt;&#x2F;li&gt;
+&lt;li&gt;A &lt;code&gt;Dragon&lt;&#x2F;code&gt; and its breath weapon&lt;&#x2F;li&gt;
+&lt;li&gt;A &lt;code&gt;Beholder&lt;&#x2F;code&gt; and its &lt;code&gt;Antimagic Cone&lt;&#x2F;code&gt; (though it functions like &lt;code&gt;AMF&lt;&#x2F;code&gt;)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;antimagic&#x2F;beholder_ray.jpg&quot; alt=&quot;beholder ray&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;artifacts&quot;&gt;Artifacts&lt;&#x2F;h3&gt;
+&lt;p&gt;Finally, &lt;code&gt;Artifacts&lt;&#x2F;code&gt; - magic items either unavailable to mortals, or long forgotten - are also unaffected by &lt;code&gt;AMF&lt;&#x2F;code&gt; by a special flavour text (presumably to prevent you from destroying them):&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;AMF&lt;&#x2F;code&gt;: Spells and other magical Effects, &lt;strong&gt;except those created by an artifact or a deity&lt;&#x2F;strong&gt;, are suppressed in the Sphere and can&#x27;t protrude into it.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Thus, they probably have their full abilities unmodified completely - even if it can cast spells, like &lt;code&gt;Blackrazor&lt;&#x2F;code&gt;&#x27;s &lt;code&gt;Haste&lt;&#x2F;code&gt; ability. The magic of deities cannot be modified by mortals.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;interpretting-the-rest&quot;&gt;Interpretting the rest&lt;&#x2F;h3&gt;
+&lt;p&gt;Spellcasters with an active &lt;code&gt;Find Familiar&lt;&#x2F;code&gt; leave a bunch of open ended questions on how you can interact with them, even though the familiar clearly lingers. &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;rpg.stackexchange.com&#x2F;questions&#x2F;133610&#x2F;which-features-of-a-wizards-familiar-if-any-are-considered-magical&quot;&gt;Telepathy is magical&lt;&#x2F;a&gt;, and if telepathy is magical, then so is sharing of senses between a familiar (at least that is my interpretation).&lt;&#x2F;p&gt;
+&lt;p&gt;Additionally; a &lt;code&gt;warlock&lt;&#x2F;code&gt;&#x27;s &lt;code&gt;Pact Magic&lt;&#x2F;code&gt;, their &lt;code&gt;Eldritch Invocations&lt;&#x2F;code&gt;, blade pactweapons, and &lt;code&gt;Mystic Arcanum&lt;&#x2F;code&gt; are all magical by their wording.&lt;&#x2F;p&gt;
+&lt;p&gt;Similarly, a &lt;code&gt;sorcerer&lt;&#x2F;code&gt; can&#x27;t use sorcery points, as they &amp;quot;create [..] magical effects&amp;quot;, nor can they use the clearly magical; &lt;code&gt;Metamagic&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;code&gt;PHB&lt;&#x2F;code&gt; mentions that the &lt;code&gt;monk&lt;&#x2F;code&gt;&#x27;s &lt;code&gt;ki&lt;&#x2F;code&gt; energy draws on magical energy, but this is apparently only meant to mean the &amp;quot;background magic in the multiverse&amp;quot; &lt;code&gt;Crawford&lt;&#x2F;code&gt; says in the interview, and goes on to say:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;we only consider individual monk ability to be magical if we&#x27;ve put the word magic&#x2F;magical&#x2F;magically in that particular monk ability&amp;quot;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;A quick &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;http:&#x2F;&#x2F;dnd5e.wikidot.com&#x2F;monk&quot;&gt;search through reference text&lt;&#x2F;a&gt; seem to only mention:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;KI-Empowered strikes&lt;&#x2F;li&gt;
+&lt;li&gt;Fey Step&lt;&#x2F;li&gt;
+&lt;li&gt;Blessing of the Raven Queen&lt;&#x2F;li&gt;
+&lt;li&gt;Casting spells via &lt;code&gt;Way of the Four Elements&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;so Flurry&#x2F;Patient Defense or even &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;rpg.stackexchange.com&#x2F;questions&#x2F;76005&#x2F;does-ki-count-as-magic-for-the-purpose-of-an-antimagic-field-or-is-it-only-fluf&quot;&gt;Stunning Strike is not magical&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;code&gt;paladin&lt;&#x2F;code&gt; only has a few similar references:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Channel Divinity is magical&lt;&#x2F;li&gt;
+&lt;li&gt;Sacred Weapon is magical (weapon no longer get the +1 if it got it)&lt;&#x2F;li&gt;
+&lt;li&gt;Divine Health is magical (no longer immune to disease)&lt;&#x2F;li&gt;
+&lt;li&gt;Divine Smite is not magical - but you can&#x27;t use it to expend spell slots!&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The &lt;code&gt;druid&lt;&#x2F;code&gt;&#x27;s &lt;code&gt;Wild Shape&lt;&#x2F;code&gt; is magical and would temporarily drop within an &lt;code&gt;AMF&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;code&gt;ranger&lt;&#x2F;code&gt; is more straightforward. Only spells matter, and while &lt;code&gt;Hunter&#x27;s Mark&lt;&#x2F;code&gt; will linger, it does so under concentration, and its effect will be suppressed if either of you are inside of an &lt;code&gt;AMF&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;delayed-blast-fireball&quot;&gt;Delayed Blast Fireball&lt;&#x2F;h2&gt;
+&lt;p&gt;This brings us to the curious case of &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Delayed%20Blast%20Fireball&quot;&gt;Delayed Blast Fireball&lt;&#x2F;a&gt;. Some &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.sageadvice.eu&#x2F;2015&#x2F;12&#x2F;09&#x2F;delayed-blast-fireball-inside-an-antimagic-field&#x2F;&quot;&gt;answers are provided by Crawford here&lt;&#x2F;a&gt;, though they still leave some wiggle room.&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s clear that an active &lt;code&gt;DBF&lt;&#x2F;code&gt; should have its duration elapse inside an &lt;code&gt;AMF&lt;&#x2F;code&gt; from what &lt;code&gt;Crawford&lt;&#x2F;code&gt; says in the interview, but it is still a concentration spell that increases in damage every round because of concentration:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;DBF&lt;&#x2F;code&gt;: When the spell ends, either because your concentration is broken or because you decide to end it, the bead blossoms with a low roar into an explosion of flame that spreads around corners.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The spell&#x27;s base damage is 12d6. If at the end of Your Turn the bead has not yet detonated, the damage increases by 1d6.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Your concentration is not broken by &lt;code&gt;AMF&lt;&#x2F;code&gt;, and there&#x27;s nothing explicitly indicating that a magical transference of energy occurs while concentrating. To take the spell at face value; the bead just needs the concentration to exist (it&#x27;s not explicitly doing anything magical each round), and it immediately detonates when the link is severed:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;If concentration is &lt;em&gt;broken&lt;&#x2F;em&gt; while the bead is inside an &lt;code&gt;AMF&lt;&#x2F;code&gt;, then bad luck. Nothing happens.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;If there is a surpressed bead inside an expiring &lt;code&gt;AMF&lt;&#x2F;code&gt;, then hey, surprise; the bead can glow once more; and more intensely than before. Concentration paid off.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;There&#x27;s plenty of arguments to be made about how counterintuitive this is, but we don&#x27;t really know anything about the nature of concentration. The &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;rpg.stackexchange.com&#x2F;questions&#x2F;136280&#x2F;what-happens-if-a-delayed-blast-fireball-detonates-inside-an-antimagic-field#:~:text=A%20Delayed%20Fireball%20in%20an%20Antimagic%20Field%20wouldn&amp;#x27;t%20detonate&amp;amp;text=While%20an%20effect%20is%20suppressed,is%20suppressed%2C%20meaning%20nothing%20happens.&quot;&gt;general consensus is that this works&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;antimagic&#x2F;fireball.jpg&quot; alt=&quot;fireball&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;This is probably a good thing, because a similar case can be made against &lt;code&gt;DBF&lt;&#x2F;code&gt; inside &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Time%20Stop#content&quot;&gt;Time Stop&lt;&#x2F;a&gt;; a &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.dndbeyond.com&#x2F;forums&#x2F;dungeons-dragons-discussion&#x2F;rules-game-mechanics&#x2F;10141-spells-time-stop-and-delayed-fireball-question&quot;&gt;tradition&lt;&#x2F;a&gt; that is &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;dndnext&#x2F;comments&#x2F;f8jb53&#x2F;how_would_time_stop_and_delayed_blast_fireball&#x2F;&quot;&gt;too cool&lt;&#x2F;a&gt; to &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;thinkdm.org&#x2F;2018&#x2F;02&#x2F;03&#x2F;can-you-cast-multiple-delayed-blast-fireballs-during-time-stop&#x2F;&quot;&gt;not work&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;antimagic-field-vs&quot;&gt;Antimagic Field vs...&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;1-forcecage&quot;&gt;1. ForceCage&lt;&#x2F;h3&gt;
+&lt;p&gt;Let&#x27;s look at how cancellation texts interact; &lt;code&gt;ForceCage&lt;&#x2F;code&gt; does not prevent magic being cast inside as long as the point of origin does not cross the boundary; so &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.giantitp.com&#x2F;comics&#x2F;oots0627.html&quot;&gt;AMF suppresses FC&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The result being a 10ft sphere sphere partially protruding a 10x10ft `FC rectangle, allowing for some funny geometrical problems - if you are inclined to do some on-the-fly trig.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;AMF: If the Sphere overlaps an area of magic, the part of the area that is covered by the Sphere is suppressed.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Note that there&#x27;s no &lt;strong&gt;dynamic movement&lt;&#x2F;strong&gt; or &lt;strong&gt;dynamic extensions&lt;&#x2F;strong&gt; for spell effects (movement typically happen as a discrete point at the start of a casters turn); &lt;code&gt;AMF&lt;&#x2F;code&gt; would leave the &lt;code&gt;ForceCage&lt;&#x2F;code&gt; active, just partially disabled where the the caster&#x27;s sphere is covering it.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;2-self&quot;&gt;2. Self&lt;&#x2F;h3&gt;
+&lt;p&gt;A final note of its uncancellability; two &lt;code&gt;AMF&lt;&#x2F;code&gt;s do not cancel out each other. Their &amp;quot;sphere of influence&amp;quot; simply become their union.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;AMF&lt;&#x2F;code&gt;: the spheres created by different antimagic field Spells don&#x27;t nullify each other.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h3 id=&quot;3-anything&quot;&gt;3. Anything&lt;&#x2F;h3&gt;
+&lt;p&gt;By the heuristic magic test, I can&#x27;t think of anything short of a &lt;code&gt;Wish&lt;&#x2F;code&gt; that could aid in removing an active &lt;code&gt;AMF&lt;&#x2F;code&gt;, and that could still only work from the outside. Even spells like &lt;code&gt;Disintegrate&lt;&#x2F;code&gt; produce a magical effect.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;4-counterspell&quot;&gt;4. Counterspell&lt;&#x2F;h3&gt;
+&lt;p&gt;You can however, target it at the casting time with &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.dndbeyond.com&#x2F;spells&#x2F;counterspell&quot;&gt;Counterspell&lt;&#x2F;a&gt;. It is clearly the lowest level spell that can work, though it has a hard DC, it requires you to have your reaction ready, and it requires the DM being very nice and letting you recognise what spell is being thrown at you (&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;rpg.stackexchange.com&#x2F;questions&#x2F;46830&#x2F;what-do-i-know-when-deciding-whether-to-cast-counterspell&quot;&gt;not always the case&lt;&#x2F;a&gt;).&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I generally allow identification of the spell as it&#x27;s being cast (so players can decide whether to counterspell) on a successful &lt;code&gt;Arcana&lt;&#x2F;code&gt; check (DC set by how exposed they have been to the spell).&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;antimagic&#x2F;counterspell.png&quot; alt=&quot;counterspell&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;An sidenote; &lt;code&gt;Wild Shape&lt;&#x2F;code&gt; mentioned earlier, while magical (and &lt;code&gt;AMF&lt;&#x2F;code&gt;-cancellable), is not a spell. Therefore, you cannot target it with &lt;code&gt;Counterspell&lt;&#x2F;code&gt;. &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;dndnext&#x2F;comments&#x2F;e3c47t&#x2F;wait_are_archdruids_are_immune_to_counterspell&#x2F;&quot;&gt;Arch druids are fun&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;antimagic-field-concentration&quot;&gt;Antimagic Field Concentration&lt;&#x2F;h2&gt;
+&lt;p&gt;Due to its hardline effect; &lt;code&gt;Crawford&lt;&#x2F;code&gt; notes that &lt;code&gt;AMF&lt;&#x2F;code&gt; is &lt;em&gt;intentionally a concentration spell that moves with you&lt;&#x2F;em&gt;, to give the players a chance to take out the mage. In conclusion; &lt;strong&gt;don&#x27;t put it on an item&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Funny you should mention that. We were just about ready to venture into silly-territory:&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;cube-of-force&quot;&gt;Cube of Force&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Cube%20of%20Force#content&quot;&gt;A cube with 36 fast-recharging charges&lt;&#x2F;a&gt;, and special effects for each face. Simplified flavour text:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can use an action to press one of the cube&#x27;s faces. Each face has a different Effect. A barrier of Invisible force springs into existence, forming &lt;code&gt;a cube 15 feet on a side&lt;&#x2F;code&gt;. The barrier is &lt;code&gt;centered on you&lt;&#x2F;code&gt;, moves with you, and &lt;code&gt;lasts for 1 minute&lt;&#x2F;code&gt;, until you use an action to press the cube&#x27;s sixth face, or the cube runs out of Charges.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can &lt;code&gt;change the barrier&#x27;s Effect by pressing a different face&lt;&#x2F;code&gt; of the cube and expending the requisite number of Charges, &lt;code&gt;resetting the Duration&lt;&#x2F;code&gt;. If your Movement causes the barrier to come into contact with a solid object that can&#x27;t pass through the cube, you can&#x27;t move any closer to that object as long as the barrier remains.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;antimagic&#x2F;cubeofforce.jpg&quot; alt=&quot;cube of force&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;face-effects&quot;&gt;Face Effects:&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;1&lt;&#x2F;strong&gt; Gases, wind, and fog can&#x27;t pass through the barrier.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;2&lt;&#x2F;strong&gt; Nonliving matter can&#x27;t pass through the barrier. Walls, floors, and ceilings can pass through at your discretion.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;3&lt;&#x2F;strong&gt; Living matter can&#x27;t pass through the barrier. (&lt;code&gt;FC--&lt;&#x2F;code&gt;)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;4&lt;&#x2F;strong&gt; Spell Effects can&#x27;t pass through the barrier. (&lt;code&gt;AMF--&lt;&#x2F;code&gt;)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;5&lt;&#x2F;strong&gt; Nothing can pass through the barrier. Walls, floors, and ceilings can pass through at your discretion. (&lt;code&gt;AMF--&lt;&#x2F;code&gt; + &lt;code&gt;FC--&lt;&#x2F;code&gt;)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;6&lt;&#x2F;strong&gt; The barrier deactivates.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;small&gt;There&#x27;s also a strange mechanic for number of chargers and a possibility of depleting it by hitting the barrier with certain high-levels spells, but this is not really relevant here.&lt;&#x2F;small&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;You&#x27;ll note how much more loosely worded this is. It leaves a lot of room for interpretation, it does &lt;em&gt;not&lt;&#x2F;em&gt; reference any spells it may mimic (unlike the Beholders Antimagic Cone), and thus these 8 word sentences are all we got. I noted what spells each face comes closest to in the list above, but a lot of questions ultimately arise:&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;questions&quot;&gt;Questions&lt;&#x2F;h3&gt;
+&lt;h4 id=&quot;1-gas-as-in-state-of-matter&quot;&gt;1. Gas as in state of matter?&lt;&#x2F;h4&gt;
+&lt;p&gt;Meaning you could toss in a brick of liquid nitrogen and let it sublimate. How much of physics is valid in D&amp;amp;D?&lt;&#x2F;p&gt;
+&lt;p&gt;No new breathable air goes in, incidentally. This shouldn&#x27;t matter much other than if they spend more than an hour inside of the bubble; like spending an hour in a cramped, unventilated meeting room.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;1-is-cloudkill-a-gas&quot;&gt;1. Is cloudkill a gas?&lt;&#x2F;h4&gt;
+&lt;p&gt;The &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Cloudkill&quot;&gt;Cloudkill&lt;&#x2F;a&gt; gas is a magical effect that drops with &lt;em&gt;Concentration&lt;&#x2F;em&gt;, so it&#x27;s not &lt;code&gt;matter&lt;&#x2F;code&gt; per se;&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;{living matter} ∪ {non-living matter} ≠ Multiverse&lt;&#x2F;code&gt;;
+Magical effects are neither.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Thus, this wording wouldn&#x27;t be enough to stop the first example people think of.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;2-non-living-matter&quot;&gt;2. Non-living matter?&lt;&#x2F;h4&gt;
+&lt;p&gt;This is probably meant as an &lt;code&gt;Undead&lt;&#x2F;code&gt; shield, but be careful; a dead body still has living parts on it like cells and bacteria. You probably wouldn&#x27;t want pass this barrier over the corpse of your friends if you want an easy resurrection.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;3-living-matter&quot;&gt;3. Living matter?&lt;&#x2F;h4&gt;
+&lt;p&gt;This sounds like &lt;code&gt;ForceCage&lt;&#x2F;code&gt;, but without the spell protection. You can protect yourself against arrows and charging enemies, but you cannot shoot out. You might just be trapped inside while enemies outside could target you with spells (or teleport inside).&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;4-spell-effects-passing-through&quot;&gt;4. Spell effects passing through?&lt;&#x2F;h4&gt;
+&lt;p&gt;This one is hard. The wording of &lt;code&gt;passing through&lt;&#x2F;code&gt; is strange - as D&amp;amp;D spell movement is discrete - but presumably any spell effects that crosses the boundary would probably fail to have that effect on the inside, kind of like &lt;code&gt;AMF&lt;&#x2F;code&gt; - but this does not specify that it functions like &lt;code&gt;AMF&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;In fact it only says the effect itself, it does not limit spells being cast inside, or targetting from the outside. In this case it&#x27;s actually the inverse of &lt;code&gt;FC&lt;&#x2F;code&gt;; spells can actually traverse the boundary, just effects can not. A caster could step 1ft out of the cube, cast fireball inside, remain undamaged while the inside would be a closed fire chamber.&lt;&#x2F;p&gt;
+&lt;p&gt;This of course raises a lot more questions, but read on first.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;5-nothing&quot;&gt;5. Nothing?&lt;&#x2F;h4&gt;
+&lt;p&gt;All matter, light, magical effects, spell effects, other forces. This is a real cage. You can&#x27;t hear or see anything from the outside, and can relax in your (very visible) Sensory Deprivation. Incidentally, it is &lt;em&gt;omniphobic&lt;&#x2F;em&gt;; bad guys could just move it with &lt;code&gt;Telekinesis&lt;&#x2F;code&gt;. Bring this cube into a lava pool, then just wait for it to expire. It&#x27;s not like anyone inside would know.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;this-is-dumb&quot;&gt;This is dumb&lt;&#x2F;h3&gt;
+&lt;p&gt;This interpretation is clearly strange, but it&#x27;s the most consistent with the remainder of antimagic AFAIKT. The item is just too ambiguous; the wording does not match anything else in the otherwise pretty consistent spell list.&lt;&#x2F;p&gt;
+&lt;p&gt;The way we judged this in 2018 looks nothing like the above list, but our original interpretation also did not work out with respect to game balance.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;Crawford&lt;&#x2F;code&gt; noted in the interview that he was actually recommending the removal of &lt;code&gt;AMF&lt;&#x2F;code&gt; for 5th edition, as it just has too many corner cases. Clearly, it was too iconic to remove and &lt;code&gt;Wizards&lt;&#x2F;code&gt; have done a reasonable job of tackling the ambiguities that follow from it, but for the &lt;code&gt;Cube of Force&lt;&#x2F;code&gt;? &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;search?q=JeremyECrawford%20%22cube%20of%20force%22&quot;&gt;The silence speaks volumes&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Just &lt;strong&gt;don&#x27;t use this item&lt;&#x2F;strong&gt;. If you want this type of Legendary power, homebrew something using existing spells, but equally, &lt;strong&gt;don&#x27;t relieve a mage of antimagic concentration&lt;&#x2F;strong&gt;. Here&#x27;s an alternative - yet still very poweful - homebrew item:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;antimagic&#x2F;globe_invuln.jpg&quot; alt=&quot;globe of invulnerability&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;umberlee-s-upheaval&quot;&gt;&lt;code&gt;Umberlee&#x27;s Upheaval&lt;&#x2F;code&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;A legendary spell casters focus. You can cast the following spells once per day from the following list of spells. The sphere will maintain concentration on one spell at a time, until it has been made to drop it via a command word or if the item is dropped;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;5thsrd.org&#x2F;spellcasting&#x2F;spells&#x2F;hallow&#x2F;&quot;&gt;Hallow&lt;&#x2F;a&gt; (centered on the focus)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;5thsrd.org&#x2F;spellcasting&#x2F;spells&#x2F;blade_barrier&#x2F;&quot;&gt;Blade Barrier&lt;&#x2F;a&gt; (ringed wall around focus)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.dndbeyond.com&#x2F;spells&#x2F;freedom-of-movement&quot;&gt;Freedom of Movement&lt;&#x2F;a&gt; (20ft sphere around focus affecting everyone inside)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The focus is always the center of the spell. Attunement required by a &lt;code&gt;cleric&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;is-this-good&quot;&gt;Is this good?&lt;&#x2F;h4&gt;
+&lt;p&gt;This is clearly very different; filled with largely protective&#x2F;utility spells, modified to work in AOE around the focus. They all have well-defined use cases, and are all sufficiently different that they are all worth using. While it&#x27;s still a bit half-baked on my end; compared to the &lt;code&gt;Cube of Force&lt;&#x2F;code&gt;? Easy substitute.&lt;&#x2F;p&gt;
+&lt;!--
+If you want a wizard&#x2F;sorcerer&#x2F;warlock based one, you could instead use the following spells:
+
+- [Globe of Invulnerability](https:&#x2F;&#x2F;5thsrd.org&#x2F;spellcasting&#x2F;spells&#x2F;globe_of_invulnerability&#x2F;)
+- [Resilient Sphere](https:&#x2F;&#x2F;5thsrd.org&#x2F;spellcasting&#x2F;spells&#x2F;resilient_sphere&#x2F;) (self only)
+
+or a paladin based one:
+
+- [Circle of Power](https:&#x2F;&#x2F;www.dndbeyond.com&#x2F;spells&#x2F;circle-of-power)
+- [Aura of Purity](https:&#x2F;&#x2F;www.dndbeyond.com&#x2F;spells&#x2F;aura-of-purity)
+- [Aura of Life](https:&#x2F;&#x2F;www.dndbeyond.com&#x2F;spells&#x2F;aura-of-life)
+--&gt;
+&lt;h3 id=&quot;ending-thoughs&quot;&gt;Ending thoughs&lt;&#x2F;h3&gt;
+&lt;p&gt;If you&#x27;ve followed me through this rabbit hole in fantasy rule research, congratulations. Hope this has been interesting. At the very least, I will feel a little more confident in running high level games that may or may not contain liches.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Three Way Charms</title>
+        <published>2019-01-17T00:00:00+00:00</published>
+        <updated>2019-01-17T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://clux.github.io/probes.zola/three-way-charm/" type="text/html"/>
+        <id>https://clux.github.io/probes.zola/three-way-charm/</id>
+        
+        <content type="html">&lt;p&gt;Fighting a CR 13 Vampire at level 7 in total darkness is no easy feat.&lt;&#x2F;p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;As part of an emergency backup adventure (&lt;code&gt;EBA&lt;&#x2F;code&gt;) in the middle of a long running D&amp;amp;D campaign, our largely chaotic party of misfits (save for our low int paladin whose deity has yet to be named in his backstory) was given the poem that leads them into (and helps them navigate) &lt;code&gt;White Plume Mountain&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;whiteplume&#x2F;poem.jpg&quot; alt=&quot;&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s a classic dungeon, revamped for 5th edition in &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;http:&#x2F;&#x2F;dnd.wizards.com&#x2F;products&#x2F;tabletop-games&#x2F;rpg-products&#x2F;tales-yawning-portal&quot;&gt;Tales from the Yawning Portal&lt;&#x2F;a&gt; and features three major pathways, boss fights, and major sentient weapons as the attracting carrots.&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s also incredibly dangerous. It&#x27;s designed for a party of 8th level characters, and often recommended as weekend interim game to give people a breather from your regular campaign, because of the high likelihood of a total party kill.&lt;&#x2F;p&gt;
+&lt;p&gt;However, what&#x27;s the point of getting three legendary weapons if the one shot is then over? High reward makes even the most careful players willing to confront high risk scenarios, and &lt;em&gt;that&lt;&#x2F;em&gt; can make for a really interesting dungeon crawl.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;small&gt;I may also have been caught slightly unaware when rereading the boss battles &lt;strong&gt;after&lt;&#x2F;strong&gt; having lead my 7th level adventurers into the first corridor of this dungeon.&lt;&#x2F;small&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Regardless. This dungeon seemed like the perfect match for my stunlock heavy, very tactical party of control characters with good equipment.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;ctenmiir&quot;&gt;Ctenmiir&lt;&#x2F;h2&gt;
+&lt;p&gt;A &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Vampire#content&quot;&gt;Vampire&lt;&#x2F;a&gt; hidden in complete magical darkness, with a &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;rpg.stackexchange.com&#x2F;questions&#x2F;120792&#x2F;what-can-break-a-vampire-s-charm-besides-greater-restoration&quot;&gt;strong magical charm&lt;&#x2F;a&gt; that he can perform every round, that does not require concentration, nor allow repeat saves.&lt;&#x2F;p&gt;
+&lt;p&gt;This encounter was unlike anything the party has faced before. All previous bosses had been either &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;dnd5e.fandom.com&#x2F;wiki&#x2F;Tasha%27s_Hideous_Laughter&quot;&gt;tashaed&lt;&#x2F;a&gt; by our trickster, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Classes:Monk&#x2F;#toc_16&quot;&gt;stun-locked&lt;&#x2F;a&gt; by our monk, or &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;dnd5e.fandom.com&#x2F;wiki&#x2F;Hold_Person&quot;&gt;chain-held&lt;&#x2F;a&gt; by our Paladin + Warlock&#x2F;Sorcerer. But with three legendary resists, high natural saves, and difficulty hitting, only one of these even needed to be spent.&lt;&#x2F;p&gt;
+&lt;p&gt;One of the reasons for that is that you don&#x27;t just start a battle like this without some buildup.&lt;&#x2F;p&gt;
+&lt;p&gt;Why would the vampire want to just start the battle on even ground? Sitting on 17 INT and 18 CHA, he&#x27;ll want to get in your heads so that he can get a charm off early. And with legendary move actions, he can simply jump around and can generally dodge attacks from any over-eager party member while he attempts to persuade the party.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Well, I would pardon my manners, but it would appear you&#x27;re the ones who walked into my bedroom.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Then, when the party starts to suspect this may not be a combat encounter, you lean in to one of the heavy hitters and whisper while revealing your face (a condition of the charm to work):&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You&#x27;re clearly the strongest one in the group. Don&#x27;t you think this would be much easier without the pointless bloodshed? Protect me and we will all get along very soon.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Make a wisdom saving throw. &lt;strong&gt;Silent failure&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s all roll for initiative.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;a-game-of-charms&quot;&gt;A game of charms&lt;&#x2F;h2&gt;
+&lt;p&gt;By the end of round 1, the one attempt to dispell the magical darkness had failed, and another party member had been charmed by &lt;code&gt;Ctenmiir&lt;&#x2F;code&gt; (i.e. &lt;code&gt;2&#x2F;4&lt;&#x2F;code&gt;), all while he easily kept himself out of harms way. It did not look good.&lt;&#x2F;p&gt;
+&lt;p&gt;Satisfied with the situation, the vampire began feeding on the remaining members. HP drain on the rogue. Warlock down to 8hp. Some hits were taken during the process, but no cause for alarm for the vampire.&lt;&#x2F;p&gt;
+&lt;p&gt;Then, having exhausted all spells that caused saves from the vampire (which he could just legendary resist), the warlock went down a different route:&lt;&#x2F;p&gt;
+&lt;p&gt;He cast &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Suggestion#content&quot;&gt;Suggestion&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Classes:Sorcerer&#x2F;#toc_17&quot;&gt;Twinned&lt;&#x2F;a&gt; on the two charmed characters with the instruction:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You have been charmed by the vampire. Do not listen to him; fight him instead.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Well within the restrictions of the spell. Paladin, Fighter: Make wisdom saving throws against the warlock&#x27;s spell DC. &lt;strong&gt;More failures&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Thus, an interesting equilibrium point was reached. Two players still charmed by the vampire, but one warlock concentrating on maintaining the suggestion to counteract this effect.&lt;&#x2F;p&gt;
+&lt;p&gt;On cue, &lt;code&gt;Ctenmiir&lt;&#x2F;code&gt; jumps into the face of the warlock to try to break this concentration. &lt;strong&gt;Reaction &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;dnd5e.fandom.com&#x2F;wiki&#x2F;Shield&quot;&gt;Shield&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt; defense is successful. Party gets to now wail on the increasingly frustrated vampire.&lt;&#x2F;p&gt;
+&lt;p&gt;Paladin comes in with a &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Branding%20Smite#content&quot;&gt;Branding Smite&lt;&#x2F;a&gt; to force the vampire to be permanently visible, and stop regenerating. It&#x27;s just a question of time before he goes down.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;Ctenmiir&lt;&#x2F;code&gt; makes a final crucial attempt to charm the warlock. If successful, the warlock would have to drop his concentration on his twinned suggestion to protect the vampire. Thus, the total number of charmed party members is either &lt;code&gt;0&#x2F;4&lt;&#x2F;code&gt; or &lt;code&gt;3&#x2F;4&lt;&#x2F;code&gt;, depending on one wisdom save.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;He succeeds&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The vampire is dispatched over the course of the next round, and his treasure is claimed.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what&quot;&gt;What&lt;&#x2F;h2&gt;
+&lt;p&gt;As a DM, this was one of my most memorable battles so far. So much rested on this insane combination of charms, and it could easily have ended in a TPK.&lt;&#x2F;p&gt;
+&lt;p&gt;If anyone&#x27;s deserved their new sentient warhammer, it&#x27;s them.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;aside&quot;&gt;Aside&lt;&#x2F;h2&gt;
+&lt;p&gt;As an amusing sidenote; at one point, the rogue history checks for knowledge of vampires (poorly), but still persuades the charmed paladin to &amp;quot;heal&amp;quot; the vampire.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The vampire returns to full health. 😆&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;A metagaming attempt halted on by a fourth-to-fifth edition confusion. Karmic.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

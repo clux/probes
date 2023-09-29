@@ -1,0 +1,1064 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://clux.github.io/probes.zola/js/theme.min.js" integrity="sha384-pb++s6uBRKaQv+iAXpgA/H3IlpLZdO14tTwuCI7uXmz4aaZdByoCcM+6BhynMq/1"></script>
+  <link rel="stylesheet" href="https://clux.github.io/probes.zola/abridge.css?h=5cd2e708e811917bd981" />
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="base" content="https://clux.github.io/probes.zola" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="theme-color" content="#333333" />
+  <meta name="msapplication-TileColor" content="#333333" />
+  <link rel="manifest" href="https://clux.github.io/probes.zola/manifest.min.json" />
+  <link rel="mask-icon" href="https://clux.github.io/probes.zola/safari-pinned-tab.svg" color="#ff9900" />
+  <link rel="icon" type="image/svg+xml" href="https://clux.github.io/probes.zola/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://clux.github.io/probes.zola/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://clux.github.io/probes.zola/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://clux.github.io/probes.zola/favicon-16x16.png" />
+  <link rel="preload" as="style" class="preStyle" href="https://clux.github.io/probes.zola/katex.min.css" integrity="sha384-ZPe7yZ91iWxYumsBEOn7ieg8q/o+qh/hQpSaPow8T6BwALcXSCS6C6fSRPIAnTQs" />
+  <link rel="alternate" type="application/atom+xml" title="probes Atom/RSS Feed" href="https://clux.github.io/probes.zola/atom.xml" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <title>Baldur's Gate: Multinomial Edition | probes</title>
+  <meta name="author" content="clux" />
+  <meta name="copyright" content="probes" />
+  <meta name="description" content="Auto-rolling and getting nerd sniped before venturing forth" />
+  <link rel="canonical" href="https://clux.github.io/probes.zola/baldurs-roll/" />
+  <meta name="keywords" content="Kubernetes, Cloud, Rust, Theorycraft, Blog" />
+  <script defer src="https://clux.github.io/probes.zola/js/abridge.min.js?h=52ceec8ac36fe25defe7" integrity="sha384-H1IaFs2MvG0ayi+Bq0d66Ih118nLUFESwUke1UH1uKzTiJwcgE8hXpONzAG3kqHj"></script>
+  <script defer src="https://clux.github.io/probes.zola/js/katexbundle.min.js?h=6299b774ae77579e4404" integrity="sha384-w2LtVhWr6g/pnU4E8ZCpuUruGnK6Kw2ykIJojhKGscTSRckItl1/sZigXdTjRkkI"></script>
+  <noscript><link rel="stylesheet" href="https://clux.github.io/probes.zola/nojs.css" /></noscript>
+</head>
+<body>
+  <header>
+    <nav>
+      <div><h1><a href="https://clux.github.io/probes.zola" title="probes">Probes</a></h1></div>
+      <div>
+
+        <div>
+          <ul><li><a class="s110" href="https://clux.github.io/probes.zola/about/"> About </a></li><li><a class="s110" href="https://clux.github.io/probes.zola/"> Posts </a></li><li><a class="s110" href="https://clux.github.io/probes.zola/categories/"> Categories </a></li><li><a class="s110" href="https://clux.github.io/probes.zola/tags/"> Tags </a></li><li><i type="reset" id="mode" class="js svgs adjust"></i></ul>
+        </div>
+
+        <div>
+          <div>
+            <form autocomplete=off class="js" name="goSearch" id="searchbox">
+              <div class="searchd">
+                <input id="searchinput" type="text" placeholder="Search" title="Search" />
+                <button type="submit" title="Search" class="svgs search"></button>
+              </div>
+              <div class="results"><div id="suggestions"></div></div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+  <main>
+    <article>
+      <h1><a href="https://clux.github.io/probes.zola/baldurs-roll/">Baldur&#x27;s Gate: Multinomial Edition</a></h1>
+
+      <span class="s95"> clux <span class="rpad"></span> April 12, 2022 <span class="rpad"></span> [<a href="https://clux.github.io/probes.zola/categories/gaming/">gaming</a>] #<a href="https://clux.github.io/probes.zola/tags/math/">math</a> </span>
+
+    
+
+
+<p>In a <del>brief</del> bout of escapism from the world and responsibilities, I booted up <a rel="noopener" target="_blank" href="https://store.steampowered.com/app/257350/Baldurs_Gate_II_Enhanced_Edition/">Baldur's Gate 2</a> with my brother. It's an amazing game, once you have figured out how to <strong><a rel="noopener" target="_blank" href="https://old.reddit.com/r/baldursgate/search?q=roll&amp;restrict_sr=on">roll</a></strong> your character.</p>
+<p>For today's installment; rather than telling you about the game, let's talk about the <strong>maths</strong> behind rolling a <code>2e</code> character for <code>BG2</code>, and then running simulations with weird <code>X</code>-based linux tools.</p>
+<!--more-->
+<script src="https://cdn.plot.ly/plotly-2.9.0.min.js"></script>
+<h2 id="rolling-a-character">Rolling a character</h2>
+<p>The <code>BG2</code> character generation mechanics is almost entirely based on the rules from <code>AD&amp;D 2e</code>. You get <code>6</code> ability scores, and each ability score is rolled as the sum of <code>3d6</code>.</p>
+<blockquote>
+<p>Probablistically; this <strong>should</strong> give you a character with an expected <code>63</code> total ability points (as a result of rolling <code>18d6</code>).</p>
+</blockquote>
+<p>Mechanically, you are in this screen:</p>
+<p><img src="/imgs/bg/rolling.png" alt="bg2 stat rolling screen" /></p>
+<p>...and they have given you a <code>reroll</code> button.</p>
+<p>It's a strange design idea to port the rolling mechanics from <code>d&amp;d</code> into this game. In a normal campaign you'd usually get one chance rolling, but here, there's no downside to keeping going; encouraging excessive time investment (the irony in writing a blog post on this is not lost on me). <small>The character creation in BG2 would probably have been less perfection focused if they'd gone for something like <a rel="noopener" target="_blank" href="https://chicken-dinner.com/5e/5e-point-buy.html">5e point buy</a>.</small></p>
+<p>Anyway, <strong>suppose</strong> you want learn how to automate this, or you just want to think about combinatorics, multinomials, and weird <code>X</code> tools for a while, then this is the right place. You will also figure out <strong>how long it's expected to take</strong> to roll high.</p>
+<blockquote>
+<p>HINT: ..it's less time than it took to write this blogpost</p>
+</blockquote>
+<h2 id="disclaimer">Disclaimer</h2>
+<p>Using the script used herein to achieve higher rolls than you have patience for, is on some level; cheating. That said, it's a fairly pointless effort:</p>
+<ul>
+<li>this is an <a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Baldur%27s_Gate_II:_Shadows_of_Amn">old</a>, unranked rpg with difficulty settings</li>
+<li>having <a rel="noopener" target="_blank" href="https://tvtropes.org/pmwiki/pmwiki.php/Main/DumpStat">dump stats</a> is not heavily penalized in the game</li>
+<li>early items nullify effects of common dump stats (<a rel="noopener" target="_blank" href="https://baldursgate.fandom.com/wiki/Girdle_of_Hill_Giant_Strength">19 STR girdle</a> or <a rel="noopener" target="_blank" href="https://baldursgate.fandom.com/wiki/Ring_of_Human_Influence">18 CHA ring</a>)</li>
+<li>you can get <a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=5dDmh98lmkA">max stats in 20 minutes</a> with by abusing inventory+stat <a rel="noopener" target="_blank" href="https://baldursgate.fandom.com/wiki/Exploits#Potion_Swap_Glitch">underflow</a></li>
+<li>some <a rel="noopener" target="_blank" href="https://baldursgate.fandom.com/wiki/Edwin_Odesseiron">NPCS</a> come with <a rel="noopener" target="_blank" href="https://baldursgate.fandom.com/wiki/Edwin%27s_Amulet">gear</a> that blows <strong>marginally better stats</strong> out of the water</li>
+</ul>
+<p>So assuming you have a reason to be here despite this; let's dive in to some maths.</p>
+<h2 id="multinomials-and-probabilities">Multinomials and probabilities</h2>
+<blockquote>
+<p>How likely are you to get a 90/95/100?</p>
+</blockquote>
+<p>The sum of rolling 18 six-sided dice follows an easier variant of the <a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Multinomial_distribution">multinomial distribution</a> where we have equal event probabilities. We are going to follow the <em>simpler</em> multinomial expansion from <a rel="noopener" target="_blank" href="https://mathworld.wolfram.com/Dice.html">mathworld/Dice</a> for <code>s=6</code> and <code>n=18</code> and find $P(x, 18, 6)$ which we will denote as $P(X = x)$; the chance of rolling a sum equal to $x$:</p>
+<p>$$P(X = x) = \frac{1}{6^{18}} \sum_{k=0}^{\lfloor(x-18)/6\rfloor} (-1)^k \binom{18}{k} \binom{x-6k-1}{17}$$
+$$ = \sum_{k=0}^{\lfloor(x-18)/6\rfloor} (-1)^k \frac{18}{k!(18-k)!} \frac{(x-6k-1)!}{(x-6k-18)!}$$</p>
+<p>If we were to expand this expression, we would get 15 different expressions depending on how big of an $x$ you want to determine. So rather than trying to reduce this to a polynomial expression over $p$, we will <a rel="noopener" target="_blank" href="https://www.wolframalpha.com/input?i2d=true&amp;i=+Divide%5B1%2CPower%5B6%2C18%5D%5DSum%5BPower%5B%5C%2840%29-1%5C%2841%29%2Ck%5D+*binomial%5C%2840%2918%5C%2844%29+k%5C%2841%29*binomial%5C%2840%2991-6k-1%5C%2844%29+17%5C%2841%29%2C%7Bk%2C0%2Cfloor%5C%2840%29Divide%5B%5C%2840%2991-18%5C%2841%29%2C6%5D%5C%2841%29%7D%5D">paste values into wolfram alpha</a> and tabulate for $[18, \ldots, 108]$.</p>
+<p>You can see the <a href="#appendix">appendix</a> for the numbers. Here we will just plot the values:</p>
+<div id="probhist" style="width:600px;height:450px;"></div>
+<script>
+// keys [18, 108]
+var ALL_X = [...Array(109).keys()].slice(18);
+
+// probabilities for p=18 up to p=108 (sums to 0.9999999999999999 \o/)
+var MAIN_PROBS = [1/101559956668416, 1/5642219814912, 19/11284439629824, 95/8463329722368, 665/11284439629824, 1463/5642219814912, 33643/33853318889472, 9605/2821109907456, 119833/11284439629824, 1552015/50779978334208, 308465/3761479876608, 97223/470184984576, 2782169/5642219814912, 1051229/940369969152, 4550747/1880739938304, 786505/156728328192, 37624655/3761479876608, 36131483/1880739938304, 1206294965/33853318889472, 20045551/313456656384, 139474379/1253826625536, 1059736685/5642219814912, 128825225/417942208512, 17143871/34828517376, 8640663457/11284439629824, 728073331/626913312768, 2155134523/1253826625536, 3942228889/1586874322944, 4949217565/1410554953728, 3417441745/705277476864, 27703245169/4231664861184, 3052981465/352638738432, 126513483013/11284439629824, 240741263447/16926659444736, 199524184055/11284439629824, 60788736553/2821109907456, 2615090074301/101559956668416, 56759069113/1880739938304, 130521904423/3761479876608, 110438453753/2821109907456, 163027882055/3761479876608, 88576807769/1880739938304, 566880747559/11284439629824, 24732579319/470184984576, 101698030955/1880739938304, 461867856157/8463329722368, 101698030955/1880739938304, 24732579319/470184984576, 566880747559/11284439629824, 88576807769/1880739938304, 163027882055/3761479876608, 110438453753/2821109907456, 130521904423/3761479876608, 56759069113/1880739938304, 2615090074301/101559956668416, 60788736553/2821109907456, 199524184055/11284439629824, 240741263447/16926659444736, 126513483013/11284439629824, 3052981465/352638738432, 27703245169/4231664861184, 3417441745/705277476864, 4949217565/1410554953728, 3942228889/1586874322944, 2155134523/1253826625536, 728073331/626913312768, 8640663457/11284439629824, 17143871/34828517376, 128825225/417942208512, 1059736685/5642219814912, 139474379/1253826625536, 20045551/313456656384, 1206294965/33853318889472, 36131483/1880739938304, 37624655/3761479876608, 786505/156728328192, 4550747/1880739938304, 1051229/940369969152, 2782169/5642219814912, 97223/470184984576, 308465/3761479876608, 1552015/50779978334208, 119833/11284439629824, 9605/2821109907456, 33643/33853318889472, 1463/5642219814912, 665/11284439629824, 95/8463329722368, 19/11284439629824, 1/5642219814912, 1/101559956668416];
+
+var MAIN_LEGEND = MAIN_PROBS.map(x => "expected once in " + Intl.NumberFormat().format(Math.floor(1/x)) + " rolls")
+
+var trace = {
+  x: ALL_X,
+  y: MAIN_PROBS,
+  name: 'probability',
+  text: MAIN_LEGEND,
+  opacity: 0.8,
+  type: "scatter",
+};
+
+
+var data = [trace];
+var layout = {
+  title: "Distribution for the sum of 18d6 dice rolls",
+  xaxis: {title: "Roll"},
+  yaxis: {title: "Probability"},
+};
+Plotly.newPlot(document.getElementById('probhist'), data, layout);
+
+// extra: precise expectation and variance
+var expectation_orig = MAIN_PROBS.map((x,i) => (i+18)*x).reduce((acc, e) => acc+e, 0);
+var variance_orig = MAIN_PROBS.map((x,i) => Math.pow(i+18 - expectation_orig, 2)*x).reduce((acc, e) => acc+e, 0);
+console.log("Precise Expectation and variance for 18d6", expectation_orig, variance_orig);
+</script>
+<p>and with the precise distribution we can also calculation expectation and variance:</p>
+<ul>
+<li>$E(X) = 63$</li>
+<li>$Var(X) = 52.5 \thickapprox 7.24^2$</li>
+</ul>
+<p>This is how things <strong>should</strong> look on paper. From the chart you can extract:</p>
+<ul>
+<li><code>108</code> would be a once in <code>101 trillion</code> ($6^{18}$) event</li>
+<li><code>107</code> would be a once in <code>5 trillion</code> event (<code>6^18/18</code>)</li>
+<li><code>106</code> would be a once in <code>600 billion</code> event (5s in two places, or 4 in one place)</li>
+<li><code>105</code> would be a once in <code>90 billion</code> event (3x5s, or 1x4 and 1x5, or 1x3)</li>
+<li><code>104</code> would be a once in <code>16 billion</code> event (4x5s, 2x5s and 1x4, 2x4s, 1x5 and 1x3, 1x2)</li>
+<li><code>103</code> would be a once in <code>4 billion</code> event (...)</li>
+<li><code>102</code> would be a once in <code>1 billion</code> event</li>
+<li><code>101</code> would be a once in <code>290 million</code> event</li>
+<li><code>100</code> would be a once in <code>94 million</code> event</li>
+<li><code>99</code> would be a once in <code>32 million</code> event</li>
+<li>$\ldots$</li>
+<li><code>95</code> would be a once in <code>900k</code> event (first number with prob &lt; 1 in a million)</li>
+</ul>
+<p><strong>But is this really right for BG?</strong> A <a rel="noopener" target="_blank" href="https://old.reddit.com/r/baldursgate/comments/svnyy5/this_is_why_i_let_my_gf_roll_my_stats_lol/hxhde5k/">lot</a> of <a rel="noopener" target="_blank" href="https://old.reddit.com/r/baldursgate/comments/tak2m7/say_hello_to_my_archer_roll/">people</a> have <a rel="noopener" target="_blank" href="https://old.reddit.com/r/baldursgate/comments/rjnw22/less_than_a_minute_of_rolling_this_is_my_alltime/">all</a> rolled nineties in just a few hundred rolls, and many even getting <a rel="noopener" target="_blank" href="https://old.reddit.com/r/baldursgate/comments/phr68a/my_new_highest_roll_10049_elf_mclovin_fightermage/">100</a> or <a rel="noopener" target="_blank" href="https://old.reddit.com/r/baldursgate/comments/sq54wo/how_high_can_you_roll/">more</a>..was that extreme luck, or are higher numbers more likely than what this distribution says?</p>
+<p>Well, let's start with the obvious:</p>
+<blockquote>
+<p><strong>The distribution is <a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Censoring_(statistics)">censored</a>. We don't see the rolls below $75$.</strong></p>
+</blockquote>
+<div id="probhist2" style="width:600px;height:450px;"></div>
+<script>
+var data = [{
+  x: ALL_X,
+  y: MAIN_PROBS,
+  name: 'probability',
+  text: MAIN_LEGEND,
+  opacity: 0.8,
+  type: "scatter",
+}];
+var layout = {
+  annotations: [
+   {
+     y: 1/70,
+     x: 75,
+     xref: 'x',
+     yref: 'y',
+     text: 'cutoff',
+     showarrow: true,
+     arrowhead: 7,
+     arrowcolor: "blue",
+     ax: 0,
+     ay: -40
+   },
+  ],
+  xaxis: {title: "Roll"},
+  yaxis: {title: "Probability"},
+};
+Plotly.newPlot(document.getElementById('probhist2'), data, layout);
+</script>
+<p>What's <strong>left of this cutoff</strong> actually accounts for around <code>94%</code> of the distribution. <strong>If</strong> the game <strong>did not do this</strong>, you'd be as likely getting <code>36</code> as a <code>90</code>. We are effectively throwing away &quot;19 bad rolls&quot; on every roll.</p>
+<blockquote>
+<p><code>AD&amp;D 2e</code> had its <a rel="noopener" target="_blank" href="https://advanced-dungeons-dragons-2nd-edition.fandom.com/wiki/Rolling_Ability_Scores">own ways to tilt the distribution</a> in a way that resulted in more powerful characters.</p>
+</blockquote>
+<p>How such a truncation or censoring is performed is at the mercy of the BG engine. We will <a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Rectified_Gaussian_distribution">rectify</a> the distribution by <strong>scaling up</strong> the truncated version of our distribution, and show that this is correct later.</p>
+<div id="probhist3" style="width:600px;height:450px;"></div>
+<script>
+var prob_over_74 = MAIN_PROBS.slice(75-18).reduce((acc, e) => acc + e, 0);
+var SCALED_PROBS = MAIN_PROBS.slice(75-18).map(x => x / prob_over_74); // scale up by whats left
+
+var scaled_legend = SCALED_PROBS.map(x => "expected once in " + Intl.NumberFormat().format(Math.floor(1/x)) + " rolls");
+
+//console.log("probability of rolling gte 75", prob_over_74);
+//console.log(SCALED_PROBS.reduce((acc, e) => acc + e, 0)); // 1!
+var trace = {
+  x: ALL_X.slice(75-18),
+  y: SCALED_PROBS,
+  name: 'probability',
+  text: scaled_legend,
+  opacity: 0.8,
+  type: "scatter",
+};
+
+var data = [trace];
+var layout = {
+  title: "Scaled Distribution",
+  xaxis: {title: "Roll"},
+  yaxis: {title: "Probability"},
+};
+Plotly.newPlot(document.getElementById('probhist3'), data, layout);
+
+// extra: precise expectation and variance
+var expectation_trunc = SCALED_PROBS.map((x,i) => (i+75)*x).reduce((acc, e) => acc+e, 0);
+var variance_trunc = SCALED_PROBS.map((x,i) => Math.pow(i+75 - expectation_trunc, 2)*x).reduce((acc, e) => acc+e, 0);
+console.log("Precise Truncated Expectation and variance for 18d6", expectation_trunc, variance_trunc);
+
+</script>
+<p>Here we have divided by the sum of the probabilities of the right hand side of the graph $P(X \ge 75)$ to get the new probability sum to <code>1</code>.</p>
+<p>Using this scaled data, we can get precise, truncated distribution parameters:</p>
+<ul>
+<li>$E(X_T) = 77.525$</li>
+<li>$Var(X_T) = 2.61^2$</li>
+</ul>
+<p>This <em>censored 18d6 multinomial distribution</em> is actually very close for certain cases, and we will <strong>demonstrate</strong> this.</p>
+<p>But first, we are going to need to press the <code>reroll</code> button a lot...</p>
+<h2 id="automating-rolling">Automating Rolling</h2>
+<p>The simulation script / hacks we made is <a rel="noopener" target="_blank" href="https://github.com/Thhethssmuz/bg2ee-stat-roll">found here</a>.</p>
+<h3 id="tools">Tools</h3>
+<p>We are playing on <strong>Linux</strong> with <code>X</code> and some obscure associated tooling:</p>
+<ul>
+<li><code>scrot</code> - X screenshot utility</li>
+<li><code>xdotool</code> - X CLI automation tool</li>
+<li><code>xwininfo</code> - X window information utility</li>
+</ul>
+<p>Basic strategy;</p>
+<ul>
+<li>find out where buttons are with <code>xwininfo</code></li>
+<li>press the <code>reroll</code> button with <code>xdotool</code></li>
+<li>take screenshot of the <code>total</code> number with <code>scrot</code></li>
+<li>compare screenshot to previous rolls</li>
+<li>press <code>store</code> when a new maximum is found</li>
+</ul>
+<p>The script also does some extra stuff to determine the strength roll, but that's not relevant here.</p>
+<h3 id="initialization">Initialization</h3>
+<p>To standardise what we are taking screenshots of, we need a consistent frame of reference.</p>
+<p><code>xwininfo</code> will give us the <code>x,y</code> coordinates of the top left corner of the game window, and then hard-code the offsets from that because the game has a consistent layout. There is <a rel="noopener" target="_blank" href="https://github.com/Thhethssmuz/bg2ee-stat-roll/blob/5a023de83c468224aa999b5b3c60f224aae76b97/roll.sh#L20-L84">some complexity</a> in doing this, but it has so far worked well.</p>
+<blockquote>
+<p><strong>Caveat</strong>: You need to have <strong>scaled the window</strong> to size &gt;= 1024x768 to avoid UI downscaling.</p>
+</blockquote>
+<p>The standardised approach also helps with dealing with rolls, and it let us populate a roll-table quickly.</p>
+<h3 id="roll-tables">Roll Tables</h3>
+<p>Taking screenshots is pretty easy. Use <code>scrot</code> at an <code>x,y</code> coordinate followed by lenghts; <code>,width,height</code> as remaining arguments defining the square to screenshot:</p>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">scrot</span></span><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>a</span> <span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-punctuation z-section z-expansion z-parameter z-begin z-shell">{</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-variable z-other z-readwrite z-shell">STR_TOP_LEFT_X</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-section z-expansion z-parameter z-end z-shell">}</span></span>,<span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-punctuation z-section z-expansion z-parameter z-begin z-shell">{</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-variable z-other z-readwrite z-shell">STR_TOP_LEFT_Y</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-section z-expansion z-parameter z-end z-shell">}</span></span>,49,17<span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span> -</span>
+</span></code></pre>
+<p>the output of this can be piped to a <code>.png</code> and passed to <code>compare</code> (part of <code>imagemagick</code> package), to compare values based on thresholds. However, this idea is actually overkill..</p>
+<p>The menu background is <strong>static</strong> and the resulting screenshots are actually <strong>completely deterministic per value</strong>, so we can instead just compare them by their hashes in one big <code>switch</code> (i.e. after piping to <code>md5</code>) and use that as our <a rel="noopener" target="_blank" href="https://github.com/Thhethssmuz/bg2ee-stat-roll/blob/5a023de83c468224aa999b5b3c60f224aae76b97/roll.sh#L130-L159">roll table</a>, Excerpt:</p>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash">    <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">d74939b47327e4f2c1b781d64e2ab28d*</span></span><span class="z-meta z-function-call z-shell"></span>) <span class="z-variable z-other z-readwrite z-assignment z-shell">CURRENT_ROLL</span><span class="z-keyword z-operator z-assignment z-shell">=</span><span class="z-string z-unquoted z-shell">90</span> <span class="z-meta z-function-call z-shell"></span><span class="z-meta z-function-call z-shell"></span>;<span class="z-keyword z-operator z-logical z-continue z-shell">;</span>
+    <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">ca49ce8b4c9c0f814dab24668f7313fe*</span></span><span class="z-meta z-function-call z-shell"></span>) <span class="z-variable z-other z-readwrite z-assignment z-shell">CURRENT_ROLL</span><span class="z-keyword z-operator z-assignment z-shell">=</span><span class="z-string z-unquoted z-shell">91</span> <span class="z-meta z-function-call z-shell"></span><span class="z-meta z-function-call z-shell"></span>;<span class="z-keyword z-operator z-logical z-continue z-shell">;</span>
+    <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">3e6f8127ac0634bb1fc20acf40c95c48*</span></span><span class="z-meta z-function-call z-shell"></span>) <span class="z-variable z-other z-readwrite z-assignment z-shell">CURRENT_ROLL</span><span class="z-keyword z-operator z-assignment z-shell">=</span><span class="z-string z-unquoted z-shell">92</span> <span class="z-meta z-function-call z-shell"></span><span class="z-meta z-function-call z-shell"></span>;<span class="z-keyword z-operator z-logical z-continue z-shell">;</span>
+    <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">7f849edd84a4be895f5c58b4f5b20d4e*</span></span><span class="z-meta z-function-call z-shell"></span>) <span class="z-variable z-other z-readwrite z-assignment z-shell">CURRENT_ROLL</span><span class="z-keyword z-operator z-assignment z-shell">=</span><span class="z-string z-unquoted z-shell">93</span> <span class="z-meta z-function-call z-shell"></span><span class="z-meta z-function-call z-shell"></span>;<span class="z-keyword z-operator z-logical z-continue z-shell">;</span>
+    <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">b8f90179e2a0e975fc2647bc7439d9c6*</span></span><span class="z-meta z-function-call z-shell"></span>) <span class="z-variable z-other z-readwrite z-assignment z-shell">CURRENT_ROLL</span><span class="z-keyword z-operator z-assignment z-shell">=</span><span class="z-string z-unquoted z-shell">94</span> <span class="z-meta z-function-call z-shell"></span><span class="z-meta z-function-call z-shell"></span>;<span class="z-keyword z-operator z-logical z-continue z-shell">;</span>
+    <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">b1d3b73de16d750b265f5c63000ccd54*</span></span><span class="z-meta z-function-call z-shell"></span>) <span class="z-variable z-other z-readwrite z-assignment z-shell">CURRENT_ROLL</span><span class="z-keyword z-operator z-assignment z-shell">=</span><span class="z-string z-unquoted z-shell">95</span> <span class="z-meta z-function-call z-shell"></span><span class="z-meta z-function-call z-shell"></span>;<span class="z-keyword z-operator z-logical z-continue z-shell">;</span>
+    <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">87413f7310bd06b0b66fb4d2e61c5c7a*</span></span><span class="z-meta z-function-call z-shell"></span>) <span class="z-variable z-other z-readwrite z-assignment z-shell">CURRENT_ROLL</span><span class="z-keyword z-operator z-assignment z-shell">=</span><span class="z-string z-unquoted z-shell">96</span> <span class="z-meta z-function-call z-shell"></span><span class="z-meta z-function-call z-shell"></span>;<span class="z-keyword z-operator z-logical z-continue z-shell">;</span>
+    <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">b489ad2a17456f8eebe843e4b7e3e685*</span></span><span class="z-meta z-function-call z-shell"></span>) <span class="z-variable z-other z-readwrite z-assignment z-shell">CURRENT_ROLL</span><span class="z-keyword z-operator z-assignment z-shell">=</span><span class="z-string z-unquoted z-shell">97</span> <span class="z-meta z-function-call z-shell"></span><span class="z-meta z-function-call z-shell"></span>;<span class="z-keyword z-operator z-logical z-continue z-shell">;</span>
+    <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">25112e67464791f24f9e2e99d38ef9d7*</span></span><span class="z-meta z-function-call z-shell"></span>) <span class="z-variable z-other z-readwrite z-assignment z-shell">CURRENT_ROLL</span><span class="z-keyword z-operator z-assignment z-shell">=</span><span class="z-string z-unquoted z-shell">98</span> <span class="z-meta z-function-call z-shell"></span><span class="z-meta z-function-call z-shell"></span>;<span class="z-keyword z-operator z-logical z-continue z-shell">;</span>
+    <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">9c3720b9d3ab1d7f0d11dfb9771a1aef*</span></span><span class="z-meta z-function-call z-shell"></span>) <span class="z-variable z-other z-readwrite z-assignment z-shell">CURRENT_ROLL</span><span class="z-keyword z-operator z-assignment z-shell">=</span><span class="z-string z-unquoted z-shell">99</span> <span class="z-meta z-function-call z-shell"></span><span class="z-meta z-function-call z-shell"></span>;<span class="z-keyword z-operator z-logical z-continue z-shell">;</span>
+    <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">3ef9bf6cd4d9946d89765870e5b21566*</span></span><span class="z-meta z-function-call z-shell"></span>) <span class="z-variable z-other z-readwrite z-assignment z-shell">CURRENT_ROLL</span><span class="z-keyword z-operator z-assignment z-shell">=</span><span class="z-string z-unquoted z-shell">100</span> <span class="z-meta z-function-call z-shell"></span><span class="z-meta z-function-call z-shell"></span>;<span class="z-keyword z-operator z-logical z-continue z-shell">;</span>
+</span></code></pre>
+<h2 id="clicking">Clicking</h2>
+<p>Automating a click is simply:</p>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">xdotool</span></span><span class="z-meta z-function-call z-arguments z-shell"> mousemove <span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-variable z-other z-readwrite z-shell">REROLL_BTN_X</span></span><span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span> <span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-variable z-other z-readwrite z-shell">REROLL_BTN_Y</span></span><span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span> click<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>delay</span><span class="z-keyword z-operator z-assignment z-option z-shell">=</span>0 1</span>
+</span></code></pre>
+<p>where the <code>--delay=0</code> overrides a builtin delay between clicks.</p>
+<p>The only complication here is that BG performs <strong>internal buffering</strong> of clicks, so this allows us to blast through numbers faster than the screen can display them. This means we have to compensate with a <code>sleep 0.001</code> after clicking to ensure we can grab the <code>scrot</code> of the roll before another click is registered.</p>
+<h2 id="showcase">Showcase</h2>
+<p>Running the script (with a terminal showing the script output overlayed) looks like this:</p>
+<div class="yv">
+    <iframe src="https://www.youtube-nocookie.com/embed/849xInj3GmI" title="Youtube" class="yvi" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+</div>
+<p>On my machine, we get just over <strong>15 rolls per second</strong>.</p>
+<h2 id="sampling">Sampling</h2>
+<p>We rolled a human <code>fighter</code>, <code>paladin</code>, and a <code>ranger</code> overnight with roughly half a million rolls each (see <a href="#appendix">appendix</a>), and we got these values:</p>
+<div id="rollhist" style="width:600px;height:450px;"></div>
+<script>
+// keys [75, 108]
+var x = [...Array(109).keys()].slice(75);
+
+// number of samples per class
+var samples = {
+  //  fighter (75 -> 98)
+  "fighter": [137379, 109198, 85620, 65004, 48256, 35041, 24987, 17545, 11981, 7883, 5007, 3139, 1946, 1138, 670, 368, 199, 103, 49, 26, 12, 6, 2, 1],
+  // paladin (75 -> 102)
+  "paladin": [50888, 54911, 57338, 57442, 55589, 52357, 47503, 41339, 34458, 28599, 21997, 16722, 12322, 8697, 5997, 3774, 2371, 1489, 822, 465, 251, 129, 56, 24, 12, 4, 1, 1],
+
+  // ranger (75 -> 100)
+  "ranger": [32296, 37790, 43118, 46609, 48108, 47589, 45774, 41963, 36876, 30973, 25272, 19904, 14730, 10430, 7285, 4667, 2991, 1696, 986, 529, 254, 121, 56, 26, 10, 1],
+};
+
+var trace_observations = function(klss) {
+  var sample_klss = samples[klss];
+  let num_samples = sample_klss.reduce((acc, e) => acc+e, 0);
+  var observed_probs = sample_klss.map(x => x / num_samples);
+
+  // TODO: estimate expecation and variance here?
+  return {
+    x: x,
+    y: observed_probs,
+    name: 'observed ' + klss,
+    text: observed_probs.map(x => "occurred once in " + Math.floor(1/x) + " rolls"),
+    opacity: 0.8,
+    type: "scatter",
+  };
+};
+
+var trace_obs_fighter = trace_observations('fighter');
+var trace_obs_paladin = trace_observations('paladin');
+var trace_obs_ranger = trace_observations('ranger');
+
+var data = [trace_obs_fighter, trace_obs_paladin, trace_obs_ranger];
+var layout = {
+  title: "Roll Results",
+  xaxis: {title: "Roll"},
+  yaxis: {title: "Observed probability"},
+};
+Plotly.newPlot(document.getElementById('rollhist'), data, layout);
+</script>
+<p>Let's start with the <strong>fighter</strong>. If we compare the fighter graph with our precise, censored multinomial distribution, they are <strong>very close</strong>:</p>
+<div id="probhist4" style="width:600px;height:450px;"></div>
+<script>
+var prob_over_74 = MAIN_PROBS.slice(75-18).reduce((acc, e) => acc + e, 0);
+var SCALED_PROBS = MAIN_PROBS.slice(75-18).map(x => x / prob_over_74); // scale up by whats left
+
+var scaled_legend = SCALED_PROBS.map(x => "expected once in " + Intl.NumberFormat().format(Math.floor(1/x)) + " rolls");
+
+let trace_single_trunc = {
+  x: ALL_X.slice(75-18),
+  y: SCALED_PROBS,
+  name: 'fighter multinomial 18d6',
+  text: scaled_legend,
+  opacity: 0.8,
+  type: "scatter",
+};
+
+var data = [trace_single_trunc, trace_obs_fighter];
+var layout = {
+  title: "Distribution vs. Observed Fighter",
+  xaxis: {title: "Roll"},
+  yaxis: {title: "Probability"},
+};
+Plotly.newPlot(document.getElementById('probhist4'), data, layout);
+</script>
+<p>So for <strong>fighters</strong>, we can be pretty happy with the calculations we have done, and can use the precise probabilities as a guide.</p>
+<blockquote>
+<p>How long would it take you to achieve &gt;95 for a fighter using the script?</p>
+</blockquote>
+<ul>
+<li><code>108</code> is a once in <code>5 trillion</code> event (10,000 years)</li>
+<li><code>107</code> is a once in <code>300 billion</code> event (600 years)</li>
+<li><code>106</code> is a once in <code>33 billion</code> event (69 years)</li>
+<li><code>105</code> is a once in <code>5 billion</code> event (10 years)</li>
+<li><code>104</code> is a once in <code>900 million</code> event (2 years)</li>
+<li><code>103</code> is a once in <code>200 million</code> event (5 months)</li>
+<li><code>102</code> is a once in <code>50 million</code> event (5 weeks)</li>
+<li><code>101</code> is a once in <code>16 million</code> event (2 weeks)</li>
+<li><code>100</code> is a once in <code>5 million</code> event (4 days)</li>
+<li><code>99</code> is a once in <code>2 million</code> event (1.5 day)</li>
+<li><code>98</code> is a once in <code>700k</code> event (12h)</li>
+<li><code>97</code> is a once in <code>270k</code> event (5h)</li>
+<li><code>96</code> is a once in <code>110k</code> event (2h)</li>
+<li><code>95</code> is a once in <code>50k</code> event (55m)</li>
+</ul>
+<p>So if we only look at human fighters or mages, we can stop here:</p>
+<blockquote>
+<p>We are actually quite a lot more likely to get a good roll early than what just the pure dice math would indicate thanks to censoring (50k rolls =&gt; likely <code>95</code> rather than estimated <code>90</code> without censoring).</p>
+</blockquote>
+<p>However, what's up with the paladins and rangers? Time for a more painful math detour.</p>
+<p><img src="/imgs/bg/amicat1-math.gif" alt="sweat mile cat math" /></p>
+<h3 id="class-race-variance">Class/Race Variance</h3>
+<p>The reason for the discrepancy is simple: <a rel="noopener" target="_blank" href="https://rpg.stackexchange.com/questions/165377/how-do-baldurs-gate-and-baldurs-gate-2s-rolling-for-stats-actually-get-gene">stat floors based on races/class</a>.</p>
+<p>These stat floors are insignificant in some cases, but highly significant in others. Some highly floored classes actually push the uncensored mean above the <code>75</code> cutoff even though it's a whole 12 points above the mean of the original underlying distribution.</p>
+<p>The floors for a some of the classes:</p>
+<ul>
+<li><strong>fighter</strong> mins: <code>STR=9</code>, rest <code>3</code></li>
+<li><strong>mage</strong> mins: <code>INT=9</code>, rest <code>3</code></li>
+<li><strong>paladin</strong> mins: <code>CHA=17</code>, <code>WIS=13</code>, <code>STR=12</code>, <code>CON=9</code>, rest <code>3</code></li>
+<li><strong>ranger</strong> mins: <code>CON=14</code>, <code>WIS=14</code>, <code>STR=13</code>, <code>DEX=13</code>, rest <code>3</code></li>
+<li><strong><a rel="noopener" target="_blank" href="https://old.reddit.com/r/baldursgate/comments/reevp6/everyone_enjoys_a_good_high_ability_score_role_so/">other classes</a></strong> mins: generally light floors</li>
+</ul>
+<p><em>In other words</em>: paladins and rangers have significantly higher rolls on average.</p>
+<blockquote>
+<p>Sidenote: in <code>2e</code> you actually rolled stats first, and <strong>only if</strong> you met the <strong>requirements</strong> could you become a Paladin / Ranger. It's an interesting choice. Would not call this fun.</p>
+</blockquote>
+<p>Anyway. Is it possible to incorporate these floors into our modelling?</p>
+<h2 id="floored-ability-distributions">Floored Ability Distributions</h2>
+<p>If floors are involved at earlier stages, we have to take a step back and look at the distributions that make up the sum. We <strong>can</strong> compute distributions for <strong>individual ability scores</strong> (even if floored) if we use the distribution for $P(x, 3, 6)$ from <a rel="noopener" target="_blank" href="https://mathworld.wolfram.com/Dice.html">mathworld/Dice</a> where <code>s=6</code> and <code>n=3</code> and censor it at a cutoff point similar to how we censor the total distribution.</p>
+<p>Computing the value without a floor follows the same setup as when we did 18 dice; use <a rel="noopener" target="_blank" href="https://www.wolframalpha.com/input?i2d=true&amp;i=+Divide%5B1%2CPower%5B6%2C3%5D%5DSum%5BPower%5B%5C%2840%29-1%5C%2841%29%2Ck%5D+*binomial%5C%2840%293%5C%2844%29+k%5C%2841%29*binomial%5C%2840%2910-6k-1%5C%2844%29+2%5C%2841%29%2C%7Bk%2C0%2Cfloor%5C%2840%29Divide%5B%5C%2840%2910-3%5C%2841%29%2C6%5D%5C%2841%29%7D%5D">wolfram alpha</a> and tabulate for $[3, \ldots, 18]$:</p>
+<div id="probhist3roll" style="width:600px;height:450px;"></div>
+<script>
+var THREEROLL_X = [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18];
+// probabilities for p=3 up to p=18 (also sums to 0.9999999999999999)
+var THREEROLL_PROBS = [1/216, 1/72, 1/36, 5/108, 5/72, 7/72, 25/216, 1/8, 1/8, 25/216, 7/72, 5/72, 5/108, 1/36, 1/72, 1/216];
+console.log("probability sum for 3d6 =", THREEROLL_PROBS.reduce((acc, e) => acc+e, 0));
+
+var expectation_unt = THREEROLL_PROBS.map((x,i) => (i+3)*x).reduce((acc, e) => acc+e, 0);
+var variance_unt = THREEROLL_PROBS.map((x,i) => Math.pow(i+3 - expectation_unt, 2)*x).reduce((acc, e) => acc+e, 0);
+console.log("Expectation, variance for untruncated 3d6", expectation_unt, variance_unt);
+
+var trace = {
+  x: THREEROLL_X,
+  y: THREEROLL_PROBS,
+  name: 'probability',
+  text: THREEROLL_PROBS.map(x => "expected once in " + Intl.NumberFormat().format(Math.floor(1/x)) + " rolls"),
+  opacity: 0.8,
+  type: "scatter",
+};
+var data = [trace];
+var layout = {
+  title: "Distribution for the sum of 3d6 dice rolls",
+  xaxis: {title: "Roll"},
+  yaxis: {title: "Probability"},
+};
+Plotly.newPlot(document.getElementById('probhist3roll'), data, layout);
+</script>
+<p>then we truncate + scale this at the observed floor points <code>9</code>, <code>12</code>, <code>13</code>, <code>14</code>, and <code>17</code>:</p>
+<div id="probhist3rolltruncs" style="width:600px;height:450px;"></div>
+<script>
+var TRUNCATED_DISTS = {};
+TRUNCATED_DISTS[0] = THREEROLL_PROBS.slice();
+TRUNCATED_DISTS[3] = THREEROLL_PROBS.slice(); // no truncation == truncation at 3
+var truncated_trace = function (t) {
+  // calculate probability up to cutoff point:
+  var TRUNC_T_SUM = THREEROLL_PROBS.slice(t-3).reduce((acc, e) => acc+e, 0);
+  // truncate and scale (rectify) the right side of the distribution:
+  var THREE_TRUNC_T = THREEROLL_PROBS.slice(t-3).map(x => x / TRUNC_T_SUM);
+  // sanity sum (all 1)
+  //console.log("Sum of 3d6 truncated at ", t, ":", THREE_TRUNC_T.reduce((acc, e)=>acc+e, 0));
+  var expectation = THREE_TRUNC_T.map((x,i) => (i+t)*x).reduce((acc, e) => acc+e, 0);
+  var variance = THREE_TRUNC_T.map((x,i) => Math.pow(i+t - expectation, 2)*x).reduce((acc, e) => acc+e, 0);
+  console.log("Expectation, variance for truncated 3d6 at", t, expectation, variance);
+  TRUNCATED_DISTS[t] = THREE_TRUNC_T;
+  var trace = {
+    x: THREEROLL_X.slice(t-3),
+    y: THREE_TRUNC_T,
+    name: 'floor ' + t,
+    text: THREE_TRUNC_T.map(x => "expected once in " + Intl.NumberFormat('en-IN', {maximumSignificantDigits: 2}).format(1/x) + " rolls"),
+    opacity: 0.8,
+    type: "scatter",
+  };
+  return trace;
+};
+
+let trace_9 = truncated_trace(9);
+let trace_12 = truncated_trace(12);
+let trace_13 = truncated_trace(13);
+let trace_14 = truncated_trace(14);
+let trace_17 = truncated_trace(17);
+
+var data = [trace_9, trace_12, trace_13, trace_14, trace_17];
+var layout = {
+  title: "Rectified Distribution for the sum of 3d6 dice rolls",
+  xaxis: {title: "Roll"},
+  yaxis: {title: "Probability"},
+};
+Plotly.newPlot(document.getElementById('probhist3rolltruncs'), data, layout);
+</script>
+<p>To avoid having to write out conditionals $P(X = x| X\ge k)$ everywhere we will denote $X^{\lfloor k \rfloor}$ as one of these graphed multinomial distributions for the sum of <code>3d6</code> floored at $k$:</p>
+<p>$$X^{\lfloor k \rfloor} \sim \mathcal{M}^{\lfloor k \rfloor}(3d6)$$</p>
+<p>Note also that an unfloored ability score $X$ is equal to $X^{\lfloor3\rfloor}$.</p>
+<p>We can then compute precise conditional expectations by floor:</p>
+<ul>
+<li>$\mathbb{E}(X^{\lfloor3\rfloor}) = \mathbb{E}(X) = 3\sum_{k=1}^{6}\frac{k}{6} = 3*3.5 = 10.5$</li>
+<li>$\mathbb{E}(X^{\lfloor9\rfloor}) = 11.8125$</li>
+<li>$\mathbb{E}(X^{\lfloor12\rfloor}) = 13.5555$</li>
+<li>$\mathbb{E}(X^{\lfloor13\rfloor}) = 14.2500$</li>
+<li>$\mathbb{E}(X^{\lfloor14\rfloor}) = 15.0000$</li>
+<li>$\mathbb{E}(X^{\lfloor17\rfloor}) = 17.2500$</li>
+</ul>
+<p>Similarly, we can compute precise variances:</p>
+<ul>
+<li>$Var(X^{\lfloor3\rfloor}) = Var(X) = 3\sum_{k=1}^6\frac{(x_i - 3.5)^2}{6} = 3*2.92 = 8.75$</li>
+<li>$Var(X^{\lfloor9\rfloor}) = 4.5773$</li>
+<li>$Var(X^{\lfloor12\rfloor}) = 2.2469$</li>
+<li>$Var(X^{\lfloor13\rfloor}) = 1.6875$</li>
+<li>$Var(X^{\lfloor14\rfloor}) = 1.2000$</li>
+<li>$Var(X^{\lfloor17\rfloor}) = 0.1875$</li>
+</ul>
+<h3 id="sum-of-floored-ability-distributions">Sum of Floored Ability Distributions</h3>
+<p>Define $Z_{paladin}$, $Z_{ranger}$ and $Z_{fighter}$ as:</p>
+<p>$$Z_{paladin} = X_1^{\lfloor17\rfloor} + X_2^{\lfloor13\rfloor} + X_3^{\lfloor12\rfloor} + X_4^{\lfloor9\rfloor} + X_5^{\lfloor3\rfloor} + X_6^{\lfloor3\rfloor}$$
+$$Z_{ranger} = X_1^{\lfloor14\rfloor} + X_2^{\lfloor14\rfloor} + X_3^{\lfloor13\rfloor} + X_4^{\lfloor13\rfloor} + X_5^{\lfloor3\rfloor} + X_6^{\lfloor3\rfloor}$$
+$$Z_{fighter} = X_1^{\lfloor9\rfloor} + X_2^{\lfloor3\rfloor} + X_3^{\lfloor3\rfloor} + X_4^{\lfloor3\rfloor} + X_5^{\lfloor3\rfloor} + X_6^{\lfloor3\rfloor}$$</p>
+<p>for floored 3d6 based random variables $X_i^{\lfloor N \rfloor}  \sim \mathcal{M}^{\lfloor N \rfloor}(3d6)$.</p>
+<p>Using the computed expectations above to sum across the 6 main stats:</p>
+<ul>
+<li>$\mathbb{E}(Fighter) = \mathbb{E}(X^{\lfloor9\rfloor}) + 5\mathbb{E}(X) = 64.31$</li>
+<li>$\mathbb{E}(Ranger) = 2\mathbb{E}(X^{\lfloor14\rfloor}) + 2\mathbb{E}(X^{\lfloor13\rfloor}) + 2\mathbb{E}(X) = 79.5$</li>
+<li>$\mathbb{E}(Paladin) = \mathbb{E}(X^{\lfloor17\rfloor}) + \mathbb{E}(X^{\lfloor13\rfloor}) + \mathbb{E}(X^{\lfloor12\rfloor}) + \mathbb{E}(X^{\lfloor9\rfloor})+ 2\mathbb{E}(X) = 77.86$</li>
+</ul>
+<p>and similarly for variance:</p>
+<ul>
+<li>$Var(Fighter) = Var(X^{\lfloor9\rfloor}) + 5Var(X) \thickapprox 6.95^2$</li>
+<li>$Var(Ranger) = 2Var(X^{\lfloor14\rfloor}) + 2Var(X^{\lfloor13\rfloor}) + 2Var(X) \thickapprox 4.82^2$</li>
+<li>$Var(Paladin) = Var(X^{\lfloor17\rfloor}) + Var(X^{\lfloor13\rfloor}) + Var(X^{\lfloor12\rfloor}) + Var(X^{\lfloor3\rfloor})+ 2Var(X) \thickapprox 5.12^2$</li>
+</ul>
+<p>noting that variables are independent under the observed two stage censoring.</p>
+<blockquote>
+<p>Why can we rely on two stage censoring and their independence? If any of these internal mechanisms used some kind of <code>if</code> condition or <code>min</code> function, it would be immediately obvious from the distribution. The paladin distribution of charisma is clearly a <code>~1/4</code> for an <code>18</code>, and <code>~3/4</code> for a <code>17</code>; it would have been much rarer to see an 18 otherwise.</p>
+</blockquote>
+<p>Thus, the distributions of our classes are based on multinomal-based distributions with the following first moments:</p>
+<ul>
+<li>$Uncensored\ Fighter \sim \mathcal{M}(\mu = 64.31, \sigma^2 = 6.95^2)$</li>
+<li>$Uncensored\ Ranger \sim \mathcal{M}(\mu = 79.5, \sigma^2 = 4.82^2)$</li>
+<li>$Uncensored\ Paladin \sim \mathcal{M}(\mu = 77.86, \sigma^2 = 5.12^2)$</li>
+</ul>
+<p>This is nice as a quick overview of what's best in the higher ranges, but it's not very precise. Without the <strong><a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Probability_mass_function">PMF</a></strong> for the <strong>sum of our ability scores</strong>, it's hard to give good values for what the truncated version will look like (we are censoring in two stages). In particular, these heavily floored random variables end up giving us quite asymmetrical distributions in the tails.</p>
+<h3 id="class-distributions">Class Distributions</h3>
+<p>Thankfully, it is possible to inductively compute the pmf of $Z_{class}$ via <a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Convolution#Discrete_convolution">convolution</a>.</p>
+<p>Some internet digging notwithstanding; most answers found online for this required <strong>either</strong> <a rel="noopener" target="_blank" href="https://stats.stackexchange.com/questions/3614/how-to-easily-determine-the-results-distribution-for-multiple-dice/3684#3684">mathematica functions</a> (that we do not have here in our inlined source), <strong>or</strong> a slightly more laborious manual convolution. We will follow the <a rel="noopener" target="_blank" href="https://stats.libretexts.org/Bookshelves/Probability_Theory/Book%3A_Introductory_Probability_(Grinstead_and_Snell)/07%3A_Sums_of_Random_Variables/7.01%3A_Sums_of_Discrete_Random_Variables">inductive convolution approach</a> which we can solve with recursion. Paladin case:</p>
+<p>Let $X_{12} = X_1^{\lfloor17\rfloor} + X_2^{\lfloor13\rfloor}$. We can generate values for the pmf $p_{X_{12}}$ for $X_{12}$ via the pmfs $p_{X_i}$ for $X_1^{\lfloor17\rfloor}$ and $X_2^{\lfloor13\rfloor}$ via the convolution formula:</p>
+<p>$$P(X_{12} = n) = (p_{X_1} * p_{X_2})(n) = \sum_{m=-\infty}^{\infty}P(X_1=m)P(X_2 = n-m)$$</p>
+<p>This step is particularly easy for the paladin, because $X_1^{\lfloor17\rfloor}$ only takes two values (i.e. $m=17$ ahd $m=18$ are the only non-zero parts in the sum).</p>
+<p>The rest is less easy to do by hand, as the sums get increasingly large while we iterate towards $Z=P_{123456}$ by repeatedly applying convolution to the remaining $X_i$:</p>
+<p>$$P(X_{123} = n) = (p_{X_{12}} * p_{X_3})(n) \sum_{m=-\infty}^{\infty}P(X_{12}=m)P(X_3 = n-m)$$</p>
+<p>$$P(X_{1234} = n) = (p_{X_{123}} * p_{X_4})(n) \sum_{m=-\infty}^{\infty}P(X_{123}=m)P(X_4 = n-m)$$</p>
+<p>$$P(X_{12345} = n) = (p_{X_{1234}} * p_{X_5})(n) \sum_{m=-\infty}^{\infty}P(X_{1234}=m)P(X_5 = n-m)$$</p>
+<p>$$P(X_{123456} = n) = (p_{X_{12345}} * p_{X_5})(n) \sum_{m=-\infty}^{\infty}P(X_{12345}=m)P(X_6 = n-m)$$</p>
+<p>The hard work is correctly matching indexes in our probability arrays that serve as our mass functions to the sum, and defaulting to zero when accessing out of bounds:</p>
+<pre data-lang="js" class="language-js z-code"><code class="language-js" data-lang="js"><span class="z-source z-ts"><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> given pXi = [0.75, 0.25], pXj = [0.375, 0.2678, 0.1786, 0.1071, 0.05357, 0.01786]</span>
+<span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> (approximations of the first two truncated paladin probability arrays for CHA + WIS)</span>
+<span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">var</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-entity z-name z-function z-ts">convolve</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-meta z-function z-expression z-ts"><span class="z-storage z-type z-function z-ts">function</span> <span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-variable z-parameter z-ts">pXi</span><span class="z-punctuation z-separator z-parameter z-ts">,</span> <span class="z-variable z-parameter z-ts">pXj</span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+<span class="z-punctuation z-whitespace z-comment z-leading z-ts">  </span><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> pre-allocate a zero-indexed array where our probabilities will go</span>
+  <span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">var</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-readwrite z-ts">pXij</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span><span class="z-meta z-array z-literal z-ts"> <span class="z-meta z-brace z-square z-ts">[</span><span class="z-keyword z-operator z-spread z-ts">...</span><span class="z-meta z-function-call z-ts"><span class="z-support z-class z-builtin z-ts">Array</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-object z-ts">pXi</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-variable z-property z-ts">length</span> <span class="z-keyword z-operator z-arithmetic z-ts">+</span> <span class="z-variable z-other z-object z-ts">pXj</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-variable z-property z-ts">length</span> <span class="z-keyword z-operator z-arithmetic z-ts">-</span> <span class="z-constant z-numeric z-decimal z-ts">1</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-meta z-function-call z-ts"><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-dom z-ts">keys</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-meta z-brace z-square z-ts">]</span></span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+<span class="z-punctuation z-whitespace z-comment z-leading z-ts">  </span><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> loop to generate P(Xij = n) for all n</span>
+  <span class="z-keyword z-control z-loop z-ts">for</span> <span class="z-meta z-brace z-round z-ts">(</span><span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">let</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-readwrite z-ts">n</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-constant z-numeric z-decimal z-ts">0</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span> <span class="z-variable z-other z-readwrite z-ts">n</span> <span class="z-keyword z-operator z-relational z-ts">&lt;</span> <span class="z-variable z-other z-object z-ts">pXi</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-variable z-property z-ts">length</span> <span class="z-keyword z-operator z-arithmetic z-ts">+</span> <span class="z-variable z-other z-object z-ts">pXj</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-variable z-property z-ts">length</span> <span class="z-keyword z-operator z-arithmetic z-ts">-</span> <span class="z-constant z-numeric z-decimal z-ts">1</span><span class="z-punctuation z-terminator z-statement z-ts">;</span> <span class="z-variable z-other z-readwrite z-ts">n</span> <span class="z-keyword z-operator z-assignment z-compound z-ts">+=</span> <span class="z-constant z-numeric z-decimal z-ts">1</span><span class="z-meta z-brace z-round z-ts">)</span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+    <span class="z-variable z-other z-readwrite z-ts">pXij</span><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-brace z-square z-ts">[</span><span class="z-variable z-other z-readwrite z-ts">n</span><span class="z-meta z-brace z-square z-ts">]</span></span> <span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-constant z-numeric z-decimal z-ts">0</span><span class="z-punctuation z-terminator z-statement z-ts">;</span> <span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> init to zero</span>
+<span class="z-punctuation z-whitespace z-comment z-leading z-ts">    </span><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> loop to do sum over m, first variable determines length of this sum</span>
+    <span class="z-keyword z-control z-loop z-ts">for</span> <span class="z-meta z-brace z-round z-ts">(</span><span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">let</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-readwrite z-ts">m</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-constant z-numeric z-decimal z-ts">0</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span> <span class="z-variable z-other z-readwrite z-ts">m</span> <span class="z-keyword z-operator z-relational z-ts">&lt;</span> <span class="z-variable z-other z-object z-ts">pXi</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-variable z-property z-ts">length</span><span class="z-punctuation z-terminator z-statement z-ts">;</span> <span class="z-variable z-other z-readwrite z-ts">m</span> <span class="z-keyword z-operator z-assignment z-compound z-ts">+=</span> <span class="z-constant z-numeric z-decimal z-ts">1</span><span class="z-meta z-brace z-round z-ts">)</span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+<span class="z-punctuation z-whitespace z-comment z-leading z-ts">      </span><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> we do defaulting outside range with `|| 0`</span>
+      <span class="z-variable z-other z-readwrite z-ts">pXij</span><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-brace z-square z-ts">[</span><span class="z-variable z-other z-readwrite z-ts">n</span><span class="z-meta z-brace z-square z-ts">]</span></span> <span class="z-keyword z-operator z-assignment z-compound z-ts">+=</span> <span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-readwrite z-ts">pXi</span><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-brace z-square z-ts">[</span><span class="z-variable z-other z-readwrite z-ts">m</span><span class="z-meta z-brace z-square z-ts">]</span></span> <span class="z-keyword z-operator z-logical z-ts">||</span> <span class="z-constant z-numeric z-decimal z-ts">0</span><span class="z-meta z-brace z-round z-ts">)</span> <span class="z-keyword z-operator z-arithmetic z-ts">*</span> <span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-readwrite z-ts">pXj</span><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-brace z-square z-ts">[</span><span class="z-variable z-other z-readwrite z-ts">n</span><span class="z-keyword z-operator z-arithmetic z-ts">-</span><span class="z-variable z-other z-readwrite z-ts">m</span><span class="z-meta z-brace z-square z-ts">]</span></span> <span class="z-keyword z-operator z-logical z-ts">||</span> <span class="z-constant z-numeric z-decimal z-ts">0</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+    <span class="z-punctuation z-definition z-block z-ts">}</span></span>
+  <span class="z-punctuation z-definition z-block z-ts">}</span></span>
+  <span class="z-keyword z-control z-flow z-ts">return</span> <span class="z-variable z-other z-readwrite z-ts">pXij</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+<span class="z-punctuation z-definition z-block z-ts">}</span></span></span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+<span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> returns [0.28125, 0.29464, 0.2009, 0.125, 0.06696, 0.02678, 0.004464]</span>
+</span></code></pre>
+<p>Using this, we can compute the PMF for $Z_{class} = X_{123456}$:</p>
+<p>$$P(Z_{class} = z) = (((((p_{X_1} * p_{X_2}) * p_{X_3}) * p_{X_4}) * p_{X_5}) * p_{X_6}) (z)$$</p>
+<p>and we graph them for various classes:</p>
+<div id="probhist3convolved" style="width:600px;height:450px;"></div>
+<script>
+// The first one is easy, P_1 only has 2 values => m={0,1}
+//let pX1 = TRUNCATED_DISTS[17]; // 2 values, for 17,18
+//let pX2 = TRUNCATED_DISTS[13]; // 6 values, for 13,...,18
+//console.log("convolving", pX1, pX2)
+// new dist starts at 17+13 and goes to 18x2
+//let pX12 = [];
+//pX12[0] = pX1[0] * pX2[0]; // 17+13 || 18+12 (zero)
+//pX12[1] = pX1[0] * pX2[1] + pX1[1]*pX2[0]; // 17+14 || 18+13
+//pX12[2] = pX1[0] * pX2[2] + pX1[1]*pX2[1]; // 17+15 || 18+14
+//pX12[3] = pX1[0] * pX2[3] + pX1[1]*pX2[2]; // 17+16 || 18+15
+//pX12[4] = pX1[0] * pX2[4] + pX1[1]*pX2[3]; // 17+17 || 18+16
+//pX12[5] = pX1[0] * pX2[5] + pX1[1]*pX2[4]; // 17+18 || 18+17
+//pX12[6] =                 + pX1[1]*pX2[5]; // 17+19 (zero) || 18+18
+//console.log(pX12, pX12.reduce((acc,e)=>acc+e,0)); // perfect
+
+// then do P_{12} + P_3
+//pX12 has 7 values, for 30, 31, 32, 33, 34, 35, 36
+//let pX3 = TRUNCATED_DISTS[12]; // has 7 values, for 12,13,14,15,16,17,18
+// new dist starts at 30+12 and goes to 18x3 i.e. length (13)
+//let pX123 = [];
+//pX123[0] = pX12[0]*pX3[0]; // 42 : 30+12
+//pX123[1] = pX12[0]*pX3[1] + pX12[1]*pX3[0]; // 43: 30+13 || 31+12
+//pX123[2] = pX12[0]*pX3[2] + pX12[1]*pX3[1] + pX12[2]*pX3[0]; // 44: 30+14 || 31+13 || 32+12
+//pX123[3] = pX12[0]*pX3[3] + pX12[1]*pX3[2] + pX12[2]*pX3[1] + pX12[3] +pX3[0]; // 45: 30+15 || 31+14 || 32+13 || 33+12
+// ok... clearly not a hand written thing, but matches convolve result
+
+// what am i doing with my life
+var convolve = function (pXi, pXj) {
+  // pre-allocate a zero-indexed array where our probabilities will go
+  var pXij = [...Array(pXi.length + pXj.length - 1).keys()];
+  // loop to generate P(Xij = n) for all n
+  for (let n = 0; n < pXi.length + pXj.length - 1; n += 1) {
+    pXij[n] = 0; // init to zero
+    // loop to do sum over m, first variable determines length of this sum
+    for (let m = 0; m < pXi.length; m += 1) {
+      // we do defaulting outside range with `|| 0`
+      pXij[n] += (pXi[m] || 0) * (pXj[n-m] || 0);
+    }
+  }
+  return pXij;
+}
+
+// doing paladin from function above:
+//let pX1 = TRUNCATED_DISTS[17]; // 2 values; 17,18
+//let pX2 = TRUNCATED_DISTS[13]; // 6 values; 13,...,18
+//let pX3 = TRUNCATED_DISTS[12]; // 7 values; 12,13,14,15,16,17,18
+//let pX4 = TRUNCATED_DISTS[9]; // 10 values; 9,...,18
+//let pX5 = TRUNCATED_DISTS[3]; // 16 values; 3,...,18
+//let pX6 = TRUNCATED_DISTS[3]; // ditto
+//let gen12 = convolve(pX1, pX2); // dist from 30 -> 36
+//let gen123 = convolve(gen12, pX3); // dist from 42 -> 54
+//let gen1234 = convolve(gen123, pX4); // dist from 51 -> 72
+//let gen12345 = convolve(gen1234, pX5); // dist from 54 -> 90
+//let gen123456 = convolve(gen12345, pX6); // dist from 57 -> 108
+//console.log(gen123456, gen123456.length)
+
+// automating class convolution
+CONVOLVED_DISTS = {};
+var gen_convolved_trace_for_class_dist = function(dists, klss) {
+  var pX1 = TRUNCATED_DISTS[dists[0]];
+  var pX2 = TRUNCATED_DISTS[dists[1]];
+  var pX3 = TRUNCATED_DISTS[dists[2]];
+  var pX4 = TRUNCATED_DISTS[dists[3]];
+  var pX5 = TRUNCATED_DISTS[dists[4]];
+  var pX6 = TRUNCATED_DISTS[dists[5]];
+  var start = dists.reduce((acc, e) => acc+e, 0); // start at sum of floors
+
+  let gen12 = convolve(pX1, pX2);
+  let gen123 = convolve(gen12, pX3);
+  let gen1234 = convolve(gen123, pX4);
+  let gen12345 = convolve(gen1234, pX5);
+  let gen123456 = convolve(gen12345, pX6);
+  CONVOLVED_DISTS[klss] = gen123456;
+
+  return {
+    x: gen123456.slice().map((x,i)=> i + start),
+    y: gen123456,
+    name: klss,
+    text: gen123456.map(x => "expected once in " + Intl.NumberFormat().format(Math.floor(1/x)) + " rolls"),
+    opacity: 0.8,
+    type: "scatter",
+  };
+}
+var trace_paladin = gen_convolved_trace_for_class_dist([17,13,12,9,3,3], 'paladin');
+var trace_ranger = gen_convolved_trace_for_class_dist([14,14,13,13,3,3], 'ranger');
+var trace_fighter = gen_convolved_trace_for_class_dist([9,3,3,3,3,3], 'fighter');
+trace_fighter.visible = 'legendonly'; // default off since we've kind of covered it
+var data = [trace_paladin, trace_ranger, trace_fighter];
+var layout = {
+  title: "Convolved Ability Distributions for Classes",
+  xaxis: {title: "Roll"},
+  yaxis: {title: "Probability"},
+};
+Plotly.newPlot(document.getElementById('probhist3convolved'), data, layout);
+</script>
+<blockquote>
+<p>Notice the heavily tilted ranger/paladin distributions whose lean is distinctively more to the right.</p>
+</blockquote>
+<p>The last thing that's left now is to rectify $Z_c$ at <code>75</code> to get our <strong>true, final distributions</strong>:</p>
+<div id="probhist3convolvedtrunc" style="width:600px;height:450px;"></div>
+<script>
+var truncated_klass = function (klss) {
+  let CONVOLVED = CONVOLVED_DISTS[klss];
+  // calculate probability up to cutoff point:
+  let TRUNC_SUM = CONVOLVED.slice(-(108-75+1)).reduce((acc, e) => acc+e, 0);
+  // truncate and scale (rectify) the right side of the distribution:
+  let TRUNC_CONV = CONVOLVED.slice(-(108-75+1)).map(x => x / TRUNC_SUM);
+  // sanity sum (all 1)
+  console.log("Sum of convolved truncated", klss, TRUNC_CONV.reduce((acc, e)=>acc+e, 0));
+  //let expectation = TRUNC_CONV.map((x,i) => (i+t)*x).reduce((acc, e) => acc+e, 0);
+  //let variance = TRUNC_CONV.map((x,i) => Math.pow(i+t - expectation, 2)*x).reduce((acc, e) => acc+e, 0);
+  //console.log("Expectation, variance for conv truncated", klss, expectation, variance);
+  return {
+    x: TRUNC_CONV.map((x,i) => i +75),
+    y: TRUNC_CONV,
+    name: 'true ' + klss,
+    text: TRUNC_CONV.map(x => "expected once in " + Intl.NumberFormat().format(Math.floor(1/x)) + " rolls"),
+    opacity: 0.8,
+    type: "scatter",
+  };
+};
+let trace_trunconv_paladin = truncated_klass('paladin');
+let trace_trunconv_fighter = truncated_klass('fighter');
+let trace_trunconv_ranger = truncated_klass('ranger');
+trace_trunconv_fighter.visible = 'legendonly';
+var data = [trace_trunconv_paladin, trace_trunconv_fighter, trace_trunconv_ranger];
+var layout = {
+  title: "True Roll Distributions for Classes",
+  xaxis: {title: "Roll"},
+  yaxis: {title: "Probability"},
+};
+Plotly.newPlot(document.getElementById('probhist3convolvedtrunc'), data, layout);
+</script>
+<p>These match the sampled data almost perfectly as can be seen in more detailed comparisons in the <a href="#appendix">appendix</a>.</p>
+<p>As can be seen; <code>ranger</code> is faster at getting high numbers, particularly in the 90 -&gt; 97 range, but if you want rolls &gt;= 100, <strong><code>paladin</code> rolls the highest</strong> at the fastest rate.</p>
+<p>We end with the expected time to roll above a certain threshold where we use the most efficient class based on the number:</p>
+<ul>
+<li><code>108</code> paladin rolls once in <code>100 billion</code> ⇒ 210y</li>
+<li><code>107</code> paladin rolls once in <code>5 billion</code> ⇒ 10y</li>
+<li><code>106</code> paladin rolls once in <code>600 million</code> ⇒ 1y</li>
+<li><code>105</code> paladin rolls once in <code>100 million</code> ⇒ 11w</li>
+<li><code>104</code> paladin rolls once in <code>19 million</code> ⇒ 2w</li>
+<li><code>103</code> paladin rolls once in <code>5 million</code> ⇒ 4d</li>
+<li><code>102</code> paladin rolls once in <code>1.4 million</code> ⇒ 1d</li>
+<li><code>101</code> paladin rolls once in <code>400k</code> ⇒ 7h</li>
+<li><code>100</code> paladin/ranger rolls once in <code>150k</code> ⇒ 3h</li>
+<li><code>99</code> ranger rolls once in <code>57k</code> ⇒ 1h</li>
+<li><code>98</code> ranger rolls once in <code>23k</code> ⇒ 25m</li>
+<li><code>97</code> ranger rolls once in <code>10k</code> ⇒ 11m</li>
+<li><code>96</code> ranger rolls once in <code>5k</code> ⇒ 5m</li>
+<li><code>95</code> ranger rolls once in <code>2k</code> ⇒ 2m</li>
+</ul>
+<p>Hope you have enjoyed this random brain dump on probability. Don't think I have ever been nerd sniped this hard before.. I just wanted to play a game and take a break.</p>
+<p><small>/me closes 20 tabs</small></p>
+<h2 id="appendix">Appendix</h2>
+<details><summary style="cursor:pointer"><b>1. Raw simulation data</b></summary>
+<p>
+<p>10 hour paladin roll (<code>555558</code> rolls in <code>601m</code>)</p>
+<pre data-lang="yaml" class="language-yaml z-code"><code class="language-yaml" data-lang="yaml"><span class="z-source z-yaml"><span class="z-constant z-numeric z-integer z-decimal z-yaml">75</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">50888</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">76</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">54911</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">77</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">57338</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">78</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">57442</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">79</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">55589</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">80</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">52357</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">81</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">47503</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">82</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">41339</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">83</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">34458</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">84</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">28599</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">85</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">21997</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">86</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">16722</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">87</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">12322</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">88</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">8697</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">89</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">5997</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">90</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">3774</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">91</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">2371</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">92</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">1489</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">93</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">822</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">94</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">465</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">95</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">251</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">96</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">129</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">97</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">56</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">98</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">24</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">99</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">12</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">100</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">4</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">101</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">1</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">102</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">1</span>
+</span></code></pre>
+<p>10 hour fighter roll (<code>555560</code> rolls in <code>608m</code>)</p>
+<pre data-lang="yaml" class="language-yaml z-code"><code class="language-yaml" data-lang="yaml"><span class="z-source z-yaml"><span class="z-constant z-numeric z-integer z-decimal z-yaml">75</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">137379</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">76</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">109198</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">77</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">85620</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">78</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">65004</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">79</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">48256</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">80</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">35041</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">81</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">24987</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">82</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">17545</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">83</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">11981</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">84</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">7883</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">85</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">5007</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">86</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">3139</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">87</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">1946</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">88</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">1138</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">89</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">670</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">90</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">368</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">91</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">199</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">92</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">103</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">93</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">49</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">94</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">26</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">95</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">12</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">96</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">6</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">97</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">2</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">98</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">1</span>
+</span></code></pre>
+<p>9 hour ranger roll (<code>500054</code> rolls in <code>548m</code>)</p>
+<pre data-lang="yaml" class="language-yaml z-code"><code class="language-yaml" data-lang="yaml"><span class="z-source z-yaml"><span class="z-constant z-numeric z-integer z-decimal z-yaml">75</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">32296</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">76</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">37790</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">77</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">43118</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">78</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">46609</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">79</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">48108</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">80</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">47589</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">81</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">45774</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">82</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">41963</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">83</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">36876</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">84</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">30973</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">85</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">25272</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">86</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">19904</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">87</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">14730</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">88</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">10430</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">89</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">7285</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">90</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">4667</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">91</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">2991</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">92</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">1696</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">93</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">986</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">94</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">529</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">95</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">254</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">96</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">121</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">97</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">56</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">98</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">26</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">99</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">10</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">100</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-integer z-decimal z-yaml">1</span>
+</span></code></pre>
+</p>
+</details>
+<details><summary style="cursor:pointer"><b>2. Tabulated values for 18 dice multinomial probability distribution</b></summary>
+<p>
+<p><a rel="noopener" target="_blank" href="https://www.wolframalpha.com/input?i2d=true&amp;i=+Divide%5B1%2CPower%5B6%2C18%5D%5DSum%5BPower%5B%5C%2840%29-1%5C%2841%29%2Ck%5D+*binomial%5C%2840%2918%5C%2844%29+k%5C%2841%29*binomial%5C%2840%2991-6k-1%5C%2844%29+17%5C%2841%29%2C%7Bk%2C0%2Cfloor%5C%2840%29Divide%5B%5C%2840%2991-18%5C%2841%29%2C6%5D%5C%2841%29%7D%5D">Wolfram Alpha Query</a></p>
+<pre data-lang="yaml" class="language-yaml z-code"><code class="language-yaml" data-lang="yaml"><span class="z-source z-yaml"><span class="z-constant z-numeric z-integer z-decimal z-yaml">18</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">1/101559956668416</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">19</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">1/5642219814912</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">20</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">19/11284439629824</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">21</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">95/8463329722368</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">22</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">665/11284439629824</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">23</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">1463/5642219814912</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">24</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">33643/33853318889472</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">25</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">9605/2821109907456</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">26</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">119833/11284439629824</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">27</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">1552015/50779978334208</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">28</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">308465/3761479876608</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">29</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">97223/470184984576</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">30</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">2782169/5642219814912</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">31</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">1051229/940369969152</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">32</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">4550747/1880739938304</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">33</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">786505/156728328192</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">34</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">37624655/3761479876608</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">35</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">36131483/1880739938304</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">36</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">1206294965/33853318889472</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">37</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">20045551/313456656384</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">38</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">139474379/1253826625536</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">39</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">1059736685/5642219814912</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">40</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">128825225/417942208512</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">41</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">17143871/34828517376</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">42</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">8640663457/11284439629824</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">43</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">728073331/626913312768</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">44</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">2155134523/1253826625536</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">45</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">3942228889/1586874322944</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">46</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">4949217565/1410554953728</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">47</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">3417441745/705277476864</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">48</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">27703245169/4231664861184</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">49</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">3052981465/352638738432</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">50</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">126513483013/11284439629824</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">51</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">240741263447/16926659444736</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">52</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">199524184055/11284439629824</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">53</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">60788736553/2821109907456</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">54</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">2615090074301/101559956668416</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">55</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">56759069113/1880739938304</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">56</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">130521904423/3761479876608</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">57</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">110438453753/2821109907456</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">58</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">163027882055/3761479876608</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">59</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">88576807769/1880739938304</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">60</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">566880747559/11284439629824</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">61</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">24732579319/470184984576</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">62</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">101698030955/1880739938304</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">63</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">461867856157/8463329722368</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">64</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">101698030955/1880739938304</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">65</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">24732579319/470184984576</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">66</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">566880747559/11284439629824</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">67</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">88576807769/1880739938304</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">68</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">163027882055/3761479876608</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">69</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">110438453753/2821109907456</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">70</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">130521904423/3761479876608</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">71</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">56759069113/1880739938304</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">72</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">2615090074301/101559956668416</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">73</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">60788736553/2821109907456</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">74</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">199524184055/11284439629824</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">75</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">240741263447/16926659444736</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">76</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">126513483013/11284439629824</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">77</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">3052981465/352638738432</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">78</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">27703245169/4231664861184</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">79</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">3417441745/705277476864</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">80</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">4949217565/1410554953728</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">81</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">3942228889/1586874322944</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">82</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">2155134523/1253826625536</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">83</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">728073331/626913312768</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">84</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">8640663457/11284439629824</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">85</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">17143871/34828517376</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">86</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">128825225/417942208512</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">87</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">1059736685/5642219814912</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">88</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">139474379/1253826625536</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">89</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">20045551/313456656384</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">90</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">1206294965/33853318889472</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">91</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">36131483/1880739938304</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">92</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">37624655/3761479876608</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">93</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">786505/156728328192</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">94</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">4550747/1880739938304</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">95</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">1051229/940369969152</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">96</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">2782169/5642219814912</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">97</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">97223/470184984576</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">98</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">308465/3761479876608</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">99</span>  <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">1552015/50779978334208</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">100</span> <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">119833/11284439629824</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">101</span> <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">9605/2821109907456</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">102</span> <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">33643/33853318889472</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">103</span> <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">1463/5642219814912</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">104</span> <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">665/11284439629824</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">105</span> <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">95/8463329722368</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">106</span> <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">19/11284439629824</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">107</span> <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">1/5642219814912</span>
+<span class="z-constant z-numeric z-integer z-decimal z-yaml">108</span> <span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">1/101559956668416</span>
+</span></code></pre>
+</p>
+</details>
+<details><summary style="cursor:pointer"><b>3. Tabulated values for 3 dice multinomial probability distribution</b></summary>
+<p>
+<p><a rel="noopener" target="_blank" href="https://www.wolframalpha.com/input?i2d=true&amp;i=+Divide%5B1%2CPower%5B6%2C3%5D%5DSum%5BPower%5B%5C%2840%29-1%5C%2841%29%2Ck%5D+*binomial%5C%2840%293%5C%2844%29+k%5C%2841%29*binomial%5C%2840%2910-6k-1%5C%2844%29+2%5C%2841%29%2C%7Bk%2C0%2Cfloor%5C%2840%29Divide%5B%5C%2840%2910-3%5C%2841%29%2C6%5D%5C%2841%29%7D%5D">Wolfram Alpha Query</a></p>
+<pre data-lang="yaml:" class="language-yaml: z-code"><code class="language-yaml:" data-lang="yaml:"><span class="z-text z-plain">3: 1/216
+4: 1/72
+5: 1/36
+6: 5/108
+7: 5/72
+8: 7/72
+9: 25/216
+10: 1/8
+11: 1/8
+12: 25/216
+13: 7/72
+14: 5/72
+15: 5/108
+16: 1/36
+17: 1/72
+18: 1/216
+</span></code></pre>
+</p>
+</details>
+<details><summary style="cursor:pointer"><b>4. Comparing observed vs. computed by class</b></summary>
+<p>
+We compare with the precise $Z_{class}$ distributions worked out by convolution above.
+<div id="probhistappdxpala" style="width:600px;height:450px;"></div>
+<script>
+var data = [trace_trunconv_paladin, trace_obs_paladin];
+var layout = {
+  title: "Theoretical vs Observed Distributions for Paladin",
+  xaxis: {title: "Roll"},
+  yaxis: {title: "Probability"},
+};
+Plotly.newPlot(document.getElementById('probhistappdxpala'), data, layout);
+</script>
+<div id="probhistappdxrang" style="width:600px;height:450px;"></div>
+<script>
+var data = [trace_trunconv_ranger, trace_obs_ranger];
+var layout = {
+  title: "Theoretical vs Observed Distributions for Ranger",
+  xaxis: {title: "Roll"},
+  yaxis: {title: "Probability"},
+};
+Plotly.newPlot(document.getElementById('probhistappdxrang'), data, layout);
+</script>
+<p>For fighter we have included the original uncorrected multinomial distribution for 18 dice before doing simulations. It was sufficiently close to the true distribution because flooring a single ability to <code>9</code> amounts to almost nothing in the right tail:</p>
+<div id="probhistappdxfig" style="width:600px;height:450px;"></div>
+<script>
+var data = [trace_trunconv_fighter, trace_obs_fighter, trace_single_trunc];
+var layout = {
+  title: "Theoretical vs Observed Distributions for Fighter",
+  xaxis: {title: "Roll"},
+  yaxis: {title: "Probability"},
+};
+Plotly.newPlot(document.getElementById('probhistappdxfig'), data, layout);
+</script>
+<p>That said, the true distribution taking into account the single floored stat has a much better fit.</p>
+</p>
+</details>
+<details><summary style="cursor:pointer"><b>5. Normal approximations</b></summary>
+<p>
+<p>An original idea here was to avoid doing all the faff with convolution above, and &quot;just&quot; approximate the distribution with some normal $\mathcal{N}(μ, σ)$.</p>
+<p>After all, <a rel="noopener" target="_blank" href="https://mathworld.wolfram.com/Dice.html">this is suggested for high n</a>, and it will hold even for an unequal <a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Central_limit_theorem">sum of independent random variables with sufficient degrees of freedom</a>.</p>
+<p>However, there are many <strong>complications</strong> with this approach:</p>
+<ul>
+<li>we only <strong>sample</strong> the <strong>doubly censored data</strong>, we don't see the full normal distribution</li>
+<li><strong>distributions</strong> are heavily <strong>shifted</strong> (as can be seen with the true paladin distribution)</li>
+<li>estimation of underlying normal distribution relies difficult for classes whose means precedes the truncation point</li>
+</ul>
+<p>It does looks like there are tools to work with truncated or rectified normals:</p>
+<ul>
+<li>extension methods for <a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Rectified_Gaussian_distribution#Extension_to_general_bounds">rectified normal distributions</a></li>
+<li><a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Truncated_normal_distribution#One_sided_truncation_(of_lower_tail)">formulas for dealing with truncation of a normal distributions</a></li>
+<li><a rel="noopener" target="_blank" href="https://rdrr.io/cran/crch/man/cnorm.html">cnorm r library</a> which comes with a <a rel="noopener" target="_blank" href="https://cran.r-project.org/web/packages/cNORM/cNORM.pdf">giant pdf</a> as documentation to help remind you of why we need rustdoc</li>
+</ul>
+<p>But this felt like the wrong path to descend, and the path was littered with arcana:</p>
+<blockquote class="twitter-tweet" data-dnt="true" data-theme="light"><p lang="en" dir="ltr">ah, yes, just a vector. <a href="https://t.co/RvkpS4h0DX">pic.twitter.com/RvkpS4h0DX</a></p>&mdash; eirik ᐸ&#39;⧖ᐳ (@sszynrae) <a href="https://twitter.com/sszynrae/status/1512161877698174983?ref_src=twsrc%5Etfw">April 7, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>That said. If anyone wants to fill in something here, or link to alternate methods, feel free to PR in something <a rel="noopener" target="_blank" href="https://github.com/clux/probes/edit/master/content/post/2022-04-12-baldurs-roll.md">here</a> or write an <a rel="noopener" target="_blank" href="https://github.com/clux/probes/issues">issue</a>.</p>
+</p>
+</details>
+
+      <nav>
+        <div>
+          <a href="https://clux.github.io/probes.zola/factober/">&#8249; Factober 5400</a>
+        </div>
+        <div>
+          <a href="https://clux.github.io/probes.zola/prometheus-ecosystem/"> Prometheus Stack Review &#8250;</a>
+        </div>
+      </nav>
+    </article>
+
+    <div class="sblock">
+
+      <div class="blockdiv sticky">
+        <a class="b s150" href="#">Index</a>
+        <div>
+          <a href="#rolling-a-character">Rolling a character</a>
+        </div>
+        <div>
+          <a href="#disclaimer">Disclaimer</a>
+        </div>
+        <div>
+          <a href="#multinomials-and-probabilities">Multinomials and probabilities</a>
+        </div>
+        <div>
+          <a href="#automating-rolling">Automating Rolling</a>
+        </div>
+        <div class="hpad">
+          <a href="#tools"><small>- Tools</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#initialization"><small>- Initialization</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#roll-tables"><small>- Roll Tables</small></a>
+        </div>
+        <div>
+          <a href="#clicking">Clicking</a>
+        </div>
+        <div>
+          <a href="#showcase">Showcase</a>
+        </div>
+        <div>
+          <a href="#sampling">Sampling</a>
+        </div>
+        <div class="hpad">
+          <a href="#class-race-variance"><small>- Class&#x2F;Race Variance</small></a>
+        </div>
+        <div>
+          <a href="#floored-ability-distributions">Floored Ability Distributions</a>
+        </div>
+        <div class="hpad">
+          <a href="#sum-of-floored-ability-distributions"><small>- Sum of Floored Ability Distributions</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#class-distributions"><small>- Class Distributions</small></a>
+        </div>
+        <div>
+          <a href="#appendix">Appendix</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <hr />
+    <div class="c">
+      <nav><div><a type="application/atom+xml" href="https://clux.github.io/probes.zola/atom.xml" target="_blank" title="probes Atom/RSS Feed"><i type="Button" class="svg rss" title="probes Atom/RSS Feed"></i></a><a href="https://hachyderm.io/@clux" target="_blank" title="Mastodon" rel="me"><i type="Button" class="svg mastodon" title="Mastodon"></i></a><a href="https://www.linkedin.com/in/🗑-eirik-albrigtsen-b279863a/" target="_blank" title="LinkedIn"><i type="Button" class="svg linkedin" title="LinkedIn"></i></a><a href="https://github.com/clux/" target="_blank" title="Github"><i type="Button" class="svg github" title="Github"></i></a><a href="https://discord.com/tokio/" target="_blank" title="Discord"><i type="Button" class="svg discord" title="Discord"></i></a><a href="https://www.youtube.com/channel&#x2F;UCLpykMxkxuPUR9CciheipZg" target="_blank" title="YouTube"><i type="Button" class="svg youtube" title="YouTube"></i></a><a href="https://github.com/sponsors/clux/" target="_blank" title="GitHub Sponsor"><i type="Button" class="svg github-sponsor" title="GitHub Sponsor"></i></a></div></nav>
+      <nav>
+        <a class="s90" href="https://clux.github.io/probes.zola/about/"> About </a>
+        <a class="s90" href="https://clux.github.io/probes.zola/privacy/"> Privacy </a>
+        <a class="s90" href="https://clux.github.io/probes.zola/sitemap.xml" target="_blank"> Sitemap </a>
+      </nav>
+      <p class="s90">Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a> & <a href="https://github.com/jieiku/abridge/" target="_blank">Abridge</a></p>
+    </div>
+  </footer><span class="topout">
+<span class="topleft"> </span><a href="#" class="top" title="Back to Top"><i class="svgs svgh angu"></i></a>
+</span>
+</body>
+</html>

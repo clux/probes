@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>probes - zettelkasten</title>
+    <link href="https://clux.github.io/probes.zola/tags/zettelkasten/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://clux.github.io/probes.zola"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2020-09-27T00:00:00+00:00</updated>
+    <id>https://clux.github.io/probes.zola/tags/zettelkasten/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Foaming Campaign Brain</title>
+        <published>2020-09-27T00:00:00+00:00</published>
+        <updated>2020-09-27T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://clux.github.io/probes.zola/second-brain/" type="text/html"/>
+        <id>https://clux.github.io/probes.zola/second-brain/</id>
+        
+        <content type="html">&lt;p&gt;After 2 years of running a D&amp;amp;D campaign almost every week, my note taking setup reached several breaking points. If you&#x27;re using &lt;code&gt;OneNote&lt;&#x2F;code&gt; or another online managed system for tracking notes&#x2F;cities&#x2F;npcs&#x2F;pcs&#x2F;events, but know how to use programmers tools like &lt;code&gt;git&lt;&#x2F;code&gt; and &lt;code&gt;code&lt;&#x2F;code&gt;; boy are there a world of advantages available to you.&lt;&#x2F;p&gt;
+&lt;p&gt;This is a story of my original note talking setup, a comparison between newer technologies, and how I am back to writing markdown in a folder.&lt;&#x2F;p&gt;
+&lt;!--more--&gt;
+&lt;h2 id=&quot;the-onenote-setup&quot;&gt;The OneNote Setup&lt;&#x2F;h2&gt;
+&lt;p&gt;Early in 2018, we were starting to play weekly, and my various documents in google docs were not cutting it.&lt;&#x2F;p&gt;
+&lt;p&gt;I watched a couple of videos detailing how to &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=SqhePj9ratI&quot;&gt;Manage a D&amp;amp;D campaign with OneNote&lt;&#x2F;a&gt;. The double categorisation setup where Sections contain many Pages was nice, the promise of links was promising, but unfortunately, the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;youtu.be&#x2F;SqhePj9ratI?t=1856&quot;&gt;difficulty of creating them&lt;&#x2F;a&gt; made them too slow to really be viable.&lt;&#x2F;p&gt;
+&lt;p&gt;A year down the line, my OneNote looked like this:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;foam&#x2F;onenote-campaign.png&quot; alt=&quot;one note campaign&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Still, image integration straight from a google search and into your document was great. Well, not &lt;code&gt;Google&lt;&#x2F;code&gt;, but &lt;code&gt;Bing&lt;&#x2F;code&gt;, I guess. In practice, I wasn&#x27;t always sure what I was going for, so I often ended up searching for images in my browser first via google, getting shunted to pinterest and find something promising there. Since &lt;code&gt;OneNote&lt;&#x2F;code&gt; returned completely different images, I generally had to &lt;strong&gt;save and upload&lt;&#x2F;strong&gt; my findings anyway.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;OneNote&lt;&#x2F;code&gt; did let you place random text fields anywhere on your page (like some kind of janky e-scrap book), and this did actually help get around one problem I was having:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;splitting the data is hard in a browser&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Why? You click on a link, the browser makes several HTTP requests, and after waiting 400ms you finally get to see the results (one drive is not super responsive), but this movement drops your place to the current page you needed to cross reference with. So now you either go back, and shift-click the reference so you now have two tabs that you can Shift-Tab between, or you prepare those tabs up in advance (typically before the session).&lt;&#x2F;p&gt;
+&lt;p&gt;In practice I often ended up with a 30 tab browser window for every session, which generally, looked something like:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;foam&#x2F;session-chrome.png&quot; alt=&quot;session chrome window&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;this type of tab&#x2F;icon chaos generally included:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;5 from OneNote (campaign brain)&lt;&#x2F;li&gt;
+&lt;li&gt;2 from Kobold Fight Club (potential encounters)&lt;&#x2F;li&gt;
+&lt;li&gt;6 from monsters &#x2F; items&lt;&#x2F;li&gt;
+&lt;li&gt;2 youtube ambient music tabs&lt;&#x2F;li&gt;
+&lt;li&gt;2 for random generators&lt;&#x2F;li&gt;
+&lt;li&gt;5 from lore&#x2F;wikis related to the story or NPCs&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;and their multitude meant I needed to tab between them to find the right one, only to have to change them when players did something out of left field.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;DMs&lt;&#x2F;strong&gt;; does this happen to you?&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;So this system definitely had problems, but it was free, &lt;strong&gt;generally&lt;&#x2F;strong&gt; responsive, and the 400ms link opening time wasn&#x27;t too much of a drain on the improv. It was definitely noticable though, and it just took a slightly decreased &lt;code&gt;OneNote&lt;&#x2F;code&gt; &lt;strong&gt;QoS&lt;&#x2F;strong&gt;, or a few interrupted WIFI evenings, for it all to feel pointless.&lt;&#x2F;p&gt;
+&lt;p&gt;..there was also a whole week where I was unable to save anything with no errors shown to me. I never get to the bottom of it, but it was the last straw.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-git-repository&quot;&gt;The Git Repository&lt;&#x2F;h2&gt;
+&lt;p&gt;After these problems, I realised that there&#x27;s one thing I&#x27;m unwilling to compromise on:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;My notes must be available offline&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;If that means I have to do a full sync up front; &lt;strong&gt;fine&lt;&#x2F;strong&gt;. A folder of documents behind &lt;code&gt;git&lt;&#x2F;code&gt; solves this. This also solves the merge conflict resolution problem that &lt;code&gt;OneNote&lt;&#x2F;code&gt; was giving me due to the way it hid its synchronisation mechanism. Imagine arriving back at your desktop computer only to find that your laptop didn&#x27;t sync, so you either have to boot your laptop back up, or solve a merge conflict (with yourself) the next time you open your laptop (on an interface somehow worse than git). Not great.&lt;&#x2F;p&gt;
+&lt;p&gt;Now I just &lt;code&gt;git commit&lt;&#x2F;code&gt; and &lt;code&gt;git push&lt;&#x2F;code&gt;, and never get a merge conflict.&lt;&#x2F;p&gt;
+&lt;p&gt;That means that no matter how slick the following solutions look:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;World Anvil&lt;&#x2F;li&gt;
+&lt;li&gt;Notion&lt;&#x2F;li&gt;
+&lt;li&gt;Roam&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;These solutions are off the table for me. Even if some of them might be a reasonable abstraction.&lt;&#x2F;p&gt;
+&lt;p&gt;With an offline document repo, it was immediately easy to get back the basic functionality needed; categorised text in sections (folders) and pages (markdown files within folder), and an offline way to access them (cloned repo).&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;foam&#x2F;git-repo-campaign.png&quot; alt=&quot;git repo campaign&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-markdown&quot;&gt;The Markdown&lt;&#x2F;h2&gt;
+&lt;p&gt;Using &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;guides.github.com&#x2F;features&#x2F;mastering-markdown&#x2F;&quot;&gt;Markdown&lt;&#x2F;a&gt; as the documention format is a no-brainer to me as a software engineer. This defacto documentation standard &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;gohugo.io&#x2F;content-management&#x2F;formats&#x2F;&quot;&gt;used&lt;&#x2F;a&gt; &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;community.atlassian.com&#x2F;t5&#x2F;Jira-questions&#x2F;Using-markdown-in-Jira&#x2F;qaq-p&#x2F;892041&quot;&gt;nearly&lt;&#x2F;a&gt; &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.github.com&#x2F;gfm&#x2F;&quot;&gt;everywhere&lt;&#x2F;a&gt;, supported by &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;code.visualstudio.com&#x2F;docs&#x2F;languages&#x2F;markdown&quot;&gt;every&lt;&#x2F;a&gt; &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;plasticboy&#x2F;vim-markdown&quot;&gt;major&lt;&#x2F;a&gt; &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;SublimeText-Markdown&#x2F;MarkdownEditing&quot;&gt;code&lt;&#x2F;a&gt; editor.&lt;&#x2F;p&gt;
+&lt;p&gt;Still, many of the same problems I had with &lt;code&gt;OneNote&lt;&#x2F;code&gt; still manifested themselves:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;linking markdown files requires lookup and hard-coding of filesystem paths&lt;&#x2F;li&gt;
+&lt;li&gt;tendency to store everything in one file because linking is annoying&lt;&#x2F;li&gt;
+&lt;li&gt;guessing what tabs are needed in your editor before the session&lt;&#x2F;li&gt;
+&lt;li&gt;embedding images is a bit of a pain&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Now, none of these in theory were unsolvable. But was this something where homegrowing my own content management markdown system was really a smart way forward? After all, surely people writing books or research papers need some kind of system to keep track of everything, right?&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;zettelkasten&quot;&gt;Zettelkasten&lt;&#x2F;h2&gt;
+&lt;p&gt;There are probably millions of ways to organise your stuff and still be successful, just take a look at some famous writers&#x27; desks:&lt;&#x2F;p&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Since it&amp;#39;s a Monday, let&amp;#39;s play which fantasy writer&amp;#39;s desk would you want to write at:&lt;br&gt;1. Ursula K. Le Guin&amp;#39;s&lt;br&gt;2. Neil Gaiman&amp;#39;s&lt;br&gt;3. J.R.R. Tolkien&amp;#39;s&lt;br&gt;4. Terry Pratchett&amp;#39;s &lt;a href=&quot;https:&#x2F;&#x2F;t.co&#x2F;hsMRgI0JEh&quot;&gt;pic.twitter.com&#x2F;hsMRgI0JEh&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;&amp;mdash; Into The Forest Dark (@ElliottBlackwe3) &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;ElliottBlackwe3&#x2F;status&#x2F;1308030597688971265?ref_src=twsrc%5Etfw&quot;&gt;September 21, 2020&lt;&#x2F;a&gt;&lt;&#x2F;blockquote&gt; &lt;script async src=&quot;https:&#x2F;&#x2F;platform.twitter.com&#x2F;widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;&#x2F;script&gt;
+&lt;!--shortcode fails on my hugo install..&lt; tweet 1308030597688971265 &gt;--&gt;
+&lt;p&gt;Individualism notwithstanding, some methods are more refined than others. For instance, this &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;writingcooperative.com&#x2F;zettelkasten-how-one-german-scholar-was-so-freakishly-productive-997e4e0ca125&quot;&gt;article on sociologist Niklas Luhmann and his Zettelkasten system&lt;&#x2F;a&gt; talks about one refined system. &lt;strong&gt;Do at least skim&lt;&#x2F;strong&gt; that article for why that solution is so powerful. It brings up some very important data modelling problem inherent to note taking:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;do we categorise notes by &lt;strong&gt;folders&lt;&#x2F;strong&gt;?&lt;&#x2F;li&gt;
+&lt;li&gt;do we categorise notes by &lt;strong&gt;tags&lt;&#x2F;strong&gt;?&lt;&#x2F;li&gt;
+&lt;li&gt;do we categorise notes by &lt;strong&gt;links&lt;&#x2F;strong&gt;?&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;All these methods on their own cause data to get lost, but using all of them at the same time gives you a stronger, self-reinforcing system. If &lt;code&gt;Luhmann&lt;&#x2F;code&gt; could achieve this with a simple &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Zettelkasten#&#x2F;media&#x2F;File:Zettelkasten_(514941699).jpg&quot;&gt;slip box system of index cards&lt;&#x2F;a&gt;, then making &lt;strong&gt;your&lt;&#x2F;strong&gt; editor do it should be childs play.&lt;&#x2F;p&gt;
+&lt;p&gt;Though, why this system? Well, for one it&#x27;s an organic extension of what you already are doing. You don&#x27;t need to follow it entirely, but the benifits of links and connection notes are huge. From the principles listed in that article. Number 3 in particular:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Always link your notes&lt;&#x2F;strong&gt;
+Whenever you add a note, make sure to link it to already existing notes. Avoid notes that are disconnected from other notes. As Luhmann himself put it, &amp;quot;each note is just an element that derives its quality from the network of links in the system. A note that is not connected to the network will be lost, will be forgotten by the Zettelkasten&amp;quot;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;This feels like good D&amp;amp;D advice as well. An NPC already known by a player can be a lot easier and more sensible to re-instate, rather than fabricate a slightly different version of &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;old.reddit.com&#x2F;r&#x2F;dndmemes&#x2F;comments&#x2F;iuajhd&#x2F;im_basically_a_voice_actor&#x2F;&quot;&gt;one of your 10 existing characters&lt;&#x2F;a&gt;. Need a &amp;quot;dark city&amp;quot;, but drawing a blank? Make a shadowfell version of of the same city and link them. Easier to remember for everybody. A campaign quickly accumulates a lot of information. No need to make this harder than it already is.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;considered-choices&quot;&gt;Considered Choices&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;1-sublime-zk&quot;&gt;1. Sublime ZK&lt;&#x2F;h3&gt;
+&lt;p&gt;There is a &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;renerocksai&#x2F;sublime_zk&quot;&gt;zettelkasten plugin for sublime&lt;&#x2F;a&gt;, but it looks pretty &lt;strong&gt;abandoned&lt;&#x2F;strong&gt; at the moment. It also does not seem to let you build a graph of your links (one of the main selling points of Obsidian).&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;2-obsidian&quot;&gt;2. Obsidian&lt;&#x2F;h3&gt;
+&lt;p&gt;The article by &lt;a href=&quot;https:&#x2F;&#x2F;clux.github.io&#x2F;probes.zola&#x2F;second-brain&#x2F;joshwin.imprint.to&quot;&gt;joshwin&lt;&#x2F;a&gt; on how he &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;joshwin.imprint.to&#x2F;post&#x2F;how-i-use-obsidian-to-manage-my-goals-tasks-notes-and-software-development-knowledge-base&quot;&gt;uses obsidian to manage goals, tasks, notes, and more&lt;&#x2F;a&gt; is interesting. A pre-configured all-in-one application that is flexible and powerful enough to let you handle all these different categories. Well worth &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;obsidian.md&#x2F;&quot;&gt;looking into&lt;&#x2F;a&gt; &lt;strong&gt;if&lt;&#x2F;strong&gt; you don&#x27;t have a good editor already. Their &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;obsidian.md&#x2F;features&quot;&gt;feature list&lt;&#x2F;a&gt; is decent.&lt;&#x2F;p&gt;
+&lt;p&gt;Personally, though, there are &lt;strong&gt;reasons why I&#x27;m not going for this&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;custom-editor&quot;&gt;Custom Editor&lt;&#x2F;h4&gt;
+&lt;p&gt;While it looks like you &lt;strong&gt;can&lt;&#x2F;strong&gt; customize this scope-limited editor close to what you fancy, it does mean that you will need to do go through all that yet another time. Having battled with Vim&#x2F;Sublime&#x2F;VSCode and various editors over the course of my life, there was a point where I have started feeling &lt;strong&gt;satisfied&lt;&#x2F;strong&gt; with what &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;dotfiles&quot;&gt;past-clux had already configured&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;custom-install&quot;&gt;Custom Install&lt;&#x2F;h4&gt;
+&lt;p&gt;The only provided &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;obsidian.md&#x2F;&quot;&gt;linux install&lt;&#x2F;a&gt; a single &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;snapcraft.io&#x2F;&quot;&gt;snap package&lt;&#x2F;a&gt;. While snap &lt;strong&gt;might become&lt;&#x2F;strong&gt; a successful and perhaps the most prominent packaging distribution system on linux, it&#x27;s nowhere near that tipping point yet; especially on &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.archlinux.org&#x2F;&quot;&gt;Arch&lt;&#x2F;a&gt;. There&#x27;s no need for me to introduce an &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;wiki.archlinux.org&#x2F;index.php&#x2F;Snap&quot;&gt;extra daemon&lt;&#x2F;a&gt; to auto-upgrade packages when there&#x27;s already &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;wiki.archlinux.org&#x2F;index.php&#x2F;pacman&quot;&gt;a solid system&lt;&#x2F;a&gt; on Arch that lets me do this.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;custom-formats&quot;&gt;Custom Formats&lt;&#x2F;h4&gt;
+&lt;p&gt;As with any another system bundling some pinned &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.electronjs.org&#x2F;&quot;&gt;electron&lt;&#x2F;a&gt; version, you now have yet another piece of software that will have security patches neglected as if development suddenly stops.&lt;&#x2F;p&gt;
+&lt;p&gt;Sure, you can keep your data because you can store it wherever, but if they control the system that defines the format then it would be super annoying to have to do a migration to something else.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;vendor-locked-plugins&quot;&gt;Vendor locked plugins&lt;&#x2F;h4&gt;
+&lt;p&gt;One way out of this would be to have custom plugins, but their plugin API is not exposed (though on their &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;trello.com&#x2F;c&#x2F;Z7qqKVXd&#x2F;19-public-plugin-api-v10&quot;&gt;roadmap&lt;&#x2F;a&gt;).&lt;&#x2F;p&gt;
+&lt;p&gt;Ultimately, even if this eventually did get solved, I&#x27;d still rather go with a plugin system in a code editor I already know how to use, and backup, than to get locked in to something forked off electron where the development may stop at any time.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;3-orgmode-with-roam&quot;&gt;3. Orgmode with Roam&lt;&#x2F;h3&gt;
+&lt;p&gt;Another all-emcompassing standard that hasn&#x27;t really caught on as widely; &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;orgmode.org&#x2F;&quot;&gt;orgmode&lt;&#x2F;a&gt;. Looks a bit like markdown, but has a lot more support for things I don&#x27;t see an immediate need for. It seems kind of coupled with the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.gnu.org&#x2F;software&#x2F;emacs&#x2F;&quot;&gt;emacs&lt;&#x2F;a&gt;&#x2F;&lt;code&gt;lisp&lt;&#x2F;code&gt; ecosystem, so if that&#x27;s your preference; check out &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;org-roam&#x2F;org-roam&quot;&gt;org-roam&lt;&#x2F;a&gt;. For me, this is a bit &lt;strong&gt;too off the beaten path&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;4-foam&quot;&gt;4. Foam&lt;&#x2F;h3&gt;
+&lt;p&gt;We close with &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;foambubble.github.io&#x2F;foam&#x2F;&quot;&gt;foam&lt;&#x2F;a&gt;, the system we ended up using. Inspired by Roam (a system I neglected to talk about because of sync&#x2F;offline problems, and it&#x27;s also not cheap).&lt;&#x2F;p&gt;
+&lt;p&gt;While it does seem somewhat early stage, the selling point here is that &lt;code&gt;Foam&lt;&#x2F;code&gt; is really just a collection of &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;microsoft&#x2F;vscode&quot;&gt;VS Code&lt;&#x2F;a&gt; extensions around markdown, that you can &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;code.visualstudio.com&#x2F;docs&#x2F;editor&#x2F;extension-gallery#_recommended-extensions&quot;&gt;default-recommend&lt;&#x2F;a&gt; at the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;foambubble&#x2F;foam-template&#x2F;blob&#x2F;master&#x2F;.vscode&#x2F;extensions.json&quot;&gt;repo level&lt;&#x2F;a&gt; and configure how you want.&lt;&#x2F;p&gt;
+&lt;p&gt;The main ones here are:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;marketplace.visualstudio.com&#x2F;items?itemName=foam.foam-vscode&quot;&gt;foam.foam-vscode&lt;&#x2F;a&gt; - foam&#x27;s own extension&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;marketplace.visualstudio.com&#x2F;items?itemName=kortina.vscode-markdown-notes&quot;&gt;kortina.vscode-markdown-notes&lt;&#x2F;a&gt; - markdown &lt;code&gt;[[wiki-links]]&lt;&#x2F;code&gt; and backlinking&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;marketplace.visualstudio.com&#x2F;items?itemName=tchayen.markdown-links&quot;&gt;tchayen.markdown-links&lt;&#x2F;a&gt; - graphs markdown linked notes&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;marketplace.visualstudio.com&#x2F;items?itemName=yzhang.markdown-all-in-one&quot;&gt;yzhang.markdown-all-in-one&lt;&#x2F;a&gt; - markdown writing helpers&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;marketplace.visualstudio.com&#x2F;items?itemName=esbenp.prettier-vscode&quot;&gt;esbenp.prettier-vscode&lt;&#x2F;a&gt; - an auto-formatter&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;marketplace.visualstudio.com&#x2F;items?itemName=eamodio.gitlens&quot;&gt;eamodio.gitlens&lt;&#x2F;a&gt; - online git history&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;All of which are very popular, standard extensions, with the sole exception of the &lt;code&gt;foam&lt;&#x2F;code&gt;; a &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;foambubble&#x2F;foam&#x2F;tree&#x2F;master&#x2F;packages&#x2F;foam-vscode&quot;&gt;smaller looking&lt;&#x2F;a&gt; extension that helps manage the wiki links. Frankly, it&#x27;s somewhat strange to me that they list the off-putting &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;foambubble&#x2F;foam&#x2F;tree&#x2F;master&#x2F;packages&#x2F;foam-vscode#requirements&quot;&gt;&lt;code&gt;tolerance for alpha software&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; as a requirement when most of their logic resides outside their codebase.&lt;&#x2F;p&gt;
+&lt;p&gt;If you&#x27;ve dealt with a code editors plugin ecosystem before, this is a lot more welcoming than obsidian to me. Bug in the system? Well, probably one of the extensions. You&#x27;ve got options for dealing with it: report &amp;amp; wait, fork + fix, try other replacement extensions.&lt;&#x2F;p&gt;
+&lt;p&gt;Oh, and I can we can swap out the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;marketplace.visualstudio.com&#x2F;items?itemName=philipbe.theme-gray-matter&quot;&gt;default provided dark theme&lt;&#x2F;a&gt; for one you like, e.g. &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;marketplace.visualstudio.com&#x2F;items?itemName=tnaseem.theme-seti&quot;&gt;Seti&lt;&#x2F;a&gt;:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;foam&#x2F;foam-backlinks.png&quot; alt=&quot;foam backlinks seti&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Finally, if you need extra functionality, you now have the whole &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;marketplace.visualstudio.com&#x2F;&quot;&gt;wealth of the VS Code ecosystem&lt;&#x2F;a&gt; at your fingertips.&lt;&#x2F;p&gt;
+&lt;p&gt;So far, these have been useful addons for providing extra functionality:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;marketplace.visualstudio.com&#x2F;items?itemName=mushan.vscode-paste-image&quot;&gt;mushan.vscode-paste-image&lt;&#x2F;a&gt; - paste image from clipboard functionality&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;result&quot;&gt;Result&lt;&#x2F;h2&gt;
+&lt;p&gt;So that was a lot of information about comparison of note taking technology. How does my system actually end up looking? Depends on whether I am editing or running a game. Here is a 3-way split between editing and showing the graph update live.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;foam&#x2F;3-split-irae.png&quot; alt=&quot;foam 3-way split&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;tchayen&#x2F;markdown-links&#x2F;issues&#x2F;58&quot;&gt;graphs sometimes overlaps&lt;&#x2F;a&gt; and &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;tchayen&#x2F;markdown-links&#x2F;issues&#x2F;64&quot;&gt;rebalances awkwardly&lt;&#x2F;a&gt; (&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;foambubble&#x2F;call-for-visualization&quot;&gt;help seems to be requested&lt;&#x2F;a&gt;), but the naive implementation still help out a whole lot.&lt;&#x2F;p&gt;
+&lt;p&gt;Here is a subset from our sea adventures aboard the &lt;code&gt;Artemis&lt;&#x2F;code&gt;:
+&lt;img src=&quot;&#x2F;imgs&#x2F;foam&#x2F;graph-sea-campaign.png&quot; alt=&quot;foam graph around artemis&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Most of the time I just straight up edit markdown in two groups. Sometimes with a preview or graph instead on the right or below, depending on what type of work needs focus. The &lt;strong&gt;flexibility&lt;&#x2F;strong&gt; of this system is equivalent to that of a popular professional code editor by inheritance.&lt;&#x2F;p&gt;
+&lt;p&gt;Even if some of these plugins don&#x27;t evolve much, I see this as a pretty future proof setup (the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;foambubble&#x2F;foam&#x2F;issues&#x2F;88&quot;&gt;why foam issue&lt;&#x2F;a&gt; is also refreshingly honest). The investment in new tech is small, and migration cost away from said tech ought to be minimal.&lt;&#x2F;p&gt;
+&lt;p&gt;From a RPG perspective, being able to immediately jump to anything through a responsive fuzzy search helps trim down on those &lt;code&gt;&amp;quot;hang on one second&amp;quot;&lt;&#x2F;code&gt; moments, and when you are planning by yourself, you have a whole linked &lt;strong&gt;compendium of knowledge&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The hope with all this is that the amount of hard-to-navigate &amp;quot;running the game tabs&amp;quot; should be significantly reduced with this setup, and my world should feel more integrated thanks to the extensive Zettelkasten style linking. Well. Fingers crossed anyway.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

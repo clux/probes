@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://clux.github.io/probes.zola/js/theme.min.js" integrity="sha384-pb++s6uBRKaQv+iAXpgA/H3IlpLZdO14tTwuCI7uXmz4aaZdByoCcM+6BhynMq/1"></script>
+  <link rel="stylesheet" href="https://clux.github.io/probes.zola/abridge.css?h=5cd2e708e811917bd981" />
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="base" content="https://clux.github.io/probes.zola" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="theme-color" content="#333333" />
+  <meta name="msapplication-TileColor" content="#333333" />
+  <link rel="manifest" href="https://clux.github.io/probes.zola/manifest.min.json" />
+  <link rel="mask-icon" href="https://clux.github.io/probes.zola/safari-pinned-tab.svg" color="#ff9900" />
+  <link rel="icon" type="image/svg+xml" href="https://clux.github.io/probes.zola/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://clux.github.io/probes.zola/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://clux.github.io/probes.zola/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://clux.github.io/probes.zola/favicon-16x16.png" />
+  <link rel="alternate" type="application/atom+xml" title="probes Atom/RSS Feed" href="https://clux.github.io/probes.zola/atom.xml" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <title>Foaming Campaign Brain | probes</title>
+  <meta name="author" content="clux" />
+  <meta name="copyright" content="probes" />
+  <meta name="description" content="Exploring second brain alternatives for campaign tracking" />
+  <link rel="canonical" href="https://clux.github.io/probes.zola/second-brain/" />
+  <meta name="keywords" content="Kubernetes, Cloud, Rust, Theorycraft, Blog" />
+  <script defer src="https://clux.github.io/probes.zola/js/abridge.min.js?h=52ceec8ac36fe25defe7" integrity="sha384-H1IaFs2MvG0ayi+Bq0d66Ih118nLUFESwUke1UH1uKzTiJwcgE8hXpONzAG3kqHj"></script>
+  <noscript><link rel="stylesheet" href="https://clux.github.io/probes.zola/nojs.css" /></noscript>
+</head>
+<body>
+  <header>
+    <nav>
+      <div><h1><a href="https://clux.github.io/probes.zola" title="probes">Probes</a></h1></div>
+      <div>
+
+        <div>
+          <ul><li><a class="s110" href="https://clux.github.io/probes.zola/about/"> About </a></li><li><a class="s110" href="https://clux.github.io/probes.zola/"> Posts </a></li><li><a class="s110" href="https://clux.github.io/probes.zola/categories/"> Categories </a></li><li><a class="s110" href="https://clux.github.io/probes.zola/tags/"> Tags </a></li><li><i type="reset" id="mode" class="js svgs adjust"></i></ul>
+        </div>
+
+        <div>
+          <div>
+            <form autocomplete=off class="js" name="goSearch" id="searchbox">
+              <div class="searchd">
+                <input id="searchinput" type="text" placeholder="Search" title="Search" />
+                <button type="submit" title="Search" class="svgs search"></button>
+              </div>
+              <div class="results"><div id="suggestions"></div></div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+  <main>
+    <article>
+      <h1><a href="https://clux.github.io/probes.zola/second-brain/">Foaming Campaign Brain</a></h1>
+
+      <span class="s95"> clux <span class="rpad"></span> September 27, 2020 <span class="rpad"></span> [<a href="https://clux.github.io/probes.zola/categories/roleplaying/">roleplaying</a>] #<a href="https://clux.github.io/probes.zola/tags/zettelkasten/">zettelkasten</a>  #<a href="https://clux.github.io/probes.zola/tags/foam/">foam</a> </span>
+
+    
+
+
+<p>After 2 years of running a D&amp;D campaign almost every week, my note taking setup reached several breaking points. If you're using <code>OneNote</code> or another online managed system for tracking notes/cities/npcs/pcs/events, but know how to use programmers tools like <code>git</code> and <code>code</code>; boy are there a world of advantages available to you.</p>
+<p>This is a story of my original note talking setup, a comparison between newer technologies, and how I am back to writing markdown in a folder.</p>
+<!--more-->
+<h2 id="the-onenote-setup">The OneNote Setup</h2>
+<p>Early in 2018, we were starting to play weekly, and my various documents in google docs were not cutting it.</p>
+<p>I watched a couple of videos detailing how to <a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=SqhePj9ratI">Manage a D&amp;D campaign with OneNote</a>. The double categorisation setup where Sections contain many Pages was nice, the promise of links was promising, but unfortunately, the <a rel="noopener" target="_blank" href="https://youtu.be/SqhePj9ratI?t=1856">difficulty of creating them</a> made them too slow to really be viable.</p>
+<p>A year down the line, my OneNote looked like this:</p>
+<p><img src="/imgs/foam/onenote-campaign.png" alt="one note campaign" /></p>
+<p>Still, image integration straight from a google search and into your document was great. Well, not <code>Google</code>, but <code>Bing</code>, I guess. In practice, I wasn't always sure what I was going for, so I often ended up searching for images in my browser first via google, getting shunted to pinterest and find something promising there. Since <code>OneNote</code> returned completely different images, I generally had to <strong>save and upload</strong> my findings anyway.</p>
+<p><code>OneNote</code> did let you place random text fields anywhere on your page (like some kind of janky e-scrap book), and this did actually help get around one problem I was having:</p>
+<blockquote>
+<p><strong>splitting the data is hard in a browser</strong></p>
+</blockquote>
+<p>Why? You click on a link, the browser makes several HTTP requests, and after waiting 400ms you finally get to see the results (one drive is not super responsive), but this movement drops your place to the current page you needed to cross reference with. So now you either go back, and shift-click the reference so you now have two tabs that you can Shift-Tab between, or you prepare those tabs up in advance (typically before the session).</p>
+<p>In practice I often ended up with a 30 tab browser window for every session, which generally, looked something like:</p>
+<p><img src="/imgs/foam/session-chrome.png" alt="session chrome window" /></p>
+<p>this type of tab/icon chaos generally included:</p>
+<ul>
+<li>5 from OneNote (campaign brain)</li>
+<li>2 from Kobold Fight Club (potential encounters)</li>
+<li>6 from monsters / items</li>
+<li>2 youtube ambient music tabs</li>
+<li>2 for random generators</li>
+<li>5 from lore/wikis related to the story or NPCs</li>
+</ul>
+<p>and their multitude meant I needed to tab between them to find the right one, only to have to change them when players did something out of left field.</p>
+<blockquote>
+<p><strong>DMs</strong>; does this happen to you?</p>
+</blockquote>
+<p>So this system definitely had problems, but it was free, <strong>generally</strong> responsive, and the 400ms link opening time wasn't too much of a drain on the improv. It was definitely noticable though, and it just took a slightly decreased <code>OneNote</code> <strong>QoS</strong>, or a few interrupted WIFI evenings, for it all to feel pointless.</p>
+<p>..there was also a whole week where I was unable to save anything with no errors shown to me. I never get to the bottom of it, but it was the last straw.</p>
+<h2 id="the-git-repository">The Git Repository</h2>
+<p>After these problems, I realised that there's one thing I'm unwilling to compromise on:</p>
+<blockquote>
+<p><strong>My notes must be available offline</strong></p>
+</blockquote>
+<p>If that means I have to do a full sync up front; <strong>fine</strong>. A folder of documents behind <code>git</code> solves this. This also solves the merge conflict resolution problem that <code>OneNote</code> was giving me due to the way it hid its synchronisation mechanism. Imagine arriving back at your desktop computer only to find that your laptop didn't sync, so you either have to boot your laptop back up, or solve a merge conflict (with yourself) the next time you open your laptop (on an interface somehow worse than git). Not great.</p>
+<p>Now I just <code>git commit</code> and <code>git push</code>, and never get a merge conflict.</p>
+<p>That means that no matter how slick the following solutions look:</p>
+<ul>
+<li>World Anvil</li>
+<li>Notion</li>
+<li>Roam</li>
+</ul>
+<p>These solutions are off the table for me. Even if some of them might be a reasonable abstraction.</p>
+<p>With an offline document repo, it was immediately easy to get back the basic functionality needed; categorised text in sections (folders) and pages (markdown files within folder), and an offline way to access them (cloned repo).</p>
+<p><img src="/imgs/foam/git-repo-campaign.png" alt="git repo campaign" /></p>
+<h2 id="the-markdown">The Markdown</h2>
+<p>Using <a rel="noopener" target="_blank" href="https://guides.github.com/features/mastering-markdown/">Markdown</a> as the documention format is a no-brainer to me as a software engineer. This defacto documentation standard <a rel="noopener" target="_blank" href="https://gohugo.io/content-management/formats/">used</a> <a rel="noopener" target="_blank" href="https://community.atlassian.com/t5/Jira-questions/Using-markdown-in-Jira/qaq-p/892041">nearly</a> <a rel="noopener" target="_blank" href="https://github.github.com/gfm/">everywhere</a>, supported by <a rel="noopener" target="_blank" href="https://code.visualstudio.com/docs/languages/markdown">every</a> <a rel="noopener" target="_blank" href="https://github.com/plasticboy/vim-markdown">major</a> <a rel="noopener" target="_blank" href="https://github.com/SublimeText-Markdown/MarkdownEditing">code</a> editor.</p>
+<p>Still, many of the same problems I had with <code>OneNote</code> still manifested themselves:</p>
+<ul>
+<li>linking markdown files requires lookup and hard-coding of filesystem paths</li>
+<li>tendency to store everything in one file because linking is annoying</li>
+<li>guessing what tabs are needed in your editor before the session</li>
+<li>embedding images is a bit of a pain</li>
+</ul>
+<p>Now, none of these in theory were unsolvable. But was this something where homegrowing my own content management markdown system was really a smart way forward? After all, surely people writing books or research papers need some kind of system to keep track of everything, right?</p>
+<h2 id="zettelkasten">Zettelkasten</h2>
+<p>There are probably millions of ways to organise your stuff and still be successful, just take a look at some famous writers' desks:</p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Since it&#39;s a Monday, let&#39;s play which fantasy writer&#39;s desk would you want to write at:<br>1. Ursula K. Le Guin&#39;s<br>2. Neil Gaiman&#39;s<br>3. J.R.R. Tolkien&#39;s<br>4. Terry Pratchett&#39;s <a href="https://t.co/hsMRgI0JEh">pic.twitter.com/hsMRgI0JEh</a></p>&mdash; Into The Forest Dark (@ElliottBlackwe3) <a href="https://twitter.com/ElliottBlackwe3/status/1308030597688971265?ref_src=twsrc%5Etfw">September 21, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<!--shortcode fails on my hugo install..< tweet 1308030597688971265 >-->
+<p>Individualism notwithstanding, some methods are more refined than others. For instance, this <a rel="noopener" target="_blank" href="https://writingcooperative.com/zettelkasten-how-one-german-scholar-was-so-freakishly-productive-997e4e0ca125">article on sociologist Niklas Luhmann and his Zettelkasten system</a> talks about one refined system. <strong>Do at least skim</strong> that article for why that solution is so powerful. It brings up some very important data modelling problem inherent to note taking:</p>
+<ul>
+<li>do we categorise notes by <strong>folders</strong>?</li>
+<li>do we categorise notes by <strong>tags</strong>?</li>
+<li>do we categorise notes by <strong>links</strong>?</li>
+</ul>
+<p>All these methods on their own cause data to get lost, but using all of them at the same time gives you a stronger, self-reinforcing system. If <code>Luhmann</code> could achieve this with a simple <a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Zettelkasten#/media/File:Zettelkasten_(514941699).jpg">slip box system of index cards</a>, then making <strong>your</strong> editor do it should be childs play.</p>
+<p>Though, why this system? Well, for one it's an organic extension of what you already are doing. You don't need to follow it entirely, but the benifits of links and connection notes are huge. From the principles listed in that article. Number 3 in particular:</p>
+<blockquote>
+<p><strong>Always link your notes</strong>
+Whenever you add a note, make sure to link it to already existing notes. Avoid notes that are disconnected from other notes. As Luhmann himself put it, &quot;each note is just an element that derives its quality from the network of links in the system. A note that is not connected to the network will be lost, will be forgotten by the Zettelkasten&quot;</p>
+</blockquote>
+<p>This feels like good D&amp;D advice as well. An NPC already known by a player can be a lot easier and more sensible to re-instate, rather than fabricate a slightly different version of <a rel="noopener" target="_blank" href="https://old.reddit.com/r/dndmemes/comments/iuajhd/im_basically_a_voice_actor/">one of your 10 existing characters</a>. Need a &quot;dark city&quot;, but drawing a blank? Make a shadowfell version of of the same city and link them. Easier to remember for everybody. A campaign quickly accumulates a lot of information. No need to make this harder than it already is.</p>
+<h2 id="considered-choices">Considered Choices</h2>
+<h3 id="1-sublime-zk">1. Sublime ZK</h3>
+<p>There is a <a rel="noopener" target="_blank" href="https://github.com/renerocksai/sublime_zk">zettelkasten plugin for sublime</a>, but it looks pretty <strong>abandoned</strong> at the moment. It also does not seem to let you build a graph of your links (one of the main selling points of Obsidian).</p>
+<h3 id="2-obsidian">2. Obsidian</h3>
+<p>The article by <a href="https://clux.github.io/probes.zola/second-brain/joshwin.imprint.to">joshwin</a> on how he <a rel="noopener" target="_blank" href="https://joshwin.imprint.to/post/how-i-use-obsidian-to-manage-my-goals-tasks-notes-and-software-development-knowledge-base">uses obsidian to manage goals, tasks, notes, and more</a> is interesting. A pre-configured all-in-one application that is flexible and powerful enough to let you handle all these different categories. Well worth <a rel="noopener" target="_blank" href="https://obsidian.md/">looking into</a> <strong>if</strong> you don't have a good editor already. Their <a rel="noopener" target="_blank" href="https://obsidian.md/features">feature list</a> is decent.</p>
+<p>Personally, though, there are <strong>reasons why I'm not going for this</strong>:</p>
+<h4 id="custom-editor">Custom Editor</h4>
+<p>While it looks like you <strong>can</strong> customize this scope-limited editor close to what you fancy, it does mean that you will need to do go through all that yet another time. Having battled with Vim/Sublime/VSCode and various editors over the course of my life, there was a point where I have started feeling <strong>satisfied</strong> with what <a rel="noopener" target="_blank" href="https://github.com/clux/dotfiles">past-clux had already configured</a>.</p>
+<h4 id="custom-install">Custom Install</h4>
+<p>The only provided <a rel="noopener" target="_blank" href="https://obsidian.md/">linux install</a> a single <a rel="noopener" target="_blank" href="https://snapcraft.io/">snap package</a>. While snap <strong>might become</strong> a successful and perhaps the most prominent packaging distribution system on linux, it's nowhere near that tipping point yet; especially on <a rel="noopener" target="_blank" href="https://www.archlinux.org/">Arch</a>. There's no need for me to introduce an <a rel="noopener" target="_blank" href="https://wiki.archlinux.org/index.php/Snap">extra daemon</a> to auto-upgrade packages when there's already <a rel="noopener" target="_blank" href="https://wiki.archlinux.org/index.php/pacman">a solid system</a> on Arch that lets me do this.</p>
+<h4 id="custom-formats">Custom Formats</h4>
+<p>As with any another system bundling some pinned <a rel="noopener" target="_blank" href="https://www.electronjs.org/">electron</a> version, you now have yet another piece of software that will have security patches neglected as if development suddenly stops.</p>
+<p>Sure, you can keep your data because you can store it wherever, but if they control the system that defines the format then it would be super annoying to have to do a migration to something else.</p>
+<h4 id="vendor-locked-plugins">Vendor locked plugins</h4>
+<p>One way out of this would be to have custom plugins, but their plugin API is not exposed (though on their <a rel="noopener" target="_blank" href="https://trello.com/c/Z7qqKVXd/19-public-plugin-api-v10">roadmap</a>).</p>
+<p>Ultimately, even if this eventually did get solved, I'd still rather go with a plugin system in a code editor I already know how to use, and backup, than to get locked in to something forked off electron where the development may stop at any time.</p>
+<h3 id="3-orgmode-with-roam">3. Orgmode with Roam</h3>
+<p>Another all-emcompassing standard that hasn't really caught on as widely; <a rel="noopener" target="_blank" href="https://orgmode.org/">orgmode</a>. Looks a bit like markdown, but has a lot more support for things I don't see an immediate need for. It seems kind of coupled with the <a rel="noopener" target="_blank" href="https://www.gnu.org/software/emacs/">emacs</a>/<code>lisp</code> ecosystem, so if that's your preference; check out <a rel="noopener" target="_blank" href="https://github.com/org-roam/org-roam">org-roam</a>. For me, this is a bit <strong>too off the beaten path</strong>.</p>
+<h3 id="4-foam">4. Foam</h3>
+<p>We close with <a rel="noopener" target="_blank" href="https://foambubble.github.io/foam/">foam</a>, the system we ended up using. Inspired by Roam (a system I neglected to talk about because of sync/offline problems, and it's also not cheap).</p>
+<p>While it does seem somewhat early stage, the selling point here is that <code>Foam</code> is really just a collection of <a rel="noopener" target="_blank" href="https://github.com/microsoft/vscode">VS Code</a> extensions around markdown, that you can <a rel="noopener" target="_blank" href="https://code.visualstudio.com/docs/editor/extension-gallery#_recommended-extensions">default-recommend</a> at the <a rel="noopener" target="_blank" href="https://github.com/foambubble/foam-template/blob/master/.vscode/extensions.json">repo level</a> and configure how you want.</p>
+<p>The main ones here are:</p>
+<ul>
+<li><a rel="noopener" target="_blank" href="https://marketplace.visualstudio.com/items?itemName=foam.foam-vscode">foam.foam-vscode</a> - foam's own extension</li>
+<li><a rel="noopener" target="_blank" href="https://marketplace.visualstudio.com/items?itemName=kortina.vscode-markdown-notes">kortina.vscode-markdown-notes</a> - markdown <code>[[wiki-links]]</code> and backlinking</li>
+<li><a rel="noopener" target="_blank" href="https://marketplace.visualstudio.com/items?itemName=tchayen.markdown-links">tchayen.markdown-links</a> - graphs markdown linked notes</li>
+<li><a rel="noopener" target="_blank" href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one">yzhang.markdown-all-in-one</a> - markdown writing helpers</li>
+<li><a rel="noopener" target="_blank" href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">esbenp.prettier-vscode</a> - an auto-formatter</li>
+<li><a rel="noopener" target="_blank" href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens">eamodio.gitlens</a> - online git history</li>
+</ul>
+<p>All of which are very popular, standard extensions, with the sole exception of the <code>foam</code>; a <a rel="noopener" target="_blank" href="https://github.com/foambubble/foam/tree/master/packages/foam-vscode">smaller looking</a> extension that helps manage the wiki links. Frankly, it's somewhat strange to me that they list the off-putting <a rel="noopener" target="_blank" href="https://github.com/foambubble/foam/tree/master/packages/foam-vscode#requirements"><code>tolerance for alpha software</code></a> as a requirement when most of their logic resides outside their codebase.</p>
+<p>If you've dealt with a code editors plugin ecosystem before, this is a lot more welcoming than obsidian to me. Bug in the system? Well, probably one of the extensions. You've got options for dealing with it: report &amp; wait, fork + fix, try other replacement extensions.</p>
+<p>Oh, and I can we can swap out the <a rel="noopener" target="_blank" href="https://marketplace.visualstudio.com/items?itemName=philipbe.theme-gray-matter">default provided dark theme</a> for one you like, e.g. <a rel="noopener" target="_blank" href="https://marketplace.visualstudio.com/items?itemName=tnaseem.theme-seti">Seti</a>:</p>
+<p><img src="/imgs/foam/foam-backlinks.png" alt="foam backlinks seti" /></p>
+<p>Finally, if you need extra functionality, you now have the whole <a rel="noopener" target="_blank" href="https://marketplace.visualstudio.com/">wealth of the VS Code ecosystem</a> at your fingertips.</p>
+<p>So far, these have been useful addons for providing extra functionality:</p>
+<ul>
+<li><a rel="noopener" target="_blank" href="https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image">mushan.vscode-paste-image</a> - paste image from clipboard functionality</li>
+</ul>
+<h2 id="result">Result</h2>
+<p>So that was a lot of information about comparison of note taking technology. How does my system actually end up looking? Depends on whether I am editing or running a game. Here is a 3-way split between editing and showing the graph update live.</p>
+<p><img src="/imgs/foam/3-split-irae.png" alt="foam 3-way split" /></p>
+<p>The <a rel="noopener" target="_blank" href="https://github.com/tchayen/markdown-links/issues/58">graphs sometimes overlaps</a> and <a rel="noopener" target="_blank" href="https://github.com/tchayen/markdown-links/issues/64">rebalances awkwardly</a> (<a rel="noopener" target="_blank" href="https://github.com/foambubble/call-for-visualization">help seems to be requested</a>), but the naive implementation still help out a whole lot.</p>
+<p>Here is a subset from our sea adventures aboard the <code>Artemis</code>:
+<img src="/imgs/foam/graph-sea-campaign.png" alt="foam graph around artemis" /></p>
+<p>Most of the time I just straight up edit markdown in two groups. Sometimes with a preview or graph instead on the right or below, depending on what type of work needs focus. The <strong>flexibility</strong> of this system is equivalent to that of a popular professional code editor by inheritance.</p>
+<p>Even if some of these plugins don't evolve much, I see this as a pretty future proof setup (the <a rel="noopener" target="_blank" href="https://github.com/foambubble/foam/issues/88">why foam issue</a> is also refreshingly honest). The investment in new tech is small, and migration cost away from said tech ought to be minimal.</p>
+<p>From a RPG perspective, being able to immediately jump to anything through a responsive fuzzy search helps trim down on those <code>&quot;hang on one second&quot;</code> moments, and when you are planning by yourself, you have a whole linked <strong>compendium of knowledge</strong>.</p>
+<p>The hope with all this is that the amount of hard-to-navigate &quot;running the game tabs&quot; should be significantly reduced with this setup, and my world should feel more integrated thanks to the extensive Zettelkasten style linking. Well. Fingers crossed anyway.</p>
+
+      <nav>
+        <div>
+          <a href="https://clux.github.io/probes.zola/antimagic-revisited/">&#8249; Antimagic and Force Cubes</a>
+        </div>
+        <div>
+          <a href="https://clux.github.io/probes.zola/lxde-experiment/"> Trying out LXDE &#8250;</a>
+        </div>
+      </nav>
+    </article>
+
+    <div class="sblock">
+
+      <div class="blockdiv sticky">
+        <a class="b s150" href="#">Index</a>
+        <div>
+          <a href="#the-onenote-setup">The OneNote Setup</a>
+        </div>
+        <div>
+          <a href="#the-git-repository">The Git Repository</a>
+        </div>
+        <div>
+          <a href="#the-markdown">The Markdown</a>
+        </div>
+        <div>
+          <a href="#zettelkasten">Zettelkasten</a>
+        </div>
+        <div>
+          <a href="#considered-choices">Considered Choices</a>
+        </div>
+        <div class="hpad">
+          <a href="#1-sublime-zk"><small>- 1. Sublime ZK</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#2-obsidian"><small>- 2. Obsidian</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#3-orgmode-with-roam"><small>- 3. Orgmode with Roam</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#4-foam"><small>- 4. Foam</small></a>
+        </div>
+        <div>
+          <a href="#result">Result</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <hr />
+    <div class="c">
+      <nav><div><a type="application/atom+xml" href="https://clux.github.io/probes.zola/atom.xml" target="_blank" title="probes Atom/RSS Feed"><i type="Button" class="svg rss" title="probes Atom/RSS Feed"></i></a><a href="https://hachyderm.io/@clux" target="_blank" title="Mastodon" rel="me"><i type="Button" class="svg mastodon" title="Mastodon"></i></a><a href="https://www.linkedin.com/in/🗑-eirik-albrigtsen-b279863a/" target="_blank" title="LinkedIn"><i type="Button" class="svg linkedin" title="LinkedIn"></i></a><a href="https://github.com/clux/" target="_blank" title="Github"><i type="Button" class="svg github" title="Github"></i></a><a href="https://discord.com/tokio/" target="_blank" title="Discord"><i type="Button" class="svg discord" title="Discord"></i></a><a href="https://www.youtube.com/channel&#x2F;UCLpykMxkxuPUR9CciheipZg" target="_blank" title="YouTube"><i type="Button" class="svg youtube" title="YouTube"></i></a><a href="https://github.com/sponsors/clux/" target="_blank" title="GitHub Sponsor"><i type="Button" class="svg github-sponsor" title="GitHub Sponsor"></i></a></div></nav>
+      <nav>
+        <a class="s90" href="https://clux.github.io/probes.zola/about/"> About </a>
+        <a class="s90" href="https://clux.github.io/probes.zola/privacy/"> Privacy </a>
+        <a class="s90" href="https://clux.github.io/probes.zola/sitemap.xml" target="_blank"> Sitemap </a>
+      </nav>
+      <p class="s90">Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a> & <a href="https://github.com/jieiku/abridge/" target="_blank">Abridge</a></p>
+    </div>
+  </footer><span class="topout">
+<span class="topleft"> </span><a href="#" class="top" title="Back to Top"><i class="svgs svgh angu"></i></a>
+</span>
+</body>
+</html>
