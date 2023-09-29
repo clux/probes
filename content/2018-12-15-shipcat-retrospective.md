@@ -247,7 +247,7 @@ shipcat diff myapp # diff templated yaml against current cluster
 shipcat apply myapp # kubectl apply the template - providing a diff and a progress bar
 ```
 
-The upgrade was much nicer than any other CLI that existed at the time, it [tracked upgrades with deployment-replica progress bars](https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/track.rs#L415-L508), [bubbled up errors, captured error logs](https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/apply.rs#L312-L335), [provided inline diffs pre-upgrade](https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/apply.rs#L262-L291), gated on validation, shiped successful rollout notifications to devs to slack.
+The upgrade was much nicer than any other CLI that existed at the time, it [tracked upgrades with deployment-replica progress bars](https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/track.rs#L415-L508), [bubbled up errors, captured error logs](https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/apply.rs#L312-L335), [provided inline diffs pre-upgrade](https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/apply.rs#L262-L291), gated on validation, sent [successful rollout notifications](https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/slack.rs#L138-L255) to maintainers on slack.
 
 > This was imo its biggest selling point (and possibly prevented a revolt against a ops-led mandated tool). In my later jobs, achieving the same would take multiple microservices talking to flux.
 
