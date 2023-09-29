@@ -17,8 +17,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: true
-          fetch-depth: 0
-      - run:  git config --system --add safe.directory /github/workspace
+          sparse-checkout: .
       - uses: TonySpegel/zola-build-action@v1
         #env:
         #  CONFIG_FILE: "config.live.toml"
