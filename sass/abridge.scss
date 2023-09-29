@@ -12,7 +12,7 @@
   $syntax-mode: "auto",// Force syntax mode: auto, dark, light
   $switcherDefault: "dark",// default nojs switcher mode: dark, light (make sure to also set js_switcher_default in config.toml)
 
-  $color: "blueshade",// color template to use/override: orange, blue, blueshade
+  $color: "blue",// color template to use/override: orange, blue, blueshade
 
   $color-syntax: "abridge",// syntax color template to use/override: abridge,
   $syntax: true,//syntax highlighting for Code Blocks.
@@ -73,16 +73,17 @@
   /// The colors below can be overrided individually as needed.
 
   /// Dark Colors
-  //$f1d: #ccc,// Font Color Primary
-  //$f2d: #ddd,// Font Color Headers
-  //$c1d: #111,// Background Color Primary
-  //$c2d: #222,// Background Color Secondary
-  //$c3d: #333,// Table Rows, Block quote edge, Borders
+  // Spliced in from https://github.com/catppuccin/catppuccin mocha
+  $f1d: #ccc,// Font Color Primary
+  $f2d: #ddd,// Font Color Headers
+  $c1d: #11111b,// Background Color Primary
+  $c2d: #181825,// Background Color Secondary
+  $c3d: #313244,// Table Rows, Block quote edge, Borders
   //$c4d: #777,// Disabled Buttons, Borders, mark background
-  //$a1d: #f90,// link color
-  //$a2d: #fb0,// link hover/focus color
-  //$a3d: #f90,// link h1-h2 hover/focus color
-  //$a4d: #f90,// link visited color
+  $a1d: #74c7ec,// link color
+  $a2d: #b4befe,// link hover/focus color
+  $a3d: #94e2d5,// link h1-h2 hover/focus color
+  $a4d: #89b4fa,// link visited color
   //$cgd: #593,// ins green, success
   //$crd: #e33,// del red, errors
 

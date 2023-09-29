@@ -5,6 +5,7 @@ title = "Baldur's Gate: Multinomial Edition"
 
 [extra]
 toc = true
+math = true
 
 [taxonomies]
 categories = ["gaming"]

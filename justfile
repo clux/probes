@@ -16,3 +16,4 @@ update:
   rsync themes/abridge/COPY-TO-ROOT-SASS/* sass/
   rsync themes/abridge/package_abridge.js package_abridge.js
   rsync themes/abridge/package.json package.json
+  rsync themes/abridge/static/fonts/Roboto* static/fonts/

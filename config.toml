@@ -32,7 +32,6 @@ include_content = true      # include rendered content of page/section in index
 [markdown]
 highlight_code = true
 highlight_theme = "css"
-#highlight_theme = "base16-ocean-dark"
 render_emoji = false
 external_links_target_blank = true # rel="noopener"
 external_links_no_follow = false   # rel="nofollow"
@@ -118,7 +117,7 @@ feed = true # this adds the RSS feed icon in the footer.
 mastodon = "https://hachyderm.io/@clux"
 #element = "matrix.example.com"
 #kofi = "your-user-name"
-discord = "tokio"
+discord = "tokio" # TODO: wrong domain?
 linkedin = "🗑-eirik-albrigtsen-b279863a"
 github = "clux"
 github_sponsor = "clux"
@@ -269,6 +268,7 @@ favicon16 = "favicon-16x16.png" # favicon-16x16.png
 ### For externally loaded Fonts, make sure to include the FULL url including the https prefix:
 
 #fonts = [ {url = "https://fonts.googleapis.com/css?family=Roboto:400,700,italic|Roboto+Mono:400,italic"} ]
+#fonts = [ {url = "https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"} ]
 
 ### Local fonts are defined in the css, https://github.com/Jieiku/abridge/tree/master/COPY-TO-ROOT-SASS/fonts/_Arimo.scss
 ### To load a local font resource, look at the bottom of this file: https://github.com/Jieiku/abridge/blob/master/COPY-TO-ROOT-SASS/abridge.scss
@@ -276,6 +276,7 @@ favicon16 = "favicon-16x16.png" # favicon-16x16.png
 ### After loading them in the CSS, You can also define them below and it will add the preload tag to the head.
 ### preloading fonts will eliminate Content Layout Shift, but will hurt with page load time. (not recommended)
 
+# TODO: try Lora?
 #fonts = [
 #    {url = "fonts/Roboto-Mono.woff2"},
 #    {url = "fonts/Roboto-Mono-Italic.woff2"},
