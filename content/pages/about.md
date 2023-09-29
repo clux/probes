@@ -20,7 +20,7 @@ Below contains a bit about me and a brief summary and status of various creative
 </details>
 
 ### Software
-For a living, I help automate software operations of modern businesses. Generally, this means integrating existing cloud technologies on kubernetes (`yaml` surgery), but occasionally something new gets written. Last [six](https://github.com/cisco/lal-build-manager/commit/5247fb2755cf936a81ed9e82ff6b7bbc0af8a03a) years have featured a lot of [rust](https://www.rust-lang.org/) due to its safety guarantees and great ecosystem, but [also like to dabble](https://github.com/clux/magic-forest).
+For a living, I help automate software operations of modern businesses. Generally, this means integrating existing cloud technologies on Kubernetes via `yaml` surgery, but occasionally something new gets written. Last [six](https://github.com/cisco/lal-build-manager/commit/5247fb2755cf936a81ed9e82ff6b7bbc0af8a03a) years have featured a lot of [rust](https://www.rust-lang.org/) due to its safety guarantees and great ecosystem, but [also like to dabble](https://github.com/clux/magic-forest).
 
 From my [github](https://github.com/clux?tab=repositories):
 
@@ -28,13 +28,12 @@ From my [github](https://github.com/clux?tab=repositories):
 - [muslrust](https://github.com/clux/muslrust) :: a `x86_64-unknown-linux-musl` build image for the cloud
 - [tournament](https://github.com/clux/tournament) :: a suite of modules for managing state and lifecycles of competitions
 
-
-These days, **[kube](https://github.com/kube-rs/kube)** - which has grown from a personal yak to a cornerstone of the kubernetes rust ecosystem - takes most of my available open source times. See the [kubernetes tagged posts](/tags/kubernetes) for that.
+These days, **[kube](https://github.com/kube-rs/kube)** - which has grown from a personal yak to a cornerstone of the kubernetes rust ecosystem - takes most of my available open source times. I used to [blog about it](/tags/kubernetes), but now this stuff ends up at [kube.rs](https://kube.rs) and my blog is not the best place for it.
 
 Past colleagues might remember me from these overly ambitious work projects:
 
-- 2018 [babylon/shipcat](https://github.com/clux/shipcat) :: a typed config management system for kubernetes microservices (a deployment tool they liked so much, [they un-opensourced it](https://twitter.com/sszynrae/status/1522589153384349697))
-- 2016 [cisco/lal](https://github.com/cisco/lal-build-manager) :: a language agnostic build system (the [old build team](https://github.com/orgs/lalbuild/people) technically has a [fork](https://github.com/lalbuild/lal), but most of our `C` days are over)
+- 2018 [babylon/shipcat](https://github.com/clux/shipcat) :: babylon's helmfile like microservice system ([safety fork](https://github.com/clux/shipcat) - was needed lol)
+- 2016 [cisco/lal](https://github.com/cisco/lal-build-manager) :: a language agnostic docker based build system ([safety fork](https://github.com/lalbuild/lal) by the [old build team](https://github.com/orgs/lalbuild/people))
 
 ### Roleplaying
 

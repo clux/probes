@@ -4,7 +4,6 @@ description = "Notes from a week of pandemic browsing CNCF youtube"
 title = "Talk log from KubeCon LA"
 
 [extra]
-toc = true
 
 [taxonomies]
 categories = ["software"]

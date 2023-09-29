@@ -1,3 +1,26 @@
 /******************************************************************************
  *   Extra - Put your extra SASS/CSS here, it will get bundled with abridge.css
  *****************************************************************************/
+
+/*
+default image were all left aligned
+this might come back to bite me later, but it's a relatively benign change
+and i relied on this in my hugo theme
+*/
+article img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*
+default has very tall, but same colored quote, setup
+changed it to be slim, with more pronounced quote bar, and using disabled text color
+*/
+blockquote {
+  padding: 0 0 0.2rem 1.5rem;
+  border-left: .7rem solid var(--c3);
+}
+blockquote p {
+ color: var(--c4);
+}

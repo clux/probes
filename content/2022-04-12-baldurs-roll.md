@@ -17,7 +17,7 @@ In a ~~brief~~ bout of escapism from the world and responsibilities, I booted up
 For today's installment; rather than telling you about the game, let's talk about the **maths** behind rolling a `2e` character for `BG2`, and then running simulations with weird `X`-based linux tools.
 
 <!--more-->
-<script src="https://cdn.plot.ly/plotly-2.9.0.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
 
 ## Rolling a character
 
@@ -264,7 +264,7 @@ The menu background is **static** and the resulting screenshots are actually **c
     3ef9bf6cd4d9946d89765870e5b21566*) CURRENT_ROLL=100 ;;
 ```
 
-## Clicking
+### Clicking
 
 Automating a click is simply:
 
@@ -276,7 +276,7 @@ where the `--delay=0` overrides a builtin delay between clicks.
 
 The only complication here is that BG performs **internal buffering** of clicks, so this allows us to blast through numbers faster than the screen can display them. This means we have to compensate with a `sleep 0.001` after clicking to ensure we can grab the `scrot` of the roll before another click is registered.
 
-## Showcase
+### Showcase
 
 Running the script (with a terminal showing the script output overlayed) looks like this:
 
@@ -389,7 +389,7 @@ However, what's up with the paladins and rangers? Time for a more painful math d
 
 ![sweat mile cat math](/imgs/bg/amicat1-math.gif)
 
-### Class/Race Variance
+## Class Variance
 
 The reason for the discrepancy is simple: [stat floors based on races/class](https://rpg.stackexchange.com/questions/165377/how-do-baldurs-gate-and-baldurs-gate-2s-rolling-for-stats-actually-get-gene).
 
@@ -409,7 +409,7 @@ _In other words_: paladins and rangers have significantly higher rolls on averag
 
 Anyway. Is it possible to incorporate these floors into our modelling?
 
-## Floored Ability Distributions
+## Ability Distributions
 
 If floors are involved at earlier stages, we have to take a step back and look at the distributions that make up the sum. We __can__ compute distributions for **individual ability scores** (even if floored) if we use the distribution for $P(x, 3, 6)$ from [mathworld/Dice](https://mathworld.wolfram.com/Dice.html) where `s=6` and `n=3` and censor it at a cutoff point similar to how we censor the total distribution.
 
@@ -514,7 +514,9 @@ Similarly, we can compute precise variances:
 - $Var(X^{\lfloor14\rfloor}) = 1.2000$
 - $Var(X^{\lfloor17\rfloor}) = 0.1875$
 
-### Sum of Floored Ability Distributions
+### Sum of Ability Distributions
+
+To get a distribution for the total score, we need to create a sum distribution of the distributions for their six base stats at their given class floors.
 
 Define $Z_{paladin}$, $Z_{ranger}$ and $Z_{fighter}$ as:
 
@@ -561,7 +563,7 @@ $$P(X_{12} = n) = (p_{X_1} * p_{X_2})(n) = \sum_{m=-\infty}^{\infty}P(X_1=m)P(X_
 
 This step is particularly easy for the paladin, because $X_1^{\lfloor17\rfloor}$ only takes two values (i.e. $m=17$ ahd $m=18$ are the only non-zero parts in the sum).
 
-The rest is less easy to do by hand, as the sums get increasingly large while we iterate towards $Z=P_{123456}$ by repeatedly applying convolution to the remaining $X_i$:
+The rest is more laborious to do by hand, as the sums get increasingly large while we iterate towards $Z=P_{123456}$ by repeatedly applying convolution to the remaining $X_i$:
 
 $$P(X_{123} = n) = (p_{X_{12}} * p_{X_3})(n) \sum_{m=-\infty}^{\infty}P(X_{12}=m)P(X_3 = n-m)$$
 
