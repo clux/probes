@@ -29,7 +29,7 @@
   <meta name="author" content="clux" />
   <meta name="copyright" content="probes" />
   <meta name="description" content="Building elimination flows" />
-  <link rel="canonical" href="https://clux.github.io/probes.zola/tournament-seeding-placement/" />
+  <link rel="canonical" href="https://clux.github.io/probes.zola/2011-03-20-tournament-seeding-placement/" />
   <meta name="keywords" content="Kubernetes, Cloud, Rust, Theorycraft, Blog" />
   <script defer src="https://clux.github.io/probes.zola/js/abridge.min.js?h=52ceec8ac36fe25defe7" integrity="sha384-H1IaFs2MvG0ayi+Bq0d66Ih118nLUFESwUke1UH1uKzTiJwcgE8hXpONzAG3kqHj"></script>
   <script defer src="https://clux.github.io/probes.zola/js/katexbundle.min.js?h=6299b774ae77579e4404" integrity="sha384-w2LtVhWr6g/pnU4E8ZCpuUruGnK6Kw2ykIJojhKGscTSRckItl1/sZigXdTjRkkI"></script>
@@ -62,9 +62,9 @@
   </header>
   <main>
     <article>
-      <h1><a href="https://clux.github.io/probes.zola/tournament-seeding-placement/">Tournament Seeding Placement</a></h1>
+      <h1><a href="https://clux.github.io/probes.zola/2011-03-20-tournament-seeding-placement/">Tournament Seeding Placement</a></h1>
 
-      <span class="s95"> clux <span class="rpad"></span> March 20, 2011 <span class="rpad"></span> [<a href="https://clux.github.io/probes.zola/categories/software/">software</a>] #<a href="https://clux.github.io/probes.zola/tags/math/">math</a> </span>
+      <span class="s95"> clux <span class="rpad"></span> March 20, 2011 <span class="rpad"></span>Updated: December 09, 2018 <span class="rpad"></span> [<a href="https://clux.github.io/probes.zola/categories/software/">software</a>] #<a href="https://clux.github.io/probes.zola/tags/math/">math</a> </span>
 
     
 
@@ -118,37 +118,19 @@
   <span class="z-keyword z-control z-flow z-ts">return</span> <span class="z-meta z-brace z-round z-ts">(</span><span class="z-meta z-function-call z-ts"><span class="z-support z-function z-ts">parseInt</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-readwrite z-ts">nr</span><span class="z-punctuation z-separator z-comma z-ts">,</span> <span class="z-constant z-numeric z-decimal z-ts">2</span><span class="z-meta z-brace z-round z-ts">)</span> <span class="z-keyword z-operator z-bitwise z-shift z-ts">&lt;&lt;</span> <span class="z-variable z-other z-readwrite z-ts">p</span> <span class="z-keyword z-operator z-arithmetic z-ts">-</span> <span class="z-variable z-other z-object z-ts">nr</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-variable z-property z-ts">length</span><span class="z-meta z-brace z-round z-ts">)</span> <span class="z-keyword z-operator z-arithmetic z-ts">+</span> <span class="z-meta z-function-call z-ts"><span class="z-support z-constant z-math z-ts">Math</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-math z-ts">pow</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-constant z-numeric z-decimal z-ts">2</span><span class="z-punctuation z-separator z-comma z-ts">,</span> <span class="z-variable z-other z-readwrite z-ts">p</span> <span class="z-keyword z-operator z-arithmetic z-ts">-</span> <span class="z-variable z-other z-readwrite z-ts">k</span> <span class="z-keyword z-operator z-arithmetic z-ts">-</span> <span class="z-constant z-numeric z-decimal z-ts">1</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
 <span class="z-punctuation z-definition z-block z-ts">}</span></span></span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
 </span></code></pre>
-<p>Still and magical and confusing to everyone as ever.</p>
-<p>Clearly, there's probably a more elegant method to be deduced. The method here is just emulating the pattern we see in the binary representation after all. Still, funny what you can do with strings and patterns.</p>
+<p>Still as <strong>confusing</strong> (if it wasn't for this accompanying blog post).</p>
+<p>There's probably a more elegant method to be deduced.
+The method here is just emulating the pattern we see in the binary representation after all. Still, funny what you can do with strings and patterns.</p>
 
       <nav>
         <div>
           <a href="https://clux.github.io/probes.zola/colemak-switchover/">&#8249; Colemak Switchover</a>
         </div>
         <div>
-          <a href="https://clux.github.io/probes.zola/vault-of-therayne/"> Vault of Therayne &#8250;</a>
+          <a href="https://clux.github.io/probes.zola/2006-08-09-vault-of-therayne/"> Vault of Therayne &#8250;</a>
         </div>
       </nav>
     </article>
-
-    <div class="sblock">
-
-      <div class="blockdiv sticky">
-        <a class="b s150" href="#">Index</a>
-        <div>
-          <a href="#intro">Intro</a>
-        </div>
-        <div>
-          <a href="#definitions">Definitions</a>
-        </div>
-        <div>
-          <a href="#python-code">Python code</a>
-        </div>
-        <div>
-          <a href="#note-from-years-later">Note from years later</a>
-        </div>
-      </div>
-    </div>
   </main>
   <footer>
     <hr />

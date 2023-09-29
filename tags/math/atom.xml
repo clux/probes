@@ -13,8 +13,8 @@
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/baldurs-roll/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/baldurs-roll/</id>
+        <link rel="alternate" href="https://clux.github.io/probes.zola/2022-04-12-baldurs-roll/" type="text/html"/>
+        <id>https://clux.github.io/probes.zola/2022-04-12-baldurs-roll/</id>
         
         <content type="html">&lt;p&gt;In a &lt;del&gt;brief&lt;&#x2F;del&gt; bout of escapism from the world and responsibilities, I booted up &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;store.steampowered.com&#x2F;app&#x2F;257350&#x2F;Baldurs_Gate_II_Enhanced_Edition&#x2F;&quot;&gt;Baldur&#x27;s Gate 2&lt;&#x2F;a&gt; with my brother. It&#x27;s an amazing game, once you have figured out how to &lt;strong&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;old.reddit.com&#x2F;r&#x2F;baldursgate&#x2F;search?q=roll&amp;amp;restrict_sr=on&quot;&gt;roll&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt; your character.&lt;&#x2F;p&gt;
 &lt;p&gt;For today&#x27;s installment; rather than telling you about the game, let&#x27;s talk about the &lt;strong&gt;maths&lt;&#x2F;strong&gt; behind rolling a &lt;code&gt;2e&lt;&#x2F;code&gt; character for &lt;code&gt;BG2&lt;&#x2F;code&gt;, and then running simulations with weird &lt;code&gt;X&lt;&#x2F;code&gt;-based linux tools.&lt;&#x2F;p&gt;
@@ -937,12 +937,12 @@ Plotly.newPlot(document.getElementById(&#x27;probhistappdxfig&#x27;), data, layo
     <entry xml:lang="en">
         <title>Tournament Seeding Placement</title>
         <published>2011-03-20T00:00:00+00:00</published>
-        <updated>2011-03-20T00:00:00+00:00</updated>
+        <updated>2018-12-09T00:00:00+00:00</updated>
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/tournament-seeding-placement/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/tournament-seeding-placement/</id>
+        <link rel="alternate" href="https://clux.github.io/probes.zola/2011-03-20-tournament-seeding-placement/" type="text/html"/>
+        <id>https://clux.github.io/probes.zola/2011-03-20-tournament-seeding-placement/</id>
         
         <content type="html">&lt;p&gt;A particularly tricky problem with tournament scheduling that made it into &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;duel&quot;&gt;tournament&#x2F;duel&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 &lt;!--more--&gt;
@@ -993,8 +993,9 @@ Plotly.newPlot(document.getElementById(&#x27;probhistappdxfig&#x27;), data, layo
   &lt;span class=&quot;z-keyword z-control z-flow z-ts&quot;&gt;return&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-ts&quot;&gt;&lt;span class=&quot;z-support z-function z-ts&quot;&gt;parseInt&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;nr&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-comma z-ts&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-decimal z-ts&quot;&gt;2&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-bitwise z-shift z-ts&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;p&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-ts&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-object z-ts&quot;&gt;nr&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-accessor z-ts&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-variable z-property z-ts&quot;&gt;length&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-ts&quot;&gt;+&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-ts&quot;&gt;&lt;span class=&quot;z-support z-constant z-math z-ts&quot;&gt;Math&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-accessor z-ts&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-math z-ts&quot;&gt;pow&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric z-decimal z-ts&quot;&gt;2&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-comma z-ts&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;p&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-ts&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-readwrite z-ts&quot;&gt;k&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-ts&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-decimal z-ts&quot;&gt;1&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-brace z-round z-ts&quot;&gt;)&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-statement z-ts&quot;&gt;;&lt;&#x2F;span&gt;
 &lt;span class=&quot;z-punctuation z-definition z-block z-ts&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-statement z-ts&quot;&gt;;&lt;&#x2F;span&gt;
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;Still and magical and confusing to everyone as ever.&lt;&#x2F;p&gt;
-&lt;p&gt;Clearly, there&#x27;s probably a more elegant method to be deduced. The method here is just emulating the pattern we see in the binary representation after all. Still, funny what you can do with strings and patterns.&lt;&#x2F;p&gt;
+&lt;p&gt;Still as &lt;strong&gt;confusing&lt;&#x2F;strong&gt; (if it wasn&#x27;t for this accompanying blog post).&lt;&#x2F;p&gt;
+&lt;p&gt;There&#x27;s probably a more elegant method to be deduced.
+The method here is just emulating the pattern we see in the binary representation after all. Still, funny what you can do with strings and patterns.&lt;&#x2F;p&gt;
 </content>
         
     </entry>
@@ -1005,8 +1006,8 @@ Plotly.newPlot(document.getElementById(&#x27;probhistappdxfig&#x27;), data, layo
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/vault-of-therayne/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/vault-of-therayne/</id>
+        <link rel="alternate" href="https://clux.github.io/probes.zola/2006-08-09-vault-of-therayne/" type="text/html"/>
+        <id>https://clux.github.io/probes.zola/2006-08-09-vault-of-therayne/</id>
         
         <summary type="html">&lt;p&gt;An easter egg and puzzle solution for &lt;code&gt;Dungeon Siege 2 Broken World&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
 </summary>
