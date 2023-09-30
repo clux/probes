@@ -4,7 +4,7 @@
     <link href="https://clux.github.io/probes.zola/atom.xml" rel="self" type="application/atom+xml"/>
     <link href="https://clux.github.io/probes.zola"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2023-09-28T00:00:00+00:00</updated>
+    <updated>2023-09-30T00:00:00+00:00</updated>
     <id>https://clux.github.io/probes.zola/atom.xml</id>
     <entry xml:lang="en">
         <title>Running 2022</title>
@@ -3437,7 +3437,7 @@ While &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:
     <entry xml:lang="en">
         <title>Colemak Switchover</title>
         <published>2013-03-20T00:00:00+00:00</published>
-        <updated>2013-03-20T00:00:00+00:00</updated>
+        <updated>2023-09-30T00:00:00+00:00</updated>
         <author>
           <name>Unknown</name>
         </author>
@@ -3447,20 +3447,26 @@ While &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:
         <content type="html">&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;colemak.png&quot; alt=&quot;colemak finger layout&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
 &lt;!--more--&gt;
 &lt;p&gt;QWERTY sucks. You always learn it wrong, it&#x27;s optimized for not jamming your typewriters, and it&#x27;s got a bunch of history with shortcut keys.&lt;&#x2F;p&gt;
-&lt;p&gt;My brother started using &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Dvorak_Simplified_Keyboard#Comparison_of_the_QWERTY_and_Dvorak_layouts&quot;&gt;DVORAK&lt;&#x2F;a&gt;, (a similarly crazy layout) which aimed to reduce the number of awkward finger movements using analysis of language and layout experimentations. My problem with DVORAK is that they moved important shortcut keys like X, C, W, Q, S and T so far away from left CTRL that the benefit disappeared. That was a deal-breaker.&lt;&#x2F;p&gt;
-&lt;p&gt;Brothar was on the other hand taunting me with his DVORAK wpm (a huge improvement on his dyslexic QWERTY speed), and while I wanted to change, my attachment to passwords kept me out for a bit. Eventually, I figured out that you can bind Alt-Shift (in both Ubuntu and W7) to change back to QWERTY for passwords (because some of mine are ludicrously long and pattern based). Anyway, it was a triumph. Albeit hard initially, After two months, I caught up with my old QWERTY speed, but it feels much more effortless. Also, I get the added bonus of annoying everyone who wants to type on my computer to show off their skills. They will type in a few cool commands with their complete control of QWERTY, but it will of course come out as gibberish, soothing me greatly.&lt;&#x2F;p&gt;
+&lt;p&gt;My brother started using &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Dvorak_Simplified_Keyboard#Comparison_of_the_QWERTY_and_Dvorak_layouts&quot;&gt;DVORAK&lt;&#x2F;a&gt; (a similarly unconventional layout) which aims to reduce the number of awkward finger movements using analysis of language and layout experimentations. My problem with DVORAK is that they moved important shortcut keys like &lt;code&gt;X&lt;&#x2F;code&gt;, &lt;code&gt;C&lt;&#x2F;code&gt;, &lt;code&gt;W&lt;&#x2F;code&gt;, &lt;code&gt;Q&lt;&#x2F;code&gt;, &lt;code&gt;S&lt;&#x2F;code&gt; and &lt;code&gt;T&lt;&#x2F;code&gt; so far away from left &lt;code&gt;CTRL&lt;&#x2F;code&gt; that the benefit disappeared. That was a deal-breaker. So while my brother was very happy with his new DVORAK wpm (that hugely improved on his actually dyslexic QWERTY speed), my attachment to passwords kept me hesitating.&lt;&#x2F;p&gt;
+&lt;p&gt;Eventually, I figured out that you can bind &lt;code&gt;Alt-Shift&lt;&#x2F;code&gt; (on WIN and Linux) to change back to QWERTY for pattern-based passwords. This was the missing ingredient that allowed a smooth migration.&lt;&#x2F;p&gt;
+&lt;p&gt;The change was hard initially, but after two months, I had caught up with my old QWERTY speed, and at that point everything felt effortless.&lt;&#x2F;p&gt;
+&lt;p&gt;So, what to expect? Take a &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;http:&#x2F;&#x2F;hi-games.net&#x2F;typing-test&#x2F;&quot;&gt;2 minute typing test&lt;&#x2F;a&gt;. I used to get around &lt;code&gt;85&lt;&#x2F;code&gt; before the switch after years and years of use. It took me 2 months to tie that, and now, 2 years after the switch, I have crossed the 100 average mark - and all my fingers are in use!&lt;&#x2F;p&gt;
+&lt;p&gt;The unusual choice never caused me any real problems, but my QWERTY speed obviouly suffered. The biggest downside is just the amount of time it takes for you hands to get used to it. If you are already typing badly on QWERTY, then go for it; kill two birds with one stone. You have to unlearn your current QWERTY anyway.&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Time Since Change&lt;&#x2F;th&gt;&lt;th&gt;Average Trial English Typing Speed&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;2w&lt;&#x2F;td&gt;&lt;td&gt;60 wpm&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;2mo&lt;&#x2F;td&gt;&lt;td&gt;80 wpm&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;6mo&lt;&#x2F;td&gt;&lt;td&gt;90 wpm&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;2y&lt;&#x2F;td&gt;&lt;td&gt;100 wpm&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;&lt;strong&gt;Records&lt;&#x2F;strong&gt;: 102wpm on the hi-games 2 minute typing test, 120wpm on typeracer. Nothing amazing, but decidedly very respectable.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;2023-update&quot;&gt;2023 Update&lt;&#x2F;h2&gt;
+&lt;p&gt;After more than a decade using it, I&#x27;m still very happy with it, and never had any RSI like symptomps despite lots of long evenings programming.&lt;&#x2F;p&gt;
+&lt;p&gt;Should you do this? Eh. Maybe. There are many yaks in the world, but I don&#x27;t regret shaving this. Maybe &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;workmanlayout.org&#x2F;&quot;&gt;Workman-P&lt;&#x2F;a&gt; would have been my choice had I changed today.&lt;&#x2F;p&gt;
+&lt;p&gt;Lastly, not to be underestimated is the added bonus of confusing everyone who tries to type on my computer. They will type in a few cool commands with their complete control of QWERTY, but it will of course come out as gibberish.&lt;&#x2F;p&gt;
+&lt;p&gt;This last quote was part of the original post, and would like to highlight that this is still true:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
 &lt;p&gt;I may not know a whole lot about debugging C yet, but at least I can use this really annoying keyboard layout.&lt;&#x2F;p&gt;
-&lt;p&gt;So, how good is it? Take the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;http:&#x2F;&#x2F;hi-games.net&#x2F;typing-test&#x2F;&quot;&gt;2 minute typing test&lt;&#x2F;a&gt;. I used to get around 85 before the switch after years and years of use. It took me 2 months to tie that, and now, 2 years after the switch, I have crossed the 100 average mark - and all my fingers are in use!&lt;&#x2F;p&gt;
-&lt;p&gt;It never caused me any problems except that my QWERTY speed is noticably worse (having to look down), but be warned, it takes a lot of time to get used to this. Mostly your hands need to unlearn QWERTY.&lt;&#x2F;p&gt;
-&lt;p&gt;Colemak Progress:&lt;&#x2F;p&gt;
-&lt;ul&gt;
-&lt;li&gt;~2 weeks:  60 wpm&lt;&#x2F;li&gt;
-&lt;li&gt;~2 months: 80 wpm&lt;&#x2F;li&gt;
-&lt;li&gt;~6 months: 90 wpm&lt;&#x2F;li&gt;
-&lt;li&gt;~2 years: 100 wpm&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;p&gt;Records: 102wpm on the hi-games 2 minute typing test, 120wpm on typeracer.&lt;&#x2F;p&gt;
-&lt;p&gt;Should you do this? Probably not. Is it cool? Yeah.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
 </content>
         
     </entry>
