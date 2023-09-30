@@ -13,8 +13,8 @@
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.dev/impersonating-kube-accounts/" type="text/html"/>
-        <id>https://clux.dev/impersonating-kube-accounts/</id>
+        <link rel="alternate" href="https://clux.dev/post/2019-03-31-impersonating-kube-accounts/" type="text/html"/>
+        <id>https://clux.dev/post/2019-03-31-impersonating-kube-accounts/</id>
         
         <content type="html">&lt;p&gt;Authenticating with large kubernetes clusters often risks you dealing with complicated provider logic and sometimes policies outside your control.&lt;&#x2F;p&gt;
 &lt;p&gt;While controllers and operators authenticate with service accounts directly, this is only true inside the cluster. That is, unless you can impersonate the service account from outside.&lt;&#x2F;p&gt;

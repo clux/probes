@@ -4,34 +4,10 @@
         <loc>https://clux.dev/</loc>
     </url>
     <url>
-        <loc>https://clux.dev/2006-08-09-vault-of-therayne/</loc>
-        <lastmod>2006-08-09</lastmod>
-    </url>
-    <url>
-        <loc>https://clux.dev/2011-03-20-tournament-seeding-placement/</loc>
-        <lastmod>2018-12-09</lastmod>
-    </url>
-    <url>
-        <loc>https://clux.dev/2022-04-12-baldurs-roll/</loc>
-        <lastmod>2022-04-12</lastmod>
-    </url>
-    <url>
-        <loc>https://clux.dev/2022-10-31-factober/</loc>
-        <lastmod>2022-10-30</lastmod>
-    </url>
-    <url>
         <loc>https://clux.dev/about/</loc>
     </url>
     <url>
-        <loc>https://clux.dev/antimagic-revisited/</loc>
-        <lastmod>2020-10-04</lastmod>
-    </url>
-    <url>
         <loc>https://clux.dev/archive/</loc>
-    </url>
-    <url>
-        <loc>https://clux.dev/campaign-concluded/</loc>
-        <lastmod>2021-12-05</lastmod>
     </url>
     <url>
         <loc>https://clux.dev/categories/</loc>
@@ -49,26 +25,6 @@
         <loc>https://clux.dev/categories/software/</loc>
     </url>
     <url>
-        <loc>https://clux.dev/colemak-switchover/</loc>
-        <lastmod>2023-09-30</lastmod>
-    </url>
-    <url>
-        <loc>https://clux.dev/impersonating-kube-accounts/</loc>
-        <lastmod>2019-03-31</lastmod>
-    </url>
-    <url>
-        <loc>https://clux.dev/kube-evolution/</loc>
-        <lastmod>2021-02-28</lastmod>
-    </url>
-    <url>
-        <loc>https://clux.dev/kubecon-la-log/</loc>
-        <lastmod>2021-11-06</lastmod>
-    </url>
-    <url>
-        <loc>https://clux.dev/lxde-experiment/</loc>
-        <lastmod>2019-07-28</lastmod>
-    </url>
-    <url>
         <loc>https://clux.dev/offline/</loc>
     </url>
     <url>
@@ -84,27 +40,82 @@
         <loc>https://clux.dev/page/4/</loc>
     </url>
     <url>
-        <loc>https://clux.dev/privacy/</loc>
+        <loc>https://clux.dev/post/</loc>
     </url>
     <url>
-        <loc>https://clux.dev/prometheus-ecosystem/</loc>
-        <lastmod>2022-01-11</lastmod>
+        <loc>https://clux.dev/post/2006-08-09-vault-of-therayne/</loc>
+        <lastmod>2006-08-09</lastmod>
     </url>
     <url>
-        <loc>https://clux.dev/running-year/</loc>
-        <lastmod>2022-12-07</lastmod>
+        <loc>https://clux.dev/post/2011-03-20-tournament-seeding-placement/</loc>
+        <lastmod>2018-12-09</lastmod>
     </url>
     <url>
-        <loc>https://clux.dev/rust-on-kubernetes/</loc>
+        <loc>https://clux.dev/post/2013-03-20-colemak-switchover/</loc>
+        <lastmod>2023-09-30</lastmod>
+    </url>
+    <url>
+        <loc>https://clux.dev/post/2019-01-17-three-way-charm/</loc>
+        <lastmod>2019-01-17</lastmod>
+    </url>
+    <url>
+        <loc>https://clux.dev/post/2019-03-31-impersonating-kube-accounts/</loc>
+        <lastmod>2019-03-31</lastmod>
+    </url>
+    <url>
+        <loc>https://clux.dev/post/2019-04-29-rust-on-kubernetes/</loc>
         <lastmod>2019-04-29</lastmod>
     </url>
     <url>
-        <loc>https://clux.dev/second-brain/</loc>
+        <loc>https://clux.dev/post/2019-06-04-towards-a-generic-kube-client/</loc>
+        <lastmod>2019-06-04</lastmod>
+    </url>
+    <url>
+        <loc>https://clux.dev/post/2019-07-28-lxde-experiment/</loc>
+        <lastmod>2019-07-28</lastmod>
+    </url>
+    <url>
+        <loc>https://clux.dev/post/2020-09-27-second-brain/</loc>
         <lastmod>2020-09-27</lastmod>
     </url>
     <url>
-        <loc>https://clux.dev/shipcat-retrospective/</loc>
+        <loc>https://clux.dev/post/2020-10-04-antimagic-revisited/</loc>
+        <lastmod>2020-10-04</lastmod>
+    </url>
+    <url>
+        <loc>https://clux.dev/post/2021-02-28-kube-evolution/</loc>
+        <lastmod>2021-02-28</lastmod>
+    </url>
+    <url>
+        <loc>https://clux.dev/post/2021-11-06-kubecon-la-log/</loc>
+        <lastmod>2021-11-06</lastmod>
+    </url>
+    <url>
+        <loc>https://clux.dev/post/2021-12-05-campaign-concluded/</loc>
+        <lastmod>2021-12-05</lastmod>
+    </url>
+    <url>
+        <loc>https://clux.dev/post/2022-01-11-prometheus-ecosystem/</loc>
+        <lastmod>2022-01-11</lastmod>
+    </url>
+    <url>
+        <loc>https://clux.dev/post/2022-04-12-baldurs-roll/</loc>
+        <lastmod>2022-04-12</lastmod>
+    </url>
+    <url>
+        <loc>https://clux.dev/post/2022-10-31-factober/</loc>
+        <lastmod>2022-10-30</lastmod>
+    </url>
+    <url>
+        <loc>https://clux.dev/post/2022-12-07-running-year/</loc>
+        <lastmod>2022-12-07</lastmod>
+    </url>
+    <url>
+        <loc>https://clux.dev/post/shipcat-retrospective/</loc>
         <lastmod>2023-09-28</lastmod>
+    </url>
+    <url>
+        <loc>https://clux.dev/privacy/</loc>
     </url>
     <url>
         <loc>https://clux.dev/tags/</loc>
@@ -144,13 +155,5 @@
     </url>
     <url>
         <loc>https://clux.dev/tags/zettelkasten/</loc>
-    </url>
-    <url>
-        <loc>https://clux.dev/three-way-charm/</loc>
-        <lastmod>2019-01-17</lastmod>
-    </url>
-    <url>
-        <loc>https://clux.dev/towards-a-generic-kube-client/</loc>
-        <lastmod>2019-06-04</lastmod>
     </url>
 </urlset>

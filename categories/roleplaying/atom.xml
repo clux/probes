@@ -13,8 +13,8 @@
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.dev/campaign-concluded/" type="text/html"/>
-        <id>https://clux.dev/campaign-concluded/</id>
+        <link rel="alternate" href="https://clux.dev/post/2021-12-05-campaign-concluded/" type="text/html"/>
+        <id>https://clux.dev/post/2021-12-05-campaign-concluded/</id>
         
         <content type="html">&lt;p&gt;After almost 4 years of running D&amp;amp;D almost every week, my big campaign concluded recently. This week marked our retrospective, and the release of several relics of the campaign. One in particular was the campaign repo - previously described as my &lt;a href=&quot;&#x2F;post&#x2F;2020-09-27-second-brain&quot;&gt;foaming campaign brain&lt;&#x2F;a&gt;. This is a brief post about the setup, and discovered pros&#x2F;cons associated with it.&lt;&#x2F;p&gt;
 &lt;!--more--&gt;
@@ -128,8 +128,8 @@
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.dev/antimagic-revisited/" type="text/html"/>
-        <id>https://clux.dev/antimagic-revisited/</id>
+        <link rel="alternate" href="https://clux.dev/post/2020-10-04-antimagic-revisited/" type="text/html"/>
+        <id>https://clux.dev/post/2020-10-04-antimagic-revisited/</id>
         
         <content type="html">&lt;p&gt;In 2018, we introduced the explosive &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Cube%20of%20Force&quot;&gt;Cube of Force&lt;&#x2F;a&gt; into our home campaign. We really did not expect it to cause us&#x2F;me that much grief at the time, but despite long canonicalisation meetings, our interpretation was not even internally consistent.&lt;&#x2F;p&gt;
 &lt;p&gt;At the time we dealt with this by nerfing Cube down into the ground gradually rolling out alternatives, but it&#x27;s time we dug into the concept of D&amp;amp;D &lt;code&gt;antimagic&lt;&#x2F;code&gt; properly.&lt;&#x2F;p&gt;
@@ -368,8 +368,8 @@ or a paladin based one:
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.dev/second-brain/" type="text/html"/>
-        <id>https://clux.dev/second-brain/</id>
+        <link rel="alternate" href="https://clux.dev/post/2020-09-27-second-brain/" type="text/html"/>
+        <id>https://clux.dev/post/2020-09-27-second-brain/</id>
         
         <content type="html">&lt;p&gt;After 2 years of running a D&amp;amp;D campaign almost every week, my note taking setup reached several breaking points. If you&#x27;re using &lt;code&gt;OneNote&lt;&#x2F;code&gt; or another online managed system for tracking notes&#x2F;cities&#x2F;npcs&#x2F;pcs&#x2F;events, but know how to use programmers tools like &lt;code&gt;git&lt;&#x2F;code&gt; and &lt;code&gt;code&lt;&#x2F;code&gt;; boy are there a world of advantages available to you.&lt;&#x2F;p&gt;
 &lt;p&gt;This is a story of my original note talking setup, a comparison between newer technologies, and how I am back to writing markdown in a folder.&lt;&#x2F;p&gt;
@@ -449,7 +449,7 @@ Whenever you add a note, make sure to link it to already existing notes. Avoid n
 &lt;h3 id=&quot;1-sublime-zk&quot;&gt;1. Sublime ZK&lt;&#x2F;h3&gt;
 &lt;p&gt;There is a &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;renerocksai&#x2F;sublime_zk&quot;&gt;zettelkasten plugin for sublime&lt;&#x2F;a&gt;, but it looks pretty &lt;strong&gt;abandoned&lt;&#x2F;strong&gt; at the moment. It also does not seem to let you build a graph of your links (one of the main selling points of Obsidian).&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;2-obsidian&quot;&gt;2. Obsidian&lt;&#x2F;h3&gt;
-&lt;p&gt;The article by &lt;a href=&quot;https:&#x2F;&#x2F;clux.dev&#x2F;second-brain&#x2F;joshwin.imprint.to&quot;&gt;joshwin&lt;&#x2F;a&gt; on how he &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;joshwin.imprint.to&#x2F;post&#x2F;how-i-use-obsidian-to-manage-my-goals-tasks-notes-and-software-development-knowledge-base&quot;&gt;uses obsidian to manage goals, tasks, notes, and more&lt;&#x2F;a&gt; is interesting. A pre-configured all-in-one application that is flexible and powerful enough to let you handle all these different categories. Well worth &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;obsidian.md&#x2F;&quot;&gt;looking into&lt;&#x2F;a&gt; &lt;strong&gt;if&lt;&#x2F;strong&gt; you don&#x27;t have a good editor already. Their &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;obsidian.md&#x2F;features&quot;&gt;feature list&lt;&#x2F;a&gt; is decent.&lt;&#x2F;p&gt;
+&lt;p&gt;The article by &lt;a href=&quot;https:&#x2F;&#x2F;clux.dev&#x2F;post&#x2F;2020-09-27-second-brain&#x2F;joshwin.imprint.to&quot;&gt;joshwin&lt;&#x2F;a&gt; on how he &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;joshwin.imprint.to&#x2F;post&#x2F;how-i-use-obsidian-to-manage-my-goals-tasks-notes-and-software-development-knowledge-base&quot;&gt;uses obsidian to manage goals, tasks, notes, and more&lt;&#x2F;a&gt; is interesting. A pre-configured all-in-one application that is flexible and powerful enough to let you handle all these different categories. Well worth &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;obsidian.md&#x2F;&quot;&gt;looking into&lt;&#x2F;a&gt; &lt;strong&gt;if&lt;&#x2F;strong&gt; you don&#x27;t have a good editor already. Their &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;obsidian.md&#x2F;features&quot;&gt;feature list&lt;&#x2F;a&gt; is decent.&lt;&#x2F;p&gt;
 &lt;p&gt;Personally, though, there are &lt;strong&gt;reasons why I&#x27;m not going for this&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
 &lt;h4 id=&quot;custom-editor&quot;&gt;Custom Editor&lt;&#x2F;h4&gt;
 &lt;p&gt;While it looks like you &lt;strong&gt;can&lt;&#x2F;strong&gt; customize this scope-limited editor close to what you fancy, it does mean that you will need to do go through all that yet another time. Having battled with Vim&#x2F;Sublime&#x2F;VSCode and various editors over the course of my life, there was a point where I have started feeling &lt;strong&gt;satisfied&lt;&#x2F;strong&gt; with what &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;dotfiles&quot;&gt;past-clux had already configured&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
@@ -504,8 +504,8 @@ Whenever you add a note, make sure to link it to already existing notes. Avoid n
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.dev/three-way-charm/" type="text/html"/>
-        <id>https://clux.dev/three-way-charm/</id>
+        <link rel="alternate" href="https://clux.dev/post/2019-01-17-three-way-charm/" type="text/html"/>
+        <id>https://clux.dev/post/2019-01-17-three-way-charm/</id>
         
         <content type="html">&lt;p&gt;Fighting a CR 13 Vampire at level 7 in total darkness is no easy feat.&lt;&#x2F;p&gt;
 &lt;!--more--&gt;

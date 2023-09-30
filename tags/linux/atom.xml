@@ -13,8 +13,8 @@
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.dev/lxde-experiment/" type="text/html"/>
-        <id>https://clux.dev/lxde-experiment/</id>
+        <link rel="alternate" href="https://clux.dev/post/2019-07-28-lxde-experiment/" type="text/html"/>
+        <id>https://clux.dev/post/2019-07-28-lxde-experiment/</id>
         
         <content type="html">&lt;p&gt;Despite having been a lazy Cinnamon customer since the Linux Mint days, recently some &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;old.reddit.com&#x2F;r&#x2F;linux_gaming&#x2F;comments&#x2F;cii545&#x2F;linux_input_lag_analysis_v26des_windows_10_1809&#x2F;&quot;&gt;interesting&lt;&#x2F;a&gt; benchmarks started &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;linux_gaming&#x2F;comments&#x2F;c0ly6b&#x2F;linux_input_lag_analysis7des_tested_windows&#x2F;&quot;&gt;surfacing&lt;&#x2F;a&gt; about input lag in various Window Mangagers, and this made me want to experiment a little.&lt;&#x2F;p&gt;
 &lt;p&gt;This is a log of stuff I needed to tweak to get &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;wiki.archlinux.org&#x2F;index.php&#x2F;LXDE&quot;&gt;LXDE&lt;&#x2F;a&gt; working well.&lt;&#x2F;p&gt;

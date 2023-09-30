@@ -1,0 +1,394 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://clux.dev/js/theme.min.js" integrity="sha384-pb++s6uBRKaQv+iAXpgA/H3IlpLZdO14tTwuCI7uXmz4aaZdByoCcM+6BhynMq/1"></script>
+  <link rel="stylesheet" href="https://clux.dev/abridge.css?h=d90d21948997e2e43412" />
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="base" content="https://clux.dev" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="theme-color" content="#333333" />
+  <meta name="msapplication-TileColor" content="#333333" />
+  <link rel="manifest" href="https://clux.dev/manifest.min.json" />
+  <link rel="mask-icon" href="https://clux.dev/safari-pinned-tab.svg" color="#ff9900" />
+  <link rel="icon" type="image/svg+xml" href="https://clux.dev/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://clux.dev/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://clux.dev/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://clux.dev/favicon-16x16.png" />
+  <link rel="alternate" type="application/atom+xml" title="probes Atom/RSS Feed" href="https://clux.dev/atom.xml" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <title>Factober 5400 | probes</title>
+  <meta name="author" content="clux" />
+  <meta name="copyright" content="probes" />
+  <meta name="description" content="Lessons from building a Factorio Megabase" />
+  <link rel="canonical" href="https://clux.dev/post/2022-10-31-factober/" />
+  <meta name="keywords" content="Kubernetes, Cloud, Rust, Theorycraft, Blog" />
+  <script defer src="https://clux.dev/js/abridge.min.js?h=52ceec8ac36fe25defe7" integrity="sha384-H1IaFs2MvG0ayi+Bq0d66Ih118nLUFESwUke1UH1uKzTiJwcgE8hXpONzAG3kqHj"></script>
+  <noscript><link rel="stylesheet" href="https://clux.dev/nojs.css" /></noscript>
+</head>
+<body>
+  <header>
+    <nav>
+      <div><h1><a href="https://clux.dev" title="probes"><font color="#74c7ec">P</font>robes ↝ cl<font color="#74c7ec">u</font>x</a></h1></div>
+      <div>
+
+        <div>
+          <ul><li><a class="s110" href="https://clux.dev/about/"> About </a></li><li><a class="s110" href="https://clux.dev/post/"> Posts </a></li><li><a class="s110" href="https://clux.dev/categories/"> Categories </a></li><li><a class="s110" href="https://clux.dev/tags/"> Tags </a></li><li><i type="reset" id="mode" class="js svgs adjust"></i></ul>
+        </div>
+
+        <div>
+          <div>
+            <form autocomplete=off class="js" name="goSearch" id="searchbox">
+              <div class="searchd">
+                <input id="searchinput" type="text" placeholder="Search" title="Search" />
+                <button type="submit" title="Search" class="svgs search"></button>
+              </div>
+              <div class="results"><div id="suggestions"></div></div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+  <main>
+    <article>
+      <h1><a href="https://clux.dev/post/2022-10-31-factober/">Factober 5400</a></h1>
+
+      <span class="s95"> clux <span class="rpad"></span> October 30, 2022 <span class="rpad"></span> [<a href="https://clux.dev/categories/gaming/">gaming</a>] #<a href="https://clux.dev/tags/factorio/">factorio</a> </span>
+
+    
+
+
+<p>Round two of escapism this year. This is a post for myself with various information as a conclusion to my recent fixation into designing an <a rel="noopener" target="_blank" href="https://factoriobox.1au.us/map/info/64a9a7e7a7c45dc3fc2c0ade02dee4c1d3eede36123460c3761a39d901587306">efficient and compact factorio megabase</a>.</p>
+<!--more-->
+<h2 id="plan">Plan</h2>
+<p>I keep coming back to this game about once a year. There is something very soothing about the type of play this game encourages. Playing factorio basically feels like being part of some parallel software project; there's builtin dashboards, circuit logic, sharable blueprints, benchmarks, optimizations, and all without the usual externalities of a large software org/project. And at this point for me, it's all about the optimization and theorycrafting.</p>
+<p>I set out with the <strong>following goal</strong>:</p>
+<blockquote>
+<p>produce <strong>2 full blue lanes of every science</strong> or 5400 SPM (Science Per Minute)</p>
+</blockquote>
+<p>Certain cheats were used to avoid the less challenging parts of the game:</p>
+<ul>
+<li><strong>spawning ore / resources</strong> (to minimize ore replacement and transport work)</li>
+<li><strong>speeding up the game</strong> (to simulate idling / expansion and simplify moving around)</li>
+<li><strong>disabling pollution</strong> (as the biters were contained and later defeated anyway)</li>
+</ul>
+<p>this lets us focus on the parts of the game that's more interesting to me; optimizing the factory without having to deal with stuff running out or setting up new chaotic trains all the time. It also enables us to optimize the medium sized factory pieces in complete isolation without suddenly being limited by ore or UPS (that's the equivalent part of managing a software project I am trying to avoid).</p>
+<blockquote>
+<p><a rel="noopener" target="_blank" href="https://www.reddit.com/r/technicalfactorio/comments/nlnsoq/20_x_1k_belt_cell_megabase_very_high_ups/">Copy-pasting</a> small <a rel="noopener" target="_blank" href="https://www.reddit.com/r/factorio/comments/v53qoe/high_ups_40k_cell_base/">cell bases</a> is <a rel="noopener" target="_blank" href="https://www.reddit.com/r/technicalfactorio/comments/ni2055/20k_rail_megafactory_that_runs_at_60_ups_on_my/">currently the leading way</a> to get the most productive bases without choking the game (i.e. maintaining 60 UPS).</p>
+</blockquote>
+<p>We set out to make each <strong>science build</strong> be entirely <strong>self-contained</strong> with just a single train station as an output, and we built upon an old starter base that had already achieved almost 200 mining productivity.</p>
+<h3 id="sideprojects">Sideprojects</h3>
+<p>But before we get into it, here are several other things we built along the way that (in true factorio style) did not in any way contribute to the main goal.</p>
+<h4 id="wildlife-preserve">Wildlife Preserve</h4>
+<p>..to justify all those military upgrades:</p>
+<p><img src="/imgs/factorio/wildlife-preserve.webp" alt="" /></p>
+<p>which we eventually eradicated in a comically inelegant way:</p>
+<div class="yv">
+    <iframe src="https://www.youtube-nocookie.com/embed/gFvTfAO5pJs" title="Youtube" class="yvi" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+</div>
+<h4 id="fishing-outpost">Fishing Outpost</h4>
+<p>A sustainable ecosystem catching 600 fish over its lifetime on its own power/robo network. Built right above the launchers:</p>
+<p><img src="/imgs/factorio/fishing-outpost.webp" alt="" /></p>
+<h4 id="wood-burner">Wood Burner</h4>
+<p>An automated train service to get rid of all that wood:</p>
+<div class="yv">
+    <iframe src="https://www.youtube-nocookie.com/embed/UqvxxgvbCaQ" title="Youtube" class="yvi" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+</div>
+<p>(normally triggers automatically, but there were no wood in the requester chests).</p>
+<h2 id="factory-designs">Factory Designs</h2>
+<h3 id="rails">Rails</h3>
+<p>When starting out with production/purple science I originally had 16 full blue belts of rails that fed into the purple science factories. Now we make rails inline in a single factory that feeds 4 purple science assemblers:</p>
+<p><img src="/imgs/factorio/purple-rail.webp" alt="" /></p>
+<p>I've not seen anyone else do this, but it works pretty well. It sushies sticks around two columns, and does a bit of crate magic to fit 6 input inserters, 3 input lanes, and 4 output inserters inside a 12 beaconed bounding box, but it actually works in the end.</p>
+<h3 id="green-circuit-plastic-row">Green Circuit / Plastic Row</h3>
+<p>One of the more optimized factory pieces. A single lane that produces a mostly full, mixed plastic/green blue belt.</p>
+<p><img src="/imgs/factorio/green-lane.webp" alt="" /></p>
+<p>It requires very precise spawning of coal, iron, copper so that we can have 2 chemical plants for plastic, and 4 smelters of iron + copper for a single 12 beaconed green factory. Some of the time all the furnaces are running:</p>
+<p><img src="/imgs/factorio/green-on.webp" alt="" /></p>
+<p>The green factory is what requires special attention here:</p>
+<p><img src="/imgs/factorio/green-car.webp" alt="" /></p>
+<p>One green factory alone can actually <a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#tab=graph&amp;data=1-1-19&amp;rate=s&amp;min=3&amp;belt=express-transport-belt&amp;mprod=800&amp;dm=p3&amp;db=s3&amp;dbc=24&amp;t=off&amp;items=electronic-circuit:f:1">ALMOST supply a half belt (22.4 out of 22.5)</a> if you can fully beacon it. It's just that doing this is very difficult because it takes more than a full blue belt of copper cables that it is very hard to supply it while making room for all the the iron and the outputs. This is why there's a car in between the beacons that serves as a chest.</p>
+<p>A car can be picked up from and inserted to at very strange angles at more than one length so it's great for fitting irregular gaps that doesn't work with chests (or would require more inserters). The game doesn't want you to do this though. It cannot be copy-pasted so you have to plant it manually. <a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=6mgQwzom0Xo">Doshington showcases the pain this type of design leads to</a> .</p>
+<p>You actually have to remove one middle beacon when the inserters starts running to trick the inserters to lock onto the car before planting the beacon down again (otherwise they want to grab the speed modules).</p>
+<p>The end result is that you can transfer 24 cables to the assembler through a one space gap on every swing cycle.</p>
+<h3 id="red-circuit-row">Red Circuit Row</h3>
+<p>Continuing onwards from the green / plastic row, is another inline copper smelter section that joins into a nearly full copper cable assembler, that sufficiently feeds 8 factories of red chips.
+The red chips are also inserter clocked so they all swing together which looks very satisfying, but I don't think it actually helps with UPS.</p>
+<p><img src="/imgs/factorio/8f-red.webp" alt="" /></p>
+<p>This joins onto the green setup so we can end up with these huge stacks for large red factories like this one for RCUs:</p>
+<p><img src="/imgs/factorio/red-rows-rcu.webp" alt="" /></p>
+<h3 id="low-density-row">Low Density Row</h3>
+<p>A <a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#tab=graph&amp;data=1-1-19&amp;rate=s&amp;min=3&amp;belt=express-transport-belt&amp;mprod=800&amp;dm=p3&amp;db=s3&amp;dbc=24&amp;t=off&amp;items=low-density-structure:f:10">full row of low density structures can consist of 10 fully beaconed factories supplied by two lanes of copper</a>. It needs a lot of belts, and manual input setup, plus a bunch of inserters to load onto the belt and back in from the belt, so we searched for a more direct setup (without sacrificing too much at the number of machines).</p>
+<p>The end setup has 20 smelters to 10 LDS assemblers, which is an extra 4 smelters than is needed, so we beacon them slightly less, but end up with 100% direct insertion on copper. The downside? Lots and lots of cars.</p>
+<p><img src="/imgs/factorio/lds-140cars.webp" alt="" /></p>
+<p>This <code>70/s</code> LDS factory for space science consists of 14 rows of 10 cars each, which is definitely a hassle to setup and filter.</p>
+<p>Ideally the equally sized steel would be lined up to face LDS on the input side (like they are in yellow science below), because here we mix belts first then use splitters later just to avoid a 14 lane wide thing through the base.</p>
+<p>Regardless, it looks different to everything else and is kind of beautiful at night:</p>
+<p><img src="/imgs/factorio/lds-at-night.webp" alt="" /></p>
+<p>Enjoying the <a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#tab=graph&amp;data=1-1-19&amp;rate=s&amp;min=3&amp;belt=express-transport-belt&amp;mprod=800&amp;dm=p3&amp;db=s3&amp;dbc=24&amp;t=off&amp;items=low-density-structure:f:10&amp;modules=copper-plate:;s3:20">efficiency of the ratios</a>. All the smelters are running (94% avg utilization).</p>
+<h3 id="labs">Labs</h3>
+<p><img src="/imgs/factorio/labs.webp" alt="" /></p>
+<p>Extracted this more conventional lab design to test it out <a rel="noopener" target="_blank" href="https://www.reddit.com/r/technicalfactorio/comments/y6c87j/ups_wars_6_labs/">UPS Wars 6: Labs</a> for this with <a rel="noopener" target="_blank" href="https://factoriobox.1au.us/map/info/e1f29dac1355d49bc4036233ddad222698b2c158b198f790a20c9f87d5773d6f">this entry</a>. Nothing remarkable, except perhaps for the long winding belts in different direction. It's slightly overscaled to ensure it will fully drain half belts.</p>
+<h2 id="trains">Trains</h2>
+<p>All of the science cities / space component cities unload onto one of two major unload depots.</p>
+<p>The main depots have robo networks to distribute nuclear fuel from a single supply train and they only stop at the hub (which is enough).</p>
+<h3 id="lab-depot">Lab Depot</h3>
+<p>Lab depot looks like a close-up of a complicated circuit:</p>
+<p><img src="/imgs/factorio/labs-cpu.webp" alt="" />
+<img src="/imgs/factorio/lab-rails.webp" alt="" /></p>
+<p>Very happy with this unload station. We pull exactly 4 half-belts and that can be perfectly filled via two inserters (with an 8 size override) at the cost of less buffer chests (that we don't need those). No splitters anywhere!</p>
+<h3 id="rocket-depot">Rocket Depot</h3>
+<p>Probably not the most efficient train unloading, but gotta get 4 wagons of stuff into 6 launchers via 2 inserters per launcher so it's tricky.</p>
+<p><img src="/imgs/factorio/space-science.webp" alt="" />
+<img src="/imgs/factorio/space-unload.webp" alt="" /></p>
+<p>Lot's of 2x3 splitters and an eventually emptying unloader with a priority line down to satellites... It's ultimately a little overscaled compared to the other sciences so a few seconds of semi-filled belts, while not particularly efficient, doesn't hurt production.</p>
+<h3 id="nuclear-fuel">Nuclear Fuel</h3>
+<p>A minimal fuel factory that supplies all trains (piggy-backing on any oil refinery because it uses basically nothing). It's almost never active because it only has destination stops available when the hubs have less than 200 items on the receiving chests (circuit network on the receiving side).</p>
+<p><img src="/imgs/factorio/nuclear-fuel.webp" alt="" /></p>
+<h2 id="science-cities">Science Cities</h2>
+<p>Quickly going through these with factorio calc links.</p>
+<h3 id="red"><a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#zip=dYrBCcMwDAC30c/gxn00LhpGsRUwjSxjKdDxmwxQDu5xXCUnfISLFSY5o4G0jgk2Phz5OyabBZ/Ubej0cGeQMbXiK0aogiNB3dBuF1ye4Kj7Ds1ZDOl0FfKmPVhp3AuHQeWTZ14jiNbz4P/T21Je4g8=">Red</a></h3>
+<p>Max beaconing reds would give an awkward ratio whereas doing pairs here gives us just enough with 12F each column.
+It would be possible to do 11F we did some at higher beaconing though.</p>
+<p><img src="/imgs/factorio/red.webp" alt="" /></p>
+<h3 id="green"><a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#zip=bU3LCsMwDPsbnxpI2zHWDn9MmrgjLC9sF/b5ay6DsSGhgySk4NThaE4swE4JBXIsOMNGSZFejUnEKLsirbKabkNuXAPerIWQsc0QNpSuHqcLKNZ9h6iUBVN9RNHojfhIxZNpzj9XXhcLuYYjkWAsQqzEq8wf3k8dr8P360/BDv/nezjZNw==">Green</a></h3>
+<p>Max beaconed smelters and an ad-hoc &lt;4 half belt output of green circuits, and only max beaconing the last pack factory to fill the lane.
+Again, max beaconing is just not enough with 12F per column pair, so doing pairs with one last max beaconed for 14Fx4. Zero splitters. More gear factories than necessary, but more direct insertion.</p>
+<p><img src="/imgs/factorio/green.webp" alt="" /></p>
+<p>both red + green on the map:</p>
+<p><img src="/imgs/factorio/redgreen.webp" alt="" /></p>
+<h3 id="military"><a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#zip=fYtJCgJBDEVvk5UFrS2iLTlMrEo3wZpIIg6nVzeCCPI/b/GHRE64Di8dQMkZDYpUHOHE2ZFvXdksuFK13tTDO4bStSXcDwOkgn2EdEJ7M+JmC45tnkGci2GRLE56DxaFa+TQKZ4nnQ4DlJYumQ27sEapS9B2qclCoYUeUnmy8ePji+vdahZl0vJvsihXSl/NyrxVDlfK+ffwBA==">Military</a></h3>
+<p>Annoyingly large for something that's off most of the time. Lots of clocked smelters, and the actual main ingredient factories are tiny.. Did a cool inline wall thing for each row for the actual science pack, and a big grenade factory, but lots of room for improvement.</p>
+<p><img src="/imgs/factorio/black.webp" alt="" /></p>
+<p>One fun thing here though; this factory <strong>shuts off its own power</strong> when the train station buffer chests is full <code>and</code> no trains are at the station (circuit network connected to the chests and the train station via a combinator). This saves on power, but not on UPS, sadly.</p>
+<h3 id="chemical"><a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#data=1-1-19&amp;rate=s&amp;min=3&amp;p=basic&amp;belt=express-transport-belt&amp;mprod=800&amp;dm=p3&amp;db=s3&amp;dbc=24&amp;t=off&amp;items=chemical-science-pack:r:90&amp;modules=pipe:s3:s3:s3:s3;s3:20,basic-oil-processing:;s3:32">Chemical</a></h3>
+<p>All ore/oil/reds + inputs for reds on the left through the green car lane setup, and then on the right inline sulfur (turns out one chemical plant can supply 45/s chemical science). Uses basic oil here because it's not the most demanding, but other peoples' comments suggest it's probably a wash performance wise.
+<img src="/imgs/factorio/blue.webp" alt="" />
+<img src="/imgs/factorio/blue2.webp" alt="" /></p>
+<h3 id="production"><a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#zip=TY1dagMxDIRvo6cVbLKhNC46jGNri6j/kJTQ3j5eSiBI6OGb0UyOHumEc66g0ZkMqjTa4MbFiX+Hshm6xmajq+OBoQ7tmT7XFXKlsUG+kR030fkCTn3fQZyr0eG7J5fe0JJwS4wjpp+g4bpCnVpho5gfcSoZuxScH2k2SvsOX7aF7bxw4eQqCfe7tpg4TPzaw3L6WF41D/E//I99dy0apbyDJw==">Production</a></h3>
+<p><img src="/imgs/factorio/purple-inputs.webp" alt="" /></p>
+<p>a huge chunk of the factory is literally just dealing with steel for rails and furnaces:
+<img src="/imgs/factorio/purple.webp" alt="" />
+which is a slightly overscaled (as can be seen from the few inactive furnaces), but it's a bit unevenly drawn from atm.
+<img src="/imgs/factorio/purple-steel.webp" alt="" /></p>
+<h3 id="utility"><a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#data=1-1-19&amp;rate=s&amp;min=3&amp;belt=express-transport-belt&amp;mprod=800&amp;dm=p3&amp;db=s3&amp;dbc=24&amp;t=off&amp;items=utility-science-pack:f:60&amp;modules=advanced-oil-processing:;s3:32,pipe:s3:s3:s3:s3">Utility</a></h3>
+<p>Slightly overscaled (60F) and undersupplied (can supply 59F). 57F ended up in an awkward 3 column build that needed to be split a lot. Best to stick to 4 columns if you are going to load onto 4 wagons. Oil is split into two advanced oil parts; inner one for lube/sulfuric and the outer just for petroleum for LDS.</p>
+<p><img src="/imgs/factorio/yellow.webp" alt="" /></p>
+<h3 id="space-science"><a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#zip=XU7vasMxCHybfEqga/qlGT6Mv8R1oebP1MAefymFsg2PEz3xzvCAm+D8dAUN4S3sujpBI1DXaofoJhyoNbuD2IC+p5BqMMGuc4iFx9qVBjO6coA+OMP54qpRU9CJmYLmSn33PdyTpOvJtVEWkwLmvNpitCFJ4ws+D+TA9WvRB2aro6f3LcSzFywoqS/mf+R1h2betoniC14Ho2zjTvzHQEa+k21B7Pn64nUSlfBM9vv2Bw==">Space Science</a></h3>
+<p>Can just be done with six rocket launchers running near constantly provided we have the ingredients.</p>
+<h4 id="rcu"><a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#zip=RY3NCsMwDIPfxqcG+nfoMvwwWeKOsCQOsTv2+EspY0jo8IGk4NThZLpu0JwSCuRYcIEHJUX61EYiRpsrUrmpOTHk2jjgNo4QMtYFwgPlTI/zCoq87xCVsmBj/yI1nos2TuYoUe1up22FzOFIJOjC2xVPwXBMps/6fhfL095lscs8/MlVPvE8DlKpV64N29HPXw==">RCU</a></h4>
+<p>Slightly overscaled because the speed module row looked awkward when optimal. Probably one of the most streamlined parts, but also most heavily abuses ore spawning (mixed lane inputs for both speed modules and blue processors).
+Blue build is from Stevetrov's cell base with a slight beaconing modification.
+Tried tons of blue builds for this and they're either all massive (like this), or they need double the amount of inserters for slightly more production, or they are smaller, but need so many belt inputs of plates that it's super awkward to plot down and less efficient. Didn't benchmark this for UPS, just went with gut feel based on smelter uptime, inserter numbers and inserter activity.</p>
+<p><img src="/imgs/factorio/rcu.webp" alt="" /></p>
+<h4 id="lds"><a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#data=1-1-19&amp;rate=s&amp;min=3&amp;belt=express-transport-belt&amp;mprod=800&amp;dm=p3&amp;db=s3&amp;dbc=24&amp;t=off&amp;items=low-density-structure:f:140&amp;modules=advanced-oil-processing:;s3:32">LDS</a></h4>
+<p>Supplies both rockets and satellites.
+<img src="/imgs/factorio/lds-140cars.webp" alt="" /></p>
+<h4 id="rf-cf-rf2"><a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#data=1-1-19&amp;rate=s&amp;min=3&amp;p=coal&amp;belt=express-transport-belt&amp;dm=p3&amp;db=s3&amp;dbc=24&amp;items=rocket-fuel:f:112&amp;modules=coal-liquefaction:;s3:32">RF CF</a> + <a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#data=1-1-19&amp;rate=s&amp;min=3&amp;belt=express-transport-belt&amp;dm=p3&amp;db=s3&amp;dbc=24&amp;items=rocket-fuel:f:108&amp;modules=advanced-oil-processing:;s3:32">RF2</a></h4>
+<p>Partially from coal liquefaction just because i wanted to learn how to do it well. It's probably not the most optimal choice since it needs lots of mixed coal belts to get the coal in that deep (yes, yes).</p>
+<p>CF build is undersupplied with 12 refineries, but doing it that way allows us not to copy paste the advanced oil one another time.
+It ends up being almost perfectly scaled for the rockets + satellites. Belts <strong>just</strong> start to fill before the next train arrives.</p>
+<p>All the solid fuel factories piggy-back on the ore clock for less swings.</p>
+<p><img src="/imgs/factorio/rocketfuel.webp" alt="" />
+<img src="/imgs/factorio/cf.webp" alt="" />
+Pretty happy about the beaconing line-up with the refineries and chemical plants:
+<img src="/imgs/factorio/cf-beaconing.webp" alt="" /></p>
+<h4 id="satellites"><a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#zip=XYtdigMxDINvk6cJpZMtS1N8GE/ihYDzU9uBHr8zD9vSog8hhJTREM5+19XV0iC4ARtqSW4jNqDHEFL1Jth0dDF/1C5XGMHlDfTwBOuPK0ZVQdGIec9R4vp7urja82RSSB3Zc7lP+sNkpbd40xDDurwfFF4s2hnFD2zEcd/9s2BKs05G6/LRC2aU2Cbzlz0B">Satellites</a></h4>
+<p>The final component. It's better to look at calculator links for <a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#zip=VYi9CsMwDAbfRpuHxl0S0MPIsQaDf4Q+BfL4bZZCueOGqxLCr/RlJ5dQBo02OZNxEbSTivZgvc0VSOEyYcsjPZvqYMtUC+PpydubWugAY3XxZDK1H37sNFa9uv5/5J8f">Solar</a> + <a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#data=1-1-19&amp;min=3&amp;p=basic&amp;belt=express-transport-belt&amp;dm=p3&amp;db=s3&amp;dbc=24&amp;items=accumulator:r:540&amp;modules=accumulator:s3:s3:s3:s3">Accumulators</a> + <a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#data=1-1-19&amp;min=3&amp;p=basic&amp;belt=express-transport-belt&amp;dm=p3&amp;db=s3&amp;dbc=24&amp;items=processing-unit:r:540">Processors</a> (the real output part of this chunk) because we leech LDS + RF from the trains.</p>
+<p><img src="/imgs/factorio/space-overview.webp" alt="" /></p>
+<p>It's a pretty ugly mess that was designed early, but it's clocked and beaconed everywhere. Oh, and there's only 5 inserters per sulfuric acid factory because cars.</p>
+<p><img src="/imgs/factorio/cars-for-sulfuric.webp" alt="" /></p>
+<h2 id="optimization">Optimization</h2>
+<p>We tried several major optimization strategies:</p>
+<ul>
+<li><a rel="noopener" target="_blank" href="https://www.reddit.com/r/technicalfactorio/comments/svbupq/how_to_make_a_fully_compressed_belt_via_inserter/">inserter clocking</a> on all ore smelters/batteries/red circuits/steel</li>
+<li>enabling <a rel="noopener" target="_blank" href="https://www.reddit.com/r/technicalfactorio/comments/mvn88v/over_20_actually_30_performance_gain_by_using/">large pages on linux</a></li>
+<li>inlining green chip production (i.e. less belts in favour of direct insertion)</li>
+<li>max beaconing almost everywhere</li>
+<li>reducing robo networks to only the essentials</li>
+</ul>
+<p>and in general downscaling and optimizing flow:</p>
+<ul>
+<li>minimizing all builds (as close to zero inactive machines as possible)</li>
+<li>reducing number of active inserters, belts, hops per item</li>
+</ul>
+<p>Beyond the linked posts, the following <a rel="noopener" target="_blank" href="https://www.reddit.com/r/technicalfactorio">technicalfactorio subreddit</a> posts, and <a rel="noopener" target="_blank" href="https://mulark.github.io/test-index.html">factorio benchmarks</a> were also helpful:</p>
+<ul>
+<li><a rel="noopener" target="_blank" href="https://www.reddit.com/r/technicalfactorio/comments/gels6c/20k_spm_hybrid_megabase/">bot/belt advice</a></li>
+<li><a rel="noopener" target="_blank" href="https://www.reddit.com/r/factorio/comments/qcvfaq/best_belt_ups_practices/hhj3whl/">splitters + belt advice</a></li>
+<li><a rel="noopener" target="_blank" href="https://mulark.github.io/tests/test-000101/test-000101.html">cars as chests benchmark</a></li>
+<li><a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=u-jswneg4YY">inserter minimal train unloaders</a></li>
+<li><a rel="noopener" target="_blank" href="https://mulark.github.io/tests/test-000030/test-000030.html">Trains waiting on <code>TIME PASSED &amp;&amp; Full/Empty</code> condition is more efficient than just <code>Full/Empty</code></a></li>
+<li><a rel="noopener" target="_blank" href="https://mulark.github.io/tests/test-000201/test-000201.html">Minimizing number of bots so their usage is close to 100% is the best</a></li>
+</ul>
+<p>We did not go to the full-out <strong>direct insertion</strong> lengths that the most efficient bases go to where everything is inlined (because imo it ends up looking chaotic and huge, with lots of factories ending up idle a lot of the time), but it was truly fascinating to see the amount of rabbit holes you can go down here to optimize.</p>
+<p>From the limited amount of testing I personally did. <strong>These helped</strong>:</p>
+<ul>
+<li>solid improvement by eliminating pollution (pre-measurements)</li>
+<li><code>~10%</code> improvement by using large pages</li>
+<li><code>~10%</code> improvement by clocking all smelters/batteries/solid fuel</li>
+<li><code>~10%</code> improvement by using clocked direct insertion steel and killing robo networks</li>
+<li><code>~1%</code> improvement by disabling the 300+ cars</li>
+<li><code>~0.5%</code> improvement by removing the standalone fishing base</li>
+<li><code>~1%</code> improvement by cutting 6x7x4 inserters at science unloading stations</li>
+</ul>
+<p>while these had <strong>no noticable improvements</strong>:</p>
+<ul>
+<li>refactoring circuit clocks to run of the same central clock</li>
+<li>eliminating biters (mine are generally passive except for artillery revenge attacks)</li>
+<li>eliminating grass/trees/fish/cliffs</li>
+<li>reducing visual quality of the game</li>
+<li>prepending time passed conditions to trains</li>
+</ul>
+<h2 id="initial-measurements">Initial Measurements</h2>
+<p>When doing this set of measurements the base looked like this:</p>
+<p><img src="/imgs/factorio/base.webp" alt="" /></p>
+<p>After all the optimizations above; we <a href="/imgs/factorio/time-nuclear.webp">measured</a> the following <strong>rough percentages of time</strong> of where the time was being spent in the game's <strong>update loop</strong>:</p>
+<table><thead><tr><th>Source</th><th>Percent</th><th>ms</th></tr></thead><tbody>
+<tr><td>Entity update</td><td>67%</td><td>4.45ms</td></tr>
+<tr><td>Elecric network</td><td>13%</td><td>0.85ms</td></tr>
+<tr><td>Heat manager</td><td>9%</td><td>0.62ms</td></tr>
+<tr><td>Transport lines</td><td>8%</td><td>0.57ms</td></tr>
+<tr><td>Circuit network</td><td>2%</td><td>0.18ms</td></tr>
+<tr><td>Trains</td><td>1%</td><td>0.06ms</td></tr>
+</tbody></table>
+<p>where the entities were <a href="/imgs/factorio/time-nuclear-entities.webp">broken down further</a> using <a rel="noopener" target="_blank" href="https://wiki.factorio.com/Debug_mode"><code>show-entity-time-usage</code></a>:</p>
+<table><thead><tr><th>Entity Class</th><th>Percent</th><th>ms</th></tr></thead><tbody>
+<tr><td><a rel="noopener" target="_blank" href="https://wiki.factorio.com/Prototype/Inserter">Inserter</a></td><td>46%</td><td>1.80ms</td></tr>
+<tr><td><a rel="noopener" target="_blank" href="https://wiki.factorio.com/Prototype/Generator">Generator</a></td><td>15%</td><td>0.60ms</td></tr>
+<tr><td><a rel="noopener" target="_blank" href="https://wiki.factorio.com/Prototype/Boiler">Boiler</a></td><td>11%</td><td>0.44ms</td></tr>
+<tr><td><a rel="noopener" target="_blank" href="https://wiki.factorio.com/Prototype/Furnace">Furnace</a></td><td>8%</td><td>0.31ms</td></tr>
+<tr><td><a rel="noopener" target="_blank" href="https://wiki.factorio.com/Prototype/AssemblingMachine">Assembler</a></td><td>7%</td><td>0.29ms</td></tr>
+<tr><td><a rel="noopener" target="_blank" href="https://wiki.factorio.com/Prototype/MiningDrill">Miners</a></td><td>5%</td><td>0.19ms</td></tr>
+<tr><td><a rel="noopener" target="_blank" href="https://wiki.factorio.com/Prototype/Lab">Labs</a></td><td>1%</td><td>0.04ms</td></tr>
+</tbody></table>
+<p>which illustrates why inserter-clocking can be so effective - as it's always such a big part of a factory - but it also highlights the next offender; <strong>nuclear</strong>.</p>
+<ul>
+<li>Heat manager (heat exchangers) uses 9% of the update time</li>
+<li>Generator + Boiler uses 26% of entity time (0.67=17% of the update time)</li>
+</ul>
+<p>This is actually a over a <strong>quarter of the time</strong>. Not what I had expected from a <strong>not-that-badly-designed</strong> nuclear setup (no steam storage, minimal exchanger network, optimal reactor efficiency bonuses). It's a lot more than <a rel="noopener" target="_blank" href="https://www.reddit.com/r/factorio/comments/jtzdli/some_notes_on_ups/">people publically estimate</a>, but to give them some credit, the percentage seen on my end would be amplified by already having optimized the hell out of all the inserters.</p>
+<blockquote>
+<p>We ran the base on two big nuclear reactors sites producing 33GW in total.</p>
+</blockquote>
+<p><img src="/imgs/factorio/nuclear.webp" alt="" />
+This reactor block gave us ~60% of the power output with <strong>120</strong> of the 204 total <strong>reactors</strong>.</p>
+<p>Opening up the save in creative mode and ripping out nuclear in favour of an infinite energy interface bumped UPS from 150 to over 200.. how would that translate if we used nearly a million solar panels instead? how much space would that take? how much time would that take...</p>
+<h3 id="solar-project">Solar Project</h3>
+<p>Well, I had already sunk this much time into it, so thought I'd spend a weekend on it. How fun could it be?</p>
+<p>Well, the answer is <strong>somewhat</strong>.. Provided you shut off the rest of the factory (so you can run 4-8x speed), and then run boost around with a bunch of rc'd spidertrons:</p>
+<div class="yv">
+    <iframe src="https://www.youtube-nocookie.com/embed/zhiEGn-Yx-g" title="Youtube" class="yvi" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+</div>
+<p>with some strategic landfill factories taking advantage of huge mining prod:</p>
+<p><img src="/imgs/factorio/landfills.webp" alt="" /></p>
+<p>Still, definitely a repetivite background task (that took two days..)</p>
+<p>..but how did it measure up?</p>
+<blockquote>
+<p>On gamespeed <code>5</code> we saw a <strong>near 40% improvement</strong> to UPS from <code>150</code> to <code>208</code>.</p>
+</blockquote>
+<p>Breaking the new measurements (<a href="/imgs/factorio/time-solar.webp">1</a>, <a href="/imgs/factorio/time-solar-entities.webp">2</a>) down, we see:</p>
+<table><thead><tr><th>Source</th><th>Percent</th><th>ms</th><th>Change</th></tr></thead><tbody>
+<tr><td><strong>Entity update</strong></td><td>71%</td><td>3.12ms</td><td><strong>-1.33ms</strong></td></tr>
+<tr><td>Transport lines</td><td>13%</td><td>0.57ms</td><td>0</td></tr>
+<tr><td><strong>Elecric network</strong></td><td>11%</td><td>0.48ms</td><td><strong>-0.38ms</strong></td></tr>
+<tr><td>Circuit network</td><td>4%</td><td>0.17ms</td><td>0</td></tr>
+<tr><td>Trains</td><td>1%</td><td>0.06ms</td><td>0</td></tr>
+<tr><td><strong>Heat manager</strong></td><td>0%</td><td>0.00ms</td><td><strong>-0.62ms</strong></td></tr>
+</tbody></table>
+<p>and looking into the entities:</p>
+<table><thead><tr><th>Entity Class</th><th>Percent</th><th>ms</th><th>Change</th></tr></thead><tbody>
+<tr><td><strong><a rel="noopener" target="_blank" href="https://wiki.factorio.com/Prototype/Inserter">Inserter</a></strong></td><td>72%</td><td>2.29ms</td><td><strong>-0.49ms</strong></td></tr>
+<tr><td><a rel="noopener" target="_blank" href="https://wiki.factorio.com/Prototype/Furnace">Furnace</a></td><td>11%</td><td>0.35ms</td><td>~0</td></tr>
+<tr><td><a rel="noopener" target="_blank" href="https://wiki.factorio.com/Prototype/AssemblingMachine">Assembler</a></td><td>9%</td><td>0.29ms</td><td>~0</td></tr>
+<tr><td><a rel="noopener" target="_blank" href="https://wiki.factorio.com/Prototype/MiningDrill">Miners</a></td><td>6%</td><td>0.19ms</td><td>0</td></tr>
+<tr><td><a rel="noopener" target="_blank" href="https://wiki.factorio.com/Prototype/Lab">Labs</a></td><td>1%</td><td>0.04ms</td><td>0</td></tr>
+<tr><td><strong><a rel="noopener" target="_blank" href="https://wiki.factorio.com/Prototype/Boiler">Boiler</a></strong></td><td>0%</td><td>0.01ms</td><td><strong>-0.43ms</strong></td></tr>
+<tr><td><strong><a rel="noopener" target="_blank" href="https://wiki.factorio.com/Prototype/Generator">Generator</a></strong></td><td>0%</td><td>0.00ms</td><td><strong>-0.60ms</strong></td></tr>
+</tbody></table>
+<p>(There's likely only precision to one decimal place here as we saw saw 0.04ms changes in furnace and assemblers despite having no actual changes in game. The numbers do have some variance on their own in the big base and we are just operating on screenshots.)</p>
+<p>The update loop itself saw a nearly equivalent improvement with 6.24ms to 4.53ms.</p>
+<h3 id="end-performance">End Performance</h3>
+<p>The UPS went from around <code>110</code> to <code>208</code> on average from redesigns, clocking and the mentioned tweaks, where a good chunk of this came from the base design itself. The <strong>most braindead change</strong> with the biggest improvement was switching to solar (with nearly 40% improvement at the time - your mileage will vary). The changes with the <strong>most performance gains by time investment</strong> was turning on large pages (5min job), and turning off + clearing pollution (1min job).</p>
+<p>In the end, the island now looks like this:</p>
+<p><img src="/imgs/factorio/end-base.webp" alt="" />
+i.e. largely the same, but without nuclear, and solar everywhere.</p>
+<p>how much solar? oh i'm sorry, that screenshot was cropped..</p>
+<p><img src="/imgs/factorio/end-solar.webp" alt="" /></p>
+<p>yeah. that's a lot more than expected. When designing solar, ensure you <a rel="noopener" target="_blank" href="https://forums.factorio.com/viewtopic.php?t=5594">overscale by 42%</a> to cover the night.</p>
+<h2 id="blueprints"><a rel="noopener" target="_blank" href="https://gist.github.com/clux/551835be6f2bf1f558cd661e03d2b64e">Blueprints</a></h2>
+<p>Exported these pieces:
+<a rel="noopener" target="_blank" href="https://gist.github.com/clux/551835be6f2bf1f558cd661e03d2b64e"><img src="/imgs/factorio/blueprints.webp" alt="factorio blueprints" /></a></p>
+<h3 id="commands">Commands</h3>
+<details><summary style="cursor:pointer"><b>Expand Commands</b></summary>
+<p>
+<p>One time commands:</p>
+<ul>
+<li><a rel="noopener" target="_blank" href="https://wiki.factorio.com/Console#Remove_all_pollution">remove pollution</a></li>
+<li>Set <code>/c game.speed=5</code> to try to run as fast as possible</li>
+</ul>
+<p>Spawn resources:</p>
+<pre data-lang="lua" class="language-lua z-code"><code class="language-lua" data-lang="lua"><span class="z-source z-lua"><span class="z-keyword z-operator z-arithmetic z-lua">/</span><span class="z-variable z-other z-lua">c</span> <span class="z-variable z-other z-lua">game</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">player</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">surface</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua"><span class="z-variable z-function z-lua">create_entity</span></span><span class="z-meta z-function-call z-arguments z-lua"><span class="z-meta z-group z-lua"><span class="z-punctuation z-section z-group z-begin z-lua">(</span><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-section z-block z-begin z-lua">{</span></span><span class="z-meta z-mapping z-key z-lua"><span class="z-string z-unquoted z-key z-lua">name</span></span><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-separator z-key-value z-lua">=</span></span><span class="z-meta z-mapping z-value z-lua"><span class="z-string z-quoted z-double z-lua"><span class="z-punctuation z-definition z-string z-begin z-lua">&quot;</span>crude-oil<span class="z-punctuation z-definition z-string z-end z-lua">&quot;</span></span></span><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-separator z-field z-lua">,</span> </span><span class="z-meta z-mapping z-key z-lua"><span class="z-string z-unquoted z-key z-lua">amount</span></span><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-separator z-key-value z-lua">=</span></span><span class="z-meta z-mapping z-value z-lua"><span class="z-constant z-numeric z-integer z-decimal z-lua">10000000</span></span><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-separator z-field z-lua">,</span> </span><span class="z-meta z-mapping z-key z-lua"><span class="z-string z-unquoted z-key z-lua">position</span></span><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-separator z-key-value z-lua">=</span></span><span class="z-meta z-mapping z-value z-lua"><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-section z-block z-begin z-lua">{</span><span class="z-variable z-other z-lua">game</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">player</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">position</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">x</span><span class="z-punctuation z-separator z-field z-lua">,</span> <span class="z-variable z-other z-lua">game</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">player</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">position</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">y</span><span class="z-punctuation z-section z-block z-end z-lua">}</span></span></span><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-section z-block z-end z-lua">}</span></span><span class="z-punctuation z-section z-group z-end z-lua">)</span></span></span>
+</span></code></pre>
+<p>Delete resources (of any kind) in a 10x10 square around you:</p>
+<pre data-lang="lua" class="language-lua z-code"><code class="language-lua" data-lang="lua"><span class="z-source z-lua"><span class="z-keyword z-operator z-arithmetic z-lua">/</span><span class="z-variable z-other z-lua">c</span> <span class="z-storage z-modifier z-lua">local</span> <span class="z-variable z-other z-lua">surface</span><span class="z-keyword z-operator z-assignment z-lua">=</span><span class="z-variable z-other z-lua">game</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">player</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">surface</span> <span class="z-storage z-modifier z-lua">local</span> <span class="z-variable z-other z-lua">size</span><span class="z-keyword z-operator z-assignment z-lua">=</span><span class="z-constant z-numeric z-integer z-decimal z-lua">10</span> <span class="z-storage z-modifier z-lua">local</span> <span class="z-variable z-other z-lua">pos</span><span class="z-keyword z-operator z-assignment z-lua">=</span><span class="z-variable z-other z-lua">game</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">player</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">position</span>  <span class="z-keyword z-control z-loop z-lua">for</span> <span class="z-variable z-other z-lua">_</span><span class="z-punctuation z-separator z-comma z-lua">,</span> <span class="z-variable z-other z-lua">e</span> <span class="z-keyword z-control z-loop z-lua">in</span> <span class="z-support z-function z-builtin z-lua">pairs</span><span class="z-meta z-function-call z-arguments z-lua"><span class="z-meta z-group z-lua"><span class="z-punctuation z-section z-group z-begin z-lua">(</span><span class="z-variable z-other z-lua">surface</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua"><span class="z-variable z-function z-lua">find_entities_filtered</span></span><span class="z-meta z-function-call z-arguments z-lua"><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-section z-block z-begin z-lua">{</span></span><span class="z-meta z-mapping z-key z-lua"><span class="z-string z-unquoted z-key z-lua">area</span></span><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-separator z-key-value z-lua">=</span></span><span class="z-meta z-mapping z-value z-lua"><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-section z-block z-begin z-lua">{</span><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-section z-block z-begin z-lua">{</span><span class="z-variable z-other z-lua">pos</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">x</span><span class="z-keyword z-operator z-arithmetic z-lua">-</span><span class="z-variable z-other z-lua">size</span><span class="z-punctuation z-separator z-field z-lua">,</span> <span class="z-variable z-other z-lua">pos</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">y</span><span class="z-keyword z-operator z-arithmetic z-lua">-</span><span class="z-variable z-other z-lua">size</span><span class="z-punctuation z-section z-block z-end z-lua">}</span></span><span class="z-punctuation z-separator z-field z-lua">,</span><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-section z-block z-begin z-lua">{</span><span class="z-variable z-other z-lua">pos</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">x</span><span class="z-keyword z-operator z-arithmetic z-lua">+</span><span class="z-variable z-other z-lua">size</span><span class="z-punctuation z-separator z-field z-lua">,</span> <span class="z-variable z-other z-lua">pos</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">y</span><span class="z-keyword z-operator z-arithmetic z-lua">+</span><span class="z-variable z-other z-lua">size</span><span class="z-punctuation z-section z-block z-end z-lua">}</span></span><span class="z-punctuation z-section z-block z-end z-lua">}</span></span></span><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-separator z-field z-lua">,</span> </span><span class="z-meta z-mapping z-key z-lua"><span class="z-string z-unquoted z-key z-lua">type</span></span><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-separator z-key-value z-lua">=</span></span><span class="z-meta z-mapping z-value z-lua"><span class="z-string z-quoted z-double z-lua"><span class="z-punctuation z-definition z-string z-begin z-lua">&quot;</span>resource<span class="z-punctuation z-definition z-string z-end z-lua">&quot;</span></span></span><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-section z-block z-end z-lua">}</span></span></span><span class="z-punctuation z-section z-group z-end z-lua">)</span></span></span>      <span class="z-meta z-block z-lua"><span class="z-keyword z-control z-lua">do</span> <span class="z-variable z-other z-lua">e</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua"><span class="z-variable z-function z-lua">destroy</span></span><span class="z-meta z-function-call z-arguments z-lua"><span class="z-meta z-group z-lua"><span class="z-punctuation z-section z-group z-begin z-lua">(</span><span class="z-punctuation z-section z-group z-end z-lua">)</span></span></span>  <span class="z-keyword z-control z-end z-lua">end</span></span>
+</span></code></pre>
+<p>Spawn a <a rel="noopener" target="_blank" href="https://www.reddit.com/r/factorio/comments/4akydl/how_to_generate_water_solved/d55udah/">2x4 water pond</a> below you:</p>
+<pre data-lang="lua" class="language-lua z-code"><code class="language-lua" data-lang="lua"><span class="z-source z-lua"><span class="z-keyword z-operator z-arithmetic z-lua">/</span><span class="z-variable z-other z-lua">c</span>
+<span class="z-storage z-modifier z-lua">local</span> <span class="z-variable z-other z-lua">waterTiles</span> <span class="z-keyword z-operator z-assignment z-lua">=</span> <span class="z-meta z-mapping z-lua"><span class="z-punctuation z-section z-block z-begin z-lua">{</span><span class="z-punctuation z-section z-block z-end z-lua">}</span></span>
+<span class="z-keyword z-control z-loop z-lua">for</span> <span class="z-variable z-other z-lua">y</span><span class="z-keyword z-operator z-assignment z-lua">=</span><span class="z-constant z-numeric z-integer z-decimal z-lua">2</span><span class="z-punctuation z-separator z-comma z-lua">,</span><span class="z-constant z-numeric z-integer z-decimal z-lua">4</span> <span class="z-meta z-block z-lua"><span class="z-keyword z-control z-lua">do</span>
+ <span class="z-keyword z-control z-loop z-lua">for</span> <span class="z-variable z-other z-lua">x</span><span class="z-keyword z-operator z-assignment z-lua">=</span><span class="z-keyword z-operator z-arithmetic z-lua">-</span><span class="z-constant z-numeric z-integer z-decimal z-lua">2</span><span class="z-punctuation z-separator z-comma z-lua">,</span><span class="z-constant z-numeric z-integer z-decimal z-lua">2</span> <span class="z-meta z-block z-lua"><span class="z-keyword z-control z-lua">do</span>
+  <span class="z-support z-constant z-builtin z-lua">table</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua"><span class="z-support z-function z-builtin z-lua">insert</span></span><span class="z-meta z-function-call z-arguments z-lua"><span class="z-meta z-group z-lua"><span class="z-punctuation z-section z-group z-begin z-lua">(</span><span class="z-variable z-other z-lua">waterTiles</span><span class="z-punctuation z-separator z-comma z-lua">,</span> <span class="z-meta z-mapping z-lua"><span class="z-punctuation z-section z-block z-begin z-lua">{</span></span><span class="z-meta z-mapping z-key z-lua"><span class="z-string z-unquoted z-key z-lua">name</span></span><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-separator z-key-value z-lua">=</span></span><span class="z-meta z-mapping z-value z-lua"><span class="z-string z-quoted z-double z-lua"><span class="z-punctuation z-definition z-string z-begin z-lua">&quot;</span>water<span class="z-punctuation z-definition z-string z-end z-lua">&quot;</span></span></span><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-separator z-field z-lua">,</span> </span><span class="z-meta z-mapping z-key z-lua"><span class="z-string z-unquoted z-key z-lua">position</span></span><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-separator z-key-value z-lua">=</span></span><span class="z-meta z-mapping z-value z-lua"><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-section z-block z-begin z-lua">{</span><span class="z-variable z-other z-lua">game</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">players</span><span class="z-meta z-brackets z-lua"><span class="z-punctuation z-section z-brackets z-begin z-lua">[</span><span class="z-constant z-numeric z-integer z-decimal z-lua">1</span><span class="z-punctuation z-section z-brackets z-end z-lua">]</span></span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">position</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">x</span><span class="z-keyword z-operator z-arithmetic z-lua">+</span><span class="z-variable z-other z-lua">x</span><span class="z-punctuation z-separator z-field z-lua">,</span> <span class="z-variable z-other z-lua">game</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">players</span><span class="z-meta z-brackets z-lua"><span class="z-punctuation z-section z-brackets z-begin z-lua">[</span><span class="z-constant z-numeric z-integer z-decimal z-lua">1</span><span class="z-punctuation z-section z-brackets z-end z-lua">]</span></span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">position</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">y</span><span class="z-keyword z-operator z-arithmetic z-lua">+</span><span class="z-variable z-other z-lua">y</span><span class="z-punctuation z-section z-block z-end z-lua">}</span></span></span><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-section z-block z-end z-lua">}</span></span><span class="z-punctuation z-section z-group z-end z-lua">)</span></span></span>
+ <span class="z-keyword z-control z-end z-lua">end</span></span>
+ <span class="z-variable z-other z-lua">game</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">players</span><span class="z-meta z-brackets z-lua"><span class="z-punctuation z-section z-brackets z-begin z-lua">[</span><span class="z-constant z-numeric z-integer z-decimal z-lua">1</span><span class="z-punctuation z-section z-brackets z-end z-lua">]</span></span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">surface</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua"><span class="z-variable z-function z-lua">set_tiles</span></span><span class="z-meta z-function-call z-arguments z-lua"><span class="z-meta z-group z-lua"><span class="z-punctuation z-section z-group z-begin z-lua">(</span><span class="z-variable z-other z-lua">waterTiles</span><span class="z-punctuation z-section z-group z-end z-lua">)</span></span></span>
+<span class="z-keyword z-control z-end z-lua">end</span></span>
+</span></code></pre>
+<p>Disable cars (see the <a rel="noopener" target="_blank" href="https://mulark.github.io/tests/test-000101/test-000101.html">cars as chests benchmark</a>):</p>
+<pre data-lang="lua" class="language-lua z-code"><code class="language-lua" data-lang="lua"><span class="z-source z-lua"> <span class="z-keyword z-operator z-arithmetic z-lua">/</span><span class="z-variable z-other z-lua">c</span> <span class="z-keyword z-control z-loop z-lua">for</span> <span class="z-variable z-other z-lua">_</span><span class="z-punctuation z-separator z-comma z-lua">,</span> <span class="z-variable z-other z-lua">ent</span> <span class="z-keyword z-control z-loop z-lua">in</span> <span class="z-support z-function z-builtin z-lua">pairs</span><span class="z-meta z-function-call z-arguments z-lua"><span class="z-meta z-group z-lua"><span class="z-punctuation z-section z-group z-begin z-lua">(</span><span class="z-variable z-other z-lua">game</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">player</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">surface</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua"><span class="z-variable z-function z-lua">find_entities_filtered</span></span><span class="z-meta z-function-call z-arguments z-lua"><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-section z-block z-begin z-lua">{</span></span><span class="z-meta z-mapping z-key z-lua"><span class="z-string z-unquoted z-key z-lua">name</span></span><span class="z-meta z-mapping z-lua"> </span><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-separator z-key-value z-lua">=</span></span><span class="z-meta z-mapping z-value z-lua"> <span class="z-string z-quoted z-double z-lua"><span class="z-punctuation z-definition z-string z-begin z-lua">&quot;</span>car<span class="z-punctuation z-definition z-string z-end z-lua">&quot;</span></span></span><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-section z-block z-end z-lua">}</span></span></span><span class="z-punctuation z-section z-group z-end z-lua">)</span></span></span> <span class="z-meta z-block z-lua"><span class="z-keyword z-control z-lua">do</span> <span class="z-variable z-other z-lua">ent</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">active</span> <span class="z-keyword z-operator z-assignment z-lua">=</span> <span class="z-constant z-language z-boolean z-true z-lua">false</span> <span class="z-keyword z-control z-end z-lua">end</span></span>
+</span></code></pre>
+<h4 id="large-pages">Large pages</h4>
+<p>Install <a rel="noopener" target="_blank" href="https://archlinux.org/packages/community/x86_64/mimalloc/">mimalloc</a> and set start command on factorio via steam:</p>
+<pre class="z-code"><code><span class="z-text z-plain">LD_PRELOAD=/usr/lib/libmimalloc.so MIMALLOC_PAGE_RESET=0 MIMALLOC_LARGE_OS_PAGES=1 %command%
+</span></code></pre>
+<p>Settings are documented via <a rel="noopener" target="_blank" href="https://sid.ethz.ch/debian/mimalloc/mimalloc-2.0.1/docs/environment.html">mi-alloc</a>. Large pages makes the most difference, but huge pages also works well.</p>
+</p>
+</details>
+<h2 id="results">Results</h2>
+<p>In the end, all the optimizations meant we could run the 5400 SPM base at 210 UPS on my machine (i.e. the game managed to run the game at 3.5x real speed on average). With 20% productivity modules in labs, and that game speed scale, we effectively research ~23k science per minute, or 1.4 million science per hour.</p>
+<p>If you want to view it interactively or play it, you can download or view <a rel="noopener" target="_blank" href="https://factoriobox.1au.us/map/info/64a9a7e7a7c45dc3fc2c0ade02dee4c1d3eede36123460c3761a39d901587306">full base/save on factoriobox</a>.</p>
+
+      <nav>
+        <div>
+          <a href="https://clux.dev/post/2022-12-07-running-year/">&#8249; Running 2022</a>
+        </div>
+        <div>
+          <a href="https://clux.dev/post/2022-04-12-baldurs-roll/"> Baldur&#x27;s Gate: Multinomial Edition &#8250;</a>
+        </div>
+      </nav>
+    </article>
+  </main>
+  <footer>
+    <hr />
+    <div class="c">
+      <nav><div><a type="application/atom+xml" href="https://clux.dev/atom.xml" target="_blank" title="probes Atom/RSS Feed"><i type="Button" class="svg rss" title="probes Atom/RSS Feed"></i></a><a href="https://hachyderm.io/@clux" target="_blank" title="Mastodon" rel="me"><i type="Button" class="svg mastodon" title="Mastodon"></i></a><a href="https://www.linkedin.com/in/🗑-eirik-albrigtsen-b279863a/" target="_blank" title="LinkedIn"><i type="Button" class="svg linkedin" title="LinkedIn"></i></a><a href="https://github.com/clux/" target="_blank" title="Github"><i type="Button" class="svg github" title="Github"></i></a><a href="https://discord.com/tokio/" target="_blank" title="Discord"><i type="Button" class="svg discord" title="Discord"></i></a><a href="https://www.youtube.com/channel&#x2F;UCLpykMxkxuPUR9CciheipZg" target="_blank" title="YouTube"><i type="Button" class="svg youtube" title="YouTube"></i></a><a href="https://github.com/sponsors/clux/" target="_blank" title="GitHub Sponsor"><i type="Button" class="svg github-sponsor" title="GitHub Sponsor"></i></a></div></nav>
+      <nav>
+        <a class="s90" href="https://clux.dev/about/"> About </a>
+        <a class="s90" href="https://clux.dev/privacy/"> Privacy </a>
+        <a class="s90" href="https://clux.dev/sitemap.xml" target="_blank"> Sitemap </a>
+      </nav>
+      <p class="s90">Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a> & <a href="https://github.com/jieiku/abridge/" target="_blank">Abridge</a></p>
+    </div>
+  </footer><span class="topout">
+<span class="topleft"> </span><a href="#" class="top" title="Back to Top"><i class="svgs svgh angu"></i></a>
+</span>
+</body>
+</html>
