@@ -2,6 +2,7 @@
 date = "2019-06-04"
 description = "Shaving a yak for a client-rust"
 title = "A generic kubernetes client"
+slug = "2019-06-04-towards-a-generic-kube-client"
 
 [extra]
 toc = true

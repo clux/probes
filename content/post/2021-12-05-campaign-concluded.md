@@ -2,6 +2,7 @@
 date = "2021-12-05"
 description = "..and more reasons (not) to pay for Notion"
 title = "Campaign Conclusion & Brain Dump"
+slug = "2021-12-05-campaign-concluded"
 
 [extra]
 toc = true

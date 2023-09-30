@@ -2,6 +2,7 @@
 date = "2020-10-04"
 description = "A lesson from weakly typed magic items"
 title = "Antimagic and Force Cubes"
+slug = "2020-10-04-antimagic-revisited"
 
 [extra]
 toc = true

@@ -2,6 +2,7 @@
 date = "2022-12-07"
 description = "a year of irl track any%"
 title = "Running 2022"
+slug = "2022-12-07-running-year"
 
 [extra]
 toc = true

@@ -2,6 +2,7 @@
 date = "2019-03-31"
 description = "Bypassing complicated kubernetes identity providers"
 title = "Impersonating kube service accounts"
+slug = "2019-03-31-impersonating-kube-accounts"
 
 [extra]
 toc = true

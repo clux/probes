@@ -2,6 +2,7 @@
 date = "2022-01-11"
 description = "operating the stateful metrics system on kubernetes"
 title = "Prometheus Stack Review"
+slug = "2022-01-11-prometheus-ecosystem"
 
 [extra]
 toc = true

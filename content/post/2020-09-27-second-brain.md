@@ -2,6 +2,7 @@
 date = "2020-09-27"
 description = "Exploring second brain alternatives for campaign tracking"
 title = "Foaming Campaign Brain"
+slug = "2020-09-27-second-brain"
 
 [extra]
 toc = true

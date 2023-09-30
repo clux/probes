@@ -2,6 +2,7 @@
 date = "2021-02-28"
 description = "Tower, Hyper, Websockets."
 title = "Evolution of kube"
+slug = "2021-02-28-kube-evolution"
 
 [extra]
 toc = true

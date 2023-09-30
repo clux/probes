@@ -2,6 +2,7 @@
 date = "2019-07-28"
 description = "How useful is a power optimized WM these days?"
 title = "Trying out LXDE"
+slug = "2019-07-28-lxde-experiment"
 
 [extra]
 toc = true

@@ -2,6 +2,7 @@
 date = "2019-01-17"
 description = "Dealing with vampire shenanigans"
 title = "Three Way Charms"
+slug = "2019-01-17-three-way-charm"
 
 [taxonomies]
 categories = ["roleplaying"]

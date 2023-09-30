@@ -2,6 +2,7 @@
 date = "2013-03-20"
 description = "Making useless optimizations since 2013"
 title = "Colemak Switchover"
+slug = "2013-03-20-colemak-switchover"
 updated = "2023-09-30"
 
 [taxonomies]

@@ -2,6 +2,7 @@
 date = "2021-11-06"
 description = "Notes from a week of pandemic browsing CNCF youtube"
 title = "Talk log from KubeCon LA"
+slug = "2021-11-06-kubecon-la-log"
 
 [extra]
 

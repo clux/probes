@@ -2,6 +2,7 @@
 date = "2019-04-29"
 description = "Writing light weight cloud services without go"
 title = "Kubernetes operators in rust"
+slug = "2019-04-29-rust-on-kubernetes"
 
 [extra]
 toc = true
