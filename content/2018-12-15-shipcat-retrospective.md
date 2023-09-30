@@ -41,7 +41,7 @@ We didn't want engineers to have to learn everything about the following objects
 We needed validation. Admission control was new, didn't work well with gitops for fast client-side validation, and we just needed ci checks to prevent `master` from being broken.
 
 ## Helm
-One of the main abstraction attempts kubernetes has seen in this space is `helm`. A client side templating system (ignoring the bad server side part) that lets you abstract away much of the above into `charts` (a collection of `yaml` go templates) ready to be filled in with `helm values`; the more concise `yaml` that developers write directly.
+The most successful abstraction attempt Kubernetes had seen in this space; `helm`. A client side templating system (ignoring the bad server side part) that lets you abstract away much of the above into `charts` (a collection of `yaml` go templates) ready to be filled in with `helm values`; the more concise `yaml` that developers write directly.
 
 Simplistic usage of `helm` would involve having a `charts` folder:
 
@@ -98,8 +98,7 @@ This style of tool was not a revolutionary (nor clean) idea. At KubeCon Eu 2018 
 
 Note that this was our first take on adding Kubernetes validation in a world where gitops was in its infancy.
 
-The result is __babylon dependent__; it was heavily evolving and not general purpose.
-
+The result was __babylon dependent__, fast moving, and not fit for general purpose. The idea itself though..
 
 ## Manifests
 The user interaface we settled on were service-level manifests:
