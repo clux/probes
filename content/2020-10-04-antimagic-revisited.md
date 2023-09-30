@@ -39,13 +39,13 @@ It is a deadly combination when used with spells like [Hunger of Hadar](https://
 
 > `FC`: This spell can't be dispelled by Dispel Magic.
 
-![hadar](/imgs/antimagic/hadar.jpg)
+![hadar](/imgs/antimagic/hadar.webp)
 
-Scary prospect though it may be, you can wrangle yourself out of it with using; `[Plane Shift](https://roll20.net/compendium/dnd5e/Plane%20Shift#content) / [Teleport](https://roll20.net/compendium/dnd5e/Teleport#content) / [Misty Step](https://roll20.net/compendium/dnd5e/Misty%20Step#content) / [Dimension Door](https://roll20.net/compendium/dnd5e/Dimension%20Door#content) on a successful charisma check. All it takes is for one player to get outside and stop the mage from hurling spell effects through the boundary. It is also possible to [Disintegrate](https://roll20.net/compendium/dnd5e/Disintegrate) it.
+Scary prospect though it may be, you can wrangle yourself out of it with using; [Plane Shift](https://roll20.net/compendium/dnd5e/Plane%20Shift#content) / [Teleport](https://roll20.net/compendium/dnd5e/Teleport#content) / [Misty Step](https://roll20.net/compendium/dnd5e/Misty%20Step#content) / [Dimension Door](https://roll20.net/compendium/dnd5e/Dimension%20Door#content) on a successful charisma check. All it takes is for one player to get outside and stop the mage from hurling spell effects through the boundary. It is also possible to [Disintegrate](https://roll20.net/compendium/dnd5e/Disintegrate) it.
 
 Still it highlights a difference with other antimagic. The barrier is not perfect, and the "effect" of the spell _leeches through_ the barrier of the cage, which is perhaps somewhat confusing when you can sometimes interpret the spell effect as _matter_. This is irrelevant as we'll see later; while a spell caster is shaping the underlying magical fabric; the effect is a _magical energy_.
 
-> Don't invoke special relativity or thermodynamics. Magic does not have to obey `E=mc^2`.
+> Tip: Try to catch yourself if you are trying to invoke special relativity or thermodynamics in D&D. Physics is not tied to linguistic constructs.
 
 ## Antimagic Field
 [Antimagic Field](https://roll20.net/compendium/dnd5e/Antimagic%20Field) (or `AMF` for short), is an `8th level` sphere that disallows spells cast in/out __as well as__ magical effects leeching through! The reason for the great increase in cancellation power is justified by its higher level, careful wording, and its lack of entrapment (people can walk out of it unlike `FC`).
@@ -108,7 +108,7 @@ Additionally, the following phenomenons (that at some point required magic to br
 - A `Dragon` and its breath weapon
 - A `Beholder` and its `Antimagic Cone` (though it functions like `AMF`)
 
-![beholder ray](/imgs/antimagic/beholder_ray.jpg)
+![beholder ray](/imgs/antimagic/beholder_ray.webp)
 
 ### Artifacts
 Finally, `Artifacts` - magic items either unavailable to mortals, or long forgotten - are also unaffected by `AMF` by a special flavour text (presumably to prevent you from destroying them):
@@ -165,7 +165,7 @@ Your concentration is not broken by `AMF`, and there's nothing explicitly indica
 
 There's plenty of arguments to be made about how counterintuitive this is, but we don't really know anything about the nature of concentration. The [general consensus is that this works](https://rpg.stackexchange.com/questions/136280/what-happens-if-a-delayed-blast-fireball-detonates-inside-an-antimagic-field#:~:text=A%20Delayed%20Fireball%20in%20an%20Antimagic%20Field%20wouldn't%20detonate&text=While%20an%20effect%20is%20suppressed,is%20suppressed%2C%20meaning%20nothing%20happens.).
 
-![fireball](/imgs/antimagic/fireball.jpg)
+![fireball](/imgs/antimagic/fireball.webp)
 
 This is probably a good thing, because a similar case can be made against `DBF` inside [Time Stop](https://roll20.net/compendium/dnd5e/Time%20Stop#content); a [tradition](https://www.dndbeyond.com/forums/dungeons-dragons-discussion/rules-game-mechanics/10141-spells-time-stop-and-delayed-fireball-question) that is [too cool](https://www.reddit.com/r/dndnext/comments/f8jb53/how_would_time_stop_and_delayed_blast_fireball/) to [not work](https://thinkdm.org/2018/02/03/can-you-cast-multiple-delayed-blast-fireballs-during-time-stop/).
 
@@ -192,7 +192,7 @@ You can however, target it at the casting time with [Counterspell](https://www.d
 
 > I generally allow identification of the spell as it's being cast (so players can decide whether to counterspell) on a successful `Arcana` check (DC set by how exposed they have been to the spell).
 
-![counterspell](/imgs/antimagic/counterspell.png)
+![counterspell](/imgs/antimagic/counterspell.webp)
 
 An sidenote; `Wild Shape` mentioned earlier, while magical (and `AMF`-cancellable), is not a spell. Therefore, you cannot target it with `Counterspell`. [Arch druids are fun](https://www.reddit.com/r/dndnext/comments/e3c47t/wait_are_archdruids_are_immune_to_counterspell/).
 
@@ -208,7 +208,7 @@ Funny you should mention that. We were just about ready to venture into silly-te
 
 > You can `change the barrier's Effect by pressing a different face` of the cube and expending the requisite number of Charges, `resetting the Duration`. If your Movement causes the barrier to come into contact with a solid object that can't pass through the cube, you can't move any closer to that object as long as the barrier remains.
 
-![cube of force](/imgs/antimagic/cubeofforce.jpg)
+![cube of force](/imgs/antimagic/cubeofforce.webp)
 
 ### Face Effects:
 - **1** Gases, wind, and fog can't pass through the barrier.
@@ -260,7 +260,7 @@ The way we judged this in 2018 looks nothing like the above list, but our origin
 
 Just __don't use this item__. If you want this type of Legendary power, homebrew something using existing spells, but equally, __don't relieve a mage of antimagic concentration__. Here's an alternative - yet still very poweful - homebrew item:
 
-![globe of invulnerability](/imgs/antimagic/globe_invuln.jpg)
+![globe of invulnerability](/imgs/antimagic/globe_invuln.webp)
 
 ### `Umberlee's Upheaval`
 A legendary spell casters focus. You can cast the following spells once per day from the following list of spells. The sphere will maintain concentration on one spell at a time, until it has been made to drop it via a command word or if the item is dropped;
