@@ -247,7 +247,7 @@ Taking screenshots is pretty easy. Use `scrot` at an `x,y` coordinate followed b
 scrot -a "${STR_TOP_LEFT_X},${STR_TOP_LEFT_Y},49,17" -
 ```
 
-the output of this can be piped to a `.png` and passed to `compare` (part of `imagemagick` package), to compare values based on thresholds. However, this idea is actually overkill..
+the output of this can be piped to a `.webp`webpd passed to `compare` (part of `imagemagick` package), to compare values based on thresholds. However, this idea is actually overkill..
 
 The menu background is **static** and the resulting screenshots are actually **completely deterministic per value**, so we can instead just compare them by their hashes in one big `switch` (i.e. after piping to `md5`) and use that as our [roll table](https://github.com/Thhethssmuz/bg2ee-stat-roll/blob/5a023de83c468224aa999b5b3c60f224aae76b97/roll.sh#L130-L159), Excerpt:
 
@@ -388,7 +388,7 @@ So if we only look at human fighters or mages, we can stop here:
 
 However, what's up with the paladins and rangers? Time for a more painful math detour.
 
-![sweat mile cat math](/imgs/bg/amicat1-math.gif)
+![sweat mile cat math](/imgs/bg/amicat1-math.webp)
 
 ## Class Variance
 
