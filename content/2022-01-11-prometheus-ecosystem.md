@@ -27,7 +27,7 @@ You can debate the last point, but if you are optimizing for **user-editability*
 
 The TL;DR image. Open it up in a new tab, and cycle between if you want to read about specific components below.
 
-[![prometheus ecosystem architecture diagram](/imgs/prometheus/ecosystem-miro.jpg)](/imgs/prometheus/ecosystem-miro.jpg)
+[![prometheus ecosystem architecture diagram](/imgs/prometheus/ecosystem-miro.webp)](/imgs/prometheus/ecosystem-miro.webp)
 
 **Legend**:
 
@@ -108,7 +108,7 @@ Consider importing the [semi-standardised `prometheus.io/scrape`](https://github
 
 Alerts (the data in the special `ALERTS{alertstate="firing"}` metric) are sent from `prometheus` to `alertmanager`.
 
-![how alerts should look](/imgs/prometheus/eva-alert.gif)
+![how alerts should look](/imgs/prometheus/eva-alert.webp)
 
 At least, this is usually what happens. The communication **to** and **within** `alertmanager` is probably the most **annoying** parts of this entire architecture.
 
