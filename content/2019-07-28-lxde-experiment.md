@@ -71,11 +71,11 @@ This is kind of necessary for me for any terminals as I frequently overlay them 
 ## Main panel
 Needed about 15 minutes of configuration, and it ended up being stored in a 129 line file in `~/.config/lxpanel/LXDE/panels/panel` But ended up looking very nice. Transparency on the bar itself was a nice touch.
 
-![](/imgs/wms/lxde2-transparency.jpg)
+![](/imgs/wms/lxde2-transparency.webp)
 
 Though you can see that it gets confused if you have set a different background on each monitor, which is something you can do for some reason.
 
-![](/imgs/wms/lxde2-dual-bg.jpg)
+![](/imgs/wms/lxde2-dual-bg.webp)
 
 ## File manager
 Fine, could make it look like `nemo` in 5 minutes. You can see it in the background above. Had it's config in a tiny: `~/.config/pcmanfm/LXDE/pcmanfm.conf`.
