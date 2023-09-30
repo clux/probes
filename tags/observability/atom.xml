@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title>probes - observability</title>
-    <link href="https://clux.github.io/probes.zola/tags/observability/atom.xml" rel="self" type="application/atom+xml"/>
-    <link href="https://clux.github.io/probes.zola"/>
+    <link href="https://clux.dev/tags/observability/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://clux.dev"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
     <updated>2022-01-11T00:00:00+00:00</updated>
-    <id>https://clux.github.io/probes.zola/tags/observability/atom.xml</id>
+    <id>https://clux.dev/tags/observability/atom.xml</id>
     <entry xml:lang="en">
         <title>Prometheus Stack Review</title>
         <published>2022-01-11T00:00:00+00:00</published>
@@ -13,8 +13,8 @@
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/prometheus-ecosystem/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/prometheus-ecosystem/</id>
+        <link rel="alternate" href="https://clux.dev/prometheus-ecosystem/" type="text/html"/>
+        <id>https://clux.dev/prometheus-ecosystem/</id>
         
         <content type="html">&lt;p&gt;As part of my work life in the past year, a chunk of my day-to-day life has consisted of maintaining a &lt;code&gt;prometheus&lt;&#x2F;code&gt; installation on top of a sizable kubernetes cluster. My original feeling was &amp;quot;this is not that bad with &lt;code&gt;kube-prometheus-stack&lt;&#x2F;code&gt;&amp;quot;, but this sentiment has worsened somewhat with the realisation that more and more customizations and pieces were needed for large scale use. Half a year later (and 6+ charts deep), I thought I&#x27;d collect my thoughts on the ecosystem - from an operational perspective - with a rough architecture overview post.&lt;&#x2F;p&gt;
 &lt;!--more--&gt;

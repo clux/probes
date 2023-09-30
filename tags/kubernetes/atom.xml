@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title>probes - kubernetes</title>
-    <link href="https://clux.github.io/probes.zola/tags/kubernetes/atom.xml" rel="self" type="application/atom+xml"/>
-    <link href="https://clux.github.io/probes.zola"/>
+    <link href="https://clux.dev/tags/kubernetes/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://clux.dev"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
     <updated>2023-09-28T00:00:00+00:00</updated>
-    <id>https://clux.github.io/probes.zola/tags/kubernetes/atom.xml</id>
+    <id>https://clux.dev/tags/kubernetes/atom.xml</id>
     <entry xml:lang="en">
         <title>Prometheus Stack Review</title>
         <published>2022-01-11T00:00:00+00:00</published>
@@ -13,8 +13,8 @@
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/prometheus-ecosystem/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/prometheus-ecosystem/</id>
+        <link rel="alternate" href="https://clux.dev/prometheus-ecosystem/" type="text/html"/>
+        <id>https://clux.dev/prometheus-ecosystem/</id>
         
         <content type="html">&lt;p&gt;As part of my work life in the past year, a chunk of my day-to-day life has consisted of maintaining a &lt;code&gt;prometheus&lt;&#x2F;code&gt; installation on top of a sizable kubernetes cluster. My original feeling was &amp;quot;this is not that bad with &lt;code&gt;kube-prometheus-stack&lt;&#x2F;code&gt;&amp;quot;, but this sentiment has worsened somewhat with the realisation that more and more customizations and pieces were needed for large scale use. Half a year later (and 6+ charts deep), I thought I&#x27;d collect my thoughts on the ecosystem - from an operational perspective - with a rough architecture overview post.&lt;&#x2F;p&gt;
 &lt;!--more--&gt;
@@ -334,8 +334,8 @@ index e36496e..988d6a6 100644
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/kubecon-la-log/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/kubecon-la-log/</id>
+        <link rel="alternate" href="https://clux.dev/kubecon-la-log/" type="text/html"/>
+        <id>https://clux.dev/kubecon-la-log/</id>
         
         <content type="html">&lt;p&gt;First KubeCon in a while I haven&#x27;t done anything for (didn&#x27;t even buy an ticket). This post is largely for myself, but thought I&#x27;d put some thoughts here public. All talks referenced were recently published on the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;c&#x2F;cloudnativefdn&#x2F;videos&quot;&gt;CNCF youtube channel&lt;&#x2F;a&gt;, and the posts here are really just my notes (make of them what you will).&lt;&#x2F;p&gt;
 &lt;!--more--&gt;
@@ -562,7 +562,7 @@ They have dashboards.&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;kubernetes.io&#x2F;blog&#x2F;2021&#x2F;04&#x2F;06&#x2F;podsecuritypolicy-deprecation-past-present-and-future&#x2F;&quot;&gt;PSPs are going away&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;li&gt;&amp;quot;webassembly; neither web nor assembly&amp;quot;&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;code&gt;kustomize&lt;&#x2F;code&gt; still a thing.. now with generators + transformer pipelines via crds..&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;sieve-project&#x2F;sieve&quot;&gt;sieve-project&lt;&#x2F;a&gt; (from talk on &lt;a href=&quot;https:&#x2F;&#x2F;clux.github.io&#x2F;probes.zola&#x2F;kubecon-la-log&#x2F;(https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=6JnhjgOaZVk)&quot;&gt;kubernetes controller testing&lt;&#x2F;a&gt;) is interesting, but kind of insane sounding - hope we can make this nicer in kube..&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;sieve-project&#x2F;sieve&quot;&gt;sieve-project&lt;&#x2F;a&gt; (from talk on &lt;a href=&quot;https:&#x2F;&#x2F;clux.dev&#x2F;kubecon-la-log&#x2F;(https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=6JnhjgOaZVk)&quot;&gt;kubernetes controller testing&lt;&#x2F;a&gt;) is interesting, but kind of insane sounding - hope we can make this nicer in kube..&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=PKhQXjb6cB4&quot;&gt;people using linkerd&lt;&#x2F;a&gt; to solve the grpc load balancing problem&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 </content>
@@ -575,8 +575,8 @@ They have dashboards.&lt;&#x2F;li&gt;
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/kube-evolution/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/kube-evolution/</id>
+        <link rel="alternate" href="https://clux.dev/kube-evolution/" type="text/html"/>
+        <id>https://clux.dev/kube-evolution/</id>
         
         <content type="html">&lt;p&gt;After a quarter year of extensive improvements to &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;kube-rs&quot;&gt;kube&lt;&#x2F;a&gt;, it&#x27;s time to take a birds-eye view of what we got, and showcase some of the recent improvements. After all, it&#x27;s been about &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;kube-rs&#x2F;releases&quot;&gt;40 kube releases&lt;&#x2F;a&gt;, one major version of &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;tokio.rs&#x2F;&quot;&gt;tokio&lt;&#x2F;a&gt;, one &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;kube-rs&#x2F;graphs&#x2F;contributors&quot;&gt;extremely prolific new contributor&lt;&#x2F;a&gt;, and one &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=JmwnRcc2m2A&quot;&gt;kubecon talk&lt;&#x2F;a&gt; since my (very outdated) &lt;a href=&quot;&#x2F;post&#x2F;2019-06-04-towards-a-generic-kube-client&quot;&gt;last blog post&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 &lt;!--more--&gt;
@@ -693,8 +693,8 @@ It is now entirely concerned with the &lt;strong&gt;protocol&lt;&#x2F;strong&gt;
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/towards-a-generic-kube-client/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/towards-a-generic-kube-client/</id>
+        <link rel="alternate" href="https://clux.dev/towards-a-generic-kube-client/" type="text/html"/>
+        <id>https://clux.dev/towards-a-generic-kube-client/</id>
         
         <content type="html">&lt;p&gt;It&#x27;s been about a month since we released &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;kube-rs&quot;&gt;&lt;code&gt;kube&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, a new rust client library for kubernetes. We &lt;a href=&quot;&#x2F;post&#x2F;2019-04-29-rust-on-kubernetes&quot;&gt;covered&lt;&#x2F;a&gt; the initial release, but it was full of naive optimism and uncertainty. Would the generic setup work with native objects? How far would it extend? Non-standard objects? Patch handling? Event handling? Surely, it&#x27;d be a fools errand to write an entire client library?&lt;&#x2F;p&gt;
 &lt;p&gt;With the last &lt;code&gt;0.10.0&lt;&#x2F;code&gt; release, it&#x27;s now clear that the generic setup extends quite far. Unfortunately, this yak is hairy, even by yak standards.&lt;&#x2F;p&gt;
@@ -941,8 +941,8 @@ Consider checking for a more recent &lt;a href=&quot;&#x2F;tags&#x2F;kubernetes&
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/rust-on-kubernetes/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/rust-on-kubernetes/</id>
+        <link rel="alternate" href="https://clux.dev/rust-on-kubernetes/" type="text/html"/>
+        <id>https://clux.dev/rust-on-kubernetes/</id>
         
         <content type="html">&lt;p&gt;When interacting with kubernetes it&#x27;s generally been standard practice to use either &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;kubernetes&#x2F;client-go&quot;&gt;client-go&lt;&#x2F;a&gt; via go, or &lt;code&gt;kubectl&lt;&#x2F;code&gt; via shell.&lt;&#x2F;p&gt;
 &lt;p&gt;While these are good, non-controversial choices, the advancement of client libraries, and smarter openapi bindings, combined with the generics and procedural macros of &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.rust-lang.org&#x2F;&quot;&gt;rust-lang&lt;&#x2F;a&gt;, it&#x27;s now quite possible to write fully fledged kube operators, using slim rust kube clients.&lt;&#x2F;p&gt;
@@ -1149,8 +1149,8 @@ It might be a better fit long term, especially if we try to go down this route f
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/impersonating-kube-accounts/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/impersonating-kube-accounts/</id>
+        <link rel="alternate" href="https://clux.dev/impersonating-kube-accounts/" type="text/html"/>
+        <id>https://clux.dev/impersonating-kube-accounts/</id>
         
         <content type="html">&lt;p&gt;Authenticating with large kubernetes clusters often risks you dealing with complicated provider logic and sometimes policies outside your control.&lt;&#x2F;p&gt;
 &lt;p&gt;While controllers and operators authenticate with service accounts directly, this is only true inside the cluster. That is, unless you can impersonate the service account from outside.&lt;&#x2F;p&gt;
@@ -1245,8 +1245,8 @@ It might be a better fit long term, especially if we try to go down this route f
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/shipcat-retrospective/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/shipcat-retrospective/</id>
+        <link rel="alternate" href="https://clux.dev/shipcat-retrospective/" type="text/html"/>
+        <id>https://clux.dev/shipcat-retrospective/</id>
         
         <content type="html">&lt;p&gt;The now defunct unicorn startup &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.babylonhealth.com&#x2F;&quot;&gt;babylon health&lt;&#x2F;a&gt; needed to micrate about 50 microservices to Kubernetes in early 2018. At Kubernetes 1.8, supporting tooling was weak, and deadlines were quick.&lt;&#x2F;p&gt;
 &lt;p&gt;This is an historically updated post about &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;shipcat&quot;&gt;&lt;code&gt;shipcat&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, a standardisation tool written to control the declarative format and lifecycle of every microservice, and get safety quickly.&lt;&#x2F;p&gt;

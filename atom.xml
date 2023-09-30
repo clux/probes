@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title>probes</title>
-    <link href="https://clux.github.io/probes.zola/atom.xml" rel="self" type="application/atom+xml"/>
-    <link href="https://clux.github.io/probes.zola"/>
+    <link href="https://clux.dev/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://clux.dev"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
     <updated>2023-09-30T00:00:00+00:00</updated>
-    <id>https://clux.github.io/probes.zola/atom.xml</id>
+    <id>https://clux.dev/atom.xml</id>
     <entry xml:lang="en">
         <title>Running 2022</title>
         <published>2022-12-07T00:00:00+00:00</published>
@@ -13,8 +13,8 @@
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/running-year/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/running-year/</id>
+        <link rel="alternate" href="https://clux.dev/running-year/" type="text/html"/>
+        <id>https://clux.dev/running-year/</id>
         
         <content type="html">&lt;p&gt;In an attempt to torture my chair shaped husk of a body, I somehow ran almost 2500km this year. Mostly to see what would happen, but also to take part in the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.royalparkshalf.com&#x2F;&quot;&gt;Royal Parks Half Marathon in London&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 &lt;!--more--&gt;
@@ -140,8 +140,8 @@ Back in London, when my foot muscles started catching up, I was able to raise th
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/2022-10-31-factober/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/2022-10-31-factober/</id>
+        <link rel="alternate" href="https://clux.dev/2022-10-31-factober/" type="text/html"/>
+        <id>https://clux.dev/2022-10-31-factober/</id>
         
         <content type="html">&lt;p&gt;Round two of escapism this year. This is a post for myself with various information as a conclusion to my recent fixation into designing an &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;factoriobox.1au.us&#x2F;map&#x2F;info&#x2F;64a9a7e7a7c45dc3fc2c0ade02dee4c1d3eede36123460c3761a39d901587306&quot;&gt;efficient and compact factorio megabase&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 &lt;!--more--&gt;
@@ -451,8 +451,8 @@ i.e. largely the same, but without nuclear, and solar everywhere.&lt;&#x2F;p&gt;
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/2022-04-12-baldurs-roll/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/2022-04-12-baldurs-roll/</id>
+        <link rel="alternate" href="https://clux.dev/2022-04-12-baldurs-roll/" type="text/html"/>
+        <id>https://clux.dev/2022-04-12-baldurs-roll/</id>
         
         <content type="html">&lt;p&gt;In a &lt;del&gt;brief&lt;&#x2F;del&gt; bout of escapism from the world and responsibilities, I booted up &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;store.steampowered.com&#x2F;app&#x2F;257350&#x2F;Baldurs_Gate_II_Enhanced_Edition&#x2F;&quot;&gt;Baldur&#x27;s Gate 2&lt;&#x2F;a&gt; with my brother. It&#x27;s an amazing game, once you have figured out how to &lt;strong&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;old.reddit.com&#x2F;r&#x2F;baldursgate&#x2F;search?q=roll&amp;amp;restrict_sr=on&quot;&gt;roll&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt; your character.&lt;&#x2F;p&gt;
 &lt;p&gt;For today&#x27;s installment; rather than telling you about the game, let&#x27;s talk about the &lt;strong&gt;maths&lt;&#x2F;strong&gt; behind rolling a &lt;code&gt;2e&lt;&#x2F;code&gt; character for &lt;code&gt;BG2&lt;&#x2F;code&gt;, and then running simulations with weird &lt;code&gt;X&lt;&#x2F;code&gt;-based linux tools.&lt;&#x2F;p&gt;
@@ -1379,8 +1379,8 @@ Plotly.newPlot(document.getElementById(&#x27;probhistappdxfig&#x27;), data, layo
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/prometheus-ecosystem/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/prometheus-ecosystem/</id>
+        <link rel="alternate" href="https://clux.dev/prometheus-ecosystem/" type="text/html"/>
+        <id>https://clux.dev/prometheus-ecosystem/</id>
         
         <content type="html">&lt;p&gt;As part of my work life in the past year, a chunk of my day-to-day life has consisted of maintaining a &lt;code&gt;prometheus&lt;&#x2F;code&gt; installation on top of a sizable kubernetes cluster. My original feeling was &amp;quot;this is not that bad with &lt;code&gt;kube-prometheus-stack&lt;&#x2F;code&gt;&amp;quot;, but this sentiment has worsened somewhat with the realisation that more and more customizations and pieces were needed for large scale use. Half a year later (and 6+ charts deep), I thought I&#x27;d collect my thoughts on the ecosystem - from an operational perspective - with a rough architecture overview post.&lt;&#x2F;p&gt;
 &lt;!--more--&gt;
@@ -1700,8 +1700,8 @@ index e36496e..988d6a6 100644
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/campaign-concluded/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/campaign-concluded/</id>
+        <link rel="alternate" href="https://clux.dev/campaign-concluded/" type="text/html"/>
+        <id>https://clux.dev/campaign-concluded/</id>
         
         <content type="html">&lt;p&gt;After almost 4 years of running D&amp;amp;D almost every week, my big campaign concluded recently. This week marked our retrospective, and the release of several relics of the campaign. One in particular was the campaign repo - previously described as my &lt;a href=&quot;&#x2F;post&#x2F;2020-09-27-second-brain&quot;&gt;foaming campaign brain&lt;&#x2F;a&gt;. This is a brief post about the setup, and discovered pros&#x2F;cons associated with it.&lt;&#x2F;p&gt;
 &lt;!--more--&gt;
@@ -1815,8 +1815,8 @@ index e36496e..988d6a6 100644
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/kubecon-la-log/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/kubecon-la-log/</id>
+        <link rel="alternate" href="https://clux.dev/kubecon-la-log/" type="text/html"/>
+        <id>https://clux.dev/kubecon-la-log/</id>
         
         <content type="html">&lt;p&gt;First KubeCon in a while I haven&#x27;t done anything for (didn&#x27;t even buy an ticket). This post is largely for myself, but thought I&#x27;d put some thoughts here public. All talks referenced were recently published on the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;c&#x2F;cloudnativefdn&#x2F;videos&quot;&gt;CNCF youtube channel&lt;&#x2F;a&gt;, and the posts here are really just my notes (make of them what you will).&lt;&#x2F;p&gt;
 &lt;!--more--&gt;
@@ -2043,7 +2043,7 @@ They have dashboards.&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;kubernetes.io&#x2F;blog&#x2F;2021&#x2F;04&#x2F;06&#x2F;podsecuritypolicy-deprecation-past-present-and-future&#x2F;&quot;&gt;PSPs are going away&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
 &lt;li&gt;&amp;quot;webassembly; neither web nor assembly&amp;quot;&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;code&gt;kustomize&lt;&#x2F;code&gt; still a thing.. now with generators + transformer pipelines via crds..&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;sieve-project&#x2F;sieve&quot;&gt;sieve-project&lt;&#x2F;a&gt; (from talk on &lt;a href=&quot;https:&#x2F;&#x2F;clux.github.io&#x2F;probes.zola&#x2F;kubecon-la-log&#x2F;(https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=6JnhjgOaZVk)&quot;&gt;kubernetes controller testing&lt;&#x2F;a&gt;) is interesting, but kind of insane sounding - hope we can make this nicer in kube..&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;sieve-project&#x2F;sieve&quot;&gt;sieve-project&lt;&#x2F;a&gt; (from talk on &lt;a href=&quot;https:&#x2F;&#x2F;clux.dev&#x2F;kubecon-la-log&#x2F;(https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=6JnhjgOaZVk)&quot;&gt;kubernetes controller testing&lt;&#x2F;a&gt;) is interesting, but kind of insane sounding - hope we can make this nicer in kube..&lt;&#x2F;li&gt;
 &lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=PKhQXjb6cB4&quot;&gt;people using linkerd&lt;&#x2F;a&gt; to solve the grpc load balancing problem&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 </content>
@@ -2056,8 +2056,8 @@ They have dashboards.&lt;&#x2F;li&gt;
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/kube-evolution/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/kube-evolution/</id>
+        <link rel="alternate" href="https://clux.dev/kube-evolution/" type="text/html"/>
+        <id>https://clux.dev/kube-evolution/</id>
         
         <content type="html">&lt;p&gt;After a quarter year of extensive improvements to &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;kube-rs&quot;&gt;kube&lt;&#x2F;a&gt;, it&#x27;s time to take a birds-eye view of what we got, and showcase some of the recent improvements. After all, it&#x27;s been about &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;kube-rs&#x2F;releases&quot;&gt;40 kube releases&lt;&#x2F;a&gt;, one major version of &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;tokio.rs&#x2F;&quot;&gt;tokio&lt;&#x2F;a&gt;, one &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;kube-rs&#x2F;graphs&#x2F;contributors&quot;&gt;extremely prolific new contributor&lt;&#x2F;a&gt;, and one &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=JmwnRcc2m2A&quot;&gt;kubecon talk&lt;&#x2F;a&gt; since my (very outdated) &lt;a href=&quot;&#x2F;post&#x2F;2019-06-04-towards-a-generic-kube-client&quot;&gt;last blog post&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 &lt;!--more--&gt;
@@ -2174,8 +2174,8 @@ It is now entirely concerned with the &lt;strong&gt;protocol&lt;&#x2F;strong&gt;
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/antimagic-revisited/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/antimagic-revisited/</id>
+        <link rel="alternate" href="https://clux.dev/antimagic-revisited/" type="text/html"/>
+        <id>https://clux.dev/antimagic-revisited/</id>
         
         <content type="html">&lt;p&gt;In 2018, we introduced the explosive &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Cube%20of%20Force&quot;&gt;Cube of Force&lt;&#x2F;a&gt; into our home campaign. We really did not expect it to cause us&#x2F;me that much grief at the time, but despite long canonicalisation meetings, our interpretation was not even internally consistent.&lt;&#x2F;p&gt;
 &lt;p&gt;At the time we dealt with this by nerfing Cube down into the ground gradually rolling out alternatives, but it&#x27;s time we dug into the concept of D&amp;amp;D &lt;code&gt;antimagic&lt;&#x2F;code&gt; properly.&lt;&#x2F;p&gt;
@@ -2414,8 +2414,8 @@ or a paladin based one:
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/second-brain/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/second-brain/</id>
+        <link rel="alternate" href="https://clux.dev/second-brain/" type="text/html"/>
+        <id>https://clux.dev/second-brain/</id>
         
         <content type="html">&lt;p&gt;After 2 years of running a D&amp;amp;D campaign almost every week, my note taking setup reached several breaking points. If you&#x27;re using &lt;code&gt;OneNote&lt;&#x2F;code&gt; or another online managed system for tracking notes&#x2F;cities&#x2F;npcs&#x2F;pcs&#x2F;events, but know how to use programmers tools like &lt;code&gt;git&lt;&#x2F;code&gt; and &lt;code&gt;code&lt;&#x2F;code&gt;; boy are there a world of advantages available to you.&lt;&#x2F;p&gt;
 &lt;p&gt;This is a story of my original note talking setup, a comparison between newer technologies, and how I am back to writing markdown in a folder.&lt;&#x2F;p&gt;
@@ -2495,7 +2495,7 @@ Whenever you add a note, make sure to link it to already existing notes. Avoid n
 &lt;h3 id=&quot;1-sublime-zk&quot;&gt;1. Sublime ZK&lt;&#x2F;h3&gt;
 &lt;p&gt;There is a &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;renerocksai&#x2F;sublime_zk&quot;&gt;zettelkasten plugin for sublime&lt;&#x2F;a&gt;, but it looks pretty &lt;strong&gt;abandoned&lt;&#x2F;strong&gt; at the moment. It also does not seem to let you build a graph of your links (one of the main selling points of Obsidian).&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;2-obsidian&quot;&gt;2. Obsidian&lt;&#x2F;h3&gt;
-&lt;p&gt;The article by &lt;a href=&quot;https:&#x2F;&#x2F;clux.github.io&#x2F;probes.zola&#x2F;second-brain&#x2F;joshwin.imprint.to&quot;&gt;joshwin&lt;&#x2F;a&gt; on how he &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;joshwin.imprint.to&#x2F;post&#x2F;how-i-use-obsidian-to-manage-my-goals-tasks-notes-and-software-development-knowledge-base&quot;&gt;uses obsidian to manage goals, tasks, notes, and more&lt;&#x2F;a&gt; is interesting. A pre-configured all-in-one application that is flexible and powerful enough to let you handle all these different categories. Well worth &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;obsidian.md&#x2F;&quot;&gt;looking into&lt;&#x2F;a&gt; &lt;strong&gt;if&lt;&#x2F;strong&gt; you don&#x27;t have a good editor already. Their &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;obsidian.md&#x2F;features&quot;&gt;feature list&lt;&#x2F;a&gt; is decent.&lt;&#x2F;p&gt;
+&lt;p&gt;The article by &lt;a href=&quot;https:&#x2F;&#x2F;clux.dev&#x2F;second-brain&#x2F;joshwin.imprint.to&quot;&gt;joshwin&lt;&#x2F;a&gt; on how he &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;joshwin.imprint.to&#x2F;post&#x2F;how-i-use-obsidian-to-manage-my-goals-tasks-notes-and-software-development-knowledge-base&quot;&gt;uses obsidian to manage goals, tasks, notes, and more&lt;&#x2F;a&gt; is interesting. A pre-configured all-in-one application that is flexible and powerful enough to let you handle all these different categories. Well worth &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;obsidian.md&#x2F;&quot;&gt;looking into&lt;&#x2F;a&gt; &lt;strong&gt;if&lt;&#x2F;strong&gt; you don&#x27;t have a good editor already. Their &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;obsidian.md&#x2F;features&quot;&gt;feature list&lt;&#x2F;a&gt; is decent.&lt;&#x2F;p&gt;
 &lt;p&gt;Personally, though, there are &lt;strong&gt;reasons why I&#x27;m not going for this&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
 &lt;h4 id=&quot;custom-editor&quot;&gt;Custom Editor&lt;&#x2F;h4&gt;
 &lt;p&gt;While it looks like you &lt;strong&gt;can&lt;&#x2F;strong&gt; customize this scope-limited editor close to what you fancy, it does mean that you will need to do go through all that yet another time. Having battled with Vim&#x2F;Sublime&#x2F;VSCode and various editors over the course of my life, there was a point where I have started feeling &lt;strong&gt;satisfied&lt;&#x2F;strong&gt; with what &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;dotfiles&quot;&gt;past-clux had already configured&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
@@ -2550,8 +2550,8 @@ Whenever you add a note, make sure to link it to already existing notes. Avoid n
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/lxde-experiment/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/lxde-experiment/</id>
+        <link rel="alternate" href="https://clux.dev/lxde-experiment/" type="text/html"/>
+        <id>https://clux.dev/lxde-experiment/</id>
         
         <content type="html">&lt;p&gt;Despite having been a lazy Cinnamon customer since the Linux Mint days, recently some &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;old.reddit.com&#x2F;r&#x2F;linux_gaming&#x2F;comments&#x2F;cii545&#x2F;linux_input_lag_analysis_v26des_windows_10_1809&#x2F;&quot;&gt;interesting&lt;&#x2F;a&gt; benchmarks started &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;linux_gaming&#x2F;comments&#x2F;c0ly6b&#x2F;linux_input_lag_analysis7des_tested_windows&#x2F;&quot;&gt;surfacing&lt;&#x2F;a&gt; about input lag in various Window Mangagers, and this made me want to experiment a little.&lt;&#x2F;p&gt;
 &lt;p&gt;This is a log of stuff I needed to tweak to get &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;wiki.archlinux.org&#x2F;index.php&#x2F;LXDE&quot;&gt;LXDE&lt;&#x2F;a&gt; working well.&lt;&#x2F;p&gt;
@@ -2618,8 +2618,8 @@ Whenever you add a note, make sure to link it to already existing notes. Avoid n
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/towards-a-generic-kube-client/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/towards-a-generic-kube-client/</id>
+        <link rel="alternate" href="https://clux.dev/towards-a-generic-kube-client/" type="text/html"/>
+        <id>https://clux.dev/towards-a-generic-kube-client/</id>
         
         <content type="html">&lt;p&gt;It&#x27;s been about a month since we released &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;kube-rs&quot;&gt;&lt;code&gt;kube&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, a new rust client library for kubernetes. We &lt;a href=&quot;&#x2F;post&#x2F;2019-04-29-rust-on-kubernetes&quot;&gt;covered&lt;&#x2F;a&gt; the initial release, but it was full of naive optimism and uncertainty. Would the generic setup work with native objects? How far would it extend? Non-standard objects? Patch handling? Event handling? Surely, it&#x27;d be a fools errand to write an entire client library?&lt;&#x2F;p&gt;
 &lt;p&gt;With the last &lt;code&gt;0.10.0&lt;&#x2F;code&gt; release, it&#x27;s now clear that the generic setup extends quite far. Unfortunately, this yak is hairy, even by yak standards.&lt;&#x2F;p&gt;
@@ -2866,8 +2866,8 @@ Consider checking for a more recent &lt;a href=&quot;&#x2F;tags&#x2F;kubernetes&
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/rust-on-kubernetes/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/rust-on-kubernetes/</id>
+        <link rel="alternate" href="https://clux.dev/rust-on-kubernetes/" type="text/html"/>
+        <id>https://clux.dev/rust-on-kubernetes/</id>
         
         <content type="html">&lt;p&gt;When interacting with kubernetes it&#x27;s generally been standard practice to use either &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;kubernetes&#x2F;client-go&quot;&gt;client-go&lt;&#x2F;a&gt; via go, or &lt;code&gt;kubectl&lt;&#x2F;code&gt; via shell.&lt;&#x2F;p&gt;
 &lt;p&gt;While these are good, non-controversial choices, the advancement of client libraries, and smarter openapi bindings, combined with the generics and procedural macros of &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.rust-lang.org&#x2F;&quot;&gt;rust-lang&lt;&#x2F;a&gt;, it&#x27;s now quite possible to write fully fledged kube operators, using slim rust kube clients.&lt;&#x2F;p&gt;
@@ -3074,8 +3074,8 @@ It might be a better fit long term, especially if we try to go down this route f
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/impersonating-kube-accounts/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/impersonating-kube-accounts/</id>
+        <link rel="alternate" href="https://clux.dev/impersonating-kube-accounts/" type="text/html"/>
+        <id>https://clux.dev/impersonating-kube-accounts/</id>
         
         <content type="html">&lt;p&gt;Authenticating with large kubernetes clusters often risks you dealing with complicated provider logic and sometimes policies outside your control.&lt;&#x2F;p&gt;
 &lt;p&gt;While controllers and operators authenticate with service accounts directly, this is only true inside the cluster. That is, unless you can impersonate the service account from outside.&lt;&#x2F;p&gt;
@@ -3170,8 +3170,8 @@ It might be a better fit long term, especially if we try to go down this route f
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/three-way-charm/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/three-way-charm/</id>
+        <link rel="alternate" href="https://clux.dev/three-way-charm/" type="text/html"/>
+        <id>https://clux.dev/three-way-charm/</id>
         
         <content type="html">&lt;p&gt;Fighting a CR 13 Vampire at level 7 in total darkness is no easy feat.&lt;&#x2F;p&gt;
 &lt;!--more--&gt;
@@ -3230,8 +3230,8 @@ It might be a better fit long term, especially if we try to go down this route f
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/shipcat-retrospective/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/shipcat-retrospective/</id>
+        <link rel="alternate" href="https://clux.dev/shipcat-retrospective/" type="text/html"/>
+        <id>https://clux.dev/shipcat-retrospective/</id>
         
         <content type="html">&lt;p&gt;The now defunct unicorn startup &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.babylonhealth.com&#x2F;&quot;&gt;babylon health&lt;&#x2F;a&gt; needed to micrate about 50 microservices to Kubernetes in early 2018. At Kubernetes 1.8, supporting tooling was weak, and deadlines were quick.&lt;&#x2F;p&gt;
 &lt;p&gt;This is an historically updated post about &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;shipcat&quot;&gt;&lt;code&gt;shipcat&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;, a standardisation tool written to control the declarative format and lifecycle of every microservice, and get safety quickly.&lt;&#x2F;p&gt;
@@ -3441,8 +3441,8 @@ While &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/colemak-switchover/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/colemak-switchover/</id>
+        <link rel="alternate" href="https://clux.dev/colemak-switchover/" type="text/html"/>
+        <id>https://clux.dev/colemak-switchover/</id>
         
         <content type="html">&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;colemak.png&quot; alt=&quot;colemak finger layout&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
 &lt;!--more--&gt;
@@ -3477,8 +3477,8 @@ While &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/2011-03-20-tournament-seeding-placement/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/2011-03-20-tournament-seeding-placement/</id>
+        <link rel="alternate" href="https://clux.dev/2011-03-20-tournament-seeding-placement/" type="text/html"/>
+        <id>https://clux.dev/2011-03-20-tournament-seeding-placement/</id>
         
         <content type="html">&lt;p&gt;A particularly tricky problem with tournament scheduling that made it into &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;duel&quot;&gt;tournament&#x2F;duel&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 &lt;!--more--&gt;
@@ -3542,8 +3542,8 @@ The method here is just emulating the pattern we see in the binary representatio
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/2006-08-09-vault-of-therayne/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/2006-08-09-vault-of-therayne/</id>
+        <link rel="alternate" href="https://clux.dev/2006-08-09-vault-of-therayne/" type="text/html"/>
+        <id>https://clux.dev/2006-08-09-vault-of-therayne/</id>
         
         <summary type="html">&lt;p&gt;An easter egg and puzzle solution for &lt;code&gt;Dungeon Siege 2 Broken World&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
 </summary>

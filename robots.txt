@@ -1,5 +1,5 @@
 
-Sitemap: https://clux.github.io/probes.zola/sitemap.xml
+Sitemap: https://clux.dev/sitemap.xml
 User-Agent: *
 Allow: /
-Host: https://clux.github.io/probes.zola
+Host: https://clux.dev

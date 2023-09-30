@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title>probes - running</title>
-    <link href="https://clux.github.io/probes.zola/tags/running/atom.xml" rel="self" type="application/atom+xml"/>
-    <link href="https://clux.github.io/probes.zola"/>
+    <link href="https://clux.dev/tags/running/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://clux.dev"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
     <updated>2022-12-07T00:00:00+00:00</updated>
-    <id>https://clux.github.io/probes.zola/tags/running/atom.xml</id>
+    <id>https://clux.dev/tags/running/atom.xml</id>
     <entry xml:lang="en">
         <title>Running 2022</title>
         <published>2022-12-07T00:00:00+00:00</published>
@@ -13,8 +13,8 @@
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/running-year/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/running-year/</id>
+        <link rel="alternate" href="https://clux.dev/running-year/" type="text/html"/>
+        <id>https://clux.dev/running-year/</id>
         
         <content type="html">&lt;p&gt;In an attempt to torture my chair shaped husk of a body, I somehow ran almost 2500km this year. Mostly to see what would happen, but also to take part in the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.royalparkshalf.com&#x2F;&quot;&gt;Royal Parks Half Marathon in London&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 &lt;!--more--&gt;

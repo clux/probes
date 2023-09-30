@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title>probes - bash</title>
-    <link href="https://clux.github.io/probes.zola/tags/bash/atom.xml" rel="self" type="application/atom+xml"/>
-    <link href="https://clux.github.io/probes.zola"/>
+    <link href="https://clux.dev/tags/bash/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://clux.dev"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
     <updated>2019-03-31T00:00:00+00:00</updated>
-    <id>https://clux.github.io/probes.zola/tags/bash/atom.xml</id>
+    <id>https://clux.dev/tags/bash/atom.xml</id>
     <entry xml:lang="en">
         <title>Impersonating kube service accounts</title>
         <published>2019-03-31T00:00:00+00:00</published>
@@ -13,8 +13,8 @@
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/impersonating-kube-accounts/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/impersonating-kube-accounts/</id>
+        <link rel="alternate" href="https://clux.dev/impersonating-kube-accounts/" type="text/html"/>
+        <id>https://clux.dev/impersonating-kube-accounts/</id>
         
         <content type="html">&lt;p&gt;Authenticating with large kubernetes clusters often risks you dealing with complicated provider logic and sometimes policies outside your control.&lt;&#x2F;p&gt;
 &lt;p&gt;While controllers and operators authenticate with service accounts directly, this is only true inside the cluster. That is, unless you can impersonate the service account from outside.&lt;&#x2F;p&gt;

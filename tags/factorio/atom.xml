@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title>probes - factorio</title>
-    <link href="https://clux.github.io/probes.zola/tags/factorio/atom.xml" rel="self" type="application/atom+xml"/>
-    <link href="https://clux.github.io/probes.zola"/>
+    <link href="https://clux.dev/tags/factorio/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://clux.dev"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
     <updated>2022-10-30T00:00:00+00:00</updated>
-    <id>https://clux.github.io/probes.zola/tags/factorio/atom.xml</id>
+    <id>https://clux.dev/tags/factorio/atom.xml</id>
     <entry xml:lang="en">
         <title>Factober 5400</title>
         <published>2022-10-30T00:00:00+00:00</published>
@@ -13,8 +13,8 @@
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://clux.github.io/probes.zola/2022-10-31-factober/" type="text/html"/>
-        <id>https://clux.github.io/probes.zola/2022-10-31-factober/</id>
+        <link rel="alternate" href="https://clux.dev/2022-10-31-factober/" type="text/html"/>
+        <id>https://clux.dev/2022-10-31-factober/</id>
         
         <content type="html">&lt;p&gt;Round two of escapism this year. This is a post for myself with various information as a conclusion to my recent fixation into designing an &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;factoriobox.1au.us&#x2F;map&#x2F;info&#x2F;64a9a7e7a7c45dc3fc2c0ade02dee4c1d3eede36123460c3761a39d901587306&quot;&gt;efficient and compact factorio megabase&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 &lt;!--more--&gt;
