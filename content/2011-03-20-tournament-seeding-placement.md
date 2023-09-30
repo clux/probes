@@ -24,7 +24,7 @@ The problem of how to order seeds into the tournament brackets seemed almost a b
 
 
 ## Intro
-![System from BlizzCon (n=3)](/imgs/seeding/blizzcon_single_duel_8p.jpg)
+![System from BlizzCon (n=3)](/imgs/seeding/blizzcon_single_duel_8p.webp)
 
 The seeding is the correspondence $\{p \mid player\} \leftrightarrow \{1,2,\ldots,2^n\}$ where the number $k(p)\in\{1,2,\ldots,2^n\}$ is the estimated ranking for player $p$, i.e. player $p$ is expected to beat player $q$ if and only if $k(p) > k(q)$. The main problem is how to sort the players in the first round so that the the best players meet as late as possible (depending on their skill) in the tournament. The image below illustrates this for $2^3$ players. Formally we say:
 
@@ -35,7 +35,7 @@ If there are $2^n$ players in the tournament then the ordering is _proper_ if th
 * In each round the sum of the seeds in each match is constant.
 *  The even seed in each match is placed at the bottom.
 
-![canonical n=3 bracket](/imgs/seeding/bracket8.gif)
+![canonical n=3 bracket](/imgs/seeding/bracket8.webp)
 
 It's a bit much to assume that seedings are perfect, but the seeding above needs these three conditions to generate the analogous binary tree in $n$ dimensions, so we will use them. Besides, condition 2 does sort of provide some loose similar quality guarantee: the lower the sum, the most likely the better the games. The image above fills out what will happen in an eight player tournament if the seeding is perfect.
 
@@ -45,11 +45,11 @@ Turns out the key was to look at the match numbers $1,\ldots,2^{n-1}$ by orderin
 
 The system becomes clear first when we look at a full 32 player tournament i.e. $n=5$. In the interests of fully testing out the $\LaTeX$, I would ideally write this out, but tables are a bit of a pain in TeX, and I have this paper anyway.
 
-![canonical n=5 bracket](/imgs/seeding/32bracket.jpg)
+![canonical n=5 bracket](/imgs/seeding/32bracket.webp)
 
 This is expanded uniquely using the three defined properties and the smaller bracket above. The match numbers in the first round are written on the left. Notice that the top players all follow diagonal paths when they reach vastly inferior players.
 
-![system for n=5](/imgs/seeding/16system.jpg)
+![system for n=5](/imgs/seeding/16system.webp)
 
 The system comes from decomposing the match number $i$ as $i=2^k + l$ where $k = \lfloor \log_2{i} \rfloor$. If we write the even seed as powers of two then they display a binary counting system going up between match numbers that are powers of two. In fact, it's the binary representation of $i-2l$ that is required, so let $c_j = bit_j (i-2l)$. We can then verify the final function (sending match number to the even seed in that match).
 
