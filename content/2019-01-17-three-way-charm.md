@@ -14,7 +14,7 @@ Fighting a CR 13 Vampire at level 7 in total darkness is no easy feat.
 
 As part of an emergency backup adventure (`EBA`) in the middle of a long running D&D campaign, our largely chaotic party of misfits (save for our low int paladin whose deity has yet to be named in his backstory) was given the poem that leads them into (and helps them navigate) `White Plume Mountain`:
 
-![](/imgs/whiteplume/poem.jpg)
+![](/imgs/whiteplume/poem.webp)
 
 It's a classic dungeon, revamped for 5th edition in [Tales from the Yawning Portal](http://dnd.wizards.com/products/tabletop-games/rpg-products/tales-yawning-portal) and features three major pathways, boss fights, and major sentient weapons as the attracting carrots.
 
