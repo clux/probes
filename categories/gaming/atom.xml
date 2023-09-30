@@ -381,6 +381,7 @@ var trace = {
   opacity: 0.8,
   type: &quot;scatter&quot;,
 };
+var plotlycfg = {responsive: true};
 
 
 var data = [trace];
@@ -389,7 +390,7 @@ var layout = {
   xaxis: {title: &quot;Roll&quot;},
   yaxis: {title: &quot;Probability&quot;},
 };
-Plotly.newPlot(document.getElementById(&#x27;probhist&#x27;), data, layout);
+Plotly.newPlot(document.getElementById(&#x27;probhist&#x27;), data, layout, plotlycfg);
 
 &#x2F;&#x2F; extra: precise expectation and variance
 var expectation_orig = MAIN_PROBS.map((x,i) =&gt; (i+18)*x).reduce((acc, e) =&gt; acc+e, 0);
@@ -449,7 +450,7 @@ var layout = {
   xaxis: {title: &quot;Roll&quot;},
   yaxis: {title: &quot;Probability&quot;},
 };
-Plotly.newPlot(document.getElementById(&#x27;probhist2&#x27;), data, layout);
+Plotly.newPlot(document.getElementById(&#x27;probhist2&#x27;), data, layout, plotlycfg);
 &lt;&#x2F;script&gt;
 &lt;p&gt;What&#x27;s &lt;strong&gt;left of this cutoff&lt;&#x2F;strong&gt; actually accounts for around &lt;code&gt;94%&lt;&#x2F;code&gt; of the distribution. &lt;strong&gt;If&lt;&#x2F;strong&gt; the game &lt;strong&gt;did not do this&lt;&#x2F;strong&gt;, you&#x27;d be as likely getting &lt;code&gt;36&lt;&#x2F;code&gt; as a &lt;code&gt;90&lt;&#x2F;code&gt;. We are effectively throwing away &amp;quot;19 bad rolls&amp;quot; on every roll.&lt;&#x2F;p&gt;
 &lt;blockquote&gt;
@@ -480,7 +481,7 @@ var layout = {
   xaxis: {title: &quot;Roll&quot;},
   yaxis: {title: &quot;Probability&quot;},
 };
-Plotly.newPlot(document.getElementById(&#x27;probhist3&#x27;), data, layout);
+Plotly.newPlot(document.getElementById(&#x27;probhist3&#x27;), data, layout, plotlycfg);
 
 &#x2F;&#x2F; extra: precise expectation and variance
 var expectation_trunc = SCALED_PROBS.map((x,i) =&gt; (i+75)*x).reduce((acc, e) =&gt; acc+e, 0);
@@ -595,7 +596,7 @@ var layout = {
   xaxis: {title: &quot;Roll&quot;},
   yaxis: {title: &quot;Observed probability&quot;},
 };
-Plotly.newPlot(document.getElementById(&#x27;rollhist&#x27;), data, layout);
+Plotly.newPlot(document.getElementById(&#x27;rollhist&#x27;), data, layout, plotlycfg);
 &lt;&#x2F;script&gt;
 &lt;p&gt;Let&#x27;s start with the &lt;strong&gt;fighter&lt;&#x2F;strong&gt;. If we compare the fighter graph with our precise, censored multinomial distribution, they are &lt;strong&gt;very close&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
 &lt;div id=&quot;probhist4&quot; style=&quot;width:600px;height:450px;&quot;&gt;&lt;&#x2F;div&gt;
@@ -620,7 +621,7 @@ var layout = {
   xaxis: {title: &quot;Roll&quot;},
   yaxis: {title: &quot;Probability&quot;},
 };
-Plotly.newPlot(document.getElementById(&#x27;probhist4&#x27;), data, layout);
+Plotly.newPlot(document.getElementById(&#x27;probhist4&#x27;), data, layout, plotlycfg);
 &lt;&#x2F;script&gt;
 &lt;p&gt;So for &lt;strong&gt;fighters&lt;&#x2F;strong&gt;, we can be pretty happy with the calculations we have done, and can use the precise probabilities as a guide.&lt;&#x2F;p&gt;
 &lt;blockquote&gt;
@@ -692,7 +693,7 @@ var layout = {
   xaxis: {title: &quot;Roll&quot;},
   yaxis: {title: &quot;Probability&quot;},
 };
-Plotly.newPlot(document.getElementById(&#x27;probhist3roll&#x27;), data, layout);
+Plotly.newPlot(document.getElementById(&#x27;probhist3roll&#x27;), data, layout, plotlycfg);
 &lt;&#x2F;script&gt;
 &lt;p&gt;then we truncate + scale this at the observed floor points &lt;code&gt;9&lt;&#x2F;code&gt;, &lt;code&gt;12&lt;&#x2F;code&gt;, &lt;code&gt;13&lt;&#x2F;code&gt;, &lt;code&gt;14&lt;&#x2F;code&gt;, and &lt;code&gt;17&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
 &lt;div id=&quot;probhist3rolltruncs&quot; style=&quot;width:600px;height:450px;&quot;&gt;&lt;&#x2F;div&gt;
@@ -734,7 +735,7 @@ var layout = {
   xaxis: {title: &quot;Roll&quot;},
   yaxis: {title: &quot;Probability&quot;},
 };
-Plotly.newPlot(document.getElementById(&#x27;probhist3rolltruncs&#x27;), data, layout);
+Plotly.newPlot(document.getElementById(&#x27;probhist3rolltruncs&#x27;), data, layout, plotlycfg);
 &lt;&#x2F;script&gt;
 &lt;p&gt;To avoid having to write out conditionals $P(X = x| X\ge k)$ everywhere we will denote $X^{\lfloor k \rfloor}$ as one of these graphed multinomial distributions for the sum of &lt;code&gt;3d6&lt;&#x2F;code&gt; floored at $k$:&lt;&#x2F;p&gt;
 &lt;p&gt;$$X^{\lfloor k \rfloor} \sim \mathcal{M}^{\lfloor k \rfloor}(3d6)$$&lt;&#x2F;p&gt;
@@ -915,7 +916,7 @@ var layout = {
   xaxis: {title: &quot;Roll&quot;},
   yaxis: {title: &quot;Probability&quot;},
 };
-Plotly.newPlot(document.getElementById(&#x27;probhist3convolved&#x27;), data, layout);
+Plotly.newPlot(document.getElementById(&#x27;probhist3convolved&#x27;), data, layout, plotlycfg);
 &lt;&#x2F;script&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Notice the heavily tilted ranger&#x2F;paladin distributions whose lean is distinctively more to the right.&lt;&#x2F;p&gt;
@@ -953,7 +954,7 @@ var layout = {
   xaxis: {title: &quot;Roll&quot;},
   yaxis: {title: &quot;Probability&quot;},
 };
-Plotly.newPlot(document.getElementById(&#x27;probhist3convolvedtrunc&#x27;), data, layout);
+Plotly.newPlot(document.getElementById(&#x27;probhist3convolvedtrunc&#x27;), data, layout, plotlycfg);
 &lt;&#x2F;script&gt;
 &lt;p&gt;These match the sampled data almost perfectly as can be seen in more detailed comparisons in the &lt;a href=&quot;#appendix&quot;&gt;appendix&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 &lt;p&gt;As can be seen; &lt;code&gt;ranger&lt;&#x2F;code&gt; is faster at getting high numbers, particularly in the 90 -&amp;gt; 97 range, but if you want rolls &amp;gt;= 100, &lt;strong&gt;&lt;code&gt;paladin&lt;&#x2F;code&gt; rolls the highest&lt;&#x2F;strong&gt; at the fastest rate.&lt;&#x2F;p&gt;
@@ -1195,7 +1196,7 @@ var layout = {
   xaxis: {title: &quot;Roll&quot;},
   yaxis: {title: &quot;Probability&quot;},
 };
-Plotly.newPlot(document.getElementById(&#x27;probhistappdxpala&#x27;), data, layout);
+Plotly.newPlot(document.getElementById(&#x27;probhistappdxpala&#x27;), data, layout, plotlycfg);
 &lt;&#x2F;script&gt;
 &lt;div id=&quot;probhistappdxrang&quot; style=&quot;width:600px;height:450px;&quot;&gt;&lt;&#x2F;div&gt;
 &lt;script&gt;
@@ -1205,7 +1206,7 @@ var layout = {
   xaxis: {title: &quot;Roll&quot;},
   yaxis: {title: &quot;Probability&quot;},
 };
-Plotly.newPlot(document.getElementById(&#x27;probhistappdxrang&#x27;), data, layout);
+Plotly.newPlot(document.getElementById(&#x27;probhistappdxrang&#x27;), data, layout, plotlycfg);
 &lt;&#x2F;script&gt;
 &lt;p&gt;For fighter we have included the original uncorrected multinomial distribution for 18 dice before doing simulations. It was sufficiently close to the true distribution because flooring a single ability to &lt;code&gt;9&lt;&#x2F;code&gt; amounts to almost nothing in the right tail:&lt;&#x2F;p&gt;
 &lt;div id=&quot;probhistappdxfig&quot; style=&quot;width:600px;height:450px;&quot;&gt;&lt;&#x2F;div&gt;
@@ -1216,7 +1217,7 @@ var layout = {
   xaxis: {title: &quot;Roll&quot;},
   yaxis: {title: &quot;Probability&quot;},
 };
-Plotly.newPlot(document.getElementById(&#x27;probhistappdxfig&#x27;), data, layout);
+Plotly.newPlot(document.getElementById(&#x27;probhistappdxfig&#x27;), data, layout, plotlycfg);
 &lt;&#x2F;script&gt;
 &lt;p&gt;That said, the true distribution taking into account the single floored stat has a much better fit.&lt;&#x2F;p&gt;
 &lt;&#x2F;p&gt;
