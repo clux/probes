@@ -481,13 +481,13 @@ $$Z_{fighter} = X_1^{\lfloor9\rfloor} + X_2^{\lfloor3\rfloor} + X_3^{\lfloor3\rf
 &lt;p&gt;Thankfully, it is possible to inductively compute the pmf of $Z_{class}$ via &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Convolution#Discrete_convolution&quot;&gt;convolution&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 &lt;p&gt;Some internet digging notwithstanding; most answers found online for this required &lt;strong&gt;either&lt;&#x2F;strong&gt; &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;stats.stackexchange.com&#x2F;questions&#x2F;3614&#x2F;how-to-easily-determine-the-results-distribution-for-multiple-dice&#x2F;3684#3684&quot;&gt;mathematica functions&lt;&#x2F;a&gt; (that we do not have here in our inlined source), &lt;strong&gt;or&lt;&#x2F;strong&gt; a slightly more laborious manual convolution. We will follow the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;stats.libretexts.org&#x2F;Bookshelves&#x2F;Probability_Theory&#x2F;Book%3A_Introductory_Probability_(Grinstead_and_Snell)&#x2F;07%3A_Sums_of_Random_Variables&#x2F;7.01%3A_Sums_of_Discrete_Random_Variables&quot;&gt;inductive convolution approach&lt;&#x2F;a&gt; which we can solve with recursion. Paladin case:&lt;&#x2F;p&gt;
 &lt;p&gt;Let $X_{12} = X_1^{\lfloor17\rfloor} + X_2^{\lfloor13\rfloor}$. We can generate values for the pmf $p_{X_{12}}$ for $X_{12}$ via the pmfs $p_{X_i}$ for $X_1^{\lfloor17\rfloor}$ and $X_2^{\lfloor13\rfloor}$ via the convolution formula:&lt;&#x2F;p&gt;
-&lt;p&gt;$$P(X_{12} = n) = (p_{X_1} * p_{X_2})(n) = \sum_{m=-\infty}^{\infty}P(X_1=m)P(X_2 = n-m)$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$P(X_{12} = n) = \ (p_{X_1} * p_{X_2})(n) = \sum_{m=-\infty}^{\infty}P(X_1=m)P(X_2 = n-m)$$&lt;&#x2F;p&gt;
 &lt;p&gt;This step is particularly easy for the paladin, because $X_1^{\lfloor17\rfloor}$ only takes two values (i.e. $m=17$ ahd $m=18$ are the only non-zero parts in the sum).&lt;&#x2F;p&gt;
 &lt;p&gt;The rest is more laborious to do by hand, as the sums get increasingly large while we iterate towards $Z=P_{123456}$ by repeatedly applying convolution to the remaining $X_i$:&lt;&#x2F;p&gt;
-&lt;p&gt;$$P(X_{123} = n) = (p_{X_{12}} * p_{X_3})(n) \sum_{m=-\infty}^{\infty}P(X_{12}=m)P(X_3 = n-m)$$&lt;&#x2F;p&gt;
-&lt;p&gt;$$P(X_{1234} = n) = (p_{X_{123}} * p_{X_4})(n) \sum_{m=-\infty}^{\infty}P(X_{123}=m)P(X_4 = n-m)$$&lt;&#x2F;p&gt;
-&lt;p&gt;$$P(X_{12345} = n) = (p_{X_{1234}} * p_{X_5})(n) \sum_{m=-\infty}^{\infty}P(X_{1234}=m)P(X_5 = n-m)$$&lt;&#x2F;p&gt;
-&lt;p&gt;$$P(X_{123456} = n) = (p_{X_{12345}} * p_{X_5})(n) \sum_{m=-\infty}^{\infty}P(X_{12345}=m)P(X_6 = n-m)$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$P(X_{123} = n) = \ (p_{X_{12}} * p_{X_3})(n) \sum_{m=-\infty}^{\infty}P(X_{12}=m)P(X_3 = n-m)$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$P(X_{1234} = n) = \ (p_{X_{123}} * p_{X_4})(n) \sum_{m=-\infty}^{\infty}P(X_{123}=m)P(X_4 = n-m)$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$P(X_{12345} = n) = \ (p_{X_{1234}} * p_{X_5})(n) \sum_{m=-\infty}^{\infty}P(X_{1234}=m)P(X_5 = n-m)$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$P(X_{123456} = n) = \ (p_{X_{12345}} * p_{X_5})(n) \sum_{m=-\infty}^{\infty}P(X_{12345}=m)P(X_6 = n-m)$$&lt;&#x2F;p&gt;
 &lt;p&gt;The hard work is correctly matching indexes in our probability arrays that serve as our mass functions to the sum, and defaulting to zero when accessing out of bounds:&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;js&quot; class=&quot;language-js z-code&quot;&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;z-source z-ts&quot;&gt;&lt;span class=&quot;z-comment z-line z-double-slash z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-ts&quot;&gt;&#x2F;&#x2F;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-double-slash z-ts&quot;&gt; given pXi = [0.75, 0.25], pXj = [0.375, 0.2678, 0.1786, 0.1071, 0.05357, 0.01786]&lt;&#x2F;span&gt;
 &lt;span class=&quot;z-comment z-line z-double-slash z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-ts&quot;&gt;&#x2F;&#x2F;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-double-slash z-ts&quot;&gt; (approximations of the first two truncated paladin probability arrays for CHA + WIS)&lt;&#x2F;span&gt;
@@ -508,7 +508,7 @@ $$Z_{fighter} = X_1^{\lfloor9\rfloor} + X_2^{\lfloor3\rfloor} + X_3^{\lfloor3\rf
 &lt;span class=&quot;z-comment z-line z-double-slash z-ts&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-ts&quot;&gt;&#x2F;&#x2F;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-double-slash z-ts&quot;&gt; returns [0.28125, 0.29464, 0.2009, 0.125, 0.06696, 0.02678, 0.004464]&lt;&#x2F;span&gt;
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Using this, we can compute the PMF for $Z_{class} = X_{123456}$:&lt;&#x2F;p&gt;
-&lt;p&gt;$$P(Z_{class} = z) = (((((p_{X_1} * p_{X_2}) * p_{X_3}) * p_{X_4}) * p_{X_5}) * p_{X_6}) (z)$$&lt;&#x2F;p&gt;
+&lt;p&gt;$$P(Z_{class} = z) = \ (((((p_{X_1} * p_{X_2}) * p_{X_3}) * p_{X_4}) * p_{X_5}) * p_{X_6}) (z)$$&lt;&#x2F;p&gt;
 &lt;p&gt;and we graph them for various classes:&lt;&#x2F;p&gt;
 &lt;div id=&quot;probhist3convolved&quot; style=&quot;width:600px;height:450px;&quot;&gt;&lt;&#x2F;div&gt;
 &lt;script&gt;

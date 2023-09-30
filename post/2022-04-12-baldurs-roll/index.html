@@ -527,13 +527,13 @@ $$Z_{fighter} = X_1^{\lfloor9\rfloor} + X_2^{\lfloor3\rfloor} + X_3^{\lfloor3\rf
 <p>Thankfully, it is possible to inductively compute the pmf of $Z_{class}$ via <a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Convolution#Discrete_convolution">convolution</a>.</p>
 <p>Some internet digging notwithstanding; most answers found online for this required <strong>either</strong> <a rel="noopener" target="_blank" href="https://stats.stackexchange.com/questions/3614/how-to-easily-determine-the-results-distribution-for-multiple-dice/3684#3684">mathematica functions</a> (that we do not have here in our inlined source), <strong>or</strong> a slightly more laborious manual convolution. We will follow the <a rel="noopener" target="_blank" href="https://stats.libretexts.org/Bookshelves/Probability_Theory/Book%3A_Introductory_Probability_(Grinstead_and_Snell)/07%3A_Sums_of_Random_Variables/7.01%3A_Sums_of_Discrete_Random_Variables">inductive convolution approach</a> which we can solve with recursion. Paladin case:</p>
 <p>Let $X_{12} = X_1^{\lfloor17\rfloor} + X_2^{\lfloor13\rfloor}$. We can generate values for the pmf $p_{X_{12}}$ for $X_{12}$ via the pmfs $p_{X_i}$ for $X_1^{\lfloor17\rfloor}$ and $X_2^{\lfloor13\rfloor}$ via the convolution formula:</p>
-<p>$$P(X_{12} = n) = (p_{X_1} * p_{X_2})(n) = \sum_{m=-\infty}^{\infty}P(X_1=m)P(X_2 = n-m)$$</p>
+<p>$$P(X_{12} = n) = \ (p_{X_1} * p_{X_2})(n) = \sum_{m=-\infty}^{\infty}P(X_1=m)P(X_2 = n-m)$$</p>
 <p>This step is particularly easy for the paladin, because $X_1^{\lfloor17\rfloor}$ only takes two values (i.e. $m=17$ ahd $m=18$ are the only non-zero parts in the sum).</p>
 <p>The rest is more laborious to do by hand, as the sums get increasingly large while we iterate towards $Z=P_{123456}$ by repeatedly applying convolution to the remaining $X_i$:</p>
-<p>$$P(X_{123} = n) = (p_{X_{12}} * p_{X_3})(n) \sum_{m=-\infty}^{\infty}P(X_{12}=m)P(X_3 = n-m)$$</p>
-<p>$$P(X_{1234} = n) = (p_{X_{123}} * p_{X_4})(n) \sum_{m=-\infty}^{\infty}P(X_{123}=m)P(X_4 = n-m)$$</p>
-<p>$$P(X_{12345} = n) = (p_{X_{1234}} * p_{X_5})(n) \sum_{m=-\infty}^{\infty}P(X_{1234}=m)P(X_5 = n-m)$$</p>
-<p>$$P(X_{123456} = n) = (p_{X_{12345}} * p_{X_5})(n) \sum_{m=-\infty}^{\infty}P(X_{12345}=m)P(X_6 = n-m)$$</p>
+<p>$$P(X_{123} = n) = \ (p_{X_{12}} * p_{X_3})(n) \sum_{m=-\infty}^{\infty}P(X_{12}=m)P(X_3 = n-m)$$</p>
+<p>$$P(X_{1234} = n) = \ (p_{X_{123}} * p_{X_4})(n) \sum_{m=-\infty}^{\infty}P(X_{123}=m)P(X_4 = n-m)$$</p>
+<p>$$P(X_{12345} = n) = \ (p_{X_{1234}} * p_{X_5})(n) \sum_{m=-\infty}^{\infty}P(X_{1234}=m)P(X_5 = n-m)$$</p>
+<p>$$P(X_{123456} = n) = \ (p_{X_{12345}} * p_{X_5})(n) \sum_{m=-\infty}^{\infty}P(X_{12345}=m)P(X_6 = n-m)$$</p>
 <p>The hard work is correctly matching indexes in our probability arrays that serve as our mass functions to the sum, and defaulting to zero when accessing out of bounds:</p>
 <pre data-lang="js" class="language-js z-code"><code class="language-js" data-lang="js"><span class="z-source z-ts"><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> given pXi = [0.75, 0.25], pXj = [0.375, 0.2678, 0.1786, 0.1071, 0.05357, 0.01786]</span>
 <span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> (approximations of the first two truncated paladin probability arrays for CHA + WIS)</span>
@@ -554,7 +554,7 @@ $$Z_{fighter} = X_1^{\lfloor9\rfloor} + X_2^{\lfloor3\rfloor} + X_3^{\lfloor3\rf
 <span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> returns [0.28125, 0.29464, 0.2009, 0.125, 0.06696, 0.02678, 0.004464]</span>
 </span></code></pre>
 <p>Using this, we can compute the PMF for $Z_{class} = X_{123456}$:</p>
-<p>$$P(Z_{class} = z) = (((((p_{X_1} * p_{X_2}) * p_{X_3}) * p_{X_4}) * p_{X_5}) * p_{X_6}) (z)$$</p>
+<p>$$P(Z_{class} = z) = \ (((((p_{X_1} * p_{X_2}) * p_{X_3}) * p_{X_4}) * p_{X_5}) * p_{X_6}) (z)$$</p>
 <p>and we graph them for various classes:</p>
 <div id="probhist3convolved" style="width:600px;height:450px;"></div>
 <script>
