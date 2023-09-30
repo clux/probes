@@ -82,6 +82,7 @@ var trace = {
   opacity: 0.8,
   type: "scatter",
 };
+var plotlycfg = {responsive: true};
 
 
 var data = [trace];
@@ -90,7 +91,7 @@ var layout = {
   xaxis: {title: "Roll"},
   yaxis: {title: "Probability"},
 };
-Plotly.newPlot(document.getElementById('probhist'), data, layout);
+Plotly.newPlot(document.getElementById('probhist'), data, layout, plotlycfg);
 
 // extra: precise expectation and variance
 var expectation_orig = MAIN_PROBS.map((x,i) => (i+18)*x).reduce((acc, e) => acc+e, 0);
@@ -153,7 +154,7 @@ var layout = {
   xaxis: {title: "Roll"},
   yaxis: {title: "Probability"},
 };
-Plotly.newPlot(document.getElementById('probhist2'), data, layout);
+Plotly.newPlot(document.getElementById('probhist2'), data, layout, plotlycfg);
 </script>
 
 What's **left of this cutoff** actually accounts for around `94%` of the distribution. **If** the game **did not do this**, you'd be as likely getting `36` as a `90`. We are effectively throwing away "19 bad rolls" on every roll.
@@ -187,7 +188,7 @@ var layout = {
   xaxis: {title: "Roll"},
   yaxis: {title: "Probability"},
 };
-Plotly.newPlot(document.getElementById('probhist3'), data, layout);
+Plotly.newPlot(document.getElementById('probhist3'), data, layout, plotlycfg);
 
 // extra: precise expectation and variance
 var expectation_trunc = SCALED_PROBS.map((x,i) => (i+75)*x).reduce((acc, e) => acc+e, 0);
@@ -332,7 +333,7 @@ var layout = {
   xaxis: {title: "Roll"},
   yaxis: {title: "Observed probability"},
 };
-Plotly.newPlot(document.getElementById('rollhist'), data, layout);
+Plotly.newPlot(document.getElementById('rollhist'), data, layout, plotlycfg);
 </script>
 
 Let's start with the **fighter**. If we compare the fighter graph with our precise, censored multinomial distribution, they are **very close**:
@@ -360,7 +361,7 @@ var layout = {
   xaxis: {title: "Roll"},
   yaxis: {title: "Probability"},
 };
-Plotly.newPlot(document.getElementById('probhist4'), data, layout);
+Plotly.newPlot(document.getElementById('probhist4'), data, layout, plotlycfg);
 </script>
 
 So for **fighters**, we can be pretty happy with the calculations we have done, and can use the precise probabilities as a guide.
@@ -442,7 +443,7 @@ var layout = {
   xaxis: {title: "Roll"},
   yaxis: {title: "Probability"},
 };
-Plotly.newPlot(document.getElementById('probhist3roll'), data, layout);
+Plotly.newPlot(document.getElementById('probhist3roll'), data, layout, plotlycfg);
 </script>
 
 then we truncate + scale this at the observed floor points `9`, `12`, `13`, `14`, and `17`:
@@ -488,7 +489,7 @@ var layout = {
   xaxis: {title: "Roll"},
   yaxis: {title: "Probability"},
 };
-Plotly.newPlot(document.getElementById('probhist3rolltruncs'), data, layout);
+Plotly.newPlot(document.getElementById('probhist3rolltruncs'), data, layout, plotlycfg);
 </script>
 
 To avoid having to write out conditionals $P(X = x| X\ge k)$ everywhere we will denote $X^{\lfloor k \rfloor}$ as one of these graphed multinomial distributions for the sum of `3d6` floored at $k$:
@@ -698,7 +699,7 @@ var layout = {
   xaxis: {title: "Roll"},
   yaxis: {title: "Probability"},
 };
-Plotly.newPlot(document.getElementById('probhist3convolved'), data, layout);
+Plotly.newPlot(document.getElementById('probhist3convolved'), data, layout, plotlycfg);
 </script>
 
 > Notice the heavily tilted ranger/paladin distributions whose lean is distinctively more to the right.
@@ -737,7 +738,7 @@ var layout = {
   xaxis: {title: "Roll"},
   yaxis: {title: "Probability"},
 };
-Plotly.newPlot(document.getElementById('probhist3convolvedtrunc'), data, layout);
+Plotly.newPlot(document.getElementById('probhist3convolvedtrunc'), data, layout, plotlycfg);
 </script>
 
 These match the sampled data almost perfectly as can be seen in more detailed comparisons in the <a href="#appendix">appendix</a>.
@@ -1005,7 +1006,7 @@ var layout = {
   xaxis: {title: "Roll"},
   yaxis: {title: "Probability"},
 };
-Plotly.newPlot(document.getElementById('probhistappdxpala'), data, layout);
+Plotly.newPlot(document.getElementById('probhistappdxpala'), data, layout, plotlycfg);
 </script>
 
 <div id="probhistappdxrang" style="width:600px;height:450px;"></div>
@@ -1016,7 +1017,7 @@ var layout = {
   xaxis: {title: "Roll"},
   yaxis: {title: "Probability"},
 };
-Plotly.newPlot(document.getElementById('probhistappdxrang'), data, layout);
+Plotly.newPlot(document.getElementById('probhistappdxrang'), data, layout, plotlycfg);
 </script>
 
 For fighter we have included the original uncorrected multinomial distribution for 18 dice before doing simulations. It was sufficiently close to the true distribution because flooring a single ability to `9` amounts to almost nothing in the right tail:
@@ -1029,7 +1030,7 @@ var layout = {
   xaxis: {title: "Roll"},
   yaxis: {title: "Probability"},
 };
-Plotly.newPlot(document.getElementById('probhistappdxfig'), data, layout);
+Plotly.newPlot(document.getElementById('probhistappdxfig'), data, layout, plotlycfg);
 </script>
 
 That said, the true distribution taking into account the single floored stat has a much better fit.
