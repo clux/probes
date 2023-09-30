@@ -10,6 +10,8 @@ import() {
   sed -n '/^---$/, /^---$/p' "content/${file}" | head -n -1 \
     | yq -t '.description = .subtitle | .taxonomies = { "tags": .tags, "categories": .categories } | .extra = { "toc": true } | del(.subtitle, .categories, .tags)' \
     >> tmp.toml
+  # NB: should have also set slug to filename (sans extension) and moved files to under post to preserve urls
+  # https://github.com/clux/probes/commit/87ee8c09be1a4f0f2ebb08987ae7b4419f7bd4f2
   echo "+++" >> tmp.toml
   sd "^---[\r\n\w\W]*---[\r\n]" "" "content/${file}"
   cat "content/${file}" >> tmp.toml
