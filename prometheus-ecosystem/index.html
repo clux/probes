@@ -78,7 +78,7 @@
 <p>You can debate the last point, but if you are optimizing for <strong>user-editability</strong> of the prometheus-stack, then <code>jsonnet</code> is kind of the opposite of that - particularly when the rest of the cloud is installed with <code>helm</code>.</p>
 <h2 id="architecture-overview">Architecture Overview</h2>
 <p>The TL;DR image. Open it up in a new tab, and cycle between if you want to read about specific components below.</p>
-<p><a href="/imgs/prometheus/ecosystem-miro.jpg"><img src="/imgs/prometheus/ecosystem-miro.jpg" alt="prometheus ecosystem architecture diagram" /></a></p>
+<p><a href="/imgs/prometheus/ecosystem-miro.webp"><img src="/imgs/prometheus/ecosystem-miro.webp" alt="prometheus ecosystem architecture diagram" /></a></p>
 <p><strong>Legend</strong>:</p>
 <ul>
 <li><strong>user</strong> components and the user <strong>read path</strong> is <i style="color:green">green</i></li>
@@ -140,7 +140,7 @@
 <p><a rel="noopener" target="_blank" href="https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/">Alerting and recording rules</a> are similarly configured and has same caveats (don't write them manually).</p>
 <h3 id="alertmanager">alertmanager</h3>
 <p>Alerts (the data in the special <code>ALERTS{alertstate=&quot;firing&quot;}</code> metric) are sent from <code>prometheus</code> to <code>alertmanager</code>.</p>
-<p><img src="/imgs/prometheus/eva-alert.gif" alt="how alerts should look" /></p>
+<p><img src="/imgs/prometheus/eva-alert.webp" alt="how alerts should look" /></p>
 <p>At least, this is usually what happens. The communication <strong>to</strong> and <strong>within</strong> <code>alertmanager</code> is probably the most <strong>annoying</strong> parts of this entire architecture.</p>
 <p>A problem that keeps biting me is how <a rel="noopener" target="_blank" href="https://github.com/prometheus/prometheus/issues/7063">prometheus can lose track of alertmanager ips, and fail to send alerts for hours</a>. There are many <a rel="noopener" target="_blank" href="https://github.com/prometheus/prometheus/search?q=%22error+sending+alert%22&amp;type=issues">issues related to this</a>.</p>
 <p>When alerts do actually get passed to alertmanager, they go through a <a rel="noopener" target="_blank" href="https://github.com/prometheus/alertmanager/blob/main/doc/arch.svg">pretty complicated internal architecture</a>, before ultimately being sent to <strong>configured receivers</strong>. Alertmanager contains <strong>deduplication</strong> mechanisms, and a <strong>custom</strong> UDP &amp; TCP <strong>gossip protocol</strong> (that keeps breaking in HA setups - causing <a rel="noopener" target="_blank" href="https://github.com/prometheus/alertmanager/issues?q=is%3Aissue+duplicate+alerts">duplicate alerts</a>).</p>

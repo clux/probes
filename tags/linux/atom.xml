@@ -59,9 +59,9 @@
 &lt;h2 id=&quot;look-and-feel&quot;&gt;Look and feel&lt;&#x2F;h2&gt;
 &lt;h2 id=&quot;main-panel&quot;&gt;Main panel&lt;&#x2F;h2&gt;
 &lt;p&gt;Needed about 15 minutes of configuration, and it ended up being stored in a 129 line file in &lt;code&gt;~&#x2F;.config&#x2F;lxpanel&#x2F;LXDE&#x2F;panels&#x2F;panel&lt;&#x2F;code&gt; But ended up looking very nice. Transparency on the bar itself was a nice touch.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;wms&#x2F;lxde2-transparency.jpg&quot; alt=&quot;&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;wms&#x2F;lxde2-transparency.webp&quot; alt=&quot;&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
 &lt;p&gt;Though you can see that it gets confused if you have set a different background on each monitor, which is something you can do for some reason.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;wms&#x2F;lxde2-dual-bg.jpg&quot; alt=&quot;&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;wms&#x2F;lxde2-dual-bg.webp&quot; alt=&quot;&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;file-manager&quot;&gt;File manager&lt;&#x2F;h2&gt;
 &lt;p&gt;Fine, could make it look like &lt;code&gt;nemo&lt;&#x2F;code&gt; in 5 minutes. You can see it in the background above. Had it&#x27;s config in a tiny: &lt;code&gt;~&#x2F;.config&#x2F;pcmanfm&#x2F;LXDE&#x2F;pcmanfm.conf&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;general-theme&quot;&gt;General Theme&lt;&#x2F;h2&gt;

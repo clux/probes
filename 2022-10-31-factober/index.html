@@ -90,14 +90,14 @@
 <p>But before we get into it, here are several other things we built along the way that (in true factorio style) did not in any way contribute to the main goal.</p>
 <h4 id="wildlife-preserve">Wildlife Preserve</h4>
 <p>..to justify all those military upgrades:</p>
-<p><img src="/imgs/factorio/wildlife-preserve.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/wildlife-preserve.webp" alt="" /></p>
 <p>which we eventually eradicated in a comically inelegant way:</p>
 <div class="yv">
     <iframe src="https://www.youtube-nocookie.com/embed/gFvTfAO5pJs" title="Youtube" class="yvi" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 </div>
 <h4 id="fishing-outpost">Fishing Outpost</h4>
 <p>A sustainable ecosystem catching 600 fish over its lifetime on its own power/robo network. Built right above the launchers:</p>
-<p><img src="/imgs/factorio/fishing-outpost.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/fishing-outpost.webp" alt="" /></p>
 <h4 id="wood-burner">Wood Burner</h4>
 <p>An automated train service to get rid of all that wood:</p>
 <div class="yv">
@@ -107,15 +107,15 @@
 <h2 id="factory-designs">Factory Designs</h2>
 <h3 id="rails">Rails</h3>
 <p>When starting out with production/purple science I originally had 16 full blue belts of rails that fed into the purple science factories. Now we make rails inline in a single factory that feeds 4 purple science assemblers:</p>
-<p><img src="/imgs/factorio/purple-rail.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/purple-rail.webp" alt="" /></p>
 <p>I've not seen anyone else do this, but it works pretty well. It sushies sticks around two columns, and does a bit of crate magic to fit 6 input inserters, 3 input lanes, and 4 output inserters inside a 12 beaconed bounding box, but it actually works in the end.</p>
 <h3 id="green-circuit-plastic-row">Green Circuit / Plastic Row</h3>
 <p>One of the more optimized factory pieces. A single lane that produces a mostly full, mixed plastic/green blue belt.</p>
-<p><img src="/imgs/factorio/green-lane.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/green-lane.webp" alt="" /></p>
 <p>It requires very precise spawning of coal, iron, copper so that we can have 2 chemical plants for plastic, and 4 smelters of iron + copper for a single 12 beaconed green factory. Some of the time all the furnaces are running:</p>
-<p><img src="/imgs/factorio/green-on.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/green-on.webp" alt="" /></p>
 <p>The green factory is what requires special attention here:</p>
-<p><img src="/imgs/factorio/green-car.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/green-car.webp" alt="" /></p>
 <p>One green factory alone can actually <a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#tab=graph&amp;data=1-1-19&amp;rate=s&amp;min=3&amp;belt=express-transport-belt&amp;mprod=800&amp;dm=p3&amp;db=s3&amp;dbc=24&amp;t=off&amp;items=electronic-circuit:f:1">ALMOST supply a half belt (22.4 out of 22.5)</a> if you can fully beacon it. It's just that doing this is very difficult because it takes more than a full blue belt of copper cables that it is very hard to supply it while making room for all the the iron and the outputs. This is why there's a car in between the beacons that serves as a chest.</p>
 <p>A car can be picked up from and inserted to at very strange angles at more than one length so it's great for fitting irregular gaps that doesn't work with chests (or would require more inserters). The game doesn't want you to do this though. It cannot be copy-pasted so you have to plant it manually. <a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=6mgQwzom0Xo">Doshington showcases the pain this type of design leads to</a> .</p>
 <p>You actually have to remove one middle beacon when the inserters starts running to trick the inserters to lock onto the car before planting the beacon down again (otherwise they want to grab the speed modules).</p>
@@ -123,90 +123,90 @@
 <h3 id="red-circuit-row">Red Circuit Row</h3>
 <p>Continuing onwards from the green / plastic row, is another inline copper smelter section that joins into a nearly full copper cable assembler, that sufficiently feeds 8 factories of red chips.
 The red chips are also inserter clocked so they all swing together which looks very satisfying, but I don't think it actually helps with UPS.</p>
-<p><img src="/imgs/factorio/8f-red.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/8f-red.webp" alt="" /></p>
 <p>This joins onto the green setup so we can end up with these huge stacks for large red factories like this one for RCUs:</p>
-<p><img src="/imgs/factorio/red-rows-rcu.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/red-rows-rcu.webp" alt="" /></p>
 <h3 id="low-density-row">Low Density Row</h3>
 <p>A <a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#tab=graph&amp;data=1-1-19&amp;rate=s&amp;min=3&amp;belt=express-transport-belt&amp;mprod=800&amp;dm=p3&amp;db=s3&amp;dbc=24&amp;t=off&amp;items=low-density-structure:f:10">full row of low density structures can consist of 10 fully beaconed factories supplied by two lanes of copper</a>. It needs a lot of belts, and manual input setup, plus a bunch of inserters to load onto the belt and back in from the belt, so we searched for a more direct setup (without sacrificing too much at the number of machines).</p>
 <p>The end setup has 20 smelters to 10 LDS assemblers, which is an extra 4 smelters than is needed, so we beacon them slightly less, but end up with 100% direct insertion on copper. The downside? Lots and lots of cars.</p>
-<p><img src="/imgs/factorio/lds-140cars.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/lds-140cars.webp" alt="" /></p>
 <p>This <code>70/s</code> LDS factory for space science consists of 14 rows of 10 cars each, which is definitely a hassle to setup and filter.</p>
 <p>Ideally the equally sized steel would be lined up to face LDS on the input side (like they are in yellow science below), because here we mix belts first then use splitters later just to avoid a 14 lane wide thing through the base.</p>
 <p>Regardless, it looks different to everything else and is kind of beautiful at night:</p>
-<p><img src="/imgs/factorio/lds-at-night.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/lds-at-night.webp" alt="" /></p>
 <p>Enjoying the <a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#tab=graph&amp;data=1-1-19&amp;rate=s&amp;min=3&amp;belt=express-transport-belt&amp;mprod=800&amp;dm=p3&amp;db=s3&amp;dbc=24&amp;t=off&amp;items=low-density-structure:f:10&amp;modules=copper-plate:;s3:20">efficiency of the ratios</a>. All the smelters are running (94% avg utilization).</p>
 <h3 id="labs">Labs</h3>
-<p><img src="/imgs/factorio/labs.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/labs.webp" alt="" /></p>
 <p>Extracted this more conventional lab design to test it out <a rel="noopener" target="_blank" href="https://www.reddit.com/r/technicalfactorio/comments/y6c87j/ups_wars_6_labs/">UPS Wars 6: Labs</a> for this with <a rel="noopener" target="_blank" href="https://factoriobox.1au.us/map/info/e1f29dac1355d49bc4036233ddad222698b2c158b198f790a20c9f87d5773d6f">this entry</a>. Nothing remarkable, except perhaps for the long winding belts in different direction. It's slightly overscaled to ensure it will fully drain half belts.</p>
 <h2 id="trains">Trains</h2>
 <p>All of the science cities / space component cities unload onto one of two major unload depots.</p>
 <p>The main depots have robo networks to distribute nuclear fuel from a single supply train and they only stop at the hub (which is enough).</p>
 <h3 id="lab-depot">Lab Depot</h3>
 <p>Lab depot looks like a close-up of a complicated circuit:</p>
-<p><img src="/imgs/factorio/labs-cpu.jpg" alt="" />
-<img src="/imgs/factorio/lab-rails.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/labs-cpu.webp" alt="" />
+<img src="/imgs/factorio/lab-rails.webp" alt="" /></p>
 <p>Very happy with this unload station. We pull exactly 4 half-belts and that can be perfectly filled via two inserters (with an 8 size override) at the cost of less buffer chests (that we don't need those). No splitters anywhere!</p>
 <h3 id="rocket-depot">Rocket Depot</h3>
 <p>Probably not the most efficient train unloading, but gotta get 4 wagons of stuff into 6 launchers via 2 inserters per launcher so it's tricky.</p>
-<p><img src="/imgs/factorio/space-science.jpg" alt="" />
-<img src="/imgs/factorio/space-unload.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/space-science.webp" alt="" />
+<img src="/imgs/factorio/space-unload.webp" alt="" /></p>
 <p>Lot's of 2x3 splitters and an eventually emptying unloader with a priority line down to satellites... It's ultimately a little overscaled compared to the other sciences so a few seconds of semi-filled belts, while not particularly efficient, doesn't hurt production.</p>
 <h3 id="nuclear-fuel">Nuclear Fuel</h3>
 <p>A minimal fuel factory that supplies all trains (piggy-backing on any oil refinery because it uses basically nothing). It's almost never active because it only has destination stops available when the hubs have less than 200 items on the receiving chests (circuit network on the receiving side).</p>
-<p><img src="/imgs/factorio/nuclear-fuel.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/nuclear-fuel.webp" alt="" /></p>
 <h2 id="science-cities">Science Cities</h2>
 <p>Quickly going through these with factorio calc links.</p>
 <h3 id="red"><a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#zip=dYrBCcMwDAC30c/gxn00LhpGsRUwjSxjKdDxmwxQDu5xXCUnfISLFSY5o4G0jgk2Phz5OyabBZ/Ubej0cGeQMbXiK0aogiNB3dBuF1ye4Kj7Ds1ZDOl0FfKmPVhp3AuHQeWTZ14jiNbz4P/T21Je4g8=">Red</a></h3>
 <p>Max beaconing reds would give an awkward ratio whereas doing pairs here gives us just enough with 12F each column.
 It would be possible to do 11F we did some at higher beaconing though.</p>
-<p><img src="/imgs/factorio/red.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/red.webp" alt="" /></p>
 <h3 id="green"><a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#zip=bU3LCsMwDPsbnxpI2zHWDn9MmrgjLC9sF/b5ay6DsSGhgySk4NThaE4swE4JBXIsOMNGSZFejUnEKLsirbKabkNuXAPerIWQsc0QNpSuHqcLKNZ9h6iUBVN9RNHojfhIxZNpzj9XXhcLuYYjkWAsQqzEq8wf3k8dr8P360/BDv/nezjZNw==">Green</a></h3>
 <p>Max beaconed smelters and an ad-hoc &lt;4 half belt output of green circuits, and only max beaconing the last pack factory to fill the lane.
 Again, max beaconing is just not enough with 12F per column pair, so doing pairs with one last max beaconed for 14Fx4. Zero splitters. More gear factories than necessary, but more direct insertion.</p>
-<p><img src="/imgs/factorio/green.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/green.webp" alt="" /></p>
 <p>both red + green on the map:</p>
-<p><img src="/imgs/factorio/redgreen.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/redgreen.webp" alt="" /></p>
 <h3 id="military"><a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#zip=fYtJCgJBDEVvk5UFrS2iLTlMrEo3wZpIIg6nVzeCCPI/b/GHRE64Di8dQMkZDYpUHOHE2ZFvXdksuFK13tTDO4bStSXcDwOkgn2EdEJ7M+JmC45tnkGci2GRLE56DxaFa+TQKZ4nnQ4DlJYumQ27sEapS9B2qclCoYUeUnmy8ePji+vdahZl0vJvsihXSl/NyrxVDlfK+ffwBA==">Military</a></h3>
 <p>Annoyingly large for something that's off most of the time. Lots of clocked smelters, and the actual main ingredient factories are tiny.. Did a cool inline wall thing for each row for the actual science pack, and a big grenade factory, but lots of room for improvement.</p>
-<p><img src="/imgs/factorio/black.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/black.webp" alt="" /></p>
 <p>One fun thing here though; this factory <strong>shuts off its own power</strong> when the train station buffer chests is full <code>and</code> no trains are at the station (circuit network connected to the chests and the train station via a combinator). This saves on power, but not on UPS, sadly.</p>
 <h3 id="chemical"><a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#data=1-1-19&amp;rate=s&amp;min=3&amp;p=basic&amp;belt=express-transport-belt&amp;mprod=800&amp;dm=p3&amp;db=s3&amp;dbc=24&amp;t=off&amp;items=chemical-science-pack:r:90&amp;modules=pipe:s3:s3:s3:s3;s3:20,basic-oil-processing:;s3:32">Chemical</a></h3>
 <p>All ore/oil/reds + inputs for reds on the left through the green car lane setup, and then on the right inline sulfur (turns out one chemical plant can supply 45/s chemical science). Uses basic oil here because it's not the most demanding, but other peoples' comments suggest it's probably a wash performance wise.
-<img src="/imgs/factorio/blue.jpg" alt="" />
-<img src="/imgs/factorio/blue2.jpg" alt="" /></p>
+<img src="/imgs/factorio/blue.webp" alt="" />
+<img src="/imgs/factorio/blue2.webp" alt="" /></p>
 <h3 id="production"><a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#zip=TY1dagMxDIRvo6cVbLKhNC46jGNri6j/kJTQ3j5eSiBI6OGb0UyOHumEc66g0ZkMqjTa4MbFiX+Hshm6xmajq+OBoQ7tmT7XFXKlsUG+kR030fkCTn3fQZyr0eG7J5fe0JJwS4wjpp+g4bpCnVpho5gfcSoZuxScH2k2SvsOX7aF7bxw4eQqCfe7tpg4TPzaw3L6WF41D/E//I99dy0apbyDJw==">Production</a></h3>
-<p><img src="/imgs/factorio/purple-inputs.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/purple-inputs.webp" alt="" /></p>
 <p>a huge chunk of the factory is literally just dealing with steel for rails and furnaces:
-<img src="/imgs/factorio/purple.jpg" alt="" />
+<img src="/imgs/factorio/purple.webp" alt="" />
 which is a slightly overscaled (as can be seen from the few inactive furnaces), but it's a bit unevenly drawn from atm.
-<img src="/imgs/factorio/purple-steel.jpg" alt="" /></p>
+<img src="/imgs/factorio/purple-steel.webp" alt="" /></p>
 <h3 id="utility"><a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#data=1-1-19&amp;rate=s&amp;min=3&amp;belt=express-transport-belt&amp;mprod=800&amp;dm=p3&amp;db=s3&amp;dbc=24&amp;t=off&amp;items=utility-science-pack:f:60&amp;modules=advanced-oil-processing:;s3:32,pipe:s3:s3:s3:s3">Utility</a></h3>
 <p>Slightly overscaled (60F) and undersupplied (can supply 59F). 57F ended up in an awkward 3 column build that needed to be split a lot. Best to stick to 4 columns if you are going to load onto 4 wagons. Oil is split into two advanced oil parts; inner one for lube/sulfuric and the outer just for petroleum for LDS.</p>
-<p><img src="/imgs/factorio/yellow.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/yellow.webp" alt="" /></p>
 <h3 id="space-science"><a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#zip=XU7vasMxCHybfEqga/qlGT6Mv8R1oebP1MAefymFsg2PEz3xzvCAm+D8dAUN4S3sujpBI1DXaofoJhyoNbuD2IC+p5BqMMGuc4iFx9qVBjO6coA+OMP54qpRU9CJmYLmSn33PdyTpOvJtVEWkwLmvNpitCFJ4ws+D+TA9WvRB2aro6f3LcSzFywoqS/mf+R1h2betoniC14Ho2zjTvzHQEa+k21B7Pn64nUSlfBM9vv2Bw==">Space Science</a></h3>
 <p>Can just be done with six rocket launchers running near constantly provided we have the ingredients.</p>
 <h4 id="rcu"><a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#zip=RY3NCsMwDIPfxqcG+nfoMvwwWeKOsCQOsTv2+EspY0jo8IGk4NThZLpu0JwSCuRYcIEHJUX61EYiRpsrUrmpOTHk2jjgNo4QMtYFwgPlTI/zCoq87xCVsmBj/yI1nos2TuYoUe1up22FzOFIJOjC2xVPwXBMps/6fhfL095lscs8/MlVPvE8DlKpV64N29HPXw==">RCU</a></h4>
 <p>Slightly overscaled because the speed module row looked awkward when optimal. Probably one of the most streamlined parts, but also most heavily abuses ore spawning (mixed lane inputs for both speed modules and blue processors).
 Blue build is from Stevetrov's cell base with a slight beaconing modification.
 Tried tons of blue builds for this and they're either all massive (like this), or they need double the amount of inserters for slightly more production, or they are smaller, but need so many belt inputs of plates that it's super awkward to plot down and less efficient. Didn't benchmark this for UPS, just went with gut feel based on smelter uptime, inserter numbers and inserter activity.</p>
-<p><img src="/imgs/factorio/rcu.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/rcu.webp" alt="" /></p>
 <h4 id="lds"><a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#data=1-1-19&amp;rate=s&amp;min=3&amp;belt=express-transport-belt&amp;mprod=800&amp;dm=p3&amp;db=s3&amp;dbc=24&amp;t=off&amp;items=low-density-structure:f:140&amp;modules=advanced-oil-processing:;s3:32">LDS</a></h4>
 <p>Supplies both rockets and satellites.
-<img src="/imgs/factorio/lds-140cars.jpg" alt="" /></p>
+<img src="/imgs/factorio/lds-140cars.webp" alt="" /></p>
 <h4 id="rf-cf-rf2"><a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#data=1-1-19&amp;rate=s&amp;min=3&amp;p=coal&amp;belt=express-transport-belt&amp;dm=p3&amp;db=s3&amp;dbc=24&amp;items=rocket-fuel:f:112&amp;modules=coal-liquefaction:;s3:32">RF CF</a> + <a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#data=1-1-19&amp;rate=s&amp;min=3&amp;belt=express-transport-belt&amp;dm=p3&amp;db=s3&amp;dbc=24&amp;items=rocket-fuel:f:108&amp;modules=advanced-oil-processing:;s3:32">RF2</a></h4>
 <p>Partially from coal liquefaction just because i wanted to learn how to do it well. It's probably not the most optimal choice since it needs lots of mixed coal belts to get the coal in that deep (yes, yes).</p>
 <p>CF build is undersupplied with 12 refineries, but doing it that way allows us not to copy paste the advanced oil one another time.
 It ends up being almost perfectly scaled for the rockets + satellites. Belts <strong>just</strong> start to fill before the next train arrives.</p>
 <p>All the solid fuel factories piggy-back on the ore clock for less swings.</p>
-<p><img src="/imgs/factorio/rocketfuel.jpg" alt="" />
-<img src="/imgs/factorio/cf.jpg" alt="" />
+<p><img src="/imgs/factorio/rocketfuel.webp" alt="" />
+<img src="/imgs/factorio/cf.webp" alt="" />
 Pretty happy about the beaconing line-up with the refineries and chemical plants:
-<img src="/imgs/factorio/cf-beaconing.jpg" alt="" /></p>
+<img src="/imgs/factorio/cf-beaconing.webp" alt="" /></p>
 <h4 id="satellites"><a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#zip=XYtdigMxDINvk6cJpZMtS1N8GE/ihYDzU9uBHr8zD9vSog8hhJTREM5+19XV0iC4ARtqSW4jNqDHEFL1Jth0dDF/1C5XGMHlDfTwBOuPK0ZVQdGIec9R4vp7urja82RSSB3Zc7lP+sNkpbd40xDDurwfFF4s2hnFD2zEcd/9s2BKs05G6/LRC2aU2Cbzlz0B">Satellites</a></h4>
 <p>The final component. It's better to look at calculator links for <a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#zip=VYi9CsMwDAbfRpuHxl0S0MPIsQaDf4Q+BfL4bZZCueOGqxLCr/RlJ5dQBo02OZNxEbSTivZgvc0VSOEyYcsjPZvqYMtUC+PpydubWugAY3XxZDK1H37sNFa9uv5/5J8f">Solar</a> + <a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#data=1-1-19&amp;min=3&amp;p=basic&amp;belt=express-transport-belt&amp;dm=p3&amp;db=s3&amp;dbc=24&amp;items=accumulator:r:540&amp;modules=accumulator:s3:s3:s3:s3">Accumulators</a> + <a rel="noopener" target="_blank" href="https://kirkmcdonald.github.io/calc.html#data=1-1-19&amp;min=3&amp;p=basic&amp;belt=express-transport-belt&amp;dm=p3&amp;db=s3&amp;dbc=24&amp;items=processing-unit:r:540">Processors</a> (the real output part of this chunk) because we leech LDS + RF from the trains.</p>
-<p><img src="/imgs/factorio/space-overview.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/space-overview.webp" alt="" /></p>
 <p>It's a pretty ugly mess that was designed early, but it's clocked and beaconed everywhere. Oh, and there's only 5 inserters per sulfuric acid factory because cars.</p>
-<p><img src="/imgs/factorio/cars-for-sulfuric.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/cars-for-sulfuric.webp" alt="" /></p>
 <h2 id="optimization">Optimization</h2>
 <p>We tried several major optimization strategies:</p>
 <ul>
@@ -251,8 +251,8 @@ Pretty happy about the beaconing line-up with the refineries and chemical plants
 </ul>
 <h2 id="initial-measurements">Initial Measurements</h2>
 <p>When doing this set of measurements the base looked like this:</p>
-<p><img src="/imgs/factorio/base.jpg" alt="" /></p>
-<p>After all the optimizations above; we <a href="/imgs/factorio/time-nuclear.jpg">measured</a> the following <strong>rough percentages of time</strong> of where the time was being spent in the game's <strong>update loop</strong>:</p>
+<p><img src="/imgs/factorio/base.webp" alt="" /></p>
+<p>After all the optimizations above; we <a href="/imgs/factorio/time-nuclear.webp">measured</a> the following <strong>rough percentages of time</strong> of where the time was being spent in the game's <strong>update loop</strong>:</p>
 <table><thead><tr><th>Source</th><th>Percent</th><th>ms</th></tr></thead><tbody>
 <tr><td>Entity update</td><td>67%</td><td>4.45ms</td></tr>
 <tr><td>Elecric network</td><td>13%</td><td>0.85ms</td></tr>
@@ -261,7 +261,7 @@ Pretty happy about the beaconing line-up with the refineries and chemical plants
 <tr><td>Circuit network</td><td>2%</td><td>0.18ms</td></tr>
 <tr><td>Trains</td><td>1%</td><td>0.06ms</td></tr>
 </tbody></table>
-<p>where the entities were <a href="/imgs/factorio/time-nuclear-entities.jpg">broken down further</a> using <a rel="noopener" target="_blank" href="https://wiki.factorio.com/Debug_mode"><code>show-entity-time-usage</code></a>:</p>
+<p>where the entities were <a href="/imgs/factorio/time-nuclear-entities.webp">broken down further</a> using <a rel="noopener" target="_blank" href="https://wiki.factorio.com/Debug_mode"><code>show-entity-time-usage</code></a>:</p>
 <table><thead><tr><th>Entity Class</th><th>Percent</th><th>ms</th></tr></thead><tbody>
 <tr><td><a rel="noopener" target="_blank" href="https://wiki.factorio.com/Prototype/Inserter">Inserter</a></td><td>46%</td><td>1.80ms</td></tr>
 <tr><td><a rel="noopener" target="_blank" href="https://wiki.factorio.com/Prototype/Generator">Generator</a></td><td>15%</td><td>0.60ms</td></tr>
@@ -280,7 +280,7 @@ Pretty happy about the beaconing line-up with the refineries and chemical plants
 <blockquote>
 <p>We ran the base on two big nuclear reactors sites producing 33GW in total.</p>
 </blockquote>
-<p><img src="/imgs/factorio/nuclear.jpg" alt="" />
+<p><img src="/imgs/factorio/nuclear.webp" alt="" />
 This reactor block gave us ~60% of the power output with <strong>120</strong> of the 204 total <strong>reactors</strong>.</p>
 <p>Opening up the save in creative mode and ripping out nuclear in favour of an infinite energy interface bumped UPS from 150 to over 200.. how would that translate if we used nearly a million solar panels instead? how much space would that take? how much time would that take...</p>
 <h3 id="solar-project">Solar Project</h3>
@@ -290,13 +290,13 @@ This reactor block gave us ~60% of the power output with <strong>120</strong> of
     <iframe src="https://www.youtube-nocookie.com/embed/zhiEGn-Yx-g" title="Youtube" class="yvi" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 </div>
 <p>with some strategic landfill factories taking advantage of huge mining prod:</p>
-<p><img src="/imgs/factorio/landfills.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/landfills.webp" alt="" /></p>
 <p>Still, definitely a repetivite background task (that took two days..)</p>
 <p>..but how did it measure up?</p>
 <blockquote>
 <p>On gamespeed <code>5</code> we saw a <strong>near 40% improvement</strong> to UPS from <code>150</code> to <code>208</code>.</p>
 </blockquote>
-<p>Breaking the new measurements (<a href="/imgs/factorio/time-solar.jpg">1</a>, <a href="/imgs/factorio/time-solar-entities.jpg">2</a>) down, we see:</p>
+<p>Breaking the new measurements (<a href="/imgs/factorio/time-solar.webp">1</a>, <a href="/imgs/factorio/time-solar-entities.webp">2</a>) down, we see:</p>
 <table><thead><tr><th>Source</th><th>Percent</th><th>ms</th><th>Change</th></tr></thead><tbody>
 <tr><td><strong>Entity update</strong></td><td>71%</td><td>3.12ms</td><td><strong>-1.33ms</strong></td></tr>
 <tr><td>Transport lines</td><td>13%</td><td>0.57ms</td><td>0</td></tr>
@@ -320,14 +320,14 @@ This reactor block gave us ~60% of the power output with <strong>120</strong> of
 <h3 id="end-performance">End Performance</h3>
 <p>The UPS went from around <code>110</code> to <code>208</code> on average from redesigns, clocking and the mentioned tweaks, where a good chunk of this came from the base design itself. The <strong>most braindead change</strong> with the biggest improvement was switching to solar (with nearly 40% improvement at the time - your mileage will vary). The changes with the <strong>most performance gains by time investment</strong> was turning on large pages (5min job), and turning off + clearing pollution (1min job).</p>
 <p>In the end, the island now looks like this:</p>
-<p><img src="/imgs/factorio/end-base.jpg" alt="" />
+<p><img src="/imgs/factorio/end-base.webp" alt="" />
 i.e. largely the same, but without nuclear, and solar everywhere.</p>
 <p>how much solar? oh i'm sorry, that screenshot was cropped..</p>
-<p><img src="/imgs/factorio/end-solar.jpg" alt="" /></p>
+<p><img src="/imgs/factorio/end-solar.webp" alt="" /></p>
 <p>yeah. that's a lot more than expected. When designing solar, ensure you <a rel="noopener" target="_blank" href="https://forums.factorio.com/viewtopic.php?t=5594">overscale by 42%</a> to cover the night.</p>
 <h2 id="blueprints"><a rel="noopener" target="_blank" href="https://gist.github.com/clux/551835be6f2bf1f558cd661e03d2b64e">Blueprints</a></h2>
 <p>Exported these pieces:
-<a rel="noopener" target="_blank" href="https://gist.github.com/clux/551835be6f2bf1f558cd661e03d2b64e"><img src="/imgs/factorio/blueprints.jpg" alt="factorio blueprints" /></a></p>
+<a rel="noopener" target="_blank" href="https://gist.github.com/clux/551835be6f2bf1f558cd661e03d2b64e"><img src="/imgs/factorio/blueprints.webp" alt="factorio blueprints" /></a></p>
 <h3 id="commands">Commands</h3>
 <details><summary style="cursor:pointer"><b>Expand Commands</b></summary>
 <p>
@@ -375,94 +375,6 @@ i.e. largely the same, but without nuclear, and solar everywhere.</p>
         </div>
       </nav>
     </article>
-
-    <div class="sblock">
-
-      <div class="blockdiv sticky">
-        <a class="b s150" href="#">Index</a>
-        <div>
-          <a href="#plan">Plan</a>
-        </div>
-        <div class="hpad">
-          <a href="#sideprojects"><small>- Sideprojects</small></a>
-        </div>
-        <div>
-          <a href="#factory-designs">Factory Designs</a>
-        </div>
-        <div class="hpad">
-          <a href="#rails"><small>- Rails</small></a>
-        </div>
-        <div class="hpad">
-          <a href="#green-circuit-plastic-row"><small>- Green Circuit &#x2F; Plastic Row</small></a>
-        </div>
-        <div class="hpad">
-          <a href="#red-circuit-row"><small>- Red Circuit Row</small></a>
-        </div>
-        <div class="hpad">
-          <a href="#low-density-row"><small>- Low Density Row</small></a>
-        </div>
-        <div class="hpad">
-          <a href="#labs"><small>- Labs</small></a>
-        </div>
-        <div>
-          <a href="#trains">Trains</a>
-        </div>
-        <div class="hpad">
-          <a href="#lab-depot"><small>- Lab Depot</small></a>
-        </div>
-        <div class="hpad">
-          <a href="#rocket-depot"><small>- Rocket Depot</small></a>
-        </div>
-        <div class="hpad">
-          <a href="#nuclear-fuel"><small>- Nuclear Fuel</small></a>
-        </div>
-        <div>
-          <a href="#science-cities">Science Cities</a>
-        </div>
-        <div class="hpad">
-          <a href="#red"><small>- Red</small></a>
-        </div>
-        <div class="hpad">
-          <a href="#green"><small>- Green</small></a>
-        </div>
-        <div class="hpad">
-          <a href="#military"><small>- Military</small></a>
-        </div>
-        <div class="hpad">
-          <a href="#chemical"><small>- Chemical</small></a>
-        </div>
-        <div class="hpad">
-          <a href="#production"><small>- Production</small></a>
-        </div>
-        <div class="hpad">
-          <a href="#utility"><small>- Utility</small></a>
-        </div>
-        <div class="hpad">
-          <a href="#space-science"><small>- Space Science</small></a>
-        </div>
-        <div>
-          <a href="#optimization">Optimization</a>
-        </div>
-        <div>
-          <a href="#initial-measurements">Initial Measurements</a>
-        </div>
-        <div class="hpad">
-          <a href="#solar-project"><small>- Solar Project</small></a>
-        </div>
-        <div class="hpad">
-          <a href="#end-performance"><small>- End Performance</small></a>
-        </div>
-        <div>
-          <a href="#blueprints">Blueprints</a>
-        </div>
-        <div class="hpad">
-          <a href="#commands"><small>- Commands</small></a>
-        </div>
-        <div>
-          <a href="#results">Results</a>
-        </div>
-      </div>
-    </div>
   </main>
   <footer>
     <hr />
