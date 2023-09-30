@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <script src="https://clux.dev/js/theme.min.js" integrity="sha384-pb++s6uBRKaQv+iAXpgA/H3IlpLZdO14tTwuCI7uXmz4aaZdByoCcM+6BhynMq/1"></script>
-  <link rel="stylesheet" href="https://clux.dev/abridge.css?h=e626a7be1c78b8b8ae68" />
+  <link rel="stylesheet" href="https://clux.dev/abridge.css?h=d90d21948997e2e43412" />
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -36,7 +36,7 @@
 <body>
   <header>
     <nav>
-      <div><h1><a href="https://clux.dev" title="probes">Probes</a></h1></div>
+      <div><h1><a href="https://clux.dev" title="probes"><font color="#74c7ec">P</font>robes ↝ cl<font color="#74c7ec">u</font>x</a></h1></div>
       <div>
 
         <div>
@@ -90,7 +90,7 @@
 </ul>
 <p>We needed validation. Admission control was new, didn't work well with gitops for fast client-side validation, and we just needed ci checks to prevent <code>master</code> from being broken.</p>
 <h2 id="helm">Helm</h2>
-<p>One of the main abstraction attempts kubernetes has seen in this space is <code>helm</code>. A client side templating system (ignoring the bad server side part) that lets you abstract away much of the above into <code>charts</code> (a collection of <code>yaml</code> go templates) ready to be filled in with <code>helm values</code>; the more concise <code>yaml</code> that developers write directly.</p>
+<p>The most successful abstraction attempt Kubernetes had seen in this space; <code>helm</code>. A client side templating system (ignoring the bad server side part) that lets you abstract away much of the above into <code>charts</code> (a collection of <code>yaml</code> go templates) ready to be filled in with <code>helm values</code>; the more concise <code>yaml</code> that developers write directly.</p>
 <p>Simplistic usage of <code>helm</code> would involve having a <code>charts</code> folder:</p>
 <pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">charts</span></span>
 <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">└──</span></span><span class="z-meta z-function-call z-arguments z-shell"> base</span>
@@ -131,7 +131,7 @@
 <h2 id="disclaimer">Disclaimer</h2>
 <p>This style of tool was not a revolutionary (nor clean) idea. At KubeCon Eu 2018 pretty much everyone had their own wrappers around <code>yaml</code> to help with these problems. Some common examples: <code>kubecfg</code>, <code>ksonnet</code>, <code>flux</code>, <code>helmfile</code>, which all try to help out in this space, but they were all missing most of the sanity we required when we started experimenting.</p>
 <p>Note that this was our first take on adding Kubernetes validation in a world where gitops was in its infancy.</p>
-<p>The result is <strong>babylon dependent</strong>; it was heavily evolving and not general purpose.</p>
+<p>The result was <strong>babylon dependent</strong>, fast moving, and not fit for general purpose. The idea itself though..</p>
 <h2 id="manifests">Manifests</h2>
 <p>The user interaface we settled on were service-level manifests:</p>
 <pre data-lang="yaml" class="language-yaml z-code"><code class="language-yaml" data-lang="yaml"><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">name</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">webapp</span>
