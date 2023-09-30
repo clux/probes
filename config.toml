@@ -1,4 +1,5 @@
-base_url="https://clux.github.io/probes.zola"
+#base_url="https://clux.github.io/probes.zola"
+base_url="https://clux.dev"
 # Usable site directly from disk, Including Search: "/home/jieiku/.dev/abridge/public"
 # Also set index_format = "elasticlunr_javascript", and in [extra] uglyurls = true, integrity = false
 # If you use the npm/node script then all you have to do is set offline = true, and everything else is automatic.
@@ -147,8 +148,8 @@ youtube = "channel/UCLpykMxkxuPUR9CciheipZg"
 ###############################################################################
 
 # do NOT include a trailing slash on the online URL
-#online_url="https://clux.dev"
-online_url="https://clux.github.io/probes.zola"
+online_url="https://clux.dev"
+#online_url="https://clux.github.io/probes"
 offline = false # implies uglyurls=true and integrity=false, when true NPM/node will automatically set the path for the base_url, it will build the site, then set the base_url back to what it was.
 
 uglyurls = false # if set to true then links are generated with the full path. eg https://abridge.netlify.app/index.html
