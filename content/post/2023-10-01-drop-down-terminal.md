@@ -21,17 +21,21 @@ However, as `guake` is __gnome__ specific, continued use became problematic once
 
 ## Looks
 
+Behold; a semi-transparent, tabbed terminal hovering above two browser windows (showing the editing process of this very post):
+
 [![alacritty in foreground with zellij tabs and helix open with transparency](/imgs/term-drop.png)](/imgs/term-drop.png)
 
-This is using a transparent theme in `helix`, with 80% opacity in alacritty, and disabled blur in `hyprland` to selectively see through below (like for say live updates to the markdown rendering). On mac, the setup and looks are very similar to this.
+This is using a transparent theme in [helix](https://helix-editor.com/), with 80% opacity in alacritty, and disabled blur in `hyprland` to selectively see through below (like for say live updates to the markdown rendering). On mac, the setup and looks are very similar to this.
 
-> For times when transparency is too annoying you can [bind a key to change the `helix` theme](https://github.com/clux/dotfiles/blob/dfcf3d8eb3ae48b8f1ff0df0dffb7d2b7ec65680/config/helix/config.toml#L12-L13) to something fully opaque (most themes are opaque).
+> For times when transparency is too annoying you can [bind a key to change the `helix` theme](https://github.com/clux/dotfiles/blob/dfcf3d8eb3ae48b8f1ff0df0dffb7d2b7ec65680/config/helix/config.toml#L12-L13) to something fully opaque (most themes are opaque). A quick `F1` press ultimately slides the terminal away from view anyway.
 
-## Basic Setup
+## Core Concept
 
 The idea is to have a __persistent terminal__ that is __hidden away__ in a "special place" and bind a key to toggle the visibility of this terminal. Then we rely on `zellij` to provide tabs.
 
 > The choice of terminal emulator and multiplexer is not super important. You could probably use `kitty` + `tmux`, or straight `wezterm` (which has tabs mgmt built-in) if you prefer, and achieve the same results.
+
+On __wayland__ that place is a __special workspace__, whereas on mac we use `sticky` windows.
 
 ## Alacritty Setup
 My preferred setup is to always launch `zellij` at `alacritty` start by configuring the default shell in the `alacritty.yml` config:
@@ -60,7 +64,7 @@ window:
   startup_mode: Maximized
 ```
 
-whereas on mac the nicest decoration setup is `buttonless`:
+whereas on mac a similar decoration setup is `buttonless`:
 
 ```yaml
 window:
@@ -85,10 +89,30 @@ grab a [theme](https://zellij.dev/documentation/themes).
 
 > The `-l compact` startup option set in the alacritty config assumes familiarity in `zellij`, you're likely to find it easier to onboard if you don't use compact mode until you are familiar.
 
+### Tab Names
+If you don't want to faff around with naming every single zellij tab, you can also make `zsh` do it automatically for you using [`chpwd_functions`](https://zsh.sourceforge.io/Doc/Release/Functions.html#Hook-Functions) using something like this in your `.zshrc` etc:
 
-## Variants
+```sh
+zz() {
+  if [ -n "${ZELLIJ_SESSION_NAME}" ]; then
+    zellij action rename-tab "${PWD##*/}"
+  fi
+}
+
+# ensure directory traversal updates tab names (if terminal mux exists)
+chpwd_functions+=zz
+zz # initialize name for new tabs/panes
+```
+
+This is nice because it catches all sources of traversal, be it through `cd` or through jumpers like [zoxide](https://github.com/ajeetdsouza/zoxide).
+
+## Drop Down Variants
+The most ergonomic one here is the hypland variant, but the mac setup is also decent.
+
 ### Hyprland
-On Linux with [hyprland](https://hyprland.org/) (my current wayland compositor), plugging this in is very easy to do, and the solution is the most ergonomic out of the three.
+On Linux with [hyprland](https://hyprland.org/) (my current wayland compositor), plugging this in is very easy to do because you have access to [special workspaces](https://wiki.hyprland.org/Configuring/Dispatchers/#special-workspace), so the terminal is never technically __hidden__, it's just active in a different workspace.
+
+> This might not seem like a big deal, but if you've tried sharing a terminal that hides itself (such as guake's or through the mac solution below) on a screen sharing video call, you will find various failure modes (from app crashes to stream closes) if you hide the window you are sharing.
 
 In your `hyprland.conf`, add:
 
@@ -97,7 +121,7 @@ exec-once = [workspace special] alacritty
 bind = , F1, togglespecialworkspace
 ```
 
-so it auto-starts and you can toggle the workspace as you wish.
+so it auto-starts in special, and you can toggle the workspace as you wish.
 
 Give it an animation so it pops in vertically, and avoid undercutting your opacity:
 
@@ -122,6 +146,8 @@ dwindle {
 }
 ```
 
+The end result is a terminal that pops in from the bottom in an inverted quake terminal feel - and honestly this makes more sense than top-to-bottom since you have to give some space to the (usually top) `waybar`.
+
 ### Hammerspoon
 
 On Mac, the easiest setup is using [hammerspoon](https://github.com/Hammerspoon/hammerspoon). Bind a toggle or start `alacritty` in your hammerspoon's `init.lua`:
@@ -142,11 +168,21 @@ end
 hs.hotkey.bind({}, "F1", function() toggleApp("alacritty") end)
 ```
 
+I find it a little flimsy on a multi-monitor setup, with sometimes having to manually move it across to a workspace on a different monitor (hierarchy seems less clean on mac in general), but it gets the job done. Mac desktop also has no issues with transparency out of the box so the alacritty setting is just respected.
+
+If you are using it with [yabai](https://github.com/koekeishiya/yabai) (for auto-tiling of windows, window moving shortcuts), then you also want to add a rule for `yabai` to mark it as sticky to avoid it getting bunched up as a normal window tile:
+
+```sh
+yabai -m rule --add app="^(Alacritty)$" sticky=on
+```
+
+Because it is using sticky windows, screen sharing of this window will not be viable by itself (as the source disappears when it's hidden), so you'll have to share the entire workspace instead. This is usually not a big deal if you are already using workspaces.
+
 ### Xorg
 
-All setups I found for this were __comically bad__, but including one for completeness. **Don't use this**. Stay on `guake` if you are on `X`. This majorly struggles with multi-monitor.
+All setups I found for this were __comically bad__, but including one for completeness. **Don't use this**. Stay on `guake` if you are on `X`. The hack below majorly struggles with multi-monitor.
 
-> Aside: you should consider moving onto wayland if you haven't. At the very least all my blockers got resolved this year.
+> Aside: you [should consider moving onto wayland](https://orowith2os.gitlab.io/posts/wayland-breaks-your-bad-software/) if you haven't.
 
 You need a script that auto-runs in your shell, and a runnable function:
 
@@ -173,7 +209,7 @@ terminal_toggle() {
 
 This expects `alacritty` is on autorun and you can configure binds somewhere. I put an `F2` bind in `cinnamon` (yeah, long time between changing WMs for me) to run this.
 
-> Again; **I don't use this**. I wrote it as a 1mo stop-gap and I hated it.
+> Again; **I don't use this**. I wrote it as a short stop-gap and I hated it.
 
 Having to support Mac + X in my [dotfiles](https://github.com/clux/dotfiles) became a perfect storm of frustration, and wouldn't you know it, wayland made everything better.
 
