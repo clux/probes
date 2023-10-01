@@ -32,7 +32,7 @@ These days, **[kube](https://github.com/kube-rs/kube)** - which has grown from a
 
 Past colleagues might remember me from these overly ambitious work projects:
 
-- 2018 [babylon/shipcat](https://github.com/clux/shipcat) :: babylon's helmfile like microservice system ([safety fork](https://github.com/clux/shipcat) - was needed lol)
+- 2018 [babylon/shipcat](https://github.com/clux/shipcat) :: babylon's helmfile like microservice system ([safety fork](https://github.com/clux/shipcat) - [was needed lol](/post/shipcat-retrospective/))
 - 2016 [cisco/lal](https://github.com/cisco/lal-build-manager) :: a language agnostic docker based build system ([safety fork](https://github.com/lalbuild/lal) by the [old build team](https://github.com/orgs/lalbuild/people))
 
 ### Roleplaying

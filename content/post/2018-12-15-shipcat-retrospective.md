@@ -12,13 +12,13 @@ categories = ["software"]
 tags = ["rust", "kubernetes"]
 +++
 
-The now defunct unicorn startup [babylon health](https://www.babylonhealth.com/) needed to micrate about 50 microservices to Kubernetes in early 2018. At Kubernetes 1.8, supporting tooling was weak, and deadlines were quick.
+The now defunct unicorn startup [babylon health](https://www.babylonhealth.com/) needed to micrate about 50 microservices to Kubernetes in early 2018. At Kubernetes 1.8, supporting tooling was weak, but the company pace was fast.
 
-This is an historically updated post about [`shipcat`](https://github.com/clux/shipcat), a standardisation tool written to control the declarative format and lifecycle of every microservice, and get safety quickly.
+This is an **historically updated post** about [`shipcat`](https://github.com/clux/shipcat), a standardisation tool written to control the declarative format and lifecycle of every microservice, and get safety quickly.
 
 <!--more-->
 
-> NOTE: After babylon's demise in 2023 this post has been updated to serve as a kind of mini-retrospective. Mostly, it's just an edit of the original post that adds some historical clarification of why this weird tool was written.
+> This article was updated after babylon's demise in 2023. It now serves as a mini-retrospective instead of the mostly broken announcement (with the original repo being down). We add some better showcases and examples, and historical context, that together should help avoid some common misconceptions about why this weird tool was written.
 
 First, a bit about the problem:
 
@@ -26,7 +26,7 @@ First, a bit about the problem:
 
 Migrating to Kubernetes was a non-trivial task for a DevOps team, when the requirements where basically that __we would do it for the engineers__. We had to standardise, and we had to decide on what a __microservice__ ought to look like based on what was already there.
 
-We didn't want engineers to have to learn everything about the following objects at once:
+We didn't want engineers to all have to learn everything about the following objects at once:
 
 - `ConfigMap`
 - `Secrets`
@@ -91,14 +91,14 @@ What if if we could take the general idea that developers just write simplified 
 
 By defining all our syntax in a library we can have cli tools for automation, and executables running as kubernetes operators using the same definitions. It effectively provides a way to versioning the platform.
 
-This also allowed us to solve a _secrets_ problem. We extended the manifests with syntax that allows synchronsing secrets from [Vault](https://www.hashicorp.com/products/vault/) at both deploy and validation time. There are better solutions for this now, but we needed something quickly.
+This also allowed us to solve a _secrets_ problem. We extended the manifests with syntax that allows synchronsing secrets from [Vault](https://www.hashicorp.com/products/vault/) at both deploy and validation time. There are [better solutions for this now](https://www.hashicorp.com/blog/injecting-vault-secrets-into-kubernetes-pods-via-a-sidecar), but we needed something quickly.
 
 ## Disclaimer
-This style of tool was not a revolutionary (nor clean) idea. At KubeCon Eu 2018 pretty much everyone had their own wrappers around `yaml` to help with these problems. Some common examples: `kubecfg`, `ksonnet`, `flux`, `helmfile`, which all try to help out in this space, but they were all missing most of the sanity we required when we started experimenting.
+This style of tool was not a revolutionary (nor clean) idea. At KubeCon Eu 2018 pretty much everyone had their own wrappers around `yaml` to help with these problems. For instance, `kubecfg`, `ksonnet`, `flux`, `helmfile`, all try to help out in this space, but they were all missing most of the sanity we required when we started experimenting.
 
-Note that this was our first take on adding Kubernetes validation in a world where gitops was in its infancy.
+> so, how to homebrew Kubernetes validation in an early stage gitops world
 
-The result was __babylon dependent__, fast moving, and not fit for general purpose. The idea itself though..
+The result, perhaps unsurprisingly, was __babylon dependent__, fast moving, and not fit for general purpose. But it was still very helpful for the company.
 
 ## Manifests
 The user interaface we settled on were service-level manifests:
@@ -130,7 +130,9 @@ metadata:
   repo: https://github.com/clux/webapp-rs
 ```
 
-This encapsulates the most important kube apis that developers should configure themselves, who's responsible for it, what regions it's deployed in, what secrets are needed (notice the `IN_VAULT` marker), and how resource intensive it is.
+This encapsulated the usual kubernetes apis that developers needed to configure themselves, who's responsible for it, what regions it's deployed in, what secrets are needed (notice the `IN_VAULT` marker), and how resource intensive it is.
+
+It's obviously quite limiting in terms of what you actually can do on Kubernetes, but this simple "one deployment per microservice" with some optional extras was generally sufficient for years.
 
 ## Strict Syntax
 Because these manifests were going to be the entry point for CI pipelines and handle platform specific validation (for medical software), we wanted maximum strictness everywhere and that includes the ability to catch errors before manifests are committed to `master`.
@@ -241,18 +243,18 @@ shipcat values myapp | helm template charts/base
 We did always lean on helm charts for templating yaml, but this was always an implementation detail that only a handful of engineers needed to touch as we followed the [one chart to rule them all approach](https://www.youtube.com/watch?v=HzJ9ycX1h0c). Templates were also linted heavily with [`kubeval`](https://github.com/garethr/kubeva) against all services in all regions during chart upgrades.
 
 ## Kubernetes Usage
-We had wrappers around the normal `shipcat template myapp | kubectl X` pipeline
+We had wrappers around the normal `shipcat template myapp | kubectl X` pipeline:
 
 ```sh
 shipcat diff myapp # diff templated yaml against current cluster
 shipcat apply myapp # kubectl apply the template - providing a diff and a progress bar
 ```
 
-The upgrade was much nicer than any other CLI that existed at the time, it [tracked upgrades with deployment-replica progress bars](https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/track.rs#L415-L508), [bubbled up errors, captured error logs](https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/apply.rs#L312-L335), [provided inline diffs pre-upgrade](https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/apply.rs#L262-L291), gated on validation, sent [successful rollout notifications](https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/slack.rs#L138-L255) to maintainers on slack.
+We didn't really apply locally except when doing local testing, but we could. There was a [glorified kubernetes context switcher](https://github.com/clux/shipcat/blob/master/shipcat_cli/src/auth.rs) that ensured we were pointing to the correct vault for the cluster, so it was pretty easy to test on and get accurate diffs.
 
-> This was imo its biggest selling point (and possibly prevented a revolt against a ops-led mandated tool). In my later jobs, achieving the same would take multiple microservices talking to flux.
+The upgrade was much nicer than any other CLI that existed at the time, it [tracked upgrades with deployment-replica progress bars](https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/track.rs#L415-L508), [bubbled up errors, captured error logs from crashing pods](https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/apply.rs#L312-L335), [provided inline diffs pre-upgrade](https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/apply.rs#L262-L291), gated on validation, sent [successful rollout notifications](https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/slack.rs#L138-L255) to maintainers on slack.
 
-CI actually reconciled the whole cluster in parallel using rayon (and later tokio):
+CI actually used this apply setup and [reconciled the whole cluster](https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_cli/src/cluster.rs#L192-L221) in parallel using async rust with [`StreamExt::buffer_unordered`](https://docs.rs/futures/latest/futures/stream/trait.StreamExt.html#method.buffer_unordered):
 
 ```sh
 shipcat cluster helm reconcile
@@ -260,10 +262,13 @@ shipcat cluster helm reconcile
 
 this help avoid the numerous tiller bugs and actually let us define a sensible amount of time to wait for a deployment to complete (there's an [algorithm in there for it](https://github.com/clux/shipcat/blob/669bbb8408ea5b3c93582774b021aebb12c2a970/shipcat_definitions/src/math.rs#L79-L109)).
 
-> at the time [helm 3 was planning to architect away tiller entirely](https://github.com/helm/community/blob/master/helm-v3/000-helm-v3.md).
-
 In the end, we almost turned it into a CD controller, but in an awkward clash of new and old tech, we just ran the above reconcile command on jenkins every 5m lol.
 
+> at the time [helm 3 was planning to architect away tiller entirely](https://github.com/helm/community/blob/master/helm-v3/000-helm-v3.md).
+
+The dev ergonomics was one of its biggest selling points (and possibly prevented a revolt against a ops-led + mandated tool). In my later jobs, achieving a similar level of dev ergonomics would take multiple microservices talking to flux.
+
+Perhaps all this does not seem that impressive now, but it helps if you have visited that __precise layer of hell__ that `helm 2` dominated. It had such a painful and broken CD flow.
 
 ## Conclusion
 
@@ -271,7 +276,13 @@ Looking back at this, it's a kind of wild everything-CLI. It accomplished the go
 
 It also let us build a quick and simple service-registry on top of the service spec (there's a controller called [raftcat](https://github.com/clux/shipcat/tree/master/raftcat) that cross-linked to all the tools we used for each service).
 
-Not unsurprisingly, how tied-in it was to the babylon platform effectively became its demise.
-While [shipcat was open source](https://github.com/babylonhealth/shipcat), it was silently un-opensourced in 2022 without much ceremony, and now only my [safety fork](https://github.com/clux/shipcat) remains. We can say similar things about the [company](https://techcrunch.com/2023/08/31/the-fall-of-babylon-failed-tele-health-startup-once-valued-at-nearly-2b-goes-bankrupt-and-sold-for-parts/) and the value of my shares.
+Ultimately, it's not a tool most people know about, or at the very least not very well understood, and this makes sense. It was ultimately tied to babylon's platform. Why would you tell people about this, if not except out of interest? The more surprising nail in that coffin was in late 2022, when it was [made private from its repo](https://github.com/babylonhealth/shipcat) without much ceremony. Now only my [safety fork](https://github.com/clux/shipcat) remains. Similar [unravellings later happened to the company](https://techcrunch.com/2023/08/31/the-fall-of-babylon-failed-tele-health-startup-once-valued-at-nearly-2b-goes-bankrupt-and-sold-for-parts/), but unfortunately you cannot safety fork your share value.
 
-There's also our original talk: [Babylon Health - Leveraging Kubernetes for global scale](https://www.youtube.com/watch?v=FvKQP7Qnfuc) from DoxLon2018 that provides some context. Don't make me watch it again though.
+<details><summary style="cursor:pointer"><b>Original Presentation</b></summary>
+<p>
+For anyone super interested, there is also our original talk: <a href="https://www.youtube.com/watch?v=FvKQP7Qnfuc">Babylon Health - Leveraging Kubernetes for global scale</a>
+from DoxLon2018 that provides some context.
+
+Don't make me watch it again though.
+</p>
+</details>
