@@ -35,7 +35,7 @@ The idea is to have a __persistent terminal__ that is __hidden away__ in a "spec
 
 > The choice of terminal emulator and multiplexer is not super important. You could probably use `kitty` + `tmux`, or straight `wezterm` (which has tabs mgmt built-in) if you prefer, and achieve the same results.
 
-On __wayland__ that place is a __special workspace__, whereas on mac we use `sticky` windows.
+On __wayland__ that place is a __special workspace__, whereas on __mac__ we use `sticky` windows.
 
 ## Alacritty Setup
 My preferred setup is to always launch `zellij` at `alacritty` start by configuring the default shell in the `alacritty.yml` config:
@@ -168,7 +168,9 @@ end
 hs.hotkey.bind({}, "F1", function() toggleApp("alacritty") end)
 ```
 
-I find it a little flimsy on a multi-monitor setup, with sometimes having to manually move it across to a workspace on a different monitor (hierarchy seems less clean on mac in general), but it gets the job done. Mac desktop also has no issues with transparency out of the box so the alacritty setting is just respected.
+It is a little flimsy on a multi-monitor setup, with sometimes having to manually move it across to a workspace on a different monitor on boot (window/workspace/monitor hierarchy seems less clean on mac in general), but it helps to not auto-start the app and let the bind start it on the monitor you  have your cursor by only pressing the bind there.
+
+The alacritty opacity setting is respected out of the box.
 
 If you are using it with [yabai](https://github.com/koekeishiya/yabai) (for auto-tiling of windows, window moving shortcuts), then you also want to add a rule for `yabai` to mark it as sticky to avoid it getting bunched up as a normal window tile:
 
