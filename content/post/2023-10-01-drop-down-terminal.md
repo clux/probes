@@ -7,6 +7,7 @@ description = "Recreating guake on top of alacritty and zellij in wayland and ma
 [extra]
 toc = true
 math = false
+thumbnail = "/imgs/term-drop.png"
 
 [taxonomies]
 categories = ["software"]
