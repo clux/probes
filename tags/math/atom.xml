@@ -855,22 +855,22 @@ Plotly.newPlot(document.getElementById(&#x27;probhist3convolvedtrunc&#x27;), dat
 &lt;details&gt;&lt;summary style=&quot;cursor:pointer&quot;&gt;&lt;b&gt;3. Tabulated values for 3 dice multinomial probability distribution&lt;&#x2F;b&gt;&lt;&#x2F;summary&gt;
 &lt;p&gt;
 &lt;p&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.wolframalpha.com&#x2F;input?i2d=true&amp;amp;i=+Divide%5B1%2CPower%5B6%2C3%5D%5DSum%5BPower%5B%5C%2840%29-1%5C%2841%29%2Ck%5D+*binomial%5C%2840%293%5C%2844%29+k%5C%2841%29*binomial%5C%2840%2910-6k-1%5C%2844%29+2%5C%2841%29%2C%7Bk%2C0%2Cfloor%5C%2840%29Divide%5B%5C%2840%2910-3%5C%2841%29%2C6%5D%5C%2841%29%7D%5D&quot;&gt;Wolfram Alpha Query&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;yaml:&quot; class=&quot;language-yaml: z-code&quot;&gt;&lt;code class=&quot;language-yaml:&quot; data-lang=&quot;yaml:&quot;&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;3: 1&#x2F;216
-4: 1&#x2F;72
-5: 1&#x2F;36
-6: 5&#x2F;108
-7: 5&#x2F;72
-8: 7&#x2F;72
-9: 25&#x2F;216
-10: 1&#x2F;8
-11: 1&#x2F;8
-12: 25&#x2F;216
-13: 7&#x2F;72
-14: 5&#x2F;72
-15: 5&#x2F;108
-16: 1&#x2F;36
-17: 1&#x2F;72
-18: 1&#x2F;216
+&lt;pre data-lang=&quot;yaml&quot; class=&quot;language-yaml z-code&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;z-source z-yaml&quot;&gt;&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;3&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;1&#x2F;216&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;4&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;1&#x2F;72&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;5&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;1&#x2F;36&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;6&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;5&#x2F;108&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;7&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;5&#x2F;72&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;8&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;7&#x2F;72&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;9&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;25&#x2F;216&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;10&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;1&#x2F;8&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;11&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;1&#x2F;8&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;12&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;25&#x2F;216&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;13&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;7&#x2F;72&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;14&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;5&#x2F;72&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;15&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;5&#x2F;108&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;16&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;1&#x2F;36&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;17&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;1&#x2F;72&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-yaml&quot;&gt;18&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-mapping z-yaml&quot;&gt;:&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-unquoted z-plain z-out z-yaml&quot;&gt;1&#x2F;216&lt;&#x2F;span&gt;
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;&#x2F;p&gt;
 &lt;&#x2F;details&gt;

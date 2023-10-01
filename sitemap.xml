@@ -111,6 +111,10 @@
         <lastmod>2022-12-07</lastmod>
     </url>
     <url>
+        <loc>https://clux.dev/post/2023-10-01-drop-down-terminal/</loc>
+        <lastmod>2023-10-01</lastmod>
+    </url>
+    <url>
         <loc>https://clux.dev/post/shipcat-retrospective/</loc>
         <lastmod>2023-09-28</lastmod>
     </url>
@@ -140,6 +144,9 @@
     </url>
     <url>
         <loc>https://clux.dev/tags/linux/</loc>
+    </url>
+    <url>
+        <loc>https://clux.dev/tags/mac/</loc>
     </url>
     <url>
         <loc>https://clux.dev/tags/math/</loc>

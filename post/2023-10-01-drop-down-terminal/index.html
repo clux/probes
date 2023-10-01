@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://clux.dev/js/theme.min.js" integrity="sha384-pb++s6uBRKaQv+iAXpgA/H3IlpLZdO14tTwuCI7uXmz4aaZdByoCcM+6BhynMq/1"></script>
+  <link rel="stylesheet" href="https://clux.dev/abridge.css?h=d90d21948997e2e43412" />
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="base" content="https://clux.dev" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <link rel="manifest" href="https://clux.dev/manifest.min.json" />
+  <link rel="alternate" type="application/atom+xml" title="probes Atom/RSS Feed" href="https://clux.dev/atom.xml" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <title>Drop Down Terminal | probes</title>
+  <meta name="author" content="clux" />
+  <meta name="copyright" content="probes" />
+  <meta name="description" content="Recreating guake on top of alacritty and zellij in wayland and macos" />
+  <link rel="canonical" href="https://clux.dev/post/2023-10-01-drop-down-terminal/" />
+  <meta name="keywords" content="Kubernetes, Cloud, Rust, Theorycraft, Blog" />
+  <script defer src="https://clux.dev/js/abridge.min.js?h=52ceec8ac36fe25defe7" integrity="sha384-H1IaFs2MvG0ayi+Bq0d66Ih118nLUFESwUke1UH1uKzTiJwcgE8hXpONzAG3kqHj"></script>
+  <noscript><link rel="stylesheet" href="https://clux.dev/nojs.css" /></noscript>
+</head>
+<body>
+  <header>
+    <nav>
+      <div><h1><a href="https://clux.dev" title="probes"><font color="#74c7ec">P</font>robes ↝ cl<font color="#74c7ec">u</font>x</a></h1></div>
+      <div>
+
+        <div>
+          <ul><li><a class="s110" href="https://clux.dev/about/"> About </a></li><li><a class="s110" href="https://clux.dev/post/"> Posts </a></li><li><a class="s110" href="https://clux.dev/categories/"> Categories </a></li><li><a class="s110" href="https://clux.dev/tags/"> Tags </a></li><li><i type="reset" id="mode" class="js svgs adjust"></i></ul>
+        </div>
+
+        <div>
+          <div>
+            <form autocomplete=off class="js" name="goSearch" id="searchbox">
+              <div class="searchd">
+                <input id="searchinput" type="text" placeholder="Search" title="Search" />
+                <button type="submit" title="Search" class="svgs search"></button>
+              </div>
+              <div class="results"><div id="suggestions"></div></div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+  <main>
+    <article>
+      <h1><a href="https://clux.dev/post/2023-10-01-drop-down-terminal/">Drop Down Terminal</a></h1>
+
+      <span class="s95"> clux <span class="rpad"></span> October 01, 2023 <span class="rpad"></span> [<a href="https://clux.dev/categories/software/">software</a>] #<a href="https://clux.dev/tags/linux/">linux</a>  #<a href="https://clux.dev/tags/mac/">mac</a> </span>
+
+    
+
+
+<p>As a former Quake player, I have been a long-term user of <a rel="noopener" target="_blank" href="https://github.com/Guake/guake">guake</a> for a quick access terminal on Linux.</p>
+<p>However, as <code>guake</code> is <strong>gnome</strong> specific, continued use became problematic once a mac got thrust upon me for work. So herein is a workaround for making your own drop-down terminal for Linux and Mac by utilizing <a rel="noopener" target="_blank" href="https://github.com/alacritty/alacritty">alacritty</a> + <a rel="noopener" target="_blank" href="https://zellij.dev/">zellij</a>.</p>
+<!--more-->
+<h2 id="looks">Looks</h2>
+<p>Behold; a semi-transparent, tabbed terminal hovering above two browser windows (showing the editing process of this very post):</p>
+<p><a href="/imgs/term-drop.png"><img src="/imgs/term-drop.png" alt="alacritty in foreground with zellij tabs and helix open with transparency" /></a></p>
+<p>This is using a transparent theme in <a rel="noopener" target="_blank" href="https://helix-editor.com/">helix</a>, with 80% opacity in alacritty, and disabled blur in <code>hyprland</code> to selectively see through below (like for say live updates to the markdown rendering). On mac, the setup and looks are very similar to this.</p>
+<blockquote>
+<p>For times when transparency is too annoying you can <a rel="noopener" target="_blank" href="https://github.com/clux/dotfiles/blob/dfcf3d8eb3ae48b8f1ff0df0dffb7d2b7ec65680/config/helix/config.toml#L12-L13">bind a key to change the <code>helix</code> theme</a> to something fully opaque (most themes are opaque). A quick <code>F1</code> press ultimately slides the terminal away from view anyway.</p>
+</blockquote>
+<h2 id="core-concept">Core Concept</h2>
+<p>The idea is to have a <strong>persistent terminal</strong> that is <strong>hidden away</strong> in a &quot;special place&quot; and bind a key to toggle the visibility of this terminal. Then we rely on <code>zellij</code> to provide tabs.</p>
+<blockquote>
+<p>The choice of terminal emulator and multiplexer is not super important. You could probably use <code>kitty</code> + <code>tmux</code>, or straight <code>wezterm</code> (which has tabs mgmt built-in) if you prefer, and achieve the same results.</p>
+</blockquote>
+<p>On <strong>wayland</strong> that place is a <strong>special workspace</strong>, whereas on mac we use <code>sticky</code> windows.</p>
+<h2 id="alacritty-setup">Alacritty Setup</h2>
+<p>My preferred setup is to always launch <code>zellij</code> at <code>alacritty</code> start by configuring the default shell in the <code>alacritty.yml</code> config:</p>
+<pre data-lang="yaml" class="language-yaml z-code"><code class="language-yaml" data-lang="yaml"><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">shell</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+  <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">program</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">zsh</span>
+  <span class="z-comment z-line z-number-sign z-yaml"><span class="z-punctuation z-definition z-comment z-line z-number-sign z-yaml">#</span> start zellij with a small sleep to ensure it gets right dimensions
+</span>  <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">args</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+   <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">-ic</span>
+   <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml">sleep 0.2 &amp;&amp; zellij -l compact</span>
+</span></code></pre>
+<p>and, since this is a drop-down terminal we are selling, you probably also want transparency (because otherwise why do you need the window to go in front? just switch applications or workspaces):</p>
+<pre data-lang="yaml" class="language-yaml z-code"><code class="language-yaml" data-lang="yaml"><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">window</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+  <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">opacity</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-float z-decimal z-yaml">0<span class="z-punctuation z-separator z-decimal z-yaml">.</span>8</span>
+</span></code></pre>
+<p>on linux we can also make it as clean as possible and remove most window decorations:</p>
+<pre data-lang="yaml" class="language-yaml z-code"><code class="language-yaml" data-lang="yaml"><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">window</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+  <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">decorations</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">none</span>
+  <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">startup_mode</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">Maximized</span>
+</span></code></pre>
+<p>whereas on mac a similar decoration setup is <code>buttonless</code>:</p>
+<pre data-lang="yaml" class="language-yaml z-code"><code class="language-yaml" data-lang="yaml"><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">window</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+  <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">decorations</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">buttonless</span>
+  <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">startup_mode</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">Maximized</span>
+</span></code></pre>
+<p>(and you can also experiment with binding a key to <code>ToggleSimpleFullscreen</code> there).</p>
+<h2 id="zellij-setup">Zellij Setup</h2>
+<p>Honestly, this is pretty nice out of the box. Mostly styling is nice here to make it cleaner:</p>
+<pre data-lang="kdl" class="language-kdl z-code"><code class="language-kdl" data-lang="kdl"><span class="z-text z-plain">pane_frames false
+ui {
+    pane_frames {
+        hide_session_name true
+    }
+}
+</span></code></pre>
+<p>grab a <a rel="noopener" target="_blank" href="https://zellij.dev/documentation/themes">theme</a>.</p>
+<blockquote>
+<p>The <code>-l compact</code> startup option set in the alacritty config assumes familiarity in <code>zellij</code>, you're likely to find it easier to onboard if you don't use compact mode until you are familiar.</p>
+</blockquote>
+<h3 id="tab-names">Tab Names</h3>
+<p>If you don't want to faff around with naming every single zellij tab, you can also make <code>zsh</code> do it automatically for you using <a rel="noopener" target="_blank" href="https://zsh.sourceforge.io/Doc/Release/Functions.html#Hook-Functions"><code>chpwd_functions</code></a> using something like this in your <code>.zshrc</code> etc:</p>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-meta z-function z-shell"><span class="z-entity z-name z-function z-shell">zz</span><span class="z-punctuation z-section z-parens z-begin z-shell">(</span><span class="z-punctuation z-section z-parens z-end z-shell">)</span> <span class="z-punctuation z-section z-braces z-begin z-shell">{</span>
+  <span class="z-keyword z-control z-conditional z-if z-shell">if</span> <span class="z-support z-function z-test z-begin z-shell">[</span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell">-</span>n</span> <span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-punctuation z-section z-expansion z-parameter z-begin z-shell">{</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-variable z-other z-readwrite z-shell">ZELLIJ_SESSION_NAME</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-section z-expansion z-parameter z-end z-shell">}</span></span><span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span> <span class="z-support z-function z-test z-end z-shell">]</span></span><span class="z-keyword z-operator z-logical z-continue z-shell">;</span> <span class="z-keyword z-control z-conditional z-then z-shell">then</span>
+    <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">zellij</span></span><span class="z-meta z-function-call z-arguments z-shell"> action rename-tab <span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-punctuation z-section z-expansion z-parameter z-begin z-shell">{</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-variable z-other z-readwrite z-shell">PWD<span class="z-keyword z-operator z-expansion z-shell">##</span></span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-keyword z-operator z-regexp z-quantifier z-shell">*</span>/</span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-section z-expansion z-parameter z-end z-shell">}</span></span><span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span></span>
+  <span class="z-keyword z-control z-conditional z-end z-shell">fi</span>
+<span class="z-punctuation z-section z-braces z-end z-shell">}</span></span>
+
+<span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> ensure directory traversal updates tab names (if terminal mux exists)</span><span class="z-comment z-line z-number-sign z-shell">
+</span><span class="z-variable z-other z-readwrite z-assignment z-shell">chpwd_functions</span><span class="z-keyword z-operator z-assignment z-shell">+=</span><span class="z-string z-unquoted z-shell">zz</span>
+<span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">zz <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> initialize name for new tabs/panes</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span></span></span></code></pre>
+<p>This is nice because it catches all sources of traversal, be it through <code>cd</code> or through jumpers like <a rel="noopener" target="_blank" href="https://github.com/ajeetdsouza/zoxide">zoxide</a>.</p>
+<h2 id="drop-down-variants">Drop Down Variants</h2>
+<p>The most ergonomic one here is the hypland variant, but the mac setup is also decent.</p>
+<h3 id="hyprland">Hyprland</h3>
+<p>On Linux with <a rel="noopener" target="_blank" href="https://hyprland.org/">hyprland</a> (my current wayland compositor), plugging this in is very easy to do because you have access to <a rel="noopener" target="_blank" href="https://wiki.hyprland.org/Configuring/Dispatchers/#special-workspace">special workspaces</a>, so the terminal is never technically <strong>hidden</strong>, it's just active in a different workspace.</p>
+<blockquote>
+<p>This might not seem like a big deal, but if you've tried sharing a terminal that hides itself (such as guake's or through the mac solution below) on a screen sharing video call, you will find various failure modes (from app crashes to stream closes) if you hide the window you are sharing.</p>
+</blockquote>
+<p>In your <code>hyprland.conf</code>, add:</p>
+<pre data-lang="hyprland" class="language-hyprland z-code"><code class="language-hyprland" data-lang="hyprland"><span class="z-text z-plain">exec-once = [workspace special] alacritty
+bind = , F1, togglespecialworkspace
+</span></code></pre>
+<p>so it auto-starts in special, and you can toggle the workspace as you wish.</p>
+<p>Give it an animation so it pops in vertically, and avoid undercutting your opacity:</p>
+<pre data-lang="hyprland" class="language-hyprland z-code"><code class="language-hyprland" data-lang="hyprland"><span class="z-text z-plain">animations {
+    animation = specialWorkspace, 1, 1, default, slidevert
+}
+decoration {
+    # don&#39;t dim modal terminal
+    dim_special = 0
+    blur {
+      enabled = false # make it easy to see-through from special workspace
+    }
+}
+</span></code></pre>
+<p>And the final hyprland quirk; special workspaces have a window scaling factor (default <code>0.8</code>) that controls how much large the window is allowed to be. If you are putting a terminal editor in there or something you probably want to max that out:</p>
+<pre data-lang="hyprland" class="language-hyprland z-code"><code class="language-hyprland" data-lang="hyprland"><span class="z-text z-plain">dwindle {
+    special_scale_factor = 1 # maximize special workspace
+}
+</span></code></pre>
+<p>The end result is a terminal that pops in from the bottom in an inverted quake terminal feel - and honestly this makes more sense than top-to-bottom since you have to give some space to the (usually top) <code>waybar</code>.</p>
+<h3 id="hammerspoon">Hammerspoon</h3>
+<p>On Mac, the easiest setup is using <a rel="noopener" target="_blank" href="https://github.com/Hammerspoon/hammerspoon">hammerspoon</a>. Bind a toggle or start <code>alacritty</code> in your hammerspoon's <code>init.lua</code>:</p>
+<pre data-lang="lua" class="language-lua z-code"><code class="language-lua" data-lang="lua"><span class="z-source z-lua"><span class="z-storage z-modifier z-lua">local</span> <span class="z-meta z-function z-lua"><span class="z-meta z-block z-lua"><span class="z-storage z-type z-function z-lua">function</span> <span class="z-meta z-name z-function"><span class="z-entity z-name z-function z-lua">toggleApp</span></span><span class="z-meta z-group z-lua"><span class="z-punctuation z-section z-group z-begin z-lua">(</span><span class="z-variable z-parameter z-function z-lua">name</span><span class="z-punctuation z-section z-group z-end z-lua">)</span></span>
+  <span class="z-storage z-modifier z-lua">local</span> <span class="z-variable z-other z-lua">app</span> <span class="z-keyword z-operator z-assignment z-lua">=</span> <span class="z-variable z-other z-lua">hs</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">application</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua"><span class="z-variable z-function z-lua">find</span></span><span class="z-meta z-function-call z-arguments z-lua"><span class="z-meta z-group z-lua"><span class="z-punctuation z-section z-group z-begin z-lua">(</span><span class="z-variable z-other z-lua">name</span><span class="z-punctuation z-section z-group z-end z-lua">)</span></span></span>
+  <span class="z-keyword z-control z-conditional z-lua">if</span> <span class="z-keyword z-operator z-logical z-lua">not</span> <span class="z-variable z-other z-lua">app</span> <span class="z-keyword z-operator z-logical z-lua">or</span> <span class="z-variable z-other z-lua">app</span><span class="z-punctuation z-accessor z-lua">:</span><span class="z-meta z-property z-lua"><span class="z-variable z-function z-lua">isHidden</span></span><span class="z-meta z-function-call z-arguments z-lua"><span class="z-meta z-group z-lua"><span class="z-punctuation z-section z-group z-begin z-lua">(</span><span class="z-punctuation z-section z-group z-end z-lua">)</span></span></span> <span class="z-meta z-block z-lua"><span class="z-keyword z-control z-conditional z-lua">then</span>
+    <span class="z-variable z-other z-lua">hs</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">application</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua"><span class="z-variable z-function z-lua">launchOrFocus</span></span><span class="z-meta z-function-call z-arguments z-lua"><span class="z-meta z-group z-lua"><span class="z-punctuation z-section z-group z-begin z-lua">(</span><span class="z-variable z-other z-lua">name</span><span class="z-punctuation z-section z-group z-end z-lua">)</span></span></span>
+  <span class="z-keyword z-control z-conditional z-lua">elseif</span></span> <span class="z-variable z-other z-lua">hs</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">application</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua"><span class="z-variable z-function z-lua">frontmostApplication</span></span><span class="z-meta z-function-call z-arguments z-lua"><span class="z-meta z-group z-lua"><span class="z-punctuation z-section z-group z-begin z-lua">(</span><span class="z-punctuation z-section z-group z-end z-lua">)</span></span></span> <span class="z-keyword z-operator z-comparison z-lua">~=</span> <span class="z-variable z-other z-lua">app</span> <span class="z-meta z-block z-lua"><span class="z-keyword z-control z-conditional z-lua">then</span>
+    <span class="z-variable z-other z-lua">app</span><span class="z-punctuation z-accessor z-lua">:</span><span class="z-meta z-property z-lua"><span class="z-variable z-function z-lua">activate</span></span><span class="z-meta z-function-call z-arguments z-lua"><span class="z-meta z-group z-lua"><span class="z-punctuation z-section z-group z-begin z-lua">(</span><span class="z-punctuation z-section z-group z-end z-lua">)</span></span></span>
+  <span class="z-meta z-block z-lua"><span class="z-keyword z-control z-conditional z-lua">else</span></span></span><span class="z-meta z-block z-lua">
+    <span class="z-variable z-other z-lua">app</span><span class="z-punctuation z-accessor z-lua">:</span><span class="z-meta z-property z-lua"><span class="z-variable z-function z-lua">hide</span></span><span class="z-meta z-function-call z-arguments z-lua"><span class="z-meta z-group z-lua"><span class="z-punctuation z-section z-group z-begin z-lua">(</span><span class="z-punctuation z-section z-group z-end z-lua">)</span></span></span>
+  <span class="z-keyword z-control z-end z-lua">end</span></span>
+<span class="z-keyword z-control z-end z-lua">end</span></span></span>
+
+<span class="z-comment z-line z-lua"><span class="z-punctuation z-definition z-comment z-lua">--</span> Global terminal toggle
+</span><span class="z-variable z-other z-lua">hs</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua">hotkey</span><span class="z-punctuation z-accessor z-lua">.</span><span class="z-meta z-property z-lua"><span class="z-variable z-function z-lua">bind</span></span><span class="z-meta z-function-call z-arguments z-lua"><span class="z-meta z-group z-lua"><span class="z-punctuation z-section z-group z-begin z-lua">(</span><span class="z-meta z-mapping z-lua"><span class="z-punctuation z-section z-block z-begin z-lua">{</span><span class="z-punctuation z-section z-block z-end z-lua">}</span></span><span class="z-punctuation z-separator z-comma z-lua">,</span> <span class="z-string z-quoted z-double z-lua"><span class="z-punctuation z-definition z-string z-begin z-lua">&quot;</span>F1<span class="z-punctuation z-definition z-string z-end z-lua">&quot;</span></span><span class="z-punctuation z-separator z-comma z-lua">,</span> <span class="z-meta z-function z-lua"><span class="z-meta z-block z-lua"><span class="z-storage z-type z-function z-lua">function</span><span class="z-meta z-group z-lua"><span class="z-punctuation z-section z-group z-begin z-lua">(</span><span class="z-punctuation z-section z-group z-end z-lua">)</span></span> <span class="z-variable z-function z-lua">toggleApp</span><span class="z-meta z-function-call z-arguments z-lua"><span class="z-meta z-group z-lua"><span class="z-punctuation z-section z-group z-begin z-lua">(</span><span class="z-string z-quoted z-double z-lua"><span class="z-punctuation z-definition z-string z-begin z-lua">&quot;</span>alacritty<span class="z-punctuation z-definition z-string z-end z-lua">&quot;</span></span><span class="z-punctuation z-section z-group z-end z-lua">)</span></span></span> <span class="z-keyword z-control z-end z-lua">end</span></span></span><span class="z-punctuation z-section z-group z-end z-lua">)</span></span></span>
+</span></code></pre>
+<p>I find it a little flimsy on a multi-monitor setup, with sometimes having to manually move it across to a workspace on a different monitor (hierarchy seems less clean on mac in general), but it gets the job done. Mac desktop also has no issues with transparency out of the box so the alacritty setting is just respected.</p>
+<p>If you are using it with <a rel="noopener" target="_blank" href="https://github.com/koekeishiya/yabai">yabai</a> (for auto-tiling of windows, window moving shortcuts), then you also want to add a rule for <code>yabai</code> to mark it as sticky to avoid it getting bunched up as a normal window tile:</p>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">yabai</span></span><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>m</span> rule<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>add</span> app=<span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span>^(Alacritty)$<span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span> sticky=on</span>
+</span></code></pre>
+<p>Because it is using sticky windows, screen sharing of this window will not be viable by itself (as the source disappears when it's hidden), so you'll have to share the entire workspace instead. This is usually not a big deal if you are already using workspaces.</p>
+<h3 id="xorg">Xorg</h3>
+<p>All setups I found for this were <strong>comically bad</strong>, but including one for completeness. <strong>Don't use this</strong>. Stay on <code>guake</code> if you are on <code>X</code>. The hack below majorly struggles with multi-monitor.</p>
+<blockquote>
+<p>Aside: you <a rel="noopener" target="_blank" href="https://orowith2os.gitlab.io/posts/wayland-breaks-your-bad-software/">should consider moving onto wayland</a> if you haven't.</p>
+</blockquote>
+<p>You need a script that auto-runs in your shell, and a runnable function:</p>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> autorun via .zshrc</span><span class="z-comment z-line z-number-sign z-shell">
+</span><span class="z-keyword z-control z-conditional z-if z-shell">if</span> <span class="z-support z-function z-test z-begin z-shell">[</span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell">-</span>n</span> <span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-punctuation z-section z-expansion z-parameter z-begin z-shell">{</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-variable z-other z-readwrite z-shell">ZELLIJ_SESSION_NAME</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-section z-expansion z-parameter z-end z-shell">}</span></span><span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span> <span class="z-support z-function z-test z-end z-shell">]</span></span> <span class="z-keyword z-operator z-logical z-and z-shell">&amp;&amp;</span> <span class="z-support z-function z-test z-begin z-shell">[</span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-keyword z-operator z-logical z-shell">!</span> <span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell">-</span>f</span> /tmp/wraise <span class="z-support z-function z-test z-end z-shell">]</span></span><span class="z-keyword z-operator z-logical z-continue z-shell">;</span> <span class="z-keyword z-control z-conditional z-then z-shell">then</span>
+<span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> If running in zellij on linux, save the window for refocus keybinds</span><span class="z-comment z-line z-number-sign z-shell">
+</span>  <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">xdotool</span></span><span class="z-meta z-function-call z-arguments z-shell"> getactivewindow <span class="z-keyword z-operator z-assignment z-redirection z-shell">&gt;</span> /tmp/wraise</span>
+<span class="z-keyword z-control z-conditional z-end z-shell">fi</span>
+
+<span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> function somewhere else (e.g. ~/.functions)</span><span class="z-comment z-line z-number-sign z-shell">
+</span><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> setup a bind run: /bin/zsh -c &#39;source .functions &amp;&amp; terminal_toggle&#39;</span><span class="z-comment z-line z-number-sign z-shell">
+</span><span class="z-meta z-function z-shell"><span class="z-entity z-name z-function z-shell">terminal_toggle</span><span class="z-punctuation z-section z-parens z-begin z-shell">(</span><span class="z-punctuation z-section z-parens z-end z-shell">)</span> <span class="z-punctuation z-section z-braces z-begin z-shell">{</span>
+<span class="z-meta z-function-call z-shell">  <span class="z-storage z-modifier z-shell">local</span> <span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell">-</span>r</span> <span class="z-variable z-other z-readwrite z-assignment z-shell">terminal_id</span><span class="z-keyword z-operator z-assignment z-shell">=</span><span class="z-string z-unquoted z-shell"><span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span><span class="z-meta z-group z-expansion z-command z-parens z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-punctuation z-section z-parens z-begin z-shell">(</span><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">cat</span></span><span class="z-meta z-function-call z-arguments z-shell"> /tmp/wraise</span><span class="z-punctuation z-section z-parens z-end z-shell">)</span></span><span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span></span></span>
+  <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> Check if it is active (stored in hex on a root prop)</span><span class="z-comment z-line z-number-sign z-shell">
+</span><span class="z-meta z-function-call z-shell">  <span class="z-storage z-modifier z-shell">local</span> <span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell">-</span>r</span> <span class="z-variable z-other z-readwrite z-assignment z-shell">active_id</span><span class="z-keyword z-operator z-assignment z-shell">=</span><span class="z-string z-unquoted z-shell"><span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span><span class="z-meta z-group z-expansion z-arithmetic z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-punctuation z-section z-parens z-begin z-shell">((</span><span class="z-constant z-numeric z-integer z-decimal z-shell">16</span>#<span class="z-meta z-group z-expansion z-command z-parens z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-punctuation z-section z-parens z-begin z-shell">(</span><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">xprop</span></span><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>root</span> _NET_ACTIVE_WINDOW</span> <span class="z-keyword z-operator z-logical z-pipe z-shell">|</span> <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">choose</span></span><span class="z-meta z-function-call z-arguments z-shell"> 4</span> <span class="z-keyword z-operator z-logical z-pipe z-shell">|</span> <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">cut</span></span><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>d</span><span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&#39;</span>x<span class="z-punctuation z-definition z-string z-end z-shell">&#39;</span></span><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>f2</span></span><span class="z-punctuation z-section z-parens z-end z-shell">)</span></span><span class="z-punctuation z-section z-parens z-end z-shell">))</span></span><span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span></span></span>
+  <span class="z-keyword z-control z-conditional z-if z-shell">if</span> <span class="z-support z-function z-test z-begin z-shell">[</span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-variable z-other z-readwrite z-shell">active_id</span></span> <span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell">-</span>eq</span> <span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-variable z-other z-readwrite z-shell">terminal_id</span></span> <span class="z-support z-function z-test z-end z-shell">]</span></span><span class="z-keyword z-operator z-logical z-continue z-shell">;</span> <span class="z-keyword z-control z-conditional z-then z-shell">then</span>
+    <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">xdotool</span></span><span class="z-meta z-function-call z-arguments z-shell"> windowminimize <span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-punctuation z-section z-expansion z-parameter z-begin z-shell">{</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-variable z-other z-readwrite z-shell">terminal_id</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-section z-expansion z-parameter z-end z-shell">}</span></span><span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span></span>
+  <span class="z-keyword z-control z-conditional z-else z-shell">else</span>
+    <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">wmctrl</span></span><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>ia</span> <span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-punctuation z-section z-expansion z-parameter z-begin z-shell">{</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-variable z-other z-readwrite z-shell">terminal_id</span></span><span class="z-meta z-group z-expansion z-parameter z-shell"><span class="z-punctuation z-section z-expansion z-parameter z-end z-shell">}</span></span><span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span></span>
+  <span class="z-keyword z-control z-conditional z-end z-shell">fi</span>
+<span class="z-punctuation z-section z-braces z-end z-shell">}</span></span>
+</span></code></pre>
+<p>This expects <code>alacritty</code> is on autorun and you can configure binds somewhere. I put an <code>F2</code> bind in <code>cinnamon</code> (yeah, long time between changing WMs for me) to run this.</p>
+<blockquote>
+<p>Again; <strong>I don't use this</strong>. I wrote it as a short stop-gap and I hated it.</p>
+</blockquote>
+<p>Having to support Mac + X in my <a rel="noopener" target="_blank" href="https://github.com/clux/dotfiles">dotfiles</a> became a perfect storm of frustration, and wouldn't you know it, wayland made everything better.</p>
+<p>..as with many things, the answer is to <a rel="noopener" target="_blank" href="https://hachyderm.io/@compositor@wayland.social/110768798344764115">migrate away from X</a>.</p>
+
+      <nav>
+        <div>
+        </div>
+        <div>
+          <a href="https://clux.dev/post/2022-12-07-running-year/"> Running 2022 &#8250;</a>
+        </div>
+      </nav>
+    </article>
+
+    <div class="sblock">
+
+      <div class="blockdiv sticky">
+        <a class="b s150" href="#">Index</a>
+        <div>
+          <a href="#looks">Looks</a>
+        </div>
+        <div>
+          <a href="#core-concept">Core Concept</a>
+        </div>
+        <div>
+          <a href="#alacritty-setup">Alacritty Setup</a>
+        </div>
+        <div>
+          <a href="#zellij-setup">Zellij Setup</a>
+        </div>
+        <div class="hpad">
+          <a href="#tab-names"><small>- Tab Names</small></a>
+        </div>
+        <div>
+          <a href="#drop-down-variants">Drop Down Variants</a>
+        </div>
+        <div class="hpad">
+          <a href="#hyprland"><small>- Hyprland</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#hammerspoon"><small>- Hammerspoon</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#xorg"><small>- Xorg</small></a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <hr />
+    <div class="c">
+      <nav><div><a type="application/atom+xml" href="https://clux.dev/atom.xml" target="_blank" title="probes Atom/RSS Feed"><i type="Button" class="svg rss" title="probes Atom/RSS Feed"></i></a><a href="https://hachyderm.io/@clux" target="_blank" title="Mastodon" rel="me"><i type="Button" class="svg mastodon" title="Mastodon"></i></a><a href="https://www.linkedin.com/in/🗑-eirik-albrigtsen-b279863a/" target="_blank" title="LinkedIn"><i type="Button" class="svg linkedin" title="LinkedIn"></i></a><a href="https://github.com/clux/" target="_blank" title="Github"><i type="Button" class="svg github" title="Github"></i></a><a href="https://discord.com/tokio/" target="_blank" title="Discord"><i type="Button" class="svg discord" title="Discord"></i></a><a href="https://www.youtube.com/channel&#x2F;UCLpykMxkxuPUR9CciheipZg" target="_blank" title="YouTube"><i type="Button" class="svg youtube" title="YouTube"></i></a><a href="https://github.com/sponsors/clux/" target="_blank" title="GitHub Sponsor"><i type="Button" class="svg github-sponsor" title="GitHub Sponsor"></i></a></div></nav>
+      <nav>
+        <a class="s90" href="https://clux.dev/about/"> About </a>
+        <a class="s90" href="https://clux.dev/privacy/"> Privacy </a>
+        <a class="s90" href="https://clux.dev/sitemap.xml" target="_blank"> Sitemap </a>
+      </nav>
+      <p class="s90">Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a> & <a href="https://github.com/jieiku/abridge/" target="_blank">Abridge</a></p>
+    </div>
+  </footer><span class="topout">
+<span class="topleft"> </span><a href="#" class="top" title="Back to Top"><i class="svgs svgh angu"></i></a>
+</span>
+</body>
+</html>
