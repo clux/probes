@@ -972,7 +972,7 @@ Hope you have enjoyed this random brain dump on probability. Don't think I have 
 
 [Wolfram Alpha Query](https://www.wolframalpha.com/input?i2d=true&i=+Divide%5B1%2CPower%5B6%2C3%5D%5DSum%5BPower%5B%5C%2840%29-1%5C%2841%29%2Ck%5D+*binomial%5C%2840%293%5C%2844%29+k%5C%2841%29*binomial%5C%2840%2910-6k-1%5C%2844%29+2%5C%2841%29%2C%7Bk%2C0%2Cfloor%5C%2840%29Divide%5B%5C%2840%2910-3%5C%2841%29%2C6%5D%5C%2841%29%7D%5D)
 
-```yaml:
+```yaml
 3: 1/216
 4: 1/72
 5: 1/36
