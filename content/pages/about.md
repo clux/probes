@@ -46,7 +46,7 @@ This esoteric + deteriorating knowledge is mostly used to over-excitedly tell pe
 
 ### Music
 
-As a kid, I played violin for a decade. Have got a couple of things to show for this; near perfect recollection of the solo-violinists repertoire, an intense desire to follow violin competitions, and a history of being a good target for bullying.
+As a kid, I played violin for a decade. Have got a couple of things to show for this; near perfect recollection of the solo-violinists repertoire, a weird desire to follow violin competitions, and a history of being a good target for bullying.
 
 Nowadays, my [2017 p-series](https://uk.yamaha.com/en/products/musical_instruments/pianos/p_series/index.html) is my weapon of choice, and is helping me recover from violin trauma. It also continues my habit of committing useless chunks of finger movement to muscle memory, but comes with the side-effect of making me watch piano competitions.
 
