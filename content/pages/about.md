@@ -61,8 +61,7 @@ Well designed game mechanics that require some type of dexterity based mastery, 
 
 #### FPS
 
-- [`Borderlands 2`](https://store.steampowered.com/app/49520/Borderlands_2/): coop speedrunning and digistruct raids
-- [`Team Fortress 2`](https://store.steampowered.com/app/440/Team_Fortress_2/): stress testing [weird weapons](https://www.youtube.com/watch?v=KVzOLtpO6fU&list=PL4gj5XjL6RRQecS059_tjxRQ4Lu6yUNqB) like the [bison](https://www.reddit.com/r/bisonmasterrace/) in ~2016
+- [`Team Fortress 2`](https://store.steampowered.com/app/440/Team_Fortress_2/): stress testing [weird weapons](https://www.youtube.com/watch?v=KVzOLtpO6fU&list=PL4gj5XjL6RRQecS059_tjxRQ4Lu6yUNqB) in ~2016
 - [`Quake 3`](http://www.orangesmoothie.org/tourneyQ3A/) / [`promode`](https://playmorepromode.com/) with `VSE` + `X-Pec` + `Team Norway`; made [highlights](https://www.youtube.com/watch?v=GD3aTJ_jzL8&list=PL4gj5XjL6RRRavXh2KGXQZnRuD-zhE4-k) ~2002
 
 #### Speedruns
