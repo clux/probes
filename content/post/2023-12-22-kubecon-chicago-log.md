@@ -16,7 +16,7 @@ As time goes by, I find myself increasingly disinterested in actually travelling
 
 This is doubly so when the convention is increasingly corporate (like KubeCon), and the [CNCF youtube channel](https://www.youtube.com/c/cloudnativefdn/videos) is in general high quality. Get it before you ad-blockers break.
 
-This post contains a quick export from my personal notes on some significant talks (make of them what you will).
+This post contains a quick export from my personal notes on some significant talks at **KubeConNA'23** (make of them what you will).
 
 <!--more-->
 
@@ -140,7 +140,7 @@ opencost and their metrics. does a nice investigation into their metrics and pro
 ### [Cutting Climate Costs with Kubernetes and CAPI](https://www.youtube.com/watch?v=VQbP4XX2O_M)
 climate aware scheduler idea using watttime data, priorityclasses and `KubeSchedulerConfiguration` to allow only running workloads during "low emission times".
 
-a later (much fluffier talk) shows how to integrate this with KEDA: https://www.youtube.com/watch?v=oAvYfIoIgcc
+a later (much fluffier talk) shows [how to integrate this with KEDA](https://www.youtube.com/watch?v=oAvYfIoIgcc)
 
 ### [What's up with Kubernetes Long Term Support?](https://www.youtube.com/watch?v=0fngdOlwZtQ)
 mentions the numerous recent KEPs to improve stability:
