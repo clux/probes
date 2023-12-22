@@ -54,6 +54,7 @@ keda_ metrics, scaling modifiers, pausing, job scaling, prom caching, all seem l
 very interesting talk if you are invested in this ecosystem.
 
 they mention `keep_firing_for` landing which feels great (because it was [my suggestion](https://github.com/prometheus/prometheus/issues/11570)).
+
 q/a session reveal they think the otel collector is an anti-pattern for metrics (ruins active monitoring) and collector's unconventional label use fucks with perf/predictability. worth keeping in mind if you consider using otel agent for metrics.
 
 ### [How and Why You Should Adopt and Expose OSS Interfaces Like Otel and Prometheus](https://www.youtube.com/watch?v=D71fK2MFreI)
