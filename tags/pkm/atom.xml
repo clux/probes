@@ -1,11 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-    <title>probes - zettelkasten</title>
-    <link rel="self" type="application/atom+xml" href="https://clux.dev/tags/zettelkasten/atom.xml"/>
+    <title>probes - pkm</title>
+    <link rel="self" type="application/atom+xml" href="https://clux.dev/tags/pkm/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://clux.dev"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2020-09-27T00:00:00+00:00</updated>
-    <id>https://clux.dev/tags/zettelkasten/atom.xml</id>
+    <updated>2021-12-05T00:00:00+00:00</updated>
+    <id>https://clux.dev/tags/pkm/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Campaign Conclusion &amp; Brain Dump</title>
+        <published>2021-12-05T00:00:00+00:00</published>
+        <updated>2021-12-05T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://clux.dev/post/2021-12-05-campaign-concluded/"/>
+        <id>https://clux.dev/post/2021-12-05-campaign-concluded/</id>
+        
+        <content type="html" xml:base="https://clux.dev/post/2021-12-05-campaign-concluded/">&lt;p&gt;After almost 4 years of running D&amp;amp;D almost every week, my big campaign concluded recently. This week marked our retrospective, and the release of several relics of the campaign. One in particular was the campaign repo - previously described as my &lt;a href=&quot;&#x2F;post&#x2F;2020-09-27-second-brain&quot;&gt;foaming campaign brain&lt;&#x2F;a&gt;. This is a brief post about the setup, and discovered pros&#x2F;cons associated with it.&lt;&#x2F;p&gt;
+&lt;!--more--&gt;
+&lt;h2 id=&quot;campaign&quot;&gt;Campaign&lt;&#x2F;h2&gt;
+&lt;p&gt;Campaign first. We held &lt;code&gt;126&lt;&#x2F;code&gt; sessions about the campaign over &lt;code&gt;3.5 years&lt;&#x2F;code&gt; (i.e. &lt;strong&gt;36 per 12 months&lt;&#x2F;strong&gt;) as a remarkably consistent group (even after the pandemic hit and we moved remote).&lt;&#x2F;p&gt;
+&lt;p&gt;Tooling also moved on; discord + &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;avrae.io&#x2F;&quot;&gt;Avreae&lt;&#x2F;a&gt; (dndbeyond character + dice integration), &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;rythm.fm&#x2F;&quot;&gt;rhythm&lt;&#x2F;a&gt; for music (got DMCA&#x27;d and replaced by &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;jagrosh&#x2F;MusicBot&quot;&gt;jmusicbot&lt;&#x2F;a&gt;), &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.owlbear.rodeo&#x2F;&quot;&gt;owlbear.rodeo&lt;&#x2F;a&gt; for interactive maps, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;5e.tools&#x2F;&quot;&gt;5e.tools&lt;&#x2F;a&gt; for quick spell&#x2F;item&#x2F;monster searches and more. A lot easier to run with your main computer in front of you.&lt;&#x2F;p&gt;
+&lt;p&gt;We could also record with &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;obsproject.com&#x2F;&quot;&gt;OBS&lt;&#x2F;a&gt;. So in fact, from the pandemic on, I started gathering episodes in an unlisted youtube playlist. Mainly as a reference, but also a memento later, for when it was over.&lt;&#x2F;p&gt;
+&lt;p&gt;Inlining an external embed here to the wrap-up episode below.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;div class=&quot;yv&quot;&gt;
+    &lt;iframe src=&quot;https:&#x2F;&#x2F;www.youtube-nocookie.com&#x2F;embed&#x2F;9HRCumVEHQU&quot; title=&quot;Youtube&quot; class=&quot;yvi&quot; webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;&#x2F;iframe&gt;
+&lt;&#x2F;div&gt;
+
+&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=_toA4XCp--U&quot;&gt;part 2 here&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;This could be interesting if you want to cross reference with navigation in the brain &#x2F; want to see how the tools fit together (map top left, discord dice bot bottom left), or you were a previous player (I don&#x27;t assume it would be super interesting to anyone else).&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s also the only episode where the DM is relieved throughout the entire episode (because we managed to finish the campaign and they didn&#x27;t all wipe 16 levels in).&lt;&#x2F;p&gt;
+&lt;p&gt;Anyway. Onto the notes.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-brain&quot;&gt;The Brain&lt;&#x2F;h2&gt;
+&lt;p&gt;I had started to use &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;foambubble.github.io&#x2F;foam&#x2F;&quot;&gt;foam&lt;&#x2F;a&gt; as a note taking tool in 2020. Mostly because of my familiarity with &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;guides.github.com&#x2F;features&#x2F;mastering-markdown&#x2F;&quot;&gt;Markdown&lt;&#x2F;a&gt;, but also the avoidance of vendor lock-in. Go read &lt;a href=&quot;&#x2F;post&#x2F;2020-09-27-second-brain&quot;&gt;foaming campaign brain&lt;&#x2F;a&gt; for more reasons behind this and how it works.&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s very similar to &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;obsidian.md&#x2F;&quot;&gt;obsidian&lt;&#x2F;a&gt;, and most of the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UC85D7ERwhke7wVqskV_DZUA&quot;&gt;general advice for it&lt;&#x2F;a&gt; applies.&lt;&#x2F;p&gt;
+&lt;p&gt;The structure is just one enormous docs folder with markdown documents that is haphazardly grouped into folders:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;z-code&quot;&gt;&lt;code&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;├── coast
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;├── deities
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;├── east
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;├── factions
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;├── north
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;├── npcs
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;├── pcs
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;├── planar
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;├── recaps
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;├── rules
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;├── seaofbones
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;├── spine
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;├── underdark
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;└── whiteplume
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;These refer to either collections of notes that were close in time&#x2F;space across the campaign, or special sets of notes like pcs, npcs, factions, and dm notes and rules.&lt;&#x2F;p&gt;
+&lt;p&gt;The documents in these folders cross-link with various markdown plugins in &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;code.visualstudio.com&#x2F;&quot;&gt;VS Code&lt;&#x2F;a&gt; (using wiki syntax). Users &lt;strong&gt;could&lt;&#x2F;strong&gt; clone and open the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;campaign&quot;&gt;campaign repo&lt;&#x2F;a&gt; with VS Code, install plugins, and you would get my experience, but this is a bit awkward.&lt;&#x2F;p&gt;
+&lt;p&gt;I couldn&#x27;t just give people a link to things in the docs (e.g. &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;campaign&#x2F;blob&#x2F;main&#x2F;docs&#x2F;pcs&#x2F;goatweaver.md&quot;&gt;goatweaver&lt;&#x2F;a&gt;) because you&#x27;ll notice none of the wikilinks work. So we needed a webpage conversion.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;release-solution&quot;&gt;Release Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;Thanks to this &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Jackiexiao&#x2F;foam-mkdocs-template&quot;&gt;template repo&lt;&#x2F;a&gt;, it was reasonable easy to glue together
+&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.mkdocs.org&#x2F;&quot;&gt;mkdocs&lt;&#x2F;a&gt; with the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;squidfunk.github.io&#x2F;mkdocs-material&#x2F;&quot;&gt;mkdocs-material&lt;&#x2F;a&gt; theme. The result is this:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;clux.github.io&#x2F;campaign&#x2F;&quot;&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;foam&#x2F;foam-material.png&quot; alt=&quot;foam mkdocs campaign website&quot; &#x2F;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Folders become tabs, files becomes entries on the left side, and TOC is generated from headers on the right. Images are rendered from disk (as in markdown preview), cross-links work, and it would have ended up looking super professional had it not been for the myriad of TODOs buried in every document.&lt;&#x2F;p&gt;
+&lt;p&gt;You can view the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;clux.github.io&#x2F;campaign&#x2F;&quot;&gt;resulting static website&lt;&#x2F;a&gt; at your leisure, but again, this is not going to be very interesting for anyone except the players and other DMs.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what-worked-well&quot;&gt;What Worked Well&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;running-the-game&quot;&gt;Running The Game&lt;&#x2F;h3&gt;
+&lt;p&gt;It was very nice process to DM with &lt;code&gt;code&lt;&#x2F;code&gt; in front of me. Definitely much better than the original &lt;code&gt;OneNote&lt;&#x2F;code&gt; setup that was periodically down or slow to respond. Knowing how to search, and cycle through tabs, and search within docs (or use &lt;code&gt;rg&lt;&#x2F;code&gt; in the docs folder) made it very easy to find anything quickly (no matter how deeply buried it ended up).&lt;&#x2F;p&gt;
+&lt;p&gt;Your mileage may vary on this point, but if you know how to use a code editor, you&#x27;ll always end up with a more powerful way to navigate than whatever features that eventually make it into notion et al.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;website-release&quot;&gt;Website Release&lt;&#x2F;h3&gt;
+&lt;p&gt;It took me about one day to reorganise the repo in a way that it worked with &lt;code&gt;mkdocs&lt;&#x2F;code&gt;. The process was basically:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;move content into a &lt;code&gt;docs&#x2F;&lt;&#x2F;code&gt; subfolder&lt;&#x2F;li&gt;
+&lt;li&gt;import &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Jackiexiao&#x2F;foam-mkdocs-template&quot;&gt;template repo&lt;&#x2F;a&gt; as a base&lt;&#x2F;li&gt;
+&lt;li&gt;re-remember &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;dotfiles&#x2F;blob&#x2F;e7f07400b3b8ac2ef19b7c35a5e5eff009c6a018&#x2F;.functions#L483-L493&quot;&gt;how to install shit with python&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;fix broken links that &lt;code&gt;mkdocs serve&lt;&#x2F;code&gt; found&lt;&#x2F;li&gt;
+&lt;li&gt;tweak &lt;code&gt;mkdocs.yml&lt;&#x2F;code&gt; to
+&lt;ul&gt;
+&lt;li&gt;make the theme look good and add dark mode&lt;&#x2F;li&gt;
+&lt;li&gt;choose the most sensible navigation setups (&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;squidfunk.github.io&#x2F;mkdocs-material&#x2F;setup&#x2F;setting-up-navigation&#x2F;&quot;&gt;mkdocs-material has many&lt;&#x2F;a&gt;)&lt;&#x2F;li&gt;
+&lt;li&gt;make edit links work (takes you to a github edit view that eventually leads to a branch commit or a fork pr)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;squidfunk.github.io&#x2F;mkdocs-material&#x2F;setup&#x2F;changing-the-colors&#x2F;&quot;&gt;mkdocs-material docs&lt;&#x2F;a&gt; in general were fantastic. Live preview of the features from their dogfooding setup. While I am confident &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;themes.gohugo.io&#x2F;&quot;&gt;an approximation exists with hugo&lt;&#x2F;a&gt;, the features and quality here went far beyond anything I have seen in this space:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;squidfunk.github.io&#x2F;mkdocs-material&#x2F;setup&#x2F;setting-up-site-search&#x2F;&quot;&gt;Search&lt;&#x2F;a&gt; &#x2F; &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;squidfunk.github.io&#x2F;mkdocs-material&#x2F;setup&#x2F;setting-up-navigation&#x2F;#instant-loading&quot;&gt;ajax fetching&lt;&#x2F;a&gt; &#x2F; &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;squidfunk.github.io&#x2F;mkdocs-material&#x2F;setup&#x2F;adding-a-git-repository&#x2F;?h=edit#edit-button&quot;&gt;edit links on page&lt;&#x2F;a&gt; &#x2F; multiple &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;squidfunk.github.io&#x2F;mkdocs-material&#x2F;setup&#x2F;setting-up-navigation&#x2F;#integrated-table-of-contents&quot;&gt;TOC generation&lt;&#x2F;a&gt; methods&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;It made the outcome very attractive looking. In fact, it&#x27;s so nice that it might even replace the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;mdBook&quot;&gt;rust mdbook tool&lt;&#x2F;a&gt; as a default simple static markdown web page for me.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;small&gt;(.. well. Maybe anyway. The python ecosystem still leaves a lot to be desired.)&lt;&#x2F;small&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;recap-writing&quot;&gt;Recap Writing&lt;&#x2F;h3&gt;
+&lt;p&gt;Basically, a quick &lt;code&gt;Ctrl-Shift-P&lt;&#x2F;code&gt; in &lt;code&gt;code&lt;&#x2F;code&gt;, ask foam to create my &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;campaign&#x2F;blob&#x2F;main&#x2F;.foam&#x2F;templates&#x2F;recap-template.md&quot;&gt;preferred note&lt;&#x2F;a&gt; (by &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;facemaulers&#x2F;blob&#x2F;main&#x2F;.foam&#x2F;templates&#x2F;recap-template.md&quot;&gt;hijacking the daily note setup&lt;&#x2F;a&gt; for this), and it fills in the basics.&lt;&#x2F;p&gt;
+&lt;p&gt;This file would serve as the &amp;quot;last we left off&amp;quot; at the start of each session, plus notes and TODOs for myself.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;image-pasting&quot;&gt;Image Pasting&lt;&#x2F;h3&gt;
+&lt;p&gt;The &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;marketplace.visualstudio.com&#x2F;items?itemName=mushan.vscode-paste-image&quot;&gt;paste-image plugin&lt;&#x2F;a&gt; was pretty easy for capturing images and associating it quickly with the document. I would have preferred a drag and drop (when it could have worked), but ultimately bound a &lt;strong&gt;button&lt;&#x2F;strong&gt; in my desktop environment to do &lt;strong&gt;quickly draw a rectangle&lt;&#x2F;strong&gt; on my screen and shunt its contents to my &lt;strong&gt;clipboard&lt;&#x2F;strong&gt; (which then could be pasted from the plugin without going through a temporary file).&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;foam-improvements&quot;&gt;Foam Improvements&lt;&#x2F;h3&gt;
+&lt;p&gt;Throughout half their &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;foambubble&#x2F;foam&#x2F;releases&quot;&gt;release history&lt;&#x2F;a&gt;, nothing major broke on my end as plugins upgraded.&lt;&#x2F;p&gt;
+&lt;p&gt;The most notable upgrade I noticed was the complete revamp of the graph view with new selection features:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;foam&#x2F;foam-newgraph.png&quot; alt=&quot;foam new graph view&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;However, one minor snag in one upgrade was &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;foambubble&#x2F;foam&#x2F;issues&#x2F;835&quot;&gt;hiding the recaps from the graph view&lt;&#x2F;a&gt;. &lt;strong&gt;EDIT 2023&lt;&#x2F;strong&gt; &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;foambubble&#x2F;foam&#x2F;issues&#x2F;835#issuecomment-1399437329&quot;&gt;workaround found&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what-sucked&quot;&gt;What Sucked&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;renames&quot;&gt;Renames&lt;&#x2F;h3&gt;
+&lt;p&gt;Foam &lt;del&gt;still&lt;&#x2F;del&gt; struggled with &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;foambubble&#x2F;foam&#x2F;issues&#x2F;809&quot;&gt;doing file renames&lt;&#x2F;a&gt; (because backlinks were not updated). This was worked around to some extent thanks to &lt;code&gt;mkdocs&lt;&#x2F;code&gt; telling me about the broken links (but this was after adding the web page element).&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;del&gt;You are really dissuaded from renaming files either way (because of the work it leads to), and it basically precludes doing bigger refactors at the moment.&lt;&#x2F;del&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;del&gt;It&#x27;s probably™ implementable on their side &lt;em&gt;&amp;quot;without too much work&amp;quot;©&lt;&#x2F;em&gt; (because you can probably work around this with a script + &lt;code&gt;sed&lt;&#x2F;code&gt; if you are masochistic enough), but ultimately, &lt;strong&gt;someone&lt;&#x2F;strong&gt; has to actually do it - and who knows what complexity lurks within vs code plugins.&lt;&#x2F;del&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;EDIT&lt;&#x2F;strong&gt;: Have commented out this part in 2023 because this issue was resolved in foam.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;sort-inconsistencies&quot;&gt;Sort Inconsistencies&lt;&#x2F;h3&gt;
+&lt;p&gt;My &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;campaign&#x2F;tree&#x2F;main&#x2F;docs&#x2F;recaps&quot;&gt;recaps folder&lt;&#x2F;a&gt; has two digits prefixes on every note. This was fine in my file viewer + vs code, but not in &lt;code&gt;mkdocs-material&lt;&#x2F;code&gt; which sorted the entries lexicographically. Renaming would have to be done with &lt;code&gt;sed&lt;&#x2F;code&gt; or some other bulk search&#x2F;replace tool.&lt;&#x2F;p&gt;
+&lt;p&gt;This meant we basically had to take the folder contents and &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;campaign&#x2F;blob&#x2F;main&#x2F;mkdocs.yml#L221-L347&quot;&gt;manually arrange them&lt;&#x2F;a&gt;. This wasn&#x27;t too annoying, as we could just copy the output from &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;sharkdp&#x2F;fd&quot;&gt;&lt;code&gt;fd .md .&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; in the docs folder, and it was nice to be able to customize sorting anyway.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;world-secrets&quot;&gt;World Secrets&lt;&#x2F;h3&gt;
+&lt;p&gt;If you want to release a DM brain (with all your plans and secrets) from your campaing, you are more or less saying that this world over. This was ok for us, it&#x27;s been almost 4 years, and it&#x27;s not particularly original (forgotten realms, and stolen content everywhere). If you wanted to do a &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=i-p9lWIhcLQ&amp;amp;list=PL1tiwbzkOjQz7D0l_eLJGAISVtcL7oRu_&quot;&gt;Mercer style&lt;&#x2F;a&gt; campaign procession where each season is set in the same world different area, then this process becomes difficult.&lt;&#x2F;p&gt;
+&lt;p&gt;If you have a team of software people familiar with an editor you could have a &lt;strong&gt;player brain&lt;&#x2F;strong&gt; type thing that you could reference from the &lt;strong&gt;DM brain&lt;&#x2F;strong&gt; potentially. But if you have their level of viewers or players dedicated enough to basically write a &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;criticalrole.fandom.com&#x2F;wiki&#x2F;Critical_Role_Wiki&quot;&gt;wiki for your campaign&lt;&#x2F;a&gt;, maybe you have bigger problems.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;graph-view-not-exported&quot;&gt;Graph View Not Exported&lt;&#x2F;h3&gt;
+&lt;p&gt;There maybe some way of exporting the graph into a json blob and importing it in a separate page for users to browse (like a sitemap). But given how much &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;foambubble&#x2F;foam&#x2F;issues&#x2F;530&quot;&gt;graph has changed and is going to change&lt;&#x2F;a&gt;, plus my impatience for real web development made this a non-starter.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;Foam worked really well for this type of scoped project. I actually think that this type of brain would also &lt;strong&gt;work well for the players&lt;&#x2F;strong&gt; (if you have an engineer or two to manage it as notes) because they benefit much more from the website searchability, and you don&#x27;t run into the last problem about world secrets.&lt;&#x2F;p&gt;
+&lt;p&gt;Lacking that, I &lt;strong&gt;will probably carry on&lt;&#x2F;strong&gt; with this setup for &lt;strong&gt;any similar ttrpg&lt;&#x2F;strong&gt; setup. Most of the negatives listed above are a bit nitpicky (&lt;strong&gt;EDIT&lt;&#x2F;strong&gt;: and resolved now), and are &lt;em&gt;generally not that problematic&lt;&#x2F;em&gt;. Plus, I now have a better idea of what structures work (pcs, npcs, factions, deities, recaps were perfect fits for their own folders), what information ought to go where, and how deep to go.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;del&gt;However, this comes with a heavy caveat. This is currently best for small scale projects with a &lt;strong&gt;sense of finality&lt;&#x2F;strong&gt;. If this was my life brain, I would be a bit worried about the &lt;strong&gt;renaming problem&lt;&#x2F;strong&gt; (&amp;quot;would I never be able to refactor this?&amp;quot;). On the other hand, they &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;foambubble&#x2F;foam&#x2F;issues&#x2F;809&quot;&gt;have an issue for it&lt;&#x2F;a&gt; and have been doing promising development.&lt;&#x2F;del&gt; &lt;strong&gt;EDIT 2023:&lt;&#x2F;strong&gt; The rename problem is resolved, and I am using this for my main brain as well now.&lt;&#x2F;p&gt;
+&lt;p&gt;Considering the standard open source software tradeoff is often between:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;free + a bit janky &amp;lt;------------&amp;gt; costly + vendor-locked&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;foambubble.github.io&#x2F;&quot;&gt;Foam&lt;&#x2F;a&gt; does not deviate too far from this. It&#x27;s &lt;strong&gt;good&lt;&#x2F;strong&gt;, and it &lt;strong&gt;can become great&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;small&gt;&lt;em&gt;..and you have VS Code on your side to help tilt the tradeoff&lt;&#x2F;em&gt;&lt;&#x2F;small&gt;&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>Foaming Campaign Brain</title>
         <published>2020-09-27T00:00:00+00:00</published>

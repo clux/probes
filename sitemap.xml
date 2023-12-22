@@ -135,12 +135,6 @@
         <loc>https://clux.dev/tags/dnd/</loc>
     </url>
     <url>
-        <loc>https://clux.dev/tags/factorio/</loc>
-    </url>
-    <url>
-        <loc>https://clux.dev/tags/foam/</loc>
-    </url>
-    <url>
         <loc>https://clux.dev/tags/homebrew/</loc>
     </url>
     <url>
@@ -159,12 +153,12 @@
         <loc>https://clux.dev/tags/observability/</loc>
     </url>
     <url>
+        <loc>https://clux.dev/tags/pkm/</loc>
+    </url>
+    <url>
         <loc>https://clux.dev/tags/running/</loc>
     </url>
     <url>
         <loc>https://clux.dev/tags/rust/</loc>
-    </url>
-    <url>
-        <loc>https://clux.dev/tags/zettelkasten/</loc>
     </url>
 </urlset>
