@@ -11,7 +11,7 @@ thumbnail = "/imgs/term-drop.png"
 
 [taxonomies]
 categories = ["software"]
-tags = ["linux", "mac"]
+tags = ["linux", "mac", "config"]
 +++
 
 As a former Quake player, I have been a long-term user of [guake](https://github.com/Guake/guake) for a quick access terminal on Linux.

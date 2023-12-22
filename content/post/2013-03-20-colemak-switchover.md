@@ -6,8 +6,8 @@ slug = "2013-03-20-colemak-switchover"
 updated = "2023-09-30"
 
 [taxonomies]
-categories = ["life"]
-tags = []
+categories = ["software"]
+tags = ["config"]
 +++
 
 ![colemak finger layout](/imgs/colemak.png)

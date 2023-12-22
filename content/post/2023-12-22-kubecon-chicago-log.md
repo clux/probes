@@ -31,7 +31,7 @@ My interest areas this kubecon fall broadly into these categories (and will grou
 ## Observability
 
 ### [How Prometheus Halved It's Memory Storage](https://www.youtube.com/watch?v=29yKJ1312AM)
-nice journey into prometheus space optimization and how the layout of their labels matter a lot. great work.
+nice journey into prometheus space optimization and how the layout of their labels matter a lot. great work that everyone who upgraded prometheus this year benefitted from.
 
 ### [Evaluating Observability Agent Performance](https://www.youtube.com/watch?v=BIaftvtFPHg)
 good overview of where the utilization overhead comes from and how to think in terms of backpressure.
