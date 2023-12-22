@@ -88,8 +88,8 @@ kind of look at this, and all i can think is &quot;why tho?&quot;.</p>
 <p>keda_ metrics, scaling modifiers, pausing, job scaling, prom caching, all seem like very nice features.</p>
 <h3 id="all-you-need-to-know-about-prometheus-in-2023"><a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=xoaQ9RIDqfs">All You Need to Know About Prometheus in 2023</a></h3>
 <p>very interesting talk if you are invested in this ecosystem.</p>
-<p>they mention <code>keep_firing_for</code> landing which feels great (because it was <a rel="noopener" target="_blank" href="https://github.com/prometheus/prometheus/issues/11570">my suggestion</a>).
-q/a session reveal they think the otel collector is an anti-pattern for metrics (ruins active monitoring) and collector's unconventional label use fucks with perf/predictability. worth keeping in mind if you consider using otel agent for metrics.</p>
+<p>they mention <code>keep_firing_for</code> landing which feels great (because it was <a rel="noopener" target="_blank" href="https://github.com/prometheus/prometheus/issues/11570">my suggestion</a>).</p>
+<p>q/a session reveal they think the otel collector is an anti-pattern for metrics (ruins active monitoring) and collector's unconventional label use fucks with perf/predictability. worth keeping in mind if you consider using otel agent for metrics.</p>
 <h3 id="how-and-why-you-should-adopt-and-expose-oss-interfaces-like-otel-and-prometheus"><a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=D71fK2MFreI">How and Why You Should Adopt and Expose OSS Interfaces Like Otel and Prometheus</a></h3>
 <p>This one was funny (to me, not actually funny). Google Monarch (their internal monitoring tool) exposing a promql interface so they can translate it to monarch.</p>
 <p>lots of work for something people complain about so often (promql). goes to show that the thing people complain about is the thing people actually use.</p>
