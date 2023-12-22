@@ -10,7 +10,7 @@ math = true
 
 [taxonomies]
 categories = ["gaming"]
-tags = ["math"]
+tags = ["math", "linux"]
 +++
 
 In a ~~brief~~ bout of escapism from the world and responsibilities, I booted up [Baldur's Gate 2](https://store.steampowered.com/app/257350/Baldurs_Gate_II_Enhanced_Edition/) with my brother. It's an amazing game, once you have figured out how to **[roll](https://old.reddit.com/r/baldursgate/search?q=roll&restrict_sr=on)** your character.

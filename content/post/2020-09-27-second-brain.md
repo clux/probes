@@ -9,7 +9,7 @@ toc = true
 
 [taxonomies]
 categories = ["roleplaying"]
-tags = ["zettelkasten", "foam"]
+tags = ["pkm"]
 +++
 
 After 2 years of running a D&D campaign almost every week, my note taking setup reached several breaking points. If you're using `OneNote` or another online managed system for tracking notes/cities/npcs/pcs/events, but know how to use programmers tools like `git` and `code`; boy are there a world of advantages available to you.
