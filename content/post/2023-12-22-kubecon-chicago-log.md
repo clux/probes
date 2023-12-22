@@ -54,7 +54,6 @@ keda_ metrics, scaling modifiers, pausing, job scaling, prom caching, all seem l
 very interesting talk if you are invested in this ecosystem.
 
 they mention `keep_firing_for` landing which feels great (because it was [my suggestion](https://github.com/prometheus/prometheus/issues/11570)).
-
 q/a session reveal they think the otel collector is an anti-pattern for metrics (ruins active monitoring) and collector's unconventional label use fucks with perf/predictability. worth keeping in mind if you consider using otel agent for metrics.
 
 ### [How and Why You Should Adopt and Expose OSS Interfaces Like Otel and Prometheus](https://www.youtube.com/watch?v=D71fK2MFreI)
@@ -70,7 +69,8 @@ their selling points:
 - colocation of artifacts + images + signatures
 - passwordless auth + keyless integrity verification
 - increased cd/flux controller efficiency
-personally, i just want to distance myself from helm as possible. sure, helm 3 is better than helm 2, but it's clearly not great.
+
+personally, i just want to distance myself from helm __upgrade/releases__ as much possible and this is a nice + efficient way of doing that.
 
 ### [Wolfi: Intro to the Linux Undistro](https://www.youtube.com/watch?v=bXkXu_IKVdI)
 wolfi idea remains the same, and they got a lot of momentum behind it and chainguard.
@@ -102,7 +102,6 @@ some truly horrendous and ugly reverse shell setups and `/dev/termination-log` a
 nice intro to flowschemas, apipriority and fairness through a motivating bug example.
 
 An accompanying talk would be [Kubernetes DoS Protection at Google Scale](https://www.youtube.com/watch?v=9TRzfJrU35M).
-
 
 ### [RBACdoors: How Cryptominers Are Exploiting RBAC Misconfigs](https://www.youtube.com/watch?v=PbZbojx4kVM)
 hiding techniques for cryptominers if you ever had cluster admin access, and removed it later. decent talk.
