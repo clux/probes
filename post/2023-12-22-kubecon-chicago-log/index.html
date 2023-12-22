@@ -69,8 +69,9 @@
 <li><strong>observability related</strong> :: maintain a lot of metrics related tooling</li>
 <li><strong>continuous deployment</strong> :: maintain a lot of ad-hoc cd tooling</li>
 <li><strong>security</strong> :: maintain a bunch of controllers and ad-hoc validations</li>
-<li><strong>kubernetes</strong> :: cool to see where the platform i build on top of end up going</li>
-<li><strong>maintainership</strong> :: am trying to scale kube-rs beyond myself</li>
+<li><strong>networking</strong> :: traffic apis, mesh and other network sledgehammers (using occasionally)</li>
+<li><strong>kubernetes</strong> :: everything else.. cool to see where the platform i build on top of end up going</li>
+<li><strong>maintainership</strong> :: am trying to scale <a rel="noopener" target="_blank" href="https://github.com/kube-rs">kube-rs</a> beyond myself</li>
 </ul>
 <h2 id="observability">Observability</h2>
 <h3 id="how-prometheus-halved-it-s-memory-storage"><a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=29yKJ1312AM">How Prometheus Halved It's Memory Storage</a></h3>
@@ -112,12 +113,6 @@ decent build system, but lots of yaml.</p>
 <h2 id="security">Security</h2>
 <h3 id="security-showdown-the-overconfident-operator-vs-the-nefarious"><a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=Y1rJY_UlLmM">Security Showdown: The Overconfident Operator Vs the Nefarious...</a></h3>
 <p>entertaining and great talk about problems with wide access on laptops.</p>
-<h3 id="when-is-a-secure-connection-not-encrypted-and-other-stories"><a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=5U9h4E0H5RA">When Is a Secure Connection Not Encrypted? and Other Stories</a></h3>
-<p>talk about the main working principles behind <code>cilium</code> and its mutual encryption.
-very interesting wireguard + spiffee setup.
-they had a lot of momentum behind them. let's see if that continues after Cisco buys them (i know how that works).</p>
-<h3 id="demystifying-cilium-learn-how-to-build-an-ebpf-cni-plugin-from-scratch"><a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=3cqCmtg-TOo">Demystifying Cilium: Learn How to Build an eBPF CNI Plugin from Scratch</a></h3>
-<p>while we are on the cilium train. great workshop about how a CNI can be built.</p>
 <h3 id="arbitrary-code-file-execution-in-r-o-fs-am-i-write"><a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=jwdz-aYV5xE">Arbitrary Code &amp; File Execution in R/O FS – Am I Write?</a></h3>
 <p>nice exploit demo of <code>readOnlyRootFileSystem</code> and ways to bypass the ways it can be enabled.
 some truly horrendous and ugly reverse shell setups and <code>/dev/termination-log</code> abuse..</p>
@@ -126,7 +121,7 @@ some truly horrendous and ugly reverse shell setups and <code>/dev/termination-l
 <p>An accompanying talk would be <a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=9TRzfJrU35M">Kubernetes DoS Protection at Google Scale</a>.</p>
 <h3 id="rbacdoors-how-cryptominers-are-exploiting-rbac-misconfigs"><a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=PbZbojx4kVM">RBACdoors: How Cryptominers Are Exploiting RBAC Misconfigs</a></h3>
 <p>hiding techniques for cryptominers if you ever had cluster admin access, and removed it later. decent talk.</p>
-<h2 id="kubernetes">Kubernetes</h2>
+<h2 id="networking">Networking</h2>
 <h3 id="gateway-api-the-most-collaborative-api-in-kubernetes-history-is-ga"><a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=V3Vu_FWb4l4">Gateway API: The Most Collaborative API in Kubernetes History Is GA</a></h3>
 <p>this is a big deal. it's needed to get canaries everywhere with <code>HTTPRoute</code>, and it's cool to hear them talk about a mature rollout strategy for experimental crd fields.</p>
 <p>tbh, it was more fun to hear this framed as a way to improve <code>Service</code><a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=Oslwx3hj2Eg">&quot;the worst api in kubernetes&quot;</a></p>
@@ -144,6 +139,13 @@ some truly horrendous and ugly reverse shell setups and <code>/dev/termination-l
 <p>then talk about their single ambient mesh thing that still ends up with 39% cpu overhead 22% memory overhead.</p>
 <p>maybe <em>they should</em> rewrite it in rust.</p>
 <p>jkjk. this does seem like a nice improvement for them. ran istio a while back and found the overhead insane.</p>
+<h3 id="when-is-a-secure-connection-not-encrypted-and-other-stories"><a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=5U9h4E0H5RA">When Is a Secure Connection Not Encrypted? and Other Stories</a></h3>
+<p>talk about the main working principles behind <code>cilium</code> and its mutual encryption.
+very interesting wireguard + spiffee setup.
+they had a lot of momentum behind them. let's see if that continues after Cisco buys them (i know how that works).</p>
+<h3 id="demystifying-cilium-learn-how-to-build-an-ebpf-cni-plugin-from-scratch"><a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=3cqCmtg-TOo">Demystifying Cilium: Learn How to Build an eBPF CNI Plugin from Scratch</a></h3>
+<p>while we are on the cilium train. great workshop about how a CNI can be built.</p>
+<h2 id="kubernetes">Kubernetes</h2>
 <h3 id="building-better-controllers"><a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=GKPBQDJ2Hjk">Building Better Controllers</a></h3>
 <p>with my kube-rs hat on, there are some cool ideas coming out of istio here (would be nice if they published it).</p>
 <p>the ideas here <strong>could</strong> be partially implement yourself in your code, but it's interesting to see them commit to an interface like this at the controller level.</p>
@@ -297,12 +299,6 @@ if it's not high priority for you or who pays you, don't work on it.</p>
           <a href="#security-showdown-the-overconfident-operator-vs-the-nefarious"><small>- Security Showdown: The Overconfident Operator Vs the Nefarious...</small></a>
         </div>
         <div class="hpad">
-          <a href="#when-is-a-secure-connection-not-encrypted-and-other-stories"><small>- When Is a Secure Connection Not Encrypted? and Other Stories</small></a>
-        </div>
-        <div class="hpad">
-          <a href="#demystifying-cilium-learn-how-to-build-an-ebpf-cni-plugin-from-scratch"><small>- Demystifying Cilium: Learn How to Build an eBPF CNI Plugin from Scratch</small></a>
-        </div>
-        <div class="hpad">
           <a href="#arbitrary-code-file-execution-in-r-o-fs-am-i-write"><small>- Arbitrary Code &amp; File Execution in R&#x2F;O FS – Am I Write?</small></a>
         </div>
         <div class="hpad">
@@ -312,13 +308,22 @@ if it's not high priority for you or who pays you, don't work on it.</p>
           <a href="#rbacdoors-how-cryptominers-are-exploiting-rbac-misconfigs"><small>- RBACdoors: How Cryptominers Are Exploiting RBAC Misconfigs</small></a>
         </div>
         <div>
-          <a href="#kubernetes">Kubernetes</a>
+          <a href="#networking">Networking</a>
         </div>
         <div class="hpad">
           <a href="#gateway-api-the-most-collaborative-api-in-kubernetes-history-is-ga"><small>- Gateway API: The Most Collaborative API in Kubernetes History Is GA</small></a>
         </div>
         <div class="hpad">
           <a href="#istio-past-present-and-future"><small>- Istio Past Present and Future</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#when-is-a-secure-connection-not-encrypted-and-other-stories"><small>- When Is a Secure Connection Not Encrypted? and Other Stories</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#demystifying-cilium-learn-how-to-build-an-ebpf-cni-plugin-from-scratch"><small>- Demystifying Cilium: Learn How to Build an eBPF CNI Plugin from Scratch</small></a>
+        </div>
+        <div>
+          <a href="#kubernetes">Kubernetes</a>
         </div>
         <div class="hpad">
           <a href="#building-better-controllers"><small>- Building Better Controllers</small></a>
