@@ -36,7 +36,7 @@
 &lt;&#x2F;ul&gt;
 &lt;h2 id=&quot;observability&quot;&gt;Observability&lt;&#x2F;h2&gt;
 &lt;h3 id=&quot;how-prometheus-halved-it-s-memory-storage&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=29yKJ1312AM&quot;&gt;How Prometheus Halved It&#x27;s Memory Storage&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
-&lt;p&gt;nice journey into prometheus space optimization and how the layout of their labels matter a lot. great work.&lt;&#x2F;p&gt;
+&lt;p&gt;nice journey into prometheus space optimization and how the layout of their labels matter a lot. great work that everyone who upgraded prometheus this year benefitted from.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;evaluating-observability-agent-performance&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=BIaftvtFPHg&quot;&gt;Evaluating Observability Agent Performance&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
 &lt;p&gt;good overview of where the utilization overhead comes from and how to think in terms of backpressure.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;opentelemetry-what-s-next&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=OEGgmTNfYsU&quot;&gt;OpenTelemetry: What&#x27;s Next&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
