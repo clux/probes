@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title>probes - homebrew</title>
-    <link href="https://clux.dev/tags/homebrew/atom.xml" rel="self" type="application/atom+xml"/>
-    <link href="https://clux.dev"/>
+    <link rel="self" type="application/atom+xml" href="https://clux.dev/tags/homebrew/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://clux.dev"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
     <updated>2020-10-04T00:00:00+00:00</updated>
     <id>https://clux.dev/tags/homebrew/atom.xml</id>
@@ -10,13 +10,19 @@
         <title>Antimagic and Force Cubes</title>
         <published>2020-10-04T00:00:00+00:00</published>
         <updated>2020-10-04T00:00:00+00:00</updated>
+        
         <author>
-          <name>Unknown</name>
+          <name>
+            
+              Unknown
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://clux.dev/post/2020-10-04-antimagic-revisited/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://clux.dev/post/2020-10-04-antimagic-revisited/"/>
         <id>https://clux.dev/post/2020-10-04-antimagic-revisited/</id>
         
-        <content type="html">&lt;p&gt;In 2018, we introduced the explosive &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Cube%20of%20Force&quot;&gt;Cube of Force&lt;&#x2F;a&gt; into our home campaign. We really did not expect it to cause us&#x2F;me that much grief at the time, but despite long canonicalisation meetings, our interpretation was not even internally consistent.&lt;&#x2F;p&gt;
+        <content type="html" xml:base="https://clux.dev/post/2020-10-04-antimagic-revisited/">&lt;p&gt;In 2018, we introduced the explosive &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;roll20.net&#x2F;compendium&#x2F;dnd5e&#x2F;Cube%20of%20Force&quot;&gt;Cube of Force&lt;&#x2F;a&gt; into our home campaign. We really did not expect it to cause us&#x2F;me that much grief at the time, but despite long canonicalisation meetings, our interpretation was not even internally consistent.&lt;&#x2F;p&gt;
 &lt;p&gt;At the time we dealt with this by nerfing Cube down into the ground gradually rolling out alternatives, but it&#x27;s time we dug into the concept of D&amp;amp;D &lt;code&gt;antimagic&lt;&#x2F;code&gt; properly.&lt;&#x2F;p&gt;
 &lt;!--more--&gt;
 &lt;h2 id=&quot;words-of-wording&quot;&gt;Words of wording&lt;&#x2F;h2&gt;
