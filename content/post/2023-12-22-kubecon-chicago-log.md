@@ -14,7 +14,7 @@ tags = ["kubernetes"]
 
 As time goes by, I find myself increasingly disinterested in actually travelling out to a convention, when my preferred method of consuming conference talks is overwhelmingly VOD form with 2x/FF potential.
 
-This is doubly so when the convention is increasingly corporate (like KubeCon), and the [CNCF youtube channel](https://www.youtube.com/c/cloudnativefdn/videos) is in general high quality. Get it before you ad-blockers break.
+This is doubly so when the convention is increasingly corporate (like KubeCon), and the [CNCF youtube channel](https://www.youtube.com/c/cloudnativefdn/videos) is in general high quality. Get it before your ad-blockers break.
 
 This post contains a quick export from my personal notes on some significant talks at **KubeConNA'23** (make of them what you will).
 
