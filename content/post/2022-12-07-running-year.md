@@ -106,7 +106,7 @@ My journal with key-workouts for these weeks:
 
 By many metrics (Garmin VO2max estimate, Strava fitness), I peaked nicely for the race:
 
-![Strava fitness graph climbing from 15 to 34 in a year, peaking at 34 at the half marathon day](/imgs/running22/fitness-hm.webp)
+![Strava fitness graph climbing from 15 to 34 in a year, peaking at 34 at the half marathon day](/imgs/running22/fitness-hm.png)
 
 and ended up feeling OK after the race. Got one blood-shot big toenail to show off for a year, but will leave you with the mental image.
 
