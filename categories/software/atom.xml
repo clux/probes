@@ -4,8 +4,207 @@
     <link rel="self" type="application/atom+xml" href="https://clux.dev/categories/software/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://clux.dev"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2023-10-01T00:00:00+00:00</updated>
+    <updated>2023-12-22T00:00:00+00:00</updated>
     <id>https://clux.dev/categories/software/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Talk log from KubeCon Chicago</title>
+        <published>2023-12-22T00:00:00+00:00</published>
+        <updated>2023-12-22T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://clux.dev/post/2023-12-22-kubecon-chicago-log/"/>
+        <id>https://clux.dev/post/2023-12-22-kubecon-chicago-log/</id>
+        
+        <content type="html" xml:base="https://clux.dev/post/2023-12-22-kubecon-chicago-log/">&lt;p&gt;As time goes by, I find myself increasingly disinterested in actually travelling out to a convention, when my preferred method of consuming conference talks is overwhelmingly VOD form with 2x&#x2F;FF potential.&lt;&#x2F;p&gt;
+&lt;p&gt;This is doubly so when the convention is increasingly corporate (like KubeCon), and the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;c&#x2F;cloudnativefdn&#x2F;videos&quot;&gt;CNCF youtube channel&lt;&#x2F;a&gt; is in general high quality. Get it before you ad-blockers break.&lt;&#x2F;p&gt;
+&lt;p&gt;This post contains a quick export from my personal notes on some significant talks (make of them what you will).&lt;&#x2F;p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;My interest areas this kubecon fall broadly into these categories (and will group talks by these):&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;observability related&lt;&#x2F;strong&gt; :: maintain a lot of metrics related tooling&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;continuous deployment&lt;&#x2F;strong&gt; :: maintain a lot of ad-hoc cd tooling&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;security&lt;&#x2F;strong&gt; :: maintain a bunch of controllers and ad-hoc validations&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;kubernetes&lt;&#x2F;strong&gt; :: cool to see where the platform i build on top of end up going&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;maintainership&lt;&#x2F;strong&gt; :: am trying to scale kube-rs beyond myself&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;observability&quot;&gt;Observability&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;how-prometheus-halved-it-s-memory-storage&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=29yKJ1312AM&quot;&gt;How Prometheus Halved It&#x27;s Memory Storage&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;nice journey into prometheus space optimization and how the layout of their labels matter a lot. great work.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;evaluating-observability-agent-performance&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=BIaftvtFPHg&quot;&gt;Evaluating Observability Agent Performance&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;good overview of where the utilization overhead comes from and how to think in terms of backpressure.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;opentelemetry-what-s-next&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=OEGgmTNfYsU&quot;&gt;OpenTelemetry: What&#x27;s Next&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;they&#x27;re graduated now and deal with metrics (but still experimental w.r.t. rust).
+imo it feels really strange to be shoehorning everything here into one agent, but we&#x27;ll see what benefits it can bring later (they keep talking about consistent metadata between them).&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;exploring-the-power-of-metrics-collection-with-opentelemetry&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=hsI7mCJ0JSE&quot;&gt;Exploring the Power of Metrics Collection with OpenTelemetry&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;after the 45m+ workshop, they get into the horrific setup they&#x27;ve made inlining scrapeConfigs inside collector crds to support metrics.
+kind of look at this, and all i can think is &amp;quot;why tho?&amp;quot;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;keda-graduation-announcements&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=wYQ2cvSj6os&quot;&gt;KEDA Graduation Announcements&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;looks increasingly nice. (i need to kill the prometheus-adapter garbage template format i currently deal with.)&lt;&#x2F;p&gt;
+&lt;p&gt;keda_ metrics, scaling modifiers, pausing, job scaling, prom caching, all seem like very nice features.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;all-you-need-to-know-about-prometheus-in-2023&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=xoaQ9RIDqfs&quot;&gt;All You Need to Know About Prometheus in 2023&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;very interesting talk if you are invested in this ecosystem.&lt;&#x2F;p&gt;
+&lt;p&gt;they mention &lt;code&gt;keep_firing_for&lt;&#x2F;code&gt; landing which feels great (because it was &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;prometheus&#x2F;prometheus&#x2F;issues&#x2F;11570&quot;&gt;my suggestion&lt;&#x2F;a&gt;).&lt;&#x2F;p&gt;
+&lt;p&gt;q&#x2F;a session reveal they think the otel collector is an anti-pattern for metrics (ruins active monitoring) and collector&#x27;s unconventional label use fucks with perf&#x2F;predictability. worth keeping in mind if you consider using otel agent for metrics.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;how-and-why-you-should-adopt-and-expose-oss-interfaces-like-otel-and-prometheus&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=D71fK2MFreI&quot;&gt;How and Why You Should Adopt and Expose OSS Interfaces Like Otel and Prometheus&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;This one was funny (to me, not actually funny). Google Monarch (their internal monitoring tool) exposing a promql interface so they can translate it to monarch.&lt;&#x2F;p&gt;
+&lt;p&gt;lots of work for something people complain about so often (promql). goes to show that the thing people complain about is the thing people actually use.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;continuous-delivery&quot;&gt;Continuous Delivery&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;flux-2-0-and-beyond-oci-cosign&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=pO2-Kgbkziw&quot;&gt;Flux 2.0 and Beyond; OCI + Cosign&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;OCI feels like a better distribution method for Kubernetes yaml than with helm, and flux&#x27;s &lt;code&gt;source-controller&lt;&#x2F;code&gt; pulling oci packaged tarballs has a nice flow to it. OCI + Kustomization sounds workeable.
+their selling points:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;colocation of artifacts + images + signatures&lt;&#x2F;li&gt;
+&lt;li&gt;passwordless auth + keyless integrity verification&lt;&#x2F;li&gt;
+&lt;li&gt;increased cd&#x2F;flux controller efficiency
+personally, i just want to distance myself from helm as possible. sure, helm 3 is better than helm 2, but it&#x27;s clearly not great.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;wolfi-intro-to-the-linux-undistro&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=bXkXu_IKVdI&quot;&gt;Wolfi: Intro to the Linux Undistro&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;wolfi idea remains the same, and they got a lot of momentum behind it and chainguard.
+decent build system, but lots of yaml.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;keeping-helm-reliable-stable-and-usable&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=QhzfJrLo0Vw&quot;&gt;Keeping Helm Reliable, Stable, and Usable&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;kind of a boring talk, but kept it in here to highlight one point; helm is slowing down because it&#x27;s the defacto standard.&lt;&#x2F;p&gt;
+&lt;p&gt;so do not expect any new major features, WYSIWYG (including gotpl, toYaml | nindent, manual schemas)...&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;security&quot;&gt;Security&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;security-showdown-the-overconfident-operator-vs-the-nefarious&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=Y1rJY_UlLmM&quot;&gt;Security Showdown: The Overconfident Operator Vs the Nefarious...&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;entertaining and great talk about problems with wide access on laptops.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;when-is-a-secure-connection-not-encrypted-and-other-stories&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=5U9h4E0H5RA&quot;&gt;When Is a Secure Connection Not Encrypted? and Other Stories&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;talk about the main working principles behind &lt;code&gt;cilium&lt;&#x2F;code&gt; and its mutual encryption.
+very interesting wireguard + spiffee setup.
+they had a lot of momentum behind them. let&#x27;s see if that continues after Cisco buys them (i know how that works).&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;demystifying-cilium-learn-how-to-build-an-ebpf-cni-plugin-from-scratch&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=3cqCmtg-TOo&quot;&gt;Demystifying Cilium: Learn How to Build an eBPF CNI Plugin from Scratch&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;while we are on the cilium train. great workshop about how a CNI can be built.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;arbitrary-code-file-execution-in-r-o-fs-am-i-write&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=jwdz-aYV5xE&quot;&gt;Arbitrary Code &amp;amp; File Execution in R&#x2F;O FS – Am I Write?&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;nice exploit demo of &lt;code&gt;readOnlyRootFileSystem&lt;&#x2F;code&gt; and ways to bypass the ways it can be enabled.
+some truly horrendous and ugly reverse shell setups and &lt;code&gt;&#x2F;dev&#x2F;termination-log&lt;&#x2F;code&gt; abuse..&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;the-cluster-killer-bug-learning-api-priority-and-fairness-the-hard-way&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=4mYUyAeyr-U&quot;&gt;The Cluster Killer Bug: Learning API Priority and Fairness the Hard Way&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;nice intro to flowschemas, apipriority and fairness through a motivating bug example.&lt;&#x2F;p&gt;
+&lt;p&gt;An accompanying talk would be &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=9TRzfJrU35M&quot;&gt;Kubernetes DoS Protection at Google Scale&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;rbacdoors-how-cryptominers-are-exploiting-rbac-misconfigs&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=PbZbojx4kVM&quot;&gt;RBACdoors: How Cryptominers Are Exploiting RBAC Misconfigs&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;hiding techniques for cryptominers if you ever had cluster admin access, and removed it later. decent talk.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;kubernetes&quot;&gt;Kubernetes&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;gateway-api-the-most-collaborative-api-in-kubernetes-history-is-ga&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=V3Vu_FWb4l4&quot;&gt;Gateway API: The Most Collaborative API in Kubernetes History Is GA&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;this is a big deal. it&#x27;s needed to get canaries everywhere with &lt;code&gt;HTTPRoute&lt;&#x2F;code&gt;, and it&#x27;s cool to hear them talk about a mature rollout strategy for experimental crd fields.&lt;&#x2F;p&gt;
+&lt;p&gt;tbh, it was more fun to hear this framed as a way to improve &lt;code&gt;Service&lt;&#x2F;code&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=Oslwx3hj2Eg&quot;&gt;&amp;quot;the worst api in kubernetes&amp;quot;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;ux-matters-switching-to-gamma-without-ruining-your-reputation&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=vMSmLVaVRT0&quot;&gt;UX Matters: Switching to GAMMA Without Ruining Your Reputation&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;linkerd on working with the &lt;strong&gt;gateway api&lt;&#x2F;strong&gt; and issues and lessons with policy controller&lt;&#x2F;li&gt;
+&lt;li&gt;presents rust in a way that&#x27;s &amp;quot;because it&#x27;s cool&amp;quot; but a bit manual atm. (..i&#x27;ll take it)&lt;&#x2F;li&gt;
+&lt;li&gt;mentioned their leader election impl and kubert. candid and moderately intersting.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;istio-past-present-and-future&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=vu18vpTxX0g&quot;&gt;Istio Past Present and Future&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;fun dig at the rust evangelists:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;rewrite it in rust? [..] no we want to be a lot better&amp;quot;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;then talk about their single ambient mesh thing that still ends up with 39% cpu overhead 22% memory overhead.&lt;&#x2F;p&gt;
+&lt;p&gt;maybe &lt;em&gt;they should&lt;&#x2F;em&gt; rewrite it in rust.&lt;&#x2F;p&gt;
+&lt;p&gt;jkjk. this does seem like a nice improvement for them. ran istio a while back and found the overhead insane.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;building-better-controllers&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=GKPBQDJ2Hjk&quot;&gt;Building Better Controllers&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;with my kube-rs hat on, there are some cool ideas coming out of istio here (would be nice if they published it).&lt;&#x2F;p&gt;
+&lt;p&gt;the ideas here &lt;strong&gt;could&lt;&#x2F;strong&gt; be partially implement yourself in your code, but it&#x27;s interesting to see them commit to an interface like this at the controller level.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;node-size-matters-running-k8s-as-cheaply-as-possible&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=6vNI_O6sdvY&quot;&gt;Node Size Matters - Running K8s as Cheaply as Possible&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;opencost and their metrics. does a nice investigation into their metrics and proving that &lt;strong&gt;small cloud provider instances are the most expensive instances&lt;&#x2F;strong&gt; you can use if you can fill your nodes.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;cutting-climate-costs-with-kubernetes-and-capi&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=VQbP4XX2O_M&quot;&gt;Cutting Climate Costs with Kubernetes and CAPI&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;climate aware scheduler idea using watttime data, priorityclasses and &lt;code&gt;KubeSchedulerConfiguration&lt;&#x2F;code&gt; to allow only running workloads during &amp;quot;low emission times&amp;quot;.&lt;&#x2F;p&gt;
+&lt;p&gt;a later (much fluffier talk) shows how to integrate this with KEDA: https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=oAvYfIoIgcc&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;what-s-up-with-kubernetes-long-term-support&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=0fngdOlwZtQ&quot;&gt;What&#x27;s up with Kubernetes Long Term Support?&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;mentions the numerous recent KEPs to improve stability:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;KEP-1333 - 1.19+ ensures all APIs required to run clusters are GA&lt;&#x2F;li&gt;
+&lt;li&gt;KEP-1693 - New APIs are not allowed to be reqired until they graduate to GA&lt;&#x2F;li&gt;
+&lt;li&gt;1.19+ has metrics for deprecated resource use&lt;&#x2F;li&gt;
+&lt;li&gt;KEP-1194 - KEPs require better reviews w.r.t. production readiness&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;kubernetes.io&#x2F;docs&#x2F;reference&#x2F;using-api&#x2F;deprecation-policy&#x2F;&quot;&gt;Deprecation policy&lt;&#x2F;a&gt; updated to make stable api versions permanent&lt;&#x2F;li&gt;
+&lt;li&gt;KEP-3136 - New unstable APIs are OFF by default&lt;&#x2F;li&gt;
+&lt;li&gt;KEP-3744 - Kubernetes 1.23+ use supported go versions (easier to bump security fixes going forward)&lt;&#x2F;li&gt;
+&lt;li&gt;KEP-3935 - Kubernetes 1.28+ control plane nodes support n-3 version skew (annual upgrade now ok)
+otherwise talks about difficulties of widening support window too much (upgrade complexity, ecosystem dependencies, bugfix porting)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;they want a longer cycle (&lt;code&gt;WG-LTS&lt;&#x2F;code&gt;) - because &lt;strong&gt;currently &amp;gt;2&#x2F;3rds of people have clusters out-of-support&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;this feels like a companion talk to &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=OtigVP3lRh4&quot;&gt;Swimming with the current make it easy to stay up to date&lt;&#x2F;a&gt; which also highlights how much regressions are a problem in Kubernetes (and mostly on patch releases..).&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;what-s-new-with-kubectl-and-kustomize&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=RggqaCSdOGA&quot;&gt;What&#x27;s New with Kubectl and Kustomize&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;kubectl diff --prune&lt;&#x2F;code&gt; had a selector bug still...&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;kubectl auth whoami&lt;&#x2F;code&gt; new&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;can&#x27;t help lol when they say you shouldn&#x27;t use most of the imperative subcommands; {create, run, expose, autoscale, replace, rollout undo, edit, set, patch, scale, ..}&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;nix-kubernetes-and-the-pursuit-of-reproducibility&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=U-mSWU4see0&quot;&gt;Nix Kubernetes and the Pursuit of Reproducibility&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;building a &lt;strong&gt;nix hypervisor&lt;&#x2F;strong&gt; around &lt;code&gt;libvirt&lt;&#x2F;code&gt; with qcow2. pretty cool idea.
+nice sweetspot for nix in hypervisor space, because talos&#x2F;flatcar&#x2F;bottlerocket is probably better for VMs, and wolfi is better for docker images.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;pods-and-circumstance-cri-o-graduation-celebration&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=7MK_Mt7cbrY&quot;&gt;Pods and Circumstance: CRI-O Graduation Celebration&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;CRI-O metric setups with kubelet&#x2F;cAdvisor and how they plan to optimize it.&lt;&#x2F;p&gt;
+&lt;p&gt;they use &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;containers&#x2F;conmon-rs&quot;&gt;conmon-rs&lt;&#x2F;a&gt; - a rust lib for container runtime monitoring!&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;grifts-ahoy-bracing-for-the-ai-tide&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=-Z7TTABw3M0&quot;&gt;Grifts Ahoy! Bracing for the AI Tide&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;advocates for soft-AI as a tool to help generate useful context for small niche areas.&lt;&#x2F;p&gt;
+&lt;p&gt;mentions we are likely on the top of the S curve (before the trough of disillusionment) and there&#x27;s tons of hype and not much focus on risks, tons of exaggerations, whether it&#x27;s better than non-AI, or whether it even uses AI at all - and it needs some laws.&lt;&#x2F;p&gt;
+&lt;p&gt;Mentions a bunch of boring AI risks to consider (not the more crazy AI singularity transhumanist hype):&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;hard to control risks when you don&#x27;t know what the model is actually doing&lt;&#x2F;li&gt;
+&lt;li&gt;research has shown it&#x27;s very cheap to poison a model (60$ for data control of 0.1% - buying expired domains)&lt;&#x2F;li&gt;
+&lt;li&gt;can be used against us; malware creations (easy to bypass protections by lieing to it)&lt;&#x2F;li&gt;
+&lt;li&gt;deepfakes (passed a liveness test and scammed shanghai tax system)&lt;&#x2F;li&gt;
+&lt;li&gt;ai often hallucinates package names (can typosquat those)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;great talk.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;declarative-everything&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=rFaWmd7Y7i0&quot;&gt;Declarative Everything&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;My favourite talk about my favourite new feature in Kubernetes. Admission Validation and admission policies.&lt;&#x2F;p&gt;
+&lt;p&gt;talked more about it on &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;hachyderm.io&#x2F;@clux&#x2F;111537982514643915&quot;&gt;mastodon&lt;&#x2F;a&gt; and ended up writing &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;kube.rs&#x2F;controllers&#x2F;admission&#x2F;&quot;&gt;kube.rs&#x2F;admission&lt;&#x2F;a&gt; as a result&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;safeguarding-clusters-exploring-the-benefits-and-navigating-the-dangers-of-admission-controllers&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=6kK9otYAYac&quot;&gt;Safeguarding Clusters: Exploring the Benefits and Navigating the dangers of admission controllers&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;goes into details about footguns (&lt;code&gt;failurePolicy&lt;&#x2F;code&gt;, latency buildup, default timeout, scope), and some more exotic crazy failures if you accidentally block leases or flowschemas.&lt;&#x2F;p&gt;
+&lt;p&gt;notes how it was hard to target negative selections until CEL; matchConditions can be CEL inside webhook configuration resource now!&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;15-000-minecraft-players-vs-one-k8s-cluster-who-wins&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=4YNp2vb9NTA&quot;&gt;15,000 Minecraft Players Vs One K8s Cluster. Who Wins?&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;very good talk about how a cloud minecraft provider moved from GCP to bare metal with &amp;quot;65% cost reduction&amp;quot;.&lt;&#x2F;p&gt;
+&lt;p&gt;nice to see the stuff they take advantage off (still off-load some stuff to cloud providers), and heavy use of the cluster api.
+MinIO and TopoLVM for storage is also very cool.&lt;&#x2F;p&gt;
+&lt;p&gt;if nothing else, this talk is worth it for how they deal with lifecycle management of long lived games (how do you terminate the pods?).
+short answer; some automatic upgrades with cluster api, some planned maintenances with warnings and then very long &lt;code&gt;terminationGracePeriodSeconds&lt;&#x2F;code&gt; on &lt;code&gt;SIGTERM&lt;&#x2F;code&gt; with some advanced termination handlers.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;maintainer-track&quot;&gt;Maintainer Track&lt;&#x2F;h3&gt;
+&lt;h3 id=&quot;tools-for-resolving-difficult-conflicts-in-open-source-communities-and-projects&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=SNrVqfLotDI&quot;&gt;Tools for Resolving Difficult Conflicts in Open Source Communities and Projects&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;imo the most useful thing herein is the highlighting of &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Nonviolent_Communication&quot;&gt;non-violent communication&lt;&#x2F;a&gt; as a methodology for &lt;strong&gt;compassionate communication&lt;&#x2F;strong&gt;, proven to have good results (but best if practiced consistently).&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;the-eight-fallacies-of-distributed-cloud-native-communities&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=n2ZHy90PrUQ&quot;&gt;The Eight Fallacies of Distributed Cloud Native Communities&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;similar maitainer points:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;maintainer bw is (not) infinite :: lack of control + lack of empathy towards you = recipe for burnout&lt;&#x2F;li&gt;
+&lt;li&gt;compromise is (not) a rarity and (not) the norm :: everyone has their own agenda&lt;&#x2F;li&gt;
+&lt;li&gt;cost of contributor onboarding is (not) zero :: maintainer bw is not infinite, ownership also hindered by undocumented context =&amp;gt; episodic maintainers leave. need to put concious effort into uplifting and growing existing contributors to avoid gridlock.&lt;&#x2F;li&gt;
+&lt;li&gt;staffing across areas is (not) homogeneous :: some hard areas have very few people who knows what is going on&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;kubeburned-out-how-to-get-things-done-efficiently&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=h-WiiU-iKLQ&quot;&gt;Kubeburned Out? How to get things done efficiently&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;good tips for contributing by making routines for contributions if employed (e.g. 1h before work, maybe every tuesday + thursday, 1-2h during weekend).&lt;&#x2F;p&gt;
+&lt;p&gt;make your work public:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;always communicate pr status&lt;&#x2F;li&gt;
+&lt;li&gt;ask for help if stuck&lt;&#x2F;li&gt;
+&lt;li&gt;unasign if you cannot work on it, maybe add snippets that may help others&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;recognise people for their work;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;blog posts are good&lt;&#x2F;li&gt;
+&lt;li&gt;celebrate small achievements&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;say no - keep yourself healthy;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;take breaks, short or long&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;good advice, but then it&#x27;s more about how to take on more responsibility within kubernetes, writing KEPs, and TAG work.&lt;&#x2F;p&gt;
+&lt;p&gt;timing improves success;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;propose things at the right point in time&lt;&#x2F;li&gt;
+&lt;li&gt;raise questions at the right point in time (so you&#x27;re likely to get the right answer)&lt;&#x2F;li&gt;
+&lt;li&gt;establish an async schedule more likely to get people working together with you&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;find habits that feel right for you.
+if it&#x27;s not high priority for you or who pays you, don&#x27;t work on it.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>Drop Down Terminal</title>
         <published>2023-10-01T00:00:00+00:00</published>
