@@ -25,8 +25,9 @@ My interest areas this kubecon fall broadly into these categories (and will grou
 - **observability related** :: maintain a lot of metrics related tooling
 - **continuous deployment** :: maintain a lot of ad-hoc cd tooling
 - **security** :: maintain a bunch of controllers and ad-hoc validations
-- **kubernetes** :: cool to see where the platform i build on top of end up going
-- **maintainership** :: am trying to scale kube-rs beyond myself
+- **networking** :: traffic apis, mesh and other network sledgehammers (using occasionally)
+- **kubernetes** :: everything else.. cool to see where the platform i build on top of end up going
+- **maintainership** :: am trying to scale [kube-rs](https://github.com/kube-rs) beyond myself
 
 ## Observability
 
@@ -87,14 +88,6 @@ so do not expect any new major features, WYSIWYG (including gotpl, toYaml | nind
 ### [Security Showdown: The Overconfident Operator Vs the Nefarious...](https://www.youtube.com/watch?v=Y1rJY_UlLmM)
 entertaining and great talk about problems with wide access on laptops.
 
-### [When Is a Secure Connection Not Encrypted? and Other Stories](https://www.youtube.com/watch?v=5U9h4E0H5RA)
-talk about the main working principles behind `cilium` and its mutual encryption.
-very interesting wireguard + spiffee setup.
-they had a lot of momentum behind them. let's see if that continues after Cisco buys them (i know how that works).
-
-### [Demystifying Cilium: Learn How to Build an eBPF CNI Plugin from Scratch](https://www.youtube.com/watch?v=3cqCmtg-TOo)
-while we are on the cilium train. great workshop about how a CNI can be built.
-
 ### [Arbitrary Code & File Execution in R/O FS – Am I Write?](https://www.youtube.com/watch?v=jwdz-aYV5xE)
 nice exploit demo of `readOnlyRootFileSystem` and ways to bypass the ways it can be enabled.
 some truly horrendous and ugly reverse shell setups and `/dev/termination-log` abuse..
@@ -107,7 +100,7 @@ An accompanying talk would be [Kubernetes DoS Protection at Google Scale](https:
 ### [RBACdoors: How Cryptominers Are Exploiting RBAC Misconfigs](https://www.youtube.com/watch?v=PbZbojx4kVM)
 hiding techniques for cryptominers if you ever had cluster admin access, and removed it later. decent talk.
 
-## Kubernetes
+## Networking
 
 ### [Gateway API: The Most Collaborative API in Kubernetes History Is GA](https://www.youtube.com/watch?v=V3Vu_FWb4l4)
 this is a big deal. it's needed to get canaries everywhere with `HTTPRoute`, and it's cool to hear them talk about a mature rollout strategy for experimental crd fields.
@@ -128,6 +121,16 @@ then talk about their single ambient mesh thing that still ends up with 39% cpu 
 maybe _they should_ rewrite it in rust.
 
 jkjk. this does seem like a nice improvement for them. ran istio a while back and found the overhead insane.
+
+### [When Is a Secure Connection Not Encrypted? and Other Stories](https://www.youtube.com/watch?v=5U9h4E0H5RA)
+talk about the main working principles behind `cilium` and its mutual encryption.
+very interesting wireguard + spiffee setup.
+they had a lot of momentum behind them. let's see if that continues after Cisco buys them (i know how that works).
+
+### [Demystifying Cilium: Learn How to Build an eBPF CNI Plugin from Scratch](https://www.youtube.com/watch?v=3cqCmtg-TOo)
+while we are on the cilium train. great workshop about how a CNI can be built.
+
+## Kubernetes
 
 ### [Building Better Controllers](https://www.youtube.com/watch?v=GKPBQDJ2Hjk)
 with my kube-rs hat on, there are some cool ideas coming out of istio here (would be nice if they published it).
