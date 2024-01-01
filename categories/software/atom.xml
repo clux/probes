@@ -236,7 +236,7 @@ if it&#x27;s not high priority for you or who pays you, don&#x27;t work on it.&l
 &lt;h2 id=&quot;core-concept&quot;&gt;Core Concept&lt;&#x2F;h2&gt;
 &lt;p&gt;The idea is to have a &lt;strong&gt;persistent terminal&lt;&#x2F;strong&gt; that is &lt;strong&gt;hidden away&lt;&#x2F;strong&gt; in a &amp;quot;special place&amp;quot; and bind a key to toggle the visibility of this terminal. Then we rely on &lt;code&gt;zellij&lt;&#x2F;code&gt; to provide tabs.&lt;&#x2F;p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The choice of terminal emulator and multiplexer is not super important. You could probably use &lt;code&gt;kitty&lt;&#x2F;code&gt; + &lt;code&gt;tmux&lt;&#x2F;code&gt;, or straight &lt;code&gt;wezterm&lt;&#x2F;code&gt; (which has tabs mgmt built-in) if you prefer, and achieve the same results.&lt;&#x2F;p&gt;
+&lt;p&gt;The choice of terminal emulator and multiplexer is not super important. You could probably use &lt;code&gt;kitty&lt;&#x2F;code&gt; + &lt;code&gt;tmux&lt;&#x2F;code&gt;, or straight &lt;code&gt;wezterm&lt;&#x2F;code&gt; (which has tabs mgmt built-in) if you prefer, and achieve similar results.&lt;&#x2F;p&gt;
 &lt;&#x2F;blockquote&gt;
 &lt;p&gt;On &lt;strong&gt;wayland&lt;&#x2F;strong&gt; that place is a &lt;strong&gt;special workspace&lt;&#x2F;strong&gt;, whereas on &lt;strong&gt;mac&lt;&#x2F;strong&gt; we use &lt;code&gt;sticky&lt;&#x2F;code&gt; windows.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;alacritty-setup&quot;&gt;Alacritty Setup&lt;&#x2F;h2&gt;

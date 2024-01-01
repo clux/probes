@@ -1,11 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-    <title>probes - running</title>
-    <link rel="self" type="application/atom+xml" href="https://clux.dev/tags/running/atom.xml"/>
+    <title>probes - health</title>
+    <link rel="self" type="application/atom+xml" href="https://clux.dev/tags/health/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://clux.dev"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2022-12-07T00:00:00+00:00</updated>
-    <id>https://clux.dev/tags/running/atom.xml</id>
+    <updated>2023-12-31T00:00:00+00:00</updated>
+    <id>https://clux.dev/tags/health/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Gratitude for 2023</title>
+        <published>2023-12-31T00:00:00+00:00</published>
+        <updated>2023-12-31T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://clux.dev/post/2023-12-31-annual-gratitude/"/>
+        <id>https://clux.dev/post/2023-12-31-annual-gratitude/</id>
+        
+        <content type="html" xml:base="https://clux.dev/post/2023-12-31-annual-gratitude/">&lt;p&gt;The year is coming to a close, and as a small amount of self-reflection of my relatively fortunate and stable situation, here&#x27;s a list of &lt;strong&gt;life&lt;&#x2F;strong&gt; things that made me happy.&lt;&#x2F;p&gt;
+&lt;!--more--&gt;
+&lt;h2 id=&quot;video&quot;&gt;Video&lt;&#x2F;h2&gt;
+&lt;p&gt;In general, I like well presented video exposés, impressive video game footage, and watch competitions from everything from piano competitions to SC2 esports tournaments. Some frequented returns:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@BobbyBroccoli&quot;&gt;yt&#x2F;BobbyBroccoli&lt;&#x2F;a&gt; :: for great long form science controvery deep dives&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@Tantacrul&quot;&gt;yt&#x2F;Tantacrul&lt;&#x2F;a&gt; :: for a yearly hinge expose on music&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@hbomberguy&quot;&gt;yt&#x2F;hbomberguy&lt;&#x2F;a&gt; :: for his yearly expose on who knows what&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@thejuicemedia&quot;&gt;yt&#x2F;thejuicemedia&lt;&#x2F;a&gt; :: for their snappy government parody ads&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@MonarchsFactory&quot;&gt;yt&#x2F;MonarchsFactory&lt;&#x2F;a&gt; :: TTRPG concepts and mythology&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@mcolville&quot;&gt;yt&#x2F;mcolville&lt;&#x2F;a&gt; :: TTRPG game mechanics and game design&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@chopininstitute&quot;&gt;yt&#x2F;chopininstitute&lt;&#x2F;a&gt; :: classical piano recitals and the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;International_Chopin_Piano_Competition&quot;&gt;chopin competition&lt;&#x2F;a&gt; (&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;playlist?list=PLTmn2qD3aSQveuDKarRUibMEjFqJd1t1U&quot;&gt;last winner&lt;&#x2F;a&gt;)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@HarstemCasts&quot;&gt;yt&#x2F;HarstemCasts&lt;&#x2F;a&gt; :: intelligent starcraft 2 casts from top level player when you need a break&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@ESLArchives&quot;&gt;yt&#x2F;ESLArchives&lt;&#x2F;a&gt; :: SC2&#x2F;Dota2 tournament vods from &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;liquipedia.net&#x2F;starcraft2&#x2F;Electronic_Sports_League&quot;&gt;ESL&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@afreecatvesports432&#x2F;videos&quot;&gt;yt&#x2F;AfreecaTV&lt;&#x2F;a&gt; :: more starcraft: &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;liquipedia.net&#x2F;starcraft2&#x2F;Global_StarCraft_II_League&quot;&gt;GSL&lt;&#x2F;a&gt; + &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;liquipedia.net&#x2F;starcraft&#x2F;AfreecaTV_StarCraft_League_Remastered&quot;&gt;ASL&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@DoshDoshington&quot;&gt;yt&#x2F;DoshDoshington&lt;&#x2F;a&gt; :: for well-narrated Factorio Mod runthroughs&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@KimuraTails&quot;&gt;yt&#x2F;KimuraTails&lt;&#x2F;a&gt; :: insane Trackmania (united) TASes&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@cncf&quot;&gt;yt&#x2F;cncf&lt;&#x2F;a&gt; :: boring conference talks on cloud tech, but they &lt;a href=&quot;&#x2F;post&#x2F;2023-12-22-kubecon-chicago-log&quot;&gt;allowed me to avoid some flying&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@HealthyGamerGG&quot;&gt;yt&#x2F;HealthyGamerGG&lt;&#x2F;a&gt; :: Dr K. with a pragmatic stoicism + meditation focused philosophy takes&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Would I still watch as much youtube if I couldn&#x27;t 2X all speech and bypass ads? Probably not. Long form media is a lesser toll on my continually stretched focus though.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;As for actual full-runtime content, most my streaming services were cancelled last year, and the only one left is crunchyroll, which i guess makes me a full time weeb now. I would fight that, but &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Kaguya-sama:_Love_Is_War_(TV_series)&quot;&gt;Love is War&lt;&#x2F;a&gt; and &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;myanimelist.net&#x2F;anime&#x2F;50265&#x2F;Spy_x_Family&quot;&gt;Spy x Family&lt;&#x2F;a&gt; were also the funniest shit I have seen this year.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;hardware&quot;&gt;Hardware&lt;&#x2F;h2&gt;
+&lt;p&gt;2023 was an upgrade year, a first since 2017, so have once again delved into the increasingly confusing realm of hardware for my &lt;a href=&quot;&#x2F;tags&#x2F;linux&quot;&gt;#linux&lt;&#x2F;a&gt; desktop based hybrid workstation setup. &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@Level1Techs&quot;&gt;Wendell from Level1Tech&lt;&#x2F;a&gt; + &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@GamersNexus&quot;&gt;GamersNexus&lt;&#x2F;a&gt; were the most helpful for guiding me in good linux-compatible setups. Ended up going full &lt;code&gt;AMD&lt;&#x2F;code&gt; to make my time with &lt;code&gt;Wayland&lt;&#x2F;code&gt; less &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;wiki.hyprland.org&#x2F;Nvidia&#x2F;&quot;&gt;painful&lt;&#x2F;a&gt;, and with less &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;swaywm&#x2F;sway&#x2F;pull&#x2F;6615&quot;&gt;funny flags&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The new rig is great. It has ~4x faster compile-iteration cycles, and it uses less power than my old one!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;games&quot;&gt;Games&lt;&#x2F;h2&gt;
+&lt;p&gt;With a faster rig, my 2 timesinks were actually AAA for a change. Still co-op though:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Baldur&#x27;s Gate 3&lt;&#x2F;code&gt; obviously. I have spent &lt;a href=&quot;&#x2F;post&#x2F;2022-04-12-baldurs-roll&#x2F;&quot;&gt;days just theorycrafting&lt;&#x2F;a&gt; its predecessors, and it&#x27;s GOTY for a reason. Great storytelling, lots of great game mechanic ideas for making &lt;code&gt;5e&lt;&#x2F;code&gt; better. RIP September.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;Borderlands 3&lt;&#x2F;code&gt;. BL2 still holds a special place in my heart for its chill coop, item hunting &#x2F; diablo vibes, so &lt;strong&gt;this year&lt;&#x2F;strong&gt;, when &lt;code&gt;r&#x2F;bl3&lt;&#x2F;code&gt; started being positive again - after years of annoying users by breaking the game, nerfing builds, changing the endgame - and my PC got upgraded, it was time. The weapon farming system is fun, the builds are cool, and the Cthulhu themed expansion really stands out as exceptionally beautiful. RIP July.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The amount of theorycrafting videos consumed during these periods also shows that the desire to min-max is still very much alive.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;coffee&quot;&gt;Coffee&lt;&#x2F;h2&gt;
+&lt;p&gt;To stay &lt;em&gt;woke&lt;&#x2F;em&gt;, I rabbit-holed into home-espresso making (like many of my tech friends), and as a result, I can now make a great cup with pretty cheap components (basic delonghi dedica + non-pressurized portafilter + a good hand-grinder), given good beans. While the famous &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@jameshoffmann&quot;&gt;hoffmann&lt;&#x2F;a&gt; was helpful for his insights into coffee science, nowadays the routine has kicked in, and the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;@hamesjoffmann&quot;&gt;joffman&lt;&#x2F;a&gt; parody channel is more amusing.&lt;&#x2F;p&gt;
+&lt;p&gt;While it is fun to try to replicate the perfect asian dirty coffee, or a thai style es-yen, most of the time I just pull a shot, ice it, and pour over some oatly for a great lazy iced latte.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;positivity&quot;&gt;Positivity&lt;&#x2F;h2&gt;
+&lt;p&gt;In a world full of systemic problems, mute + block has never felt more valuable. I have aggressively hit &lt;code&gt;Dont recommend channel&lt;&#x2F;code&gt; on captive news channels, and &lt;code&gt;Indefinite mute&lt;&#x2F;code&gt; on excessively drama-peddling &#x2F; self-rightous profiles mastodon even when I largely agree with their general points.&lt;&#x2F;p&gt;
+&lt;p&gt;With global problems that you often have very little influence over, what you risk (beyong the negative energy zapping) is the constant exposure to &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;krisnova.net&#x2F;posts&#x2F;ego-death&#x2F;&quot;&gt;virtue signalling&lt;&#x2F;a&gt; &#x2F; schadenfreude, and increasingly polarised and dichotomous thinking, E.g. climate change discourse, frequently followed by either:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;demands for &#x2F; hope-pinning on magical or unrealistic government solutions - particularly ones that ignores all short-term incentives&lt;&#x2F;li&gt;
+&lt;li&gt;futility focused activists that advocate for engaging in large scale industrial sabotage&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;yes, i believe we are pretty fucked, but the fucking will continue whether i worry about it or not.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Twitter was terrible in always exposing you to these types of controversies. Thankfully, in its demise, Mastodon is an improvement for what I was using twitter for; cross-link to&#x2F;from blog-posts, follow posts from experts, and moderately engage while bored on a train. The &lt;code&gt;Mute&lt;&#x2F;code&gt; option actually works, and the defederation of negative echo chambers makes it feel less unstable (you are not in the hands of one company with debts to pay).&lt;&#x2F;p&gt;
+&lt;p&gt;you could make &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;throwawayopinions.io&#x2F;the-paradox-of-intolerance.html&quot;&gt;several good arguments for leaving twitter&lt;&#x2F;a&gt;, but that&#x27;s not the job of this post. I have found &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;hachyderm.io&#x2F;@clux&quot;&gt;a new place&lt;&#x2F;a&gt;, and it&#x27;s a happier one.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you want more positivity, you must opt-out of some negativity. Pick your battles.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;mountains&quot;&gt;Mountains&lt;&#x2F;h2&gt;
+&lt;p&gt;This year changed my approach to exercise, changing my goals from setting PBs in running events &lt;a href=&quot;&#x2F;post&#x2F;2022-12-07-running-year&#x2F;&quot;&gt;like 2022&lt;&#x2F;a&gt;, to exploring nearby mountains, and take advantage of my diminishing running fitness.&lt;&#x2F;p&gt;
+&lt;p&gt;The biggest treks were the &lt;code&gt;5h&lt;&#x2F;code&gt; trail runs up &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;10459620853&quot;&gt;Doi Pui&lt;&#x2F;a&gt; + &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;9186995095&quot;&gt;Croix du Nivolet&lt;&#x2F;a&gt;, and the &lt;code&gt;3d&lt;&#x2F;code&gt; long &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;10282413401&quot;&gt;Kumano Kodo&lt;&#x2F;a&gt; hike with my partner. I also found incredible beauty and focus on hills requiring much less effort such as &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;10422346036&quot;&gt;Doi Suthep&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;9664374916&quot;&gt;Fløya&lt;&#x2F;a&gt;, &amp;amp; &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.strava.com&#x2F;activities&#x2F;9653652377&quot;&gt;Tindstinden&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;There is a concrete beauty to trail running and hiking that I did not get while optimizing for performance. You are always present in the mountains. No podcasts, no &amp;quot;get-it-done&amp;quot; mentality; the journey is its own reward. The experience lasts, unlike a &lt;code&gt;VO2max&lt;&#x2F;code&gt; bump.&lt;&#x2F;p&gt;
+&lt;p&gt;The harder-to-defend problem with this is that travel is increasingly becoming a fleeting privilege. I do try to maximise the utility of each individual trip, but we should recognise that it&#x27;s not really fair for a society to &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;news.climate.columbia.edu&#x2F;2023&#x2F;02&#x2F;15&#x2F;you-are-not-the-problem-climate-guilt-is-a-marketing-strategy&#x2F;&quot;&gt;offload climate guilt&lt;&#x2F;a&gt; on consumers despite a complete lack of systemic regulation.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Like, I am car free and child free, but it&#x27;s fucked that I feel the need to use that as an excuse.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;routine&quot;&gt;Routine&lt;&#x2F;h2&gt;
+&lt;p&gt;Beyond the excursions, my life is largely routine:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Walk to the park. Grind the coffee beans. Blitz some fruit. Triage issues. Play music. Appreciate beauty. Try to embrace being content, and try to be compassionate. Enjoy time with my partner.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;If I get another full year, that is what I want to continue.&lt;&#x2F;p&gt;
+&lt;p&gt;So here&#x27;s to another year.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>Running 2022</title>
         <published>2022-12-07T00:00:00+00:00</published>
@@ -134,8 +220,8 @@ Back in London, when my foot muscles started catching up, I was able to raise th
 &lt;&#x2F;blockquote&gt;
 &lt;p&gt;Anyway, running has been a fun side-project that&#x27;s not been software related. It&#x27;s been interested reading about &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;sportsmedicine-open.springeropen.com&#x2F;articles&#x2F;10.1186&#x2F;s40798-022-00438-7&quot;&gt;how professionals train&lt;&#x2F;a&gt;, and seeing effects first hand.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;shoes&quot;&gt;Shoes&lt;&#x2F;h3&gt;
-&lt;p&gt;The silliest thing about this &lt;strong&gt;accessible sport&lt;&#x2F;strong&gt; though; is the amount of shoes you burn through. If you run &lt;code&gt;100k&lt;&#x2F;code&gt; a week, and follow the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.runnersworld.com&#x2F;gear&#x2F;a33233314&#x2F;how-many-miles-do-running-shoes-last&#x2F;&quot;&gt;500-800k&lt;&#x2F;a&gt; recommendation for max shoe mileage, you&#x27;ll blast through 5-10 pairs of running shoes a year, costing you somewhere from &lt;code&gt;£500-2000&lt;&#x2F;code&gt; per year for high end shoes. The &lt;code&gt;£60&lt;&#x2F;code&gt; I paid to run in Royal Parks was actually worth it just for the &lt;code&gt;15% off&lt;&#x2F;code&gt; coupon at a running shoe store.&lt;&#x2F;p&gt;
-&lt;p&gt;On the plus side, this is temporary, and at least I&#x27;m not some elitist playing golf.&lt;&#x2F;p&gt;
+&lt;p&gt;The silliest thing about this &lt;em&gt;accessible sport&lt;&#x2F;em&gt; though; is the amount of shoes you burn through. If you run &lt;code&gt;100k&lt;&#x2F;code&gt; a week, and follow the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.runnersworld.com&#x2F;gear&#x2F;a33233314&#x2F;how-many-miles-do-running-shoes-last&#x2F;&quot;&gt;500-800k&lt;&#x2F;a&gt; recommendation for max shoe mileage, you&#x27;ll blast through 5-10 pairs of running shoes a year, costing you somewhere from &lt;code&gt;£500-2000&lt;&#x2F;code&gt; per year for high end shoes. The &lt;code&gt;£60&lt;&#x2F;code&gt; I paid to run in Royal Parks was actually worth it just for the &lt;code&gt;15% off&lt;&#x2F;code&gt; coupon at a running shoe store.&lt;&#x2F;p&gt;
+&lt;p&gt;On the plus side, this is temporary. Wish you all good health in 2023.&lt;&#x2F;p&gt;
 </content>
         
     </entry>

@@ -40,6 +40,9 @@
         <loc>https://clux.dev/page/4/</loc>
     </url>
     <url>
+        <loc>https://clux.dev/page/5/</loc>
+    </url>
+    <url>
         <loc>https://clux.dev/post/</loc>
     </url>
     <url>
@@ -119,6 +122,10 @@
         <lastmod>2023-12-22</lastmod>
     </url>
     <url>
+        <loc>https://clux.dev/post/2023-12-31-annual-gratitude/</loc>
+        <lastmod>2023-12-31</lastmod>
+    </url>
+    <url>
         <loc>https://clux.dev/post/shipcat-retrospective/</loc>
         <lastmod>2023-09-28</lastmod>
     </url>
@@ -136,6 +143,9 @@
     </url>
     <url>
         <loc>https://clux.dev/tags/dnd/</loc>
+    </url>
+    <url>
+        <loc>https://clux.dev/tags/health/</loc>
     </url>
     <url>
         <loc>https://clux.dev/tags/homebrew/</loc>
@@ -157,9 +167,6 @@
     </url>
     <url>
         <loc>https://clux.dev/tags/pkm/</loc>
-    </url>
-    <url>
-        <loc>https://clux.dev/tags/running/</loc>
     </url>
     <url>
         <loc>https://clux.dev/tags/rust/</loc>
