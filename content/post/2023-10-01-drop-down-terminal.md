@@ -34,7 +34,7 @@ This is using a transparent theme in [helix](https://helix-editor.com/), with 80
 
 The idea is to have a __persistent terminal__ that is __hidden away__ in a "special place" and bind a key to toggle the visibility of this terminal. Then we rely on `zellij` to provide tabs.
 
-> The choice of terminal emulator and multiplexer is not super important. You could probably use `kitty` + `tmux`, or straight `wezterm` (which has tabs mgmt built-in) if you prefer, and achieve the same results.
+> The choice of terminal emulator and multiplexer is not super important. You could probably use `kitty` + `tmux`, or straight `wezterm` (which has tabs mgmt built-in) if you prefer, and achieve similar results.
 
 On __wayland__ that place is a __special workspace__, whereas on __mac__ we use `sticky` windows.
 

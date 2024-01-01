@@ -9,7 +9,7 @@ toc = true
 
 [taxonomies]
 categories = ["life"]
-tags = ["running"]
+tags = ["health"]
 +++
 
 In an attempt to torture my chair shaped husk of a body, I somehow ran almost 2500km this year. Mostly to see what would happen, but also to take part in the [Royal Parks Half Marathon in London](https://www.royalparkshalf.com/).
@@ -156,6 +156,6 @@ Anyway, running has been a fun side-project that's not been software related. It
 
 ### Shoes
 
-The silliest thing about this __accessible sport__ though; is the amount of shoes you burn through. If you run `100k` a week, and follow the [500-800k](https://www.runnersworld.com/gear/a33233314/how-many-miles-do-running-shoes-last/) recommendation for max shoe mileage, you'll blast through 5-10 pairs of running shoes a year, costing you somewhere from `£500-2000` per year for high end shoes. The `£60` I paid to run in Royal Parks was actually worth it just for the `15% off` coupon at a running shoe store.
+The silliest thing about this _accessible sport_ though; is the amount of shoes you burn through. If you run `100k` a week, and follow the [500-800k](https://www.runnersworld.com/gear/a33233314/how-many-miles-do-running-shoes-last/) recommendation for max shoe mileage, you'll blast through 5-10 pairs of running shoes a year, costing you somewhere from `£500-2000` per year for high end shoes. The `£60` I paid to run in Royal Parks was actually worth it just for the `15% off` coupon at a running shoe store.
 
-On the plus side, this is temporary, and at least I'm not some elitist playing golf.
+On the plus side, this is temporary. Wish you all good health in 2023.
