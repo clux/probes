@@ -65,7 +65,7 @@ While it is fun to try to replicate the perfect asian dirty coffee, or a thai st
 
 The [kube-rs](https://github.com/kube-rs) ecosystem continues with [13 new kube releases](https://github.com/kube-rs/kube/releases) this year. Lots of features landed; [socks5 proxying](https://github.com/kube-rs/kube/pull/1311), [rustls default](https://github.com/kube-rs/kube/pull/1261), new configs for [watcher](https://docs.rs/kube/latest/kube/runtime/watcher/struct.Config.html) + [Controller](https://docs.rs/kube/latest/kube/runtime/controller/struct.Config.html), [streaming lists](https://github.com/kube-rs/kube/pull/1255), [controller streams interface](https://kube.rs/controllers/streams/), [oidc refresh](https://github.com/kube-rs/kube/pull/1229), [metadata api](https://github.com/kube-rs/kube/pull/1137) + [metadata_watcher](https://github.com/kube-rs/kube/pull/1145), [store readiness](https://github.com/kube-rs/kube/pull/1243).
 
-Thankfully, I can largely PM the ship, and leave most larger features to others. [Stream sharing](https://github.com/kube-rs/kube/issues/1080) is close, [k8s-pb](https://github.com/kube-rs/k8s-pb) integration can be started, [client-v2](https://github.com/kube-rs/kube/issues/1032) is restarted, and am enjoying expanding [docs on kube.rs](https://kube.rs/) (particularly the [controller guide](https://github.com/kube-rs/website/issues/5)) to simplify Q/A in the future.
+Thankfully, I can largely PM the ship, and leave most larger features to others. [Stream sharing](https://github.com/kube-rs/kube/issues/1080) is close, [k8s-pb](https://github.com/kube-rs/k8s-pb) integration can be started, [client-v2](https://github.com/kube-rs/kube/issues/1032) is restarted, and am enjoying expanding [docs on kube.rs](https://kube.rs/) (particularly the [controller guide](https://github.com/kube-rs/website/issues/5)) to simplify future Q/A + upskill adopters.
 
 Stepping outside kube, [python-yq](https://kislyuk.github.io/yq/) has been [rewritten in rust](https://github.com/clux/whyq). This is both a fun and [necessary](https://hachyderm.io/@clux/111031702227829219) project for me (not solved by the [go rewrite](https://github.com/mikefarah/yq/issues/193)). This is a small project, because we are just [deferring](https://github.com/clux/whyq/blob/c6631590ebd170c5e09885a43cff476d6787e574/yq.rs#L218-L219) to [jq](https://github.com/jqlang/jq), but it is very satisfying [how simple](https://github.com/clux/whyq/blob/c6631590ebd170c5e09885a43cff476d6787e574/yq.rs#L1-L302) things can be when you are not trying to re-invent the [wheels](https://github.com/mikefarah/yq/tree/master/pkg/yqlib).
 
@@ -86,7 +86,7 @@ With global problems that you often have very little influence over, what you ri
 
 > yes, i believe we are pretty fucked, but the fucking will continue whether i worry about it or not.
 
-Twitter was terrible in always exposing you to the angriest threads about this. Thankfully, in its demise, Mastodon is an improvement for what I was using twitter for; cross-link to/from blog-posts, follow posts from experts, and moderately engage while bored on a train. The `Mute` option actually works, and the defederation of negative echo chambers makes it feel more nstable (you are not in the hands of one indebted company).
+Twitter was terrible in always exposing you to the angriest threads about this. Thankfully, in its demise, Mastodon is an improvement for what I was using twitter for; cross-link to/from blog-posts, follow posts from experts, and moderately engage while bored on a train. The `Mute` option actually works, and the defederation of negative echo chambers makes it feel more stable (you are not in the hands of one indebted company).
 
 You could make [several good arguments for leaving twitter](https://throwawayopinions.io/the-paradox-of-intolerance.html), but that's not the job of this post. I have found [a new place](https://hachyderm.io/@clux), and it's a happier one.
 
@@ -110,6 +110,4 @@ Beyond the above, my life is still largely routine:
 
 > Walk to the park. Grind the coffee beans. Blitz some fruit. Triage issues. Play music. Appreciate beauty. Try to embrace being content, and try to be compassionate. Enjoy time with my partner.
 
-If I get another full year, that is what I want to continue.
-
-So here's to another year.
+Hoping that can continue in 2024. Here's to another year!
