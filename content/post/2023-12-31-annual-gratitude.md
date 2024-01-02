@@ -63,7 +63,9 @@ While it is fun to try to replicate the perfect asian dirty coffee, or a thai st
 
 ## Open Source
 
-The [kube-rs](https://github.com/kube-rs) ecosystem continues its journey. [13 releases](https://github.com/kube-rs/kube/releases),  lots of features landed. I am managing releases, issue movement, trying to offload [stream sharing](https://github.com/kube-rs/kube/issues/1080) features, [k8s-pb](https://github.com/kube-rs/k8s-pb) integration, and initialize [client-v2](https://github.com/kube-rs/kube/issues/1032), and keep expanding [docs on kube.rs](https://kube.rs/). The [controller guide issue](https://github.com/kube-rs/website/issues/5) saw lots of movement, but a few tricky subjects remain.
+The [kube-rs](https://github.com/kube-rs) ecosystem continues with [13 new kube releases](https://github.com/kube-rs/kube/releases) this year. Lots of features landed; [socks5 proxying](https://github.com/kube-rs/kube/pull/1311), [rustls default](https://github.com/kube-rs/kube/pull/1261), rich configs for [watcher](https://docs.rs/kube/latest/kube/runtime/watcher/struct.Config.html) + [Controller](https://docs.rs/kube/latest/kube/runtime/controller/struct.Config.html), [streaming lists](https://github.com/kube-rs/kube/pull/1255), [controller streams interface](https://kube.rs/controllers/streams/), [oidc refresh](https://github.com/kube-rs/kube/pull/1229), [metadata api](https://github.com/kube-rs/kube/pull/1137) + [metadata_watcher](https://github.com/kube-rs/kube/pull/1145), [store readiness](https://github.com/kube-rs/kube/pull/1243).
+
+I am largely PMing and leaving most larger features to others for my own sanity. [Stream sharing](https://github.com/kube-rs/kube/issues/1080) features are close to done, [k8s-pb](https://github.com/kube-rs/k8s-pb) integration can be started, and hoping to open [client-v2](https://github.com/kube-rs/kube/issues/1032) after a setup PR. I have also been expanding [docs on kube.rs](https://kube.rs/), particularly the [controller guide](https://github.com/kube-rs/website/issues/5).
 
 On the side, I also wrote [whyq](https://github.com/clux/whyq) as a particularly [grievous](https://github.com/mikefarah/yq/issues/193) yak shave by making [an alternative to the popular yq](https://hachyderm.io/@clux/111031702227829219) that has compatible cli arguments to `jq`. Farily new, but does the job.
 
@@ -98,7 +100,7 @@ The biggest treks were the `5h` trail runs up [Doi Pui](https://www.strava.com/a
 
 There is a concrete beauty to trail running and hiking that I did not get while optimizing for performance. You are always present in the mountains. No podcasts, no "get-it-done" mentality; the journey is its own reward. The experience lasts, unlike a `VO2max` bump.
 
-Bigger hikes are less realistic outside of travel for me, so it's still mostly flats. Air-travel is becoming a harder-to-defend and fleeting privilege, so I do try to maximise the utility of each trip, but also have to recognise that it's not really fair for a society to [offload climate guilt](https://news.climate.columbia.edu/2023/02/15/you-are-not-the-problem-climate-guilt-is-a-marketing-strategy/) on consumers despite a complete lack of systemic regulation.
+Bigger hikes are less realistic outside of travel for me, so it's still mostly flats. Air-travel is becoming a harder-to-defend and fleeting privilege, but I have to recognise that it's not really fair for a society to [offload climate guilt](https://news.climate.columbia.edu/2023/02/15/you-are-not-the-problem-climate-guilt-is-a-marketing-strategy/) on consumers despite a complete lack of systemic regulation.
 
 > Like, I am car free and child free, but it's fucked that I feel the need to use that as an excuse.
 
