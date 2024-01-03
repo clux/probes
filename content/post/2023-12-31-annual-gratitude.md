@@ -86,7 +86,7 @@ With global problems, the cost of exposure is a draining negative energy; powerl
 
 > Yes, i believe we are pretty fucked, but the fucking will continue whether I worry about it or not.
 
-Twitter was terrible in always exposing you to the angriest threads about this. Thankfully, in its demise, Mastodon is an improvement for what I was using twitter for; cross-link to/from blog-posts, follow posts from experts, and moderately engage while bored on a train. The `Mute` option actually works, and the defederation of negative echo chambers makes it feel more stable (you are not in the hands of one indebted company).
+Twitter was terrible in always exposing you to the angriest threads about this. Thankfully, in its demise, Mastodon is an improvement for what I was using twitter for; cross-link to/from blog-posts, follow posts from experts, and moderately engage while bored on a train. Here the `Mute` option actually works, negative echo chambers quickly get defederated, and you can[*](https://github.com/mastodon/mastodon/issues/12423) move instances.
 
 You could make [several good arguments for leaving twitter](https://throwawayopinions.io/the-paradox-of-intolerance.html), but that was not the job of this post. I have found [a new place](https://hachyderm.io/@clux), and it's a happier one.
 
