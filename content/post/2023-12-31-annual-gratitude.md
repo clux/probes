@@ -35,9 +35,9 @@ In general, I like well presented video exposés, impressive video game footage,
 - [yt/cncf](https://www.youtube.com/@cncf) :: boring conference talks on cloud tech, but they [allowed me to avoid some flying](/post/2023-12-22-kubecon-chicago-log)
 - [yt/HealthyGamerGG](https://www.youtube.com/@HealthyGamerGG) :: Dr K. with a pragmatic stoicism + meditation focused philosophy takes
 
-> Would I still watch as much youtube if I couldn't 2X all speech and bypass ads? Probably not. Long form media is a lesser toll on my continually stretched focus though.
+> Would I still watch as much youtube without `2X` on all speech or with ads? Probably not. Long form media is a lesser toll on my continually stretched focus though.
 
-As for actual full-runtime content, most my streaming services were cancelled last year, and the only one left is crunchyroll, which i guess makes me a full time weeb now. I would fight that, but [Love is War](https://en.wikipedia.org/wiki/Kaguya-sama:_Love_Is_War_(TV_series)) and [Spy x Family](https://myanimelist.net/anime/50265/Spy_x_Family) were also the funniest shit I have seen this year.
+As for actual full-runtime content, most my streaming services were cancelled last year, and the only one left is crunchyroll, which I guess makes me a full time weeb now. I would fight that, but [Love is War](https://en.wikipedia.org/wiki/Kaguya-sama:_Love_Is_War_(TV_series)) and [Spy x Family](https://myanimelist.net/anime/50265/Spy_x_Family) were also the funniest shit this year to me.
 
 ## Hardware
 
@@ -57,9 +57,9 @@ The amount of theorycrafting videos consumed during the RPG periods also shows t
 
 ## Coffee
 
-To stay _woke_, I rabbit-holed into home-espresso making (like many of my tech friends), and as a result, I can now make a great cup with pretty cheap components (basic delonghi dedica + non-pressurized portafilter + a good hand-grinder), given good beans. While the famous [hoffmann](https://www.youtube.com/@jameshoffmann) was helpful for his insights into coffee science, nowadays the routine has kicked in, and the [joffman](https://www.youtube.com/@hamesjoffmann) parody channel is more amusing.
+To stay _woke_, I rabbit-holed into home-espresso making (like many of my tech friends), and am now able make a great cup with pretty cheap components (basic delonghi dedica + non-pressurized portafilter + a grinder), given good beans as a result. While the famous [hoffmann](https://www.youtube.com/@jameshoffmann) (or [joffman](https://www.youtube.com/@hamesjoffmann)) was helpful for his insights into coffee science, I did not need to min-max this. That said, fun side-project.
 
-While it is fun to try to replicate the perfect asian dirty coffee, or a thai style es-yen, most of the time I just pull a shot, ice it, and pour over some oatly for a great lazy iced latte.
+I occasionally try to replicate the perfect asian dirty coffee, or a thai style es-yen, but most of the time I just pull a shot, ice it, and pour over some oatly for a great lazy iced latte.
 
 ## Open Source
 
@@ -71,7 +71,7 @@ Stepping outside kube, [python-yq](https://kislyuk.github.io/yq/) has been [rewr
 
 ## Helix
 
-The [helix editor](https://helix-editor.com/) (replacing VS Code) is the first modal editor I've managed to stick to, and a big reason for this is [how compassionate the UX is](https://hachyderm.io/@clux/111302311059887332); menus give me the key-shortcuts I have forgotten, I can search for commands, and the speculative LSP integrations are amazing.
+The [helix editor](https://helix-editor.com/) (replacing VS Code) is the first modal editor I've managed to stick to, and a big reason for this is [how compassionate the UX is](https://hachyderm.io/@clux/111302311059887332); menus give me forgotten shortcuts, commands are searchable, and the speculative LSP integrations are amazing.
 
 Am actually using helix as my new [#pkm](/tags/pkm) rather than `foam` because the [markman lsp](https://github.com/artempyanykh/marksman) actually lets me do most of what I expect from a second-brain anyway! Symbol search for H1s or H2s, and `Goto definition` for wikilinks are both unexpected LSP features.
 
@@ -79,16 +79,16 @@ Am actually using helix as my new [#pkm](/tags/pkm) rather than `foam` because t
 
 In a world full of systemic problems, mute + block has never felt more valuable. I have aggressively hit `Dont recommend channel` on captive news channels, and `Indefinite mute` on excessively drama-peddling / self-rightous profiles mastodon even when I largely agree with their general points.
 
-With global problems that you often have very little influence over, what you risk (beyong the negative energy zapping) is the constant exposure to [virtue signalling](https://krisnova.net/posts/ego-death/) / schadenfreude, and increasingly polarised and dichotomous thinking, E.g. climate change discourse, frequently followed by either:
+With global problems, the cost of exposure is a draining negative energy; powerlessness, constant exposure to virtue signalling / schadenfreude, and increasingly polarised and unhealthily dichotomous thinking, __E.g. climate change discourse__, frequently followed by either:
 
-1. dismissal due to existence of unrealistic and equally problematic solutions
-2. futility focused activists that advocate for engaging in large scale industrial sabotage
+1. denial - thanks to the existence of unrealistic and equally problematic solutions
+2. anger - e.g. via activists that advocate for engaging in large scale industrial sabotage
 
-> yes, i believe we are pretty fucked, but the fucking will continue whether i worry about it or not.
+> Yes, i believe we are pretty fucked, but the fucking will continue whether I worry about it or not.
 
 Twitter was terrible in always exposing you to the angriest threads about this. Thankfully, in its demise, Mastodon is an improvement for what I was using twitter for; cross-link to/from blog-posts, follow posts from experts, and moderately engage while bored on a train. The `Mute` option actually works, and the defederation of negative echo chambers makes it feel more stable (you are not in the hands of one indebted company).
 
-You could make [several good arguments for leaving twitter](https://throwawayopinions.io/the-paradox-of-intolerance.html), but that's not the job of this post. I have found [a new place](https://hachyderm.io/@clux), and it's a happier one.
+You could make [several good arguments for leaving twitter](https://throwawayopinions.io/the-paradox-of-intolerance.html), but that was not the job of this post. I have found [a new place](https://hachyderm.io/@clux), and it's a happier one.
 
 > If you want more positivity, you must opt-out of some negativity. Pick your battles.
 
@@ -100,7 +100,7 @@ The biggest treks were the `5h` trail runs up [Doi Pui](https://www.strava.com/a
 
 There is a concrete beauty to trail running and hiking that I did not get while optimizing for performance. You are always present in the mountains. No podcasts, no "get-it-done" mentality; the journey is its own reward. The experience lasts, unlike a `VO2max` bump.
 
-Bigger hikes are less realistic outside of travel for me, so it's still mostly flats. Air-travel is becoming a harder-to-defend and fleeting privilege, but I have to recognise that it's not really fair for a society to [offload climate guilt](https://news.climate.columbia.edu/2023/02/15/you-are-not-the-problem-climate-guilt-is-a-marketing-strategy/) on consumers despite a complete lack of systemic regulation.
+Bigger hikes are less realistic outside of travel for me, so it's still mostly flats. Air-travel is becoming a harder-to-defend privilege, but I have to recognise that it's not really fair for a society to [offload climate guilt](https://news.climate.columbia.edu/2023/02/15/you-are-not-the-problem-climate-guilt-is-a-marketing-strategy/) on consumers despite a complete lack of systemic regulation.
 
 > Like, I am car free and child free, but it's fucked that I feel the need to use that as an excuse.
 
