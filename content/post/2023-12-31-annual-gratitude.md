@@ -1,6 +1,6 @@
 +++
 date = "2023-12-31"
-description = "journal of good things to be thankful for"
+description = "Journal of good things from the year"
 title = "Gratitude for 2023"
 slug = "2023-12-31-annual-gratitude"
 
