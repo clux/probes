@@ -52,10 +52,9 @@ I _prefer_ to join **cooperative** multiplayer [steam](https://steamcommunity.co
 However, in times of procrastination (as is more usually the case), well-designed game mechanics that require some type of dexterity based mastery, or hit a very specific nerd-sniping target, have frequently drawn me in. Here are some time sinks from the ages:
 
 #### Theorycraft
-
-- [`Dungeon Siege 2`](https://store.steampowered.com/app/39200/Dungeon_Siege_II/): found a [mathematical solution to a dungeon](/post/2006-08-09-vault-of-therayne/) in 2006
 - [`Baldur's Gate 2`](https://store.steampowered.com/app/257350/Baldurs_Gate_II_Enhanced_Edition/): explored the [maths behind character creation](/post/2022-04-12-baldurs-roll/) in 2022
 - [`Factorio`](https://store.steampowered.com/app/427520/Factorio/): explored UPS optimizing a [5400SPM base](/post/2022-10-31-factober/) in 2022
+- [`Dungeon Siege 2`](https://store.steampowered.com/app/39200/Dungeon_Siege_II/): found a [mathematical solution to a dungeon](/post/2006-08-09-vault-of-therayne/) in 2006
 
 #### FPS
 
@@ -66,6 +65,7 @@ However, in times of procrastination (as is more usually the case), well-designe
 - [`Celeste`](https://store.steampowered.com/app/504230/Celeste/) 200: [Core B](https://www.youtube.com/watch?v=I8nM80nDYuc) / [Summit B](https://www.youtube.com/watch?v=6NgrGqRG_8g) (2019)
 - [`Necrodancer`](https://store.steampowered.com/app/247080/Crypt_of_the_NecroDancer/): [bolt low%](https://www.youtube.com/watch?v=y1d6hoN9DoM) / [classic stats](https://crypt.toofz.com/p/76561198007590148/classic/classic) (mostly bolt, but did all chars)
 - [`Super Meat Boy`](https://store.steampowered.com/app/40800/Super_Meat_Boy/) iron man: [Cotton](https://www.youtube.com/watch?v=8ZeFFwkCLN8) / [Dark Cotton](https://www.youtube.com/watch?v=jgptqlVQGSM) (2014)
+
 #### Speedruns
 
 - [`Trine`](https://store.steampowered.com/app/35700/Trine_Enchanted_Edition/) [segmented NG+ speedrun](http://speeddemosarchive.com/Trine.html) ([playlist](https://www.youtube.com/watch?v=45T7-Avb5vQ&list=PLDCA837F2416D427B)) in 2010
