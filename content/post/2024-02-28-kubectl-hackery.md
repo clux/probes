@@ -49,6 +49,10 @@ Requests:
 ```sh
 # sum cpu requests across the cluster
 k get pods -A -oyaml | yq '.items[].spec.containers[].resources.requests.cpu' -r | awk 'BEGIN {sum=0} {sum=sum+$1} END {printf "%.0f\n", sum}'
+# by name:
+k get pods -A -oyaml | yq '.items[] | .metadata.name + " " + .spec.containers[].resources.requests.cpu' -r
+# top 20 by name
+k get pods -A -oyaml | yq '.items[] | .metadata.name + " " + .spec.containers[].resources.requests.cpu' -r | numfmt --field=2 --from=iec --suffix=000m --to=si --invalid=ignore | sort -hk2 --reverse | head -n 20
 
 # how much is overhead from daemonsets:
  k get ds -A -oyaml | yq '.items[].spec.template.spec.containers[].resources.requests.cpu' -r | grep -v null | awk 'BEGIN {sum=0} {sum=sum+$1} END {printf "%.0f\n", sum}'
