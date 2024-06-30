@@ -11,8 +11,6 @@ tags = ["dnd"]
 
 Fighting a CR 13 Vampire at level 7 in total darkness is no easy feat.
 
-<!--more-->
-
 As part of an emergency backup adventure (`EBA`) in the middle of a long running D&D campaign, our largely chaotic party of misfits (save for our low int paladin whose deity has yet to be named in his backstory) was given the poem that leads them into (and helps them navigate) `White Plume Mountain`:
 
 ![](/imgs/whiteplume/poem.webp)

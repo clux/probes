@@ -16,8 +16,6 @@ Despite having been a lazy Cinnamon customer since the Linux Mint days, recently
 
 This is a log of stuff I needed to tweak to get [LXDE](https://wiki.archlinux.org/index.php/LXDE) working well.
 
-<!--more-->
-
 # LXDE
 > LXDE is a free desktop environment with comparatively low resource requirements. This makes it especially suitable for use on older or resource-constrained personal computers such as netbooks or system on a chip computers.
 

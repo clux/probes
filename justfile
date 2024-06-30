@@ -13,10 +13,12 @@ build:
 
 update:
   git submodule update --remote themes/abridge
+  # NB: probably need to revert sass changes because we have modifications
   rsync themes/abridge/COPY-TO-ROOT-SASS/* sass/
   rsync themes/abridge/package_abridge.js package_abridge.js
   rsync themes/abridge/package.json package.json
-  rsync themes/abridge/static/fonts/Roboto* static/fonts/
+  # NB: not using these atm
+  #rsync themes/abridge/static/fonts/Roboto* static/fonts/
 
 # convert static resources to webp
 convert folder:

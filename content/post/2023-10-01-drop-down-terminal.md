@@ -18,8 +18,6 @@ As a former Quake player, I have been a long-term user of [guake](https://github
 
 However, as `guake` is __gnome__ specific, continued use became problematic once a mac got thrust upon me for work. So herein is a workaround for making your own drop-down terminal for Linux and Mac by utilizing [alacritty](https://github.com/alacritty/alacritty) + [zellij](https://zellij.dev/).
 
-<!--more-->
-
 ## Looks
 
 Behold; a semi-transparent, tabbed terminal hovering above two browser windows (showing the editing process of this very post):

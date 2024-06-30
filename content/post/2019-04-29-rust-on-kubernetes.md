@@ -16,8 +16,6 @@ When interacting with kubernetes it's generally been standard practice to use ei
 
 While these are good, non-controversial choices, the advancement of client libraries, and smarter openapi bindings, combined with the generics and procedural macros of [rust-lang](https://www.rust-lang.org/), it's now quite possible to write fully fledged kube operators, using slim rust kube clients.
 
-<!--more-->
-
 ## Update from 2021
 **This post is old and many details herein are severely outdated**. Please see a more recent [#kubernetes](/tags/kubernetes/) post.
 The rest of the post is left unedited for historical reasons.

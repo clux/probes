@@ -16,8 +16,6 @@ The now defunct unicorn startup [babylon health](https://www.babylonhealth.com/)
 
 This is an **historically updated post** about [`shipcat`](https://github.com/clux/shipcat), a standardisation tool written to control the declarative format and lifecycle of every microservice, and get safety quickly.
 
-<!--more-->
-
 > This article was updated after babylon's demise in 2023. It now serves as a mini-retrospective instead of the mostly broken announcement (with the original repo being down). We add some better showcases and examples, and historical context, that together should help avoid some common misconceptions about why this weird tool was written.
 
 First, a bit about the problem:

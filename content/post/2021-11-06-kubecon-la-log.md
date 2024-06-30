@@ -13,8 +13,6 @@ tags = ["rust", "kubernetes"]
 
 First KubeCon in a while I haven't done anything for (didn't even buy an ticket). This post is largely for myself, but thought I'd put some thoughts here public. All talks referenced were recently published on the [CNCF youtube channel](https://www.youtube.com/c/cloudnativefdn/videos), and the posts here are really just my notes (make of them what you will).
 
-<!--more-->
-
 My interest areas this kubecon fall broadly into these categories;
 
 - **observability related** :: maintain a lot of metrics related tooling + do a lot of dev advocacy

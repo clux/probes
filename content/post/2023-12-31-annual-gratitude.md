@@ -14,8 +14,6 @@ tags = ["health"]
 
 The year is coming to a close, and as a small amount of self-reflection of my relatively fortunate and stable situation, here's a list of things in life that made me happy.
 
-<!--more-->
-
 ## Video
 
 In general, I like well presented video exposés, impressive video game footage, and watch competitions from everything from piano competitions to SC2 esports tournaments. Some frequented returns:

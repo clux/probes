@@ -16,8 +16,6 @@ In 2018, we introduced the explosive [Cube of Force](https://roll20.net/compendi
 
 At the time we dealt with this by nerfing Cube down into the ground gradually rolling out alternatives, but it's time we dug into the concept of D&D `antimagic` properly.
 
-<!--more-->
-
 ## Words of wording
 Spell combinations are an inherently powerful thing in D&D, and so any spells that "cancels out magic" - potentially interacting with [Dispel Magic](https://5thsrd.org/spellcasting/spells/dispel_magic/) - must be carefully worded. And while [Wizards](https://company.wizards.com/) does a good job with this, there are still ambiguities that end up at [JeremyECrawford](https://twitter.com/JeremyECrawford)'s table:
 

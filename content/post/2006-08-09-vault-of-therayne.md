@@ -17,8 +17,6 @@ thumbnail = "/imgs/therayne/overview1.jpg"
 
 An easter egg and puzzle solution for `Dungeon Siege 2 Broken World`.
 
-<!-- more -->
-
 {{ img(src="/imgs/therayne/overview1.jpg") }}
 
 After doing the first two rooms of the Treasure Hunt quest, you can attempt two additional puzzles of the same type, but these are ridiculously hard. If you made the second one, you have no doubt noticed that these are much trickier than the general lightning reflection puzzle in the original DS2. The third is manageable with a good dose of trial and error - still more than expected for an otherwise mindless hack'n slash game - but the last one is almost impossible.

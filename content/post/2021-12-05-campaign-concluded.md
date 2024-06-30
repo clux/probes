@@ -14,8 +14,6 @@ tags = ["pkm"]
 
 After almost 4 years of running D&D almost every week, my big campaign concluded recently. This week marked our retrospective, and the release of several relics of the campaign. One in particular was the campaign repo - previously described as my [foaming campaign brain](/post/2020-09-27-second-brain). This is a brief post about the setup, and discovered pros/cons associated with it.
 
-<!--more-->
-
 ## Campaign
 
 Campaign first. We held `126` sessions about the campaign over `3.5 years` (i.e. **36 per 12 months**) as a remarkably consistent group (even after the pandemic hit and we moved remote).

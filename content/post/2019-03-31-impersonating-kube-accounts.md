@@ -16,8 +16,6 @@ Authenticating with large kubernetes clusters often risks you dealing with compl
 
 While controllers and operators authenticate with service accounts directly, this is only true inside the cluster. That is, unless you can impersonate the service account from outside.
 
-<!--more-->
-
 **EDIT:** as of Kubernetes 1.24 the bypass method **no longer works**.
 
 ..but why would you need to do this?

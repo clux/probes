@@ -16,8 +16,6 @@ After 2 years of running a D&D campaign almost every week, my note taking setup 
 
 This is a story of my original note talking setup, a comparison between newer technologies, and how I am back to writing markdown in a folder.
 
-<!--more-->
-
 ## The OneNote Setup
 Early in 2018, we were starting to play weekly, and my various documents in google docs were not cutting it.
 

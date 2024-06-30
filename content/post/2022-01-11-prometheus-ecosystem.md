@@ -14,8 +14,6 @@ tags = ["kubernetes", "observability"]
 
 As part of my work life in the past year, a chunk of my day-to-day life has consisted of maintaining a `prometheus` installation on top of a sizable kubernetes cluster. My original feeling was "this is not that bad with `kube-prometheus-stack`", but this sentiment has worsened somewhat with the realisation that more and more customizations and pieces were needed for large scale use. Half a year later (and 6+ charts deep), I thought I'd collect my thoughts on the ecosystem - from an operational perspective - with a rough architecture overview post.
 
-<!--more-->
-
 ## Disclaimer
 
 1. Information here is based on my own learnings. Some details **might** be wrong. Please submit an [issue](https://github.com/clux/probes/issues) / [fix](https://github.com/clux/probes/edit/master/content/post/2022-01-11-prometheus-ecosystem.md) if you see anything glaring.

@@ -14,8 +14,6 @@ tags = ["health"]
 
 In an attempt to torture my chair shaped husk of a body, I somehow ran almost 2500km this year. Mostly to see what would happen, but also to take part in the [Royal Parks Half Marathon in London](https://www.royalparkshalf.com/).
 
-<!--more-->
-
 ## Milestones
 
 In the process of going up to 70km weeks - something which became routine remarkably quickly - I ended up beating pretty much all of my endurance records:

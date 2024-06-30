@@ -13,10 +13,7 @@ categories = ["software"]
 tags = ["math"]
 +++
 
-
 A particularly tricky problem with tournament scheduling that made it into [tournament/duel](https://github.com/clux/duel).
-
-<!--more-->
 
 This turned out to take a little more mental effort than initially expected and is documented herein for historical reasons.
 

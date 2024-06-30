@@ -16,8 +16,6 @@ It's been about a month since we released [`kube`](https://github.com/clux/kube-
 
 With the last `0.10.0` release, it's now clear that the generic setup extends quite far. Unfortunately, this yak is hairy, even by yak standards.
 
-<!--more-->
-
 ## Update from 2021
 **This post is old and many details herein are severely outdated**.
 A few `EDIT:` markers have been highlighted to point out the biggest changes, but the rest of the post is left unedited for historical reasons.

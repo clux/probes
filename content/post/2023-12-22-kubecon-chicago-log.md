@@ -18,8 +18,6 @@ This is doubly so when the convention is increasingly corporate (like KubeCon), 
 
 This post contains a quick export from my personal notes on some significant talks at **KubeConNA'23** (make of them what you will).
 
-<!--more-->
-
 My interest areas this kubecon fall broadly into these categories (and will group talks by these):
 
 - **observability related** :: maintain a lot of metrics related tooling

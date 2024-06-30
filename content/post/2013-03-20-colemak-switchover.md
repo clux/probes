@@ -12,8 +12,6 @@ tags = ["config"]
 
 ![colemak finger layout](/imgs/colemak.png)
 
-<!--more-->
-
 QWERTY sucks. You always learn it wrong, it's optimized for not jamming your typewriters, and it's got a bunch of history with shortcut keys.
 
 My brother started using [DVORAK](http://en.wikipedia.org/wiki/Dvorak_Simplified_Keyboard#Comparison_of_the_QWERTY_and_Dvorak_layouts) (a similarly unconventional layout) which aims to reduce the number of awkward finger movements using analysis of language and layout experimentations. My problem with DVORAK is that they moved important shortcut keys like `X`, `C`, `W`, `Q`, `S` and `T` so far away from left `CTRL` that the benefit disappeared. That was a deal-breaker. So while my brother was very happy with his new DVORAK wpm (that hugely improved on his actually dyslexic QWERTY speed), my attachment to passwords kept me hesitating.

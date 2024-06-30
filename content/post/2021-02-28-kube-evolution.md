@@ -14,8 +14,6 @@ tags = ["rust", "kubernetes"]
 
 After a quarter year of extensive improvements to [kube](https://github.com/clux/kube-rs), it's time to take a birds-eye view of what we got, and showcase some of the recent improvements. After all, it's been about [40 kube releases](https://github.com/clux/kube-rs/releases), one major version of [tokio](https://tokio.rs/), one [extremely prolific new contributor](https://github.com/clux/kube-rs/graphs/contributors), and one [kubecon talk](https://www.youtube.com/watch?v=JmwnRcc2m2A) since my (very outdated) [last blog post](/post/2019-06-04-towards-a-generic-kube-client).
 
-<!--more-->
-
 ## Crates
 As of `0.51.0`, With modules and crates now delineated better, there's now multiple crates in the repository:
 

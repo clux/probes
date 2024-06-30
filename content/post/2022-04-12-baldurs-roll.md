@@ -17,7 +17,6 @@ In a ~~brief~~ bout of escapism from the world and responsibilities, I booted up
 
 For today's installment; rather than telling you about the game, let's talk about the **maths** behind rolling a `2e` character for `BG2`, and then running simulations with weird `X`-based linux tools.
 
-<!--more-->
 <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
 
 ## Rolling a character
