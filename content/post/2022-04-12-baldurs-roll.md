@@ -407,9 +407,9 @@ The floors for a some of the classes:
 
 _In other words_: paladins and rangers have significantly higher rolls on average.
 
-> Sidenote: in `2e` you actually rolled stats first, and **only if** you met the **requirements** could you become a Paladin / Ranger. It's an interesting choice. Would not call this fun.
+> Sidenote: in `2e` you actually rolled stats first, and **only if** you met the **requirements** could you become a Paladin / Ranger. It's an interesting choice..
 
-Anyway. Is it possible to incorporate these floors into our modelling?
+Is it possible to incorporate these floors into our modelling?
 
 ## Ability Distributions
 
@@ -1062,7 +1062,7 @@ But this felt like the wrong path to descend, and the path was littered with arc
 
 <blockquote class="twitter-tweet" data-dnt="true" data-theme="light"><p lang="en" dir="ltr">ah, yes, just a vector. <a href="https://t.co/RvkpS4h0DX">pic.twitter.com/RvkpS4h0DX</a></p>&mdash; eirik ᐸ&#39;⧖ᐳ (@sszynrae) <a href="https://twitter.com/sszynrae/status/1512161877698174983?ref_src=twsrc%5Etfw">April 7, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-That said. If anyone wants to fill in something here, or link to alternate methods, feel free to PR in something [here](https://github.com/clux/probes/edit/master/content/post/2022-04-12-baldurs-roll.md) or write an [issue](https://github.com/clux/probes/issues).
+That said. If anyone wants to fill in something here, or link to alternate methods, feel free to PR in something [here](https://github.com/clux/probes/blob/main/content/post/2022-04-12-baldurs-roll.md) or write an [issue](https://github.com/clux/probes/issues).
 
 </p>
 </details>
