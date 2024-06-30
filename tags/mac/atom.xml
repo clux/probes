@@ -24,7 +24,6 @@
         
         <content type="html" xml:base="https://clux.dev/post/2023-10-01-drop-down-terminal/">&lt;p&gt;As a former Quake player, I have been a long-term user of &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Guake&#x2F;guake&quot;&gt;guake&lt;&#x2F;a&gt; for a quick access terminal on Linux.&lt;&#x2F;p&gt;
 &lt;p&gt;However, as &lt;code&gt;guake&lt;&#x2F;code&gt; is &lt;strong&gt;gnome&lt;&#x2F;strong&gt; specific, continued use became problematic once a mac got thrust upon me for work. So herein is a workaround for making your own drop-down terminal for Linux and Mac by utilizing &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;alacritty&#x2F;alacritty&quot;&gt;alacritty&lt;&#x2F;a&gt; + &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;zellij.dev&#x2F;&quot;&gt;zellij&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
-&lt;!--more--&gt;
 &lt;h2 id=&quot;looks&quot;&gt;Looks&lt;&#x2F;h2&gt;
 &lt;p&gt;Behold; a semi-transparent, tabbed terminal hovering above two browser windows (showing the editing process of this very post):&lt;&#x2F;p&gt;
 &lt;p&gt;&lt;a href=&quot;&#x2F;imgs&#x2F;term-drop.png&quot;&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;term-drop.png&quot; alt=&quot;alacritty in foreground with zellij tabs and helix open with transparency&quot; &#x2F;&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
@@ -33,7 +32,7 @@
 &lt;p&gt;For times when transparency is too annoying you can &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;dotfiles&#x2F;blob&#x2F;dfcf3d8eb3ae48b8f1ff0df0dffb7d2b7ec65680&#x2F;config&#x2F;helix&#x2F;config.toml#L12-L13&quot;&gt;bind a key to change the &lt;code&gt;helix&lt;&#x2F;code&gt; theme&lt;&#x2F;a&gt; to something fully opaque (most themes are opaque). A quick &lt;code&gt;F1&lt;&#x2F;code&gt; press ultimately slides the terminal away from view anyway.&lt;&#x2F;p&gt;
 &lt;&#x2F;blockquote&gt;
 &lt;h2 id=&quot;core-concept&quot;&gt;Core Concept&lt;&#x2F;h2&gt;
-&lt;p&gt;The idea is to have a &lt;strong&gt;persistent terminal&lt;&#x2F;strong&gt; that is &lt;strong&gt;hidden away&lt;&#x2F;strong&gt; in a &amp;quot;special place&amp;quot; and bind a key to toggle the visibility of this terminal. Then we rely on &lt;code&gt;zellij&lt;&#x2F;code&gt; to provide tabs.&lt;&#x2F;p&gt;
+&lt;p&gt;The idea is to have a &lt;strong&gt;persistent terminal&lt;&#x2F;strong&gt; that is &lt;strong&gt;hidden away&lt;&#x2F;strong&gt; in a &quot;special place&quot; and bind a key to toggle the visibility of this terminal. Then we rely on &lt;code&gt;zellij&lt;&#x2F;code&gt; to provide tabs.&lt;&#x2F;p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The choice of terminal emulator and multiplexer is not super important. You could probably use &lt;code&gt;kitty&lt;&#x2F;code&gt; + &lt;code&gt;tmux&lt;&#x2F;code&gt;, or straight &lt;code&gt;wezterm&lt;&#x2F;code&gt; (which has tabs mgmt built-in) if you prefer, and achieve similar results.&lt;&#x2F;p&gt;
 &lt;&#x2F;blockquote&gt;

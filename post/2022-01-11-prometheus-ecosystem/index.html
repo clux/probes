@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <script src="https://clux.dev/js/theme.min.js" integrity="sha384-pb++s6uBRKaQv+iAXpgA/H3IlpLZdO14tTwuCI7uXmz4aaZdByoCcM+6BhynMq/1"></script>
-  <link rel="stylesheet" href="https://clux.dev/abridge.css?h=d90d21948997e2e43412" />
+  <link rel="stylesheet" href="https://clux.dev/abridge.css?h=9c32aa3ca76689ee23cf" />
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -13,7 +13,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <link rel="manifest" href="https://clux.dev/manifest.min.json" />
-  <link rel="alternate" type="application/atom+xml" title="probes Atom/RSS Feed" href="https://clux.dev/atom.xml" />
+  <link rel="alternate" type="application/atom+xml" title="probes Atom Feed" href="https://clux.dev/atom.xml" />
   <meta name="robots" content="index, follow" />
   <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -23,7 +23,7 @@
   <meta name="description" content="operating the stateful metrics system on kubernetes" />
   <link rel="canonical" href="https://clux.dev/post/2022-01-11-prometheus-ecosystem/" />
   <meta name="keywords" content="Kubernetes, Cloud, Rust, Theorycraft, Blog" />
-  <script defer src="https://clux.dev/js/abridge.min.js?h=52ceec8ac36fe25defe7" integrity="sha384-H1IaFs2MvG0ayi+Bq0d66Ih118nLUFESwUke1UH1uKzTiJwcgE8hXpONzAG3kqHj"></script>
+  <script defer src="https://clux.dev/js/abridge.min.js?h=4dbe2f6c7673e0a145f0" integrity="sha384-en9uTP2jQMLjO9fwbuGUKlCZ+kGMvN97ASddcA7mljWRGw70rs3zSMPNIozwGYFU"></script>
   <noscript><link rel="stylesheet" href="https://clux.dev/nojs.css" /></noscript>
 </head>
 <body>
@@ -41,7 +41,7 @@
             <form autocomplete=off class="js" name="goSearch" id="searchbox">
               <div class="searchd">
                 <input id="searchinput" type="text" placeholder="Search" title="Search" />
-                <button type="submit" title="Search" class="svgs search"></button>
+                <button type="submit" title="Search" class="svgs svgm search"></button>
               </div>
               <div class="results"><div id="suggestions"></div></div>
             </form>
@@ -60,8 +60,7 @@
     
 
 
-<p>As part of my work life in the past year, a chunk of my day-to-day life has consisted of maintaining a <code>prometheus</code> installation on top of a sizable kubernetes cluster. My original feeling was &quot;this is not that bad with <code>kube-prometheus-stack</code>&quot;, but this sentiment has worsened somewhat with the realisation that more and more customizations and pieces were needed for large scale use. Half a year later (and 6+ charts deep), I thought I'd collect my thoughts on the ecosystem - from an operational perspective - with a rough architecture overview post.</p>
-<!--more-->
+<p>As part of my work life in the past year, a chunk of my day-to-day life has consisted of maintaining a <code>prometheus</code> installation on top of a sizable kubernetes cluster. My original feeling was "this is not that bad with <code>kube-prometheus-stack</code>", but this sentiment has worsened somewhat with the realisation that more and more customizations and pieces were needed for large scale use. Half a year later (and 6+ charts deep), I thought I'd collect my thoughts on the ecosystem - from an operational perspective - with a rough architecture overview post.</p>
 <h2 id="disclaimer">Disclaimer</h2>
 <ol>
 <li>Information here is based on my own learnings. Some details <strong>might</strong> be wrong. Please submit an <a rel="noopener" target="_blank" href="https://github.com/clux/probes/issues">issue</a> / <a rel="noopener" target="_blank" href="https://github.com/clux/probes/edit/master/content/post/2022-01-11-prometheus-ecosystem.md">fix</a> if you see anything glaring.</li>
@@ -132,7 +131,7 @@
 <p>Consider importing the <a rel="noopener" target="_blank" href="https://github.com/prometheus-community/helm-charts/blob/970e1334813f90348b849f0a3850262a61f82797/charts/prometheus/values.yaml#L1516-L1759">semi-standardised <code>prometheus.io/scrape</code></a> ones from the main prometheus chart if you wish (they slightly clash with the root chart), but those should be it. Scrape config also needs you to inline secrets, so not great from a security perspective.</p>
 <p><a rel="noopener" target="_blank" href="https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/">Alerting and recording rules</a> are similarly configured and has same caveats (don't write them manually).</p>
 <h3 id="alertmanager">alertmanager</h3>
-<p>Alerts (the data in the special <code>ALERTS{alertstate=&quot;firing&quot;}</code> metric) are sent from <code>prometheus</code> to <code>alertmanager</code>.</p>
+<p>Alerts (the data in the special <code>ALERTS{alertstate="firing"}</code> metric) are sent from <code>prometheus</code> to <code>alertmanager</code>.</p>
 <p><img src="/imgs/prometheus/eva-alert.webp" alt="how alerts should look" /></p>
 <p>At least, this is usually what happens. The communication <strong>to</strong> and <strong>within</strong> <code>alertmanager</code> is probably the most <strong>annoying</strong> parts of this entire architecture.</p>
 <p>A problem that keeps biting me is how <a rel="noopener" target="_blank" href="https://github.com/prometheus/prometheus/issues/7063">prometheus can lose track of alertmanager ips, and fail to send alerts for hours</a>. There are many <a rel="noopener" target="_blank" href="https://github.com/prometheus/prometheus/search?q=%22error+sending+alert%22&amp;type=issues">issues related to this</a>.</p>
@@ -214,9 +213,9 @@
 <p>It's a conceptually pretty simple piece; an <strong>api -&gt; metrics transformer</strong>, but kubernetes has a lot of apis, so definitely not something you want to write yourself.</p>
 <p>In example terms; this component provides the <strong>base data</strong> for what you need to <strong>answer</strong> the questions like whether your:</p>
 <ul>
-<li>&quot;<code>Pod</code> has been in an unhealthy state for <code>&gt;N</code> minutes&quot;</li>
-<li>&quot;<code>Deployment</code> has failed to complete its last rollout in <code>N</code> minutes&quot;</li>
-<li>&quot;<code>HorizontalPodAutoscaler</code> has been maxed out for <code>&gt;N</code> minutes&quot;</li>
+<li>"<code>Pod</code> has been in an unhealthy state for <code>&gt;N</code> minutes"</li>
+<li>"<code>Deployment</code> has failed to complete its last rollout in <code>N</code> minutes"</li>
+<li>"<code>HorizontalPodAutoscaler</code> has been maxed out for <code>&gt;N</code> minutes"</li>
 </ul>
 <p>..stuff that you can figure out with <code>kubectl get -oyaml</code>.</p>
 <p>KSM is deployed via an <a rel="noopener" target="_blank" href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-state-metrics">in-tree subchart</a> under <a rel="noopener" target="_blank" href="https://github.com/prometheus-community/helm-charts/blob/9401be121c65e6e3332670a49c5ad6ba2aeae9c3/charts/kube-prometheus-stack/Chart.yaml#L37-L40">kube-prometheus-stack</a>.</p>
@@ -264,15 +263,15 @@
 <p>It relies on data being sent from any prometheus set - via a sidecar on prometheus (configurable via the <code>kube-prometheus-stack</code> chart) - to some provisioned object storage (here S3).</p>
 <p>The <strong>write paths</strong> to the S3 bucket is <strong>highlighted</strong> in <i style="color:red">red</i> on the diagram.</p>
 <p>The various <strong>read paths</strong> are <strong>highlighted</strong> in <i style="color:green">green</i> on the diagram, and show how various types of reads propagate to various systems (grafana is the normal entrypoint, but the query-frontend is also a nice way to debug thanos specifics closer to the source).</p>
-<p>The <strong>thanos configuration</strong> is <strong>&quot;almost&quot;</strong> completely contained in the thanos <strong>chart</strong> (of your choice) and is marked with a dashed <i style="color:purple">purple</i> square.</p>
+<p>The <strong>thanos configuration</strong> is <strong>"almost"</strong> completely contained in the thanos <strong>chart</strong> (of your choice) and is marked with a dashed <i style="color:purple">purple</i> square.</p>
 <blockquote>
-<p><strong>&quot;almost&quot;</strong>: S3 configuration is also needed in <code>kube-prometheus-stack</code> for writing</p>
+<p><strong>"almost"</strong>: S3 configuration is also needed in <code>kube-prometheus-stack</code> for writing</p>
 </blockquote>
 <p>There are several charts that are trying to package the same thing for thanos:</p>
 <ul>
 <li><a rel="noopener" target="_blank" href="https://github.com/bitnami/charts/tree/master/bitnami/thanos/">bitnami/thanos</a> - most active</li>
 <li><a rel="noopener" target="_blank" href="https://github.com/banzaicloud/banzai-charts/tree/master/thanos">banzai/thanos</a> - pretty inactive</li>
-<li><a rel="noopener" target="_blank" href="https://github.com/thanos-community/helm-charts">thanos-community/helm-charts</a> - <a rel="noopener" target="_blank" href="https://github.com/thanos-io/thanos/issues/1820">&quot;official&quot;</a>, but clearly abandoned/out-of-date</li>
+<li><a rel="noopener" target="_blank" href="https://github.com/thanos-community/helm-charts">thanos-community/helm-charts</a> - <a rel="noopener" target="_blank" href="https://github.com/thanos-io/thanos/issues/1820">"official"</a>, but clearly abandoned/out-of-date</li>
 </ul>
 <p>They <strong>all have problems</strong>:</p>
 <ul>
@@ -380,7 +379,6 @@
     </article>
 
     <div class="sblock">
-
       <div class="blockdiv sticky">
         <a class="b s150" href="#">Index</a>
         <div>
@@ -449,11 +447,11 @@
   <footer>
     <hr />
     <div class="c">
-      <nav><div><a type="application/atom+xml" href="https://clux.dev/atom.xml" target="_blank" title="probes Atom/RSS Feed"><i type="Button" class="svg rss" title="probes Atom/RSS Feed"></i></a><a href="https://hachyderm.io/@clux" target="_blank" title="Mastodon" rel="me"><i type="Button" class="svg mastodon" title="Mastodon"></i></a><a href="https://www.linkedin.com/in/🗑-eirik-albrigtsen-b279863a/" target="_blank" title="LinkedIn"><i type="Button" class="svg linkedin" title="LinkedIn"></i></a><a href="https://github.com/clux/" target="_blank" title="Github"><i type="Button" class="svg github" title="Github"></i></a><a href="https://discord.com/tokio/" target="_blank" title="Discord"><i type="Button" class="svg discord" title="Discord"></i></a><a href="https://www.youtube.com/channel&#x2F;UCLpykMxkxuPUR9CciheipZg" target="_blank" title="YouTube"><i type="Button" class="svg youtube" title="YouTube"></i></a><a href="https://github.com/sponsors/clux/" target="_blank" title="GitHub Sponsor"><i type="Button" class="svg github-sponsor" title="GitHub Sponsor"></i></a></div></nav>
-      <nav>
-        <a class="s90" href="https://clux.dev/about/"> About </a>
-        <a class="s90" href="https://clux.dev/privacy/"> Privacy </a>
-        <a class="s90" href="https://clux.dev/sitemap.xml" target="_blank"> Sitemap </a>
+      <nav class="tpad"><div><a type="application/atom+xml" href="https://clux.dev/atom.xml" target="_blank" title="probes Atom Feed"><i type="Button" class="svg rss" title="probes Atom Feed"></i></a><a href="https://hachyderm.io/@clux" target="_blank" title="Mastodon" rel="me"><i type="Button" class="svg mastodon" title="Mastodon"></i></a><a href="https://www.linkedin.com/in/🗑-eirik-albrigtsen-b279863a/" target="_blank" title="LinkedIn"><i type="Button" class="svg linkedin" title="LinkedIn"></i></a><a href="https://github.com/clux/" target="_blank" title="Github"><i type="Button" class="svg github" title="Github"></i></a><a href="https://discord.com/tokio/" target="_blank" title="Discord"><i type="Button" class="svg discord" title="Discord"></i></a><a href="https://www.youtube.com/channel&#x2F;UCLpykMxkxuPUR9CciheipZg" target="_blank" title="YouTube"><i type="Button" class="svg youtube" title="YouTube"></i></a><a href="https://github.com/sponsors/clux/" target="_blank" title="GitHub Sponsor"><i type="Button" class="svg github-sponsor" title="GitHub Sponsor"></i></a></div></nav>
+      <nav class="vpad">
+        <a class="rpad" href="https://clux.dev/about/"> About </a>
+        <a class="rpad" href="https://clux.dev/privacy/"> Privacy </a>
+        <a class="rpad" href="https://clux.dev/sitemap.xml" target="_blank"> Sitemap </a>
       </nav>
       <p class="s90">Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a> & <a href="https://github.com/jieiku/abridge/" target="_blank">Abridge</a></p>
     </div>
