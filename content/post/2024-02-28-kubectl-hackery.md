@@ -58,6 +58,17 @@ k get pods -A -oyaml | yq '.items[] | .metadata.name + " " + .spec.containers[].
  k get ds -A -oyaml | yq '.items[].spec.template.spec.containers[].resources.requests.cpu' -r | grep -v null | awk 'BEGIN {sum=0} {sum=sum+$1} END {printf "%.0f\n", sum}'
 ```
 
+More approachable alternatives here are recommended, in particular the [compute cluster dashboard from kubernetes mixin](https://YOURGRAFANA/d/efa86fd1d0c121a26444b636a3f509a8/), or with the rust cli [kubectl-view-allocations](https://github.com/davidB/kubectl-view-allocations):
+
+```sh
+$ kubectl-view-allocations -g resource -u
+ Resource              Utilization     Requested          Limit  Allocatable  Free
+  cpu                   (10%) 28.2   (93%) 272.3    (535%) 1.6k        293.6   0.0
+  ephemeral-storage             __    (24%) 1.1T  (24%) 975.9Gi         4.4T  3.3T
+  memory             (29%) 208.2Gi  (81%) 622.7G    (288%) 2.2T       765.6G   0.0
+  pods                          __    (45%) 1.0k     (45%) 1.0k         2.2k  1.2k
+```
+
 ## PrometheusRules
 
 ```sh
