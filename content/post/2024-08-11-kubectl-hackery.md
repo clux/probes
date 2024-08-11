@@ -51,9 +51,9 @@ Usage (via builtin `kubectl top` which works if you have metrics-server installe
 
 ```sh
 # total cpu usage in the cluster
-k top pods -A --no-headers | choose 2 | gawk 'BEGIN {sum=0} {sum=sum+$1} END {printf "%.0f\n", sum}'
+k top pods -A --no-headers | choose 2 | awk 'BEGIN {sum=0} {sum=sum+$1} END {printf "%.0f\n", sum}'
 # total memory usage in the cluster
-k top pods -A --no-headers | choose 3 | numfmt --from=iec-i | gawk 'BEGIN {sum=0} {sum=sum+$1} END {printf "%.0f\n", sum}' | numfmt --to=iec-i
+k top pods -A --no-headers | choose 3 | numfmt --from=iec-i | awk 'BEGIN {sum=0} {sum=sum+$1} END {printf "%.0f\n", sum}' | numfmt --to=iec-i
 ```
 
 Requests:
