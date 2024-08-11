@@ -9,17 +9,19 @@ toc = true
 
 [taxonomies]
 categories = ["software"]
-tags = ["kubernetes"]
+tags = ["kubernetes", "cli"]
 +++
 
 Unusual helpers for cluster level resource debugging.
 
 <!--more-->
 
-**Disclaimer**: most of these are very infrequently used, and may fail for certain edge cases.
+## Disclaimer
+**Most of these are very infrequently used, and may fail for certain edge cases.**
 
-Normally, I throw this type of stuff into my [.k8s-helpers dotfile](https://github.com/clux/dotfiles/blob/main/.k8s-helpers),
-but what is rarely used tends to bitrot. So instead, am leaving these here as a potential pointer for others. If you know how to read these you should be able to modify them to your need.
+At this point, a lot of people have better / different ways of interacting with Kubernetes, but despite the plethora of great TUIs I still find myself preferring having my own [.k8s-helpers](https://github.com/clux/dotfiles/blob/main/.k8s-helpers). Partly  because there's a lot of really nice things you can do with just `kubectl` (and maybe `fzf`) that allows nice, immediate extensibility, and partly also because I don't necessarily trust what is being displayed in a TUI that has to make UI cconsiderations.
+
+This article contains some stuff that I **hardly ever use**, and would normally bitrot in a file somewhere. They are presented here for my memory or as a potential pointer for others. If you know how to read these you should be able to modify them to your need.
 
 ## Tools
 For convenience here;
@@ -28,8 +30,8 @@ For convenience here;
 - `yq` is [whyq](https://github.com/clux/whyq) but the python `yq` should also work
 - `rg` is [ripgrep](https://github.com/BurntSushi/ripgrep)
 - `numfmt` is [coreutils/numfmt](https://man.archlinux.org/man/core/coreutils/numfmt.1.en)
-- `awk` is GNU awk.. use with `gawk` if you are on mac with an outdated one
-- `xargs` is GNU xargs.. default mac one might fail you
+
+then the regular gnu stuff like `awk`, `xargs`, `sort`. Some [might need mac alternative names](https://github.com/clux/dotfiles/blob/45a66c14fb67d8e4889d00424faab0fdc4534603/.zshenv#L65) like `gawk` due to them being out of date by default on mac.
 
 ## PVCs
 
@@ -83,7 +85,7 @@ $ kubectl-view-allocations -g resource -u
 
 ```sh
 # detect duplicates (accidentally deployed to other namespaces)
-kg prometheusrule -A --no-headers | sort -k 2 | gawk '{d[$2][a[$2]++]=$0} END{for (i in a) {if (a[i] > 1) for (j in d[i]) {print d[i][j]}}}'
+kg prometheusrule -A --no-headers | sort -k 2 | awk '{d[$2][a[$2]++]=$0} END{for (i in a) {if (a[i] > 1) for (j in d[i]) {print d[i][j]}}}'
 
 # list all alerts with their severity (or other convention label)
 kg prometheusrule -ojson -A | jq '.items[].spec.groups[].rules[] | select(.alert != null) | (.alert + " :: " + .labels["severity"])' -r
@@ -119,4 +121,6 @@ ideally you have better ways to handle this, but sometimes nice for quick overvi
 
 ## Fluff
 
-Say hello on MASTADONLINK. See issues? Post an [issue](https://github.com/clux/probes/issues) or propose an edit.
+Posted on TODO:MASTADONLINK.
+
+Feel free to comment / [make an issue](https://github.com/clux/probes/issues) / [edit](https://github.com/clux/probes/edit/main/content/post/2024-08-11-kubectl-hackery.md).
