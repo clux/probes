@@ -16,7 +16,7 @@ Unusual helpers for cluster level resource debugging.
 
 <!--more-->
 
-**Disclaimer**: most of these are very infrequently used not may fail for certain edge cases.
+**Disclaimer**: most of these are very infrequently used, and may fail for certain edge cases.
 
 Normally, I throw this type of stuff into my [.k8s-helpers dotfile](https://github.com/clux/dotfiles/blob/main/.k8s-helpers),
 but what is rarely used tends to bitrot. So instead, am leaving these here as a potential pointer for others. If you know how to read these you should be able to modify them to your need.
