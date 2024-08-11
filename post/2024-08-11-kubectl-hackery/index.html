@@ -55,16 +55,16 @@
     <article>
       <h1><a href="https://clux.dev/post/2024-08-11-kubectl-hackery/">kubectl hackery</a></h1>
 
-      <span class="s95"> clux <span class="rpad"></span> August 11, 2024 <span class="rpad"></span> [<a href="https://clux.dev/categories/software/">software</a>] #<a href="https://clux.dev/tags/kubernetes/">kubernetes</a> </span>
+      <span class="s95"> clux <span class="rpad"></span> August 11, 2024 <span class="rpad"></span> [<a href="https://clux.dev/categories/software/">software</a>] #<a href="https://clux.dev/tags/kubernetes/">kubernetes</a>  #<a href="https://clux.dev/tags/cli/">cli</a> </span>
 
     
 
 
 <p>Unusual helpers for cluster level resource debugging.</p>
-<span id="continue-reading"></span>
-<p><strong>Disclaimer</strong>: most of these are very infrequently used, and may fail for certain edge cases.</p>
-<p>Normally, I throw this type of stuff into my <a rel="noopener" target="_blank" href="https://github.com/clux/dotfiles/blob/main/.k8s-helpers">.k8s-helpers dotfile</a>,
-but what is rarely used tends to bitrot. So instead, am leaving these here as a potential pointer for others. If you know how to read these you should be able to modify them to your need.</p>
+<span id="continue-reading"></span><h2 id="disclaimer">Disclaimer</h2>
+<p><strong>Most of these are very infrequently used, and may fail for certain edge cases.</strong></p>
+<p>At this point, a lot of people have better / different ways of interacting with Kubernetes, but despite the plethora of great TUIs I still find myself preferring having my own <a rel="noopener" target="_blank" href="https://github.com/clux/dotfiles/blob/main/.k8s-helpers">.k8s-helpers</a>. Partly  because there's a lot of really nice things you can do with just <code>kubectl</code> (and maybe <code>fzf</code>) that allows nice, immediate extensibility, and partly also because I don't necessarily trust what is being displayed in a TUI that has to make UI cconsiderations.</p>
+<p>This article contains some stuff that I <strong>hardly ever use</strong>, and would normally bitrot in a file somewhere. They are presented here for my memory or as a potential pointer for others. If you know how to read these you should be able to modify them to your need.</p>
 <h2 id="tools">Tools</h2>
 <p>For convenience here;</p>
 <ul>
@@ -73,9 +73,8 @@ but what is rarely used tends to bitrot. So instead, am leaving these here as a 
 <li><code>yq</code> is <a rel="noopener" target="_blank" href="https://github.com/clux/whyq">whyq</a> but the python <code>yq</code> should also work</li>
 <li><code>rg</code> is <a rel="noopener" target="_blank" href="https://github.com/BurntSushi/ripgrep">ripgrep</a></li>
 <li><code>numfmt</code> is <a rel="noopener" target="_blank" href="https://man.archlinux.org/man/core/coreutils/numfmt.1.en">coreutils/numfmt</a></li>
-<li><code>awk</code> is GNU awk.. use with <code>gawk</code> if you are on mac with an outdated one</li>
-<li><code>xargs</code> is GNU xargs.. default mac one might fail you</li>
 </ul>
+<p>then the regular gnu stuff like <code>awk</code>, <code>xargs</code>, <code>sort</code>. Some <a rel="noopener" target="_blank" href="https://github.com/clux/dotfiles/blob/45a66c14fb67d8e4889d00424faab0fdc4534603/.zshenv#L65">might need mac alternative names</a> like <code>gawk</code> due to them being out of date by default on mac.</p>
 <h2 id="pvcs">PVCs</h2>
 <pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> get all pvcs in the cluster in descending order of size</span><span class="z-comment z-line z-number-sign z-shell">
 </span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">kg</span></span><span class="z-meta z-function-call z-arguments z-shell"> pvc<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>no-headers</span><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>A</span></span> <span class="z-keyword z-operator z-logical z-pipe z-shell">|</span> <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">sort</span></span><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>k5</span><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>hr</span></span> <span class="z-keyword z-operator z-logical z-pipe z-shell">|</span> <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">choose</span></span><span class="z-meta z-function-call z-arguments z-shell"> 1 4</span>
@@ -112,7 +111,7 @@ but what is rarely used tends to bitrot. So instead, am leaving these here as a 
 </span></code></pre>
 <h2 id="prometheusrules">PrometheusRules</h2>
 <pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> detect duplicates (accidentally deployed to other namespaces)</span><span class="z-comment z-line z-number-sign z-shell">
-</span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">kg</span></span><span class="z-meta z-function-call z-arguments z-shell"> prometheusrule<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>A</span><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>no-headers</span></span> <span class="z-keyword z-operator z-logical z-pipe z-shell">|</span> <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">sort</span></span><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>k</span> 2</span> <span class="z-keyword z-operator z-logical z-pipe z-shell">|</span> <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">gawk</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&#39;</span>{d[$2][a[$2]++]=$0} END{for (i in a) {if (a[i] &gt; 1) for (j in d[i]) {print d[i][j]}}}<span class="z-punctuation z-definition z-string z-end z-shell">&#39;</span></span></span>
+</span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">kg</span></span><span class="z-meta z-function-call z-arguments z-shell"> prometheusrule<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>A</span><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>no-headers</span></span> <span class="z-keyword z-operator z-logical z-pipe z-shell">|</span> <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">sort</span></span><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>k</span> 2</span> <span class="z-keyword z-operator z-logical z-pipe z-shell">|</span> <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">awk</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&#39;</span>{d[$2][a[$2]++]=$0} END{for (i in a) {if (a[i] &gt; 1) for (j in d[i]) {print d[i][j]}}}<span class="z-punctuation z-definition z-string z-end z-shell">&#39;</span></span></span>
 </span><span class="z-source z-shell z-bash">
 </span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> list all alerts with their severity (or other convention label)</span><span class="z-comment z-line z-number-sign z-shell">
 </span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">kg</span></span><span class="z-meta z-function-call z-arguments z-shell"> prometheusrule<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>ojson</span><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>A</span></span> <span class="z-keyword z-operator z-logical z-pipe z-shell">|</span> <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">jq</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&#39;</span>.items[].spec.groups[].rules[] | select(.alert != null) | (.alert + &quot; :: &quot; + .labels[&quot;severity&quot;])<span class="z-punctuation z-definition z-string z-end z-shell">&#39;</span></span><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>r</span></span>
@@ -137,7 +136,8 @@ but what is rarely used tends to bitrot. So instead, am leaving these here as a 
 </span></code></pre>
 <p>ideally you have better ways to handle this, but sometimes nice for quick overview in simpler clusters.</p>
 <h2 id="fluff">Fluff</h2>
-<p>Say hello on MASTADONLINK. See issues? Post an <a rel="noopener" target="_blank" href="https://github.com/clux/probes/issues">issue</a> or propose an edit.</p>
+<p>Posted on TODO:MASTADONLINK.</p>
+<p>Feel free to comment / <a rel="noopener" target="_blank" href="https://github.com/clux/probes/issues">make an issue</a> / <a rel="noopener" target="_blank" href="https://github.com/clux/probes/edit/main/content/post/2024-08-11-kubectl-hackery.md">edit</a>.</p>
 
       <nav>
         <div>
@@ -151,6 +151,9 @@ but what is rarely used tends to bitrot. So instead, am leaving these here as a 
     <div class="sblock">
       <div class="blockdiv sticky">
         <a class="b s150" href="#">Index</a>
+        <div>
+          <a href="#disclaimer">Disclaimer</a>
+        </div>
         <div>
           <a href="#tools">Tools</a>
         </div>
