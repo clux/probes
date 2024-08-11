@@ -121,6 +121,4 @@ ideally you have better ways to handle this, but sometimes nice for quick overvi
 
 ## Fluff
 
-Posted on [mastodon](https://hachyderm.io/@clux/112943276491236770).
-
-Feel free to comment / [make an issue](https://github.com/clux/probes/issues) / [edit](https://github.com/clux/probes/edit/main/content/post/2024-08-11-kubectl-hackery.md).
+Posted on [mastodon](https://hachyderm.io/@clux/112943276491236770). Feel free to comment / [make an issue](https://github.com/clux/probes/issues) / [suggest an edit](https://github.com/clux/probes/edit/main/content/post/2024-08-11-kubectl-hackery.md).
