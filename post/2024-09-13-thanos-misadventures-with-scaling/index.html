@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://clux.dev/js/theme.min.js" integrity="sha384-pb++s6uBRKaQv+iAXpgA/H3IlpLZdO14tTwuCI7uXmz4aaZdByoCcM+6BhynMq/1"></script>
+  <link rel="stylesheet" href="https://clux.dev/abridge.css?h=9c32aa3ca76689ee23cf" />
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="base" content="https://clux.dev" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <link rel="manifest" href="https://clux.dev/manifest.min.json" />
+  <link rel="alternate" type="application/atom+xml" title="probes Atom Feed" href="https://clux.dev/atom.xml" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <title>You Will (Not) Scale Prometheus | probes</title>
+  <meta name="author" content="clux" />
+  <meta name="copyright" content="probes" />
+  <meta name="description" content="misadventures with prometheus agent mode with thanos receive" />
+  <link rel="canonical" href="https://clux.dev/post/2024-09-13-thanos-misadventures-with-scaling/" />
+  <meta name="keywords" content="Kubernetes, Cloud, Rust, Theorycraft, Blog" />
+  <script defer src="https://clux.dev/js/abridge.min.js?h=4dbe2f6c7673e0a145f0" integrity="sha384-en9uTP2jQMLjO9fwbuGUKlCZ+kGMvN97ASddcA7mljWRGw70rs3zSMPNIozwGYFU"></script>
+  <noscript><link rel="stylesheet" href="https://clux.dev/nojs.css" /></noscript>
+</head>
+<body>
+  <header>
+    <nav>
+      <div><h1><a href="https://clux.dev" title="probes"><font color="#74c7ec">P</font>robes ↝ cl<font color="#74c7ec">u</font>x</a></h1></div>
+      <div>
+
+        <div>
+          <ul><li><a class="s110" href="https://clux.dev/about/"> About </a></li><li><a class="s110" href="https://clux.dev/post/"> Posts </a></li><li><a class="s110" href="https://clux.dev/categories/"> Categories </a></li><li><a class="s110" href="https://clux.dev/tags/"> Tags </a></li><li><i type="reset" id="mode" class="js svgs adjust"></i></ul>
+        </div>
+
+        <div>
+          <div>
+            <form autocomplete=off class="js" name="goSearch" id="searchbox">
+              <div class="searchd">
+                <input id="searchinput" type="text" placeholder="Search" title="Search" />
+                <button type="submit" title="Search" class="svgs svgm search"></button>
+              </div>
+              <div class="results"><div id="suggestions"></div></div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+  <main>
+    <article>
+      <h1><a href="https://clux.dev/post/2024-09-13-thanos-misadventures-with-scaling/">You Will (Not) Scale Prometheus</a></h1>
+
+      <span class="s95"> clux <span class="rpad"></span> September 13, 2024 <span class="rpad"></span> [<a href="https://clux.dev/categories/software/">software</a>] #<a href="https://clux.dev/tags/kubernetes/">kubernetes</a>  #<a href="https://clux.dev/tags/observability/">observability</a>  #<a href="https://clux.dev/tags/prometheus/">prometheus</a>  #<a href="https://clux.dev/tags/thanos/">thanos</a> </span>
+
+    
+
+
+<p>To aid a memory obese <code>prometheus</code>, I recently helped in attempting to slowly shift a cluster over to <a rel="noopener" target="_blank" href="https://prometheus.io/blog/2021/11/16/agent/">prometheus agent mode</a> sending data to <a rel="noopener" target="_blank" href="https://thanos.io/tip/components/receive.md/">thanos receive</a> over the last couple of months. I have now personally given up on this goal due to a variety of reasons, and this post explores why.</p>
+<h2 id="background-setup">Background Setup</h2>
+<p>The original setup we started out with is basically this (via <a href="/post/2022-01-11-prometheus-ecosystem/">2022 ecosystem post</a>):
+<a href="/imgs/prometheus/ecosystem-miro.webp"><img src="/imgs/prometheus/ecosystem-miro.webp" alt="prometheus architecture diagram" /></a></p>
+<p>and we were planning to move to this:</p>
+<p><a href="/imgs/prometheus/agentmode.webp"><img src="/imgs/prometheus/agentmode.webp" alt="prometheus architecture diagram agent mode" /></a></p>
+<p>The key changes here:</p>
+<ol>
+<li>enable <a rel="noopener" target="_blank" href="https://prometheus.io/docs/prometheus/latest/feature_flags/#prometheus-agent">prometheus agent feature</a> limiting it to scraping and remote writes to receive</li>
+<li>deploy <a rel="noopener" target="_blank" href="https://thanos.io/tip/components/receive.md/">thanos receive</a> for short term metric storage + S3 uploader (no more sidecar)</li>
+<li>deploy <a rel="noopener" target="_blank" href="https://thanos.io/tip/components/rule.md/">thanos rule</a> as new evaluator, posting to alertmanager</li>
+</ol>
+<p>With the 3 components replacing prometheus (agent, receive, ruler) in-theory having better scaling characteristics by themselves, with a cleaner, and more delineated area of responsibility.</p>
+<h2 id="complexity-pickup">Complexity &amp; Pickup</h2>
+<p>Splitting one component into 3 sounds simple in theory, but while people might like the idea of splitting a monolith, few people actually end up enjoying operating a distributed monolith. The new complexity is in many ways also compounded by these components not being as battle tested as the more traditional prometheus/thanos setup.</p>
+<p>The original setup can hardly be considered trivial either.</p>
+<h3 id="3-single-points-of-failure">3 Single Points of Failure</h3>
+<p>You need basically 3x the alert coverage now since the single point of failure is split into 3 parts:</p>
+<ul>
+<li><a rel="noopener" target="_blank" href="https://thanos.io/tip/components/rule.md/#risk">ruler query failures</a> means no alerts get evaluated even though metrics exists in the system.</li>
+<li>agent mode downtime means evaluation works, but metrics likely absent</li>
+<li>receive write failures / downtime means rule evaluation will fail</li>
+</ul>
+<p>This means careful alert management. The <a rel="noopener" target="_blank" href="https://monitoring.mixins.dev/thanos/#thanos-receive">mixins</a> are good, but needed manual wrangling in the chart to work well.</p>
+<p>The whole setup also suffers from the "who alerts about alerting failures" problem. A single <strong>deadman's switch</strong> is necessary, but not sufficient; as <code>ruler</code> can successfully send the <a rel="noopener" target="_blank" href="https://github.com/prometheus-community/helm-charts/blob/d2566648d72d0ed136a38254985ccd25d6f894b8/charts/kube-prometheus-stack/templates/prometheus/rules-1.14/general.rules.yaml#L55-L88">WatchDog alert</a> to your external ping service, despite the agent being down.</p>
+<h3 id="configuration-splits">Configuration Splits</h3>
+<p>Since <code>thanos-ruler</code> is the new query evaluator, and we use <code>PrometheusRule</code> crds, these crds must be provisioned into <code>thanos-ruler</code> via <code>prometheus-operator</code>. On the helm side, this only works with <code>kube-prometheus-stack</code> creating the <code>ThanosRuler</code> crd (which <code>prometheus-operator</code> will use to generate <code>thanos-ruler</code>), in the same way it originally created the <code>Prometheus</code> / <code>PrometheusAgent</code> crd (to create the <code>prometheus</code> or <code>prometheus-agent</code> pair).</p>
+<p>Specifically, we have to NOT enable <code>ruler</code> from the <a rel="noopener" target="_blank" href="https://github.com/bitnami/charts/blob/main/bitnami/thanos/README.md">bitnami/thanos</a> chart, and have a thanos component live inside <code>kube-prometheus-stack</code> instead. Not a major stumbling block, but goes to show some of the many sources of confusion.</p>
+<h3 id="new-features-slow-iteration">New Features, Slow Iteration</h3>
+<p>Agent mode, with a writing ruler also feels fairly new (in prometheus time), and support for all the features generally takes a long time to fully propagate from prometheus, to thanos, to the operator.</p>
+<p>As an example see; <code>keep_firing_for</code>:</p>
+<ul>
+<li>Nov 2022 :: <a rel="noopener" target="_blank" href="https://github.com/prometheus/prometheus/issues/11570">Raised in prometheus</a> (lazy me)</li>
+<li>Feb 2023 :: <a rel="noopener" target="_blank" href="https://github.com/prometheus/prometheus/releases/tag/v2.42.0">Implemented in prometheus</a></li>
+<li>June 2023 :: <a rel="noopener" target="_blank" href="https://github.com/prometheus-operator/prometheus-operator/releases/tag/v0.66.0">Support in prometheus-operator for PrometheusRule</a></li>
+<li>Jan 2024 :: <a rel="noopener" target="_blank" href="https://github.com/thanos-io/thanos/releases/tag/v0.34.0">Support in thanos</a></li>
+<li>March 2024 :: <a rel="noopener" target="_blank" href="https://github.com/prometheus-operator/prometheus-operator/releases/tag/v0.72.0">Support in prometheus-operator for ThanosRuler</a></li>
+</ul>
+<p>So as you can see, a long chain where <code>ruler</code> sits at the very end, and <strong>to me</strong> this it is indicative of the amount of use <code>ruler</code> realistically gets.
+We also had to upstream <a rel="noopener" target="_blank" href="https://github.com/prometheus-community/helm-charts/pull/4092">support for ruler remote write configuration in kube-prometheus-stack</a>.</p>
+<p>There are also many <strong>desired features</strong> we want from agent mode that are not yet there, but we'll cover that later.</p>
+<h2 id="performance-problems">Performance Problems</h2>
+<p>This is the main problem of the article.</p>
+<p>Unfortunately, the best performance we managed to get out of this setup (after weeks of tuning) was still <strong>2x-3x worse</strong> than the original HA prometheus pair setup (again from the <a href="/post/2022-01-11-prometheus-ecosystem/">2022 post</a> / 1st diagram above). We also saw these new <strong>subcomponents perform worse than the original prometheus</strong>, and have <strong>worse scaling characteristics</strong>. Rule evaluation performance also seriously deteriorated.</p>
+<p>In many ways, the increased cost was not totally unexpected - removing memory colocation of the TSDB was always destined to introduce overhead - but the amount was definitely surprising.</p>
+<p>We could pay our way out of <strong>some</strong> of these problems (with e.g. ~one extra node per cluster), but the worse scalability baseline of components such as <code>receive</code> is a non-starter.</p>
+<h3 id="overall-cluster-measurements">Overall Cluster Measurements</h3>
+<blockquote>
+<p>Benchmarks are comparing using prometheus <a rel="noopener" target="_blank" href="https://github.com/prometheus/prometheus/releases/tag/v2.53.1">v2.53.1</a> and thanos <a rel="noopener" target="_blank" href="https://github.com/thanos-io/thanos/releases/tag/v0.36.0">0.36.0</a> and consider <code>mean</code> utilisation measurments from cadvisor metrics on a cluster with a modest <code>~2M</code> time series per prometheus replica. We only consider the biggest statefulsets (receive, prometheus/agent, ruler, storegw). In either setup <code>receive</code> or <code>prometheus</code> were running on a <code>3d</code> local retention.</p>
+</blockquote>
+<p>Over full workdays we saw <code>~13 cores</code> constantly churning, and <code>~80 GB</code> of memory used by the 3 statefulsets (10 cores and 50GB alone from <code>receive</code>):</p>
+<p><a href="/imgs/prometheus/sts-load-agentmode.webp"><img src="/imgs/prometheus/sts-load-agentmode.webp" alt="measurements for agent mode" /></a></p>
+<p>Compare to the same setup using a normal HA prometheus (no ruler, no receive, local eval) and we have <code>~4 cores</code> and maybe <code>~30GB</code> memory:</p>
+<p><a href="/imgs/prometheus/sts-load-regular.webp"><img src="/imgs/prometheus/sts-load-regular.webp" alt="measurements for normal prometheus mode" /></a></p>
+<p>So cluster wise, we end up with a between 2x-3x drop by switching back to non-agented, monolithic prometheus.</p>
+<h3 id="receive-performance">Receive Performance</h3>
+<p>From the same graphs we see that the portion of prometheus that got factored out into thanos receive, is <strong>using roughly 2x the CPU and memory of a standalone prometheus</strong>, despite not doing any evaluation, or any scraping. This is despite running it as minamally as possible with <code>3d</code> retention, and 1 replication factor.</p>
+<details><summary style="cursor:pointer;color:#0af"><b>Addendum: Attempted modifying flags</b></summary>
+<p>Tried various flags here over many iterations to see if anything had any practical effects.</p>
+<ul>
+<li><a rel="noopener" target="_blank" href="https://thanos.io/tip/components/receive.md/#ketama-recommended">new ketama hashing algorithm</a></li>
+<li><code>--enable-auto-gomemlimit</code> - barely helps</li>
+<li><code>--tsdb.wal-compression</code> - disk benefit only afaikt</li>
+<li><code>--receive.forward.async-workers=1000</code>  - irrelevant, receive does not forward requests in our setup</li>
+</ul>
+</details>
+<p>The performance of <code>receive</code> was the biggest problem here, as we wanted to move away from a monolithic <code>prometheus</code> precicely because prometheus has finite scalability in this setup (eventually you run out of super-sized cloud nodes to run them - we had to provision a 300G memory one for a cardinality explosion incident once).</p>
+<p>We did not pursue the <a rel="noopener" target="_blank" href="https://github.com/thanos-io/thanos/blob/release-0.22/docs/proposals-accepted/202012-receive-split.md">split receiver proposal</a>, because it seemed even more complex and did not know how to implement it until recently. <a rel="noopener" target="_blank" href="https://github.com/thanos-io/thanos/issues/7054#issuecomment-1933270766">This comment is promising for the future</a> if you are attempting <code>receive</code> in a similar veins.</p>
+<h3 id="agent-performance">Agent Performance</h3>
+<p>The agents (which now should only do scraping and remote write into receivers) are surprisingly not free either. From graph above, the memory utilisation is close to a full prometheus!</p>
+<p>There is at least <a rel="noopener" target="_blank" href="https://github.com/prometheus/prometheus/issues/10431">one open related bug for this</a>.</p>
+<h3 id="ruler-performance">Ruler Performance</h3>
+<p>Ruler evaluation performance when having to go through queriers is also impacted, and it surprisingly scales non-linearly with number of ruler replicas.</p>
+<p><img src="/imgs/prometheus/ruler-time-by-pod.webp" alt="ruler evaluation time per pod over 1h" /></p>
+<p>This panel evaluates <code>sum(avg_over_time(prometheus_rule_group_last_duration_seconds[1h])) by (pod)</code> per pod over three modes:</p>
+<ol>
+<li>up until 08/06 12ish :: 2 replicas of thanos ruler</li>
+<li>middle on 08/07 :: 1 replica of thanos ruler</li>
+<li>end on 08/08 :: 2 replicas of prometheus (non-agent mode)</li>
+</ol>
+<p>As you can see the query time increases within each pod when increasing replicas. Possibly this is load accumulating in the new distributed monolith, but a near 50% spike per ruler?In either case, the actual comparison of <code>3s avg</code> vs <code>50s avg</code> is kind of outrageous. Maybe this is misreading it, but the system definitely felt more sluggish in general.</p>
+<p>No rules generally missed evaluations, but it got close to it, and that was not a good sign given it was in our low-load testing cluster.</p>
+<p>Beyond this, this component is nice, seemingly not bad in terms of utilisation, and nice to debug. <a rel="noopener" target="_blank" href="https://thanos.io/tip/components/rule.md/#must-have-essential-ruler-alerts">Ruler metrics docs</a> and <code>sum(increase(prometheus_rule_evaluation_failures_total{}[1h])) by (pod)</code> in particular were very helpful.</p>
+<h2 id="speculation-on-causes">Speculation on Causes</h2>
+<p>I don't have clear root causes here unfortunately, so feel free to leave comments on the post (TODO), or raise issues and i'll add clarifications.</p>
+<p>In the mean time, take the next subsections with a grain of salt.</p>
+<h3 id="user-error">User Error</h3>
+<p>First things first; it’s entirely possible that I have missed something here. The system worked, it took a lot of wrangling but it did what it set out to do, just inefficiently.</p>
+<p>There are discouragingly many open bugs with minimal communication around this. Possibly certain configuration options exist to make things easier for us, possibly some are badly tuned still. I did spend like 2 months on this myself though.</p>
+<p>No matter how you slice it; agent mode with thanos is a complex beast involving ~10 main services (agent, operator, receive, query, store, compactor, ruler, adapters, alertmanager, grafana), and it shouldn’t have to be this hard. My gut feeling is that this needs more time, and clarity on direction.</p>
+<h3 id="colocation-removal">Colocation Removal</h3>
+<p>Having a big block of memory directly available for 3 components (scrape → eval / local storage) without having to to through 3 network hops / buffer points (ruler → query → receive) to do the same thing is potentially a bigger deal than originally envisioned.</p>
+<h3 id="evaluation-side-search-space">Evaluation Side Search Space</h3>
+<p>There is a chance that a good portion of the <code>ruler</code> time has come from going through <code>thanos-query</code>. This was a deliberate choice so that people could write alerts referencing more than <code>3d</code> (local retention) worth of data to do more advanced rules for anomaly detection. This <strong>should not</strong> have impacted most of our queries since most do not do this type of long range computations. We also did not see significant CPU congestion or memory use on <code>ruler</code> to warrant considering this deeply.</p>
+<p>We tried moving the <code>ruler</code> query endpoint directly to <code>receive</code> but this did not work from <code>ruler</code> using the same syntax as query/storegw.</p>
+<h3 id="wrong-tool-for-scaling">Wrong Tool for Scaling</h3>
+<p>Agent mode on the prometheus side seems perhaps more geared to network gapped / edge / multi-cluster setups than what we were looking for (e.g. <a rel="noopener" target="_blank" href="https://prometheus.io/blog/2021/11/16/agent/">grafana original announce</a> + <a rel="noopener" target="_blank" href="https://thanos.io/tip/components/receive.md/#receiver">thanos receive docs</a>). It’s certainly not as battle tested as I would have wanted, and we might even be the first for certain components. E.g. see my sad <a rel="noopener" target="_blank" href="https://github.com/prometheus-community/helm-charts/pull/4092">chart upstream functionality</a>, and ghost-town <a rel="noopener" target="_blank" href="https://github.com/thanos-io/thanos/issues/created_by/clux">metric issues in thanos</a>.</p>
+<p>It’s possible that other solutions perform better, e.g. grafana mimir. I really cannot say.</p>
+<p>It’s also possible that we could instead go harder on metric limits (histogram limitations / native histograms / dropping pod/node enrichment for overused histograms) than to follow over-complicated, inefficient, and costly (to run) solutions to a problem that can be perhaps more easily managed by better dilligence on our own field.</p>
+<h2 id="confusing-agent-promise">Confusing Agent Promise</h2>
+<p>Perhaps the most confusing thing to me is that <strong>agent mode does not act like an agent</strong>.</p>
+<p>You cannot run it as a <code>DaemonSet</code>, you merely split the monolith out into a distributed monolith. This is a present-day limitation. Despite people willing to help out, the <a rel="noopener" target="_blank" href="https://github.com/prometheus-operator/prometheus-operator/issues/5495">issue</a> remains unmoving. I had hoped google would upstream its actual statefulset agent design (mentioned in the issue), but so far that has not materialised. Who knows if <a rel="noopener" target="_blank" href="https://github.com/prometheus/prometheus/discussions/10979">agent mode will even become stable</a>.</p>
+<p>On the grafana cloud side, the <a rel="noopener" target="_blank" href="https://grafana.com/docs/agent/latest/static/operation-guide/">grafana agent</a> did <a rel="noopener" target="_blank" href="https://github.com/grafana/agent/blob/c281c76df02b7b1ce4d3c0192915628343f4c897/operations/helm/charts/grafana-agent/templates/controllers/daemonset.yaml">support running as a daemonset</a>, but <a rel="noopener" target="_blank" href="https://grafana.com/blog/2024/04/09/grafana-agent-to-grafana-alloy-opentelemetry-collector-faq/">it is now EOL</a> anyway.</p>
+<p>In either case, the biggest problem isn't the scraping, it's the local storage (receive/prom) for fast evaluation of rules / alerts. There is <a rel="noopener" target="_blank" href="https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/shards-and-replicas.md">prometheus operator's sharding suggestion</a> that can help partition this, but it does <strong>seem to</strong> require your own label management, and uneven shard request (cpu/mem) balancing (due to some shards scraping more metrics and thus having more load). A bit too manual for my taste.</p>
+<p>It’s been <em>only</em> 3 years since <a rel="noopener" target="_blank" href="https://prometheus.io/blog/2021/11/16/agent/">agent mode was announced</a>. Now, 2 years later the whole <a rel="noopener" target="_blank" href="https://github.com/prometheus/prometheus/issues/13105">remote write protocol is being updated</a> and <a rel="noopener" target="_blank" href="https://github.com/prometheus/prometheus/releases/tag/v2.54.0">just landed in prometheus</a>.</p>
+<p>So who knows what the future brings here. It might be another couple of years before new remote write gets propagated through the thanos ecosysystem.</p>
+<p>Perhaps it's better to just lean on the classic thanos split and keep reducing local prometheus <code>retention</code> time down to a single day or lower (if you dare risk sidecar failures being irrecoverable).</p>
+<h2 id="future">Future</h2>
+<p>No grand conclusion unfortunately, just another data point in the <strong>sea of gut feels</strong> for you to fish for your next tech stack.</p>
+<p>Maybe there is a way to make this work, but I am more than happy to throw in the towel here <strong>if only for complexity reasons</strong>. If the stack becomes so complex that the entire thing cannot be maintained if one key person leaves, then I would kind of consider that a failure. This was hard enough to explain before <code>receive</code> and agent mode.</p>
+<p>My 2c here is that by pursuing this complexity non-critically we inevitably end up feeding the giant providers, resulting in slow iteration cycles, expensive B2B deals, when perfectly simple alternatives exist provided we are willing to moderate ourselves.</p>
+<p>If I have to wrangle with cardinality limits org-wide by advocating for <code>action: drop</code> on histograms, or disabling prometheus operator enriched pod labels (which interact multiplicatively with histogram buckets), then this seems like a simpler and more maintainable solution for one person.</p>
+<p>I'll post later on specifically how to minimally run a prometheus in a homelab setting without any of this faff, but I need a break from this first.</p>
+
+      <nav>
+        <div>
+        </div>
+        <div>
+          <a href="https://clux.dev/post/2024-08-11-kubectl-hackery/"> kubectl hackery &#8250;</a>
+        </div>
+      </nav>
+    </article>
+
+    <div class="sblock">
+      <div class="blockdiv sticky">
+        <a class="b s150" href="#">Index</a>
+        <div>
+          <a href="#background-setup">Background Setup</a>
+        </div>
+        <div>
+          <a href="#complexity-pickup">Complexity &amp; Pickup</a>
+        </div>
+        <div class="hpad">
+          <a href="#3-single-points-of-failure"><small>- 3 Single Points of Failure</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#configuration-splits"><small>- Configuration Splits</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#new-features-slow-iteration"><small>- New Features, Slow Iteration</small></a>
+        </div>
+        <div>
+          <a href="#performance-problems">Performance Problems</a>
+        </div>
+        <div class="hpad">
+          <a href="#overall-cluster-measurements"><small>- Overall Cluster Measurements</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#receive-performance"><small>- Receive Performance</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#agent-performance"><small>- Agent Performance</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#ruler-performance"><small>- Ruler Performance</small></a>
+        </div>
+        <div>
+          <a href="#speculation-on-causes">Speculation on Causes</a>
+        </div>
+        <div class="hpad">
+          <a href="#user-error"><small>- User Error</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#colocation-removal"><small>- Colocation Removal</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#evaluation-side-search-space"><small>- Evaluation Side Search Space</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#wrong-tool-for-scaling"><small>- Wrong Tool for Scaling</small></a>
+        </div>
+        <div>
+          <a href="#confusing-agent-promise">Confusing Agent Promise</a>
+        </div>
+        <div>
+          <a href="#future">Future</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <hr />
+    <div class="c">
+      <nav class="tpad"><div><a type="application/atom+xml" href="https://clux.dev/atom.xml" target="_blank" title="probes Atom Feed"><i type="Button" class="svg rss" title="probes Atom Feed"></i></a><a href="https://hachyderm.io/@clux" target="_blank" title="Mastodon" rel="me"><i type="Button" class="svg mastodon" title="Mastodon"></i></a><a href="https://www.linkedin.com/in/🗑-eirik-albrigtsen-b279863a/" target="_blank" title="LinkedIn"><i type="Button" class="svg linkedin" title="LinkedIn"></i></a><a href="https://github.com/clux/" target="_blank" title="Github"><i type="Button" class="svg github" title="Github"></i></a><a href="https://discord.com/tokio/" target="_blank" title="Discord"><i type="Button" class="svg discord" title="Discord"></i></a><a href="https://www.youtube.com/channel&#x2F;UCLpykMxkxuPUR9CciheipZg" target="_blank" title="YouTube"><i type="Button" class="svg youtube" title="YouTube"></i></a><a href="https://github.com/sponsors/clux/" target="_blank" title="GitHub Sponsor"><i type="Button" class="svg github-sponsor" title="GitHub Sponsor"></i></a></div></nav>
+      <nav class="vpad">
+        <a class="rpad" href="https://clux.dev/about/"> About </a>
+        <a class="rpad" href="https://clux.dev/privacy/"> Privacy </a>
+        <a class="rpad" href="https://clux.dev/sitemap.xml" target="_blank"> Sitemap </a>
+      </nav>
+      <p class="s90">Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a> & <a href="https://github.com/jieiku/abridge/" target="_blank">Abridge</a></p>
+    </div>
+  </footer><span class="topout">
+<span class="topleft"> </span><a href="#" class="top" title="Back to Top"><i class="svgs svgh angu"></i></a>
+</span>
+</body>
+</html>
