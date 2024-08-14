@@ -9,7 +9,7 @@ toc = true
 
 [taxonomies]
 categories = ["software"]
-tags = ["kubernetes", "observability"]
+tags = ["kubernetes", "observability", "prometheus"]
 +++
 
 As part of my work life in the past year, a chunk of my day-to-day life has consisted of maintaining a `prometheus` installation on top of a sizable kubernetes cluster. My original feeling was "this is not that bad with `kube-prometheus-stack`", but this sentiment has worsened somewhat with the realisation that more and more customizations and pieces were needed for large scale use. Half a year later (and 6+ charts deep), I thought I'd collect my thoughts on the ecosystem - from an operational perspective - with a rough architecture overview post.
@@ -388,9 +388,8 @@ This component also will **also** suddenly spike in both CPU and memory when use
 
 ### [Thanos Ruler](https://thanos.io/tip/components/rule.md/)
 
-An **optional** rule evaluation / alerting analogue.
-
-This is a bit more **niche** than the rule evaluation in prometheus itself, because rule evalution on the prometheus side essentially gets stored as metrics in the long term storage. The only reason you need this is if you need to alert on / create evaluation rules on a federated level (e.g. to answer whether you have a high error rate across all production clusters / prometheus sets).
+An **optional** rule evaluation / alerting analogue. Not pictured in the current image because it's not really needed in the normal thanos setup (see the next [#prometheus](/tags/prometheus/) post for how this could be used).
+This is a bit more **niche** than the rule evaluation in prometheus itself, because rule evalution on the prometheus side already gets stored as metrics in the long term storage. The only reasons you need this is if you need to alert / evaluate rules on the federated level (e.g. to answer whether you have a high error rate across all production clusters / prometheus sets), or need long term metrics in the evaluation phase for anomaly detection.
 
 If you need the alerting part, then you have another component that talks to `alertmanager` 🙃.
 
