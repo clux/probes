@@ -104,7 +104,7 @@ Tried various flags here over many iterations to see if anything had any practic
 - `--tsdb.wal-compression` - disk benefit only afaikt
 - `--receive.forward.async-workers=1000`  - irrelevant, receive does not forward requests in our setup
 
-The receiver was run as minimally with `3d` retention, and 1 replication factor.
+The receiver was run as minimally with `3d` retention, and 1 replication factor. More about this later.
 
 </details>
 
@@ -136,9 +136,10 @@ Beyond this, this component is nice; seemingly not bad in terms of utilisation, 
 
 ### Necessary Complexity
 
-I probably understimated the amount of complexity involved in actually running `receive`. There's a [split receiver setup](https://github.com/thanos-io/thanos/blob/release-0.22/docs/proposals-accepted/202012-receive-split.md), a [third-party controller to manage its hashring](https://github.com/observatorium/thanos-receive-controller) that people [recommend to avoid write downtime](https://github.com/thanos-io/thanos/issues/6784) - not a problem I even noticed - and that people [claim will double my utilisation again](https://github.com/thanos-io/thanos/issues/7054#issuecomment-1933270766)!
+I probably understimated the amount of complexity involved in actually running `receive`. There's a [split receiver setup](https://github.com/thanos-io/thanos/blob/release-0.22/docs/proposals-accepted/202012-receive-split.md), a [third-party controller to manage its hashring](https://github.com/observatorium/thanos-receive-controller) that people [recommend to avoid write downtime](https://github.com/thanos-io/thanos/issues/6784) (not a problem I even noticed) which people [claim will double my utilisation again](https://github.com/thanos-io/thanos/issues/7054#issuecomment-1933270766)!
 
-Perhaps needless to say, I did not try this mode. If the system performs badly with replication factor 1, the prospect of more complexity and a futher utilisation increase is not particularly inviting. Even if such a system scales, paying our way out of it with pointless compute reservation feels wrong.
+Perhaps needless to say, I did not try this mode. If the system performs badly with replication factor 1, the prospect of more complexity and a futher utilisation increase is not particularly inviting. Even if such a system scales, paying our way out of it with this much pointless compute reservation feels wrong.
+
 ### Colocation Removal
 
 Having a big block of memory directly available for 3 components (scrape → eval / local storage) without having to to through 3 network hops / buffer points (ruler → query → receive) is probably a big deal in retrospect.
@@ -157,7 +158,7 @@ Agent mode on the prometheus side seems perhaps more geared to network gapped / 
 
 It’s possible that other solutions perform better / are better suited, e.g. grafana mimir. I really cannot say.
 
-It’s also possible that we could instead go harder on metric limits (histogram limitations / native histograms / dropping pod/node enrichment for overused histograms) than to follow over-complicated, inefficient, and costly (to run) solutions to a problem that can be perhaps more easily managed by better dilligence on our own field.
+It’s also possible that we could instead go harder on metric limits (histogram limitations / native histograms / dropping pod enrichment) than to follow over-complicated, inefficient, and costly (to run) solutions to a problem that can be perhaps more easily managed by better dilligence on our own field.
 
 ## Confusing Agent Promise
 
@@ -183,6 +184,6 @@ No matter how you slice it, agent mode with thanos is certainly a complex beast 
 
 At this point, I am more than happy to throw in the towel on `receive` + `agent` **if only for complexity reasons**. If the stack becomes so complex that the entire thing cannot be maintained if one key person leaves, then I would consider that a failure. This was hard enough to explain before `receive` and agent mode.
 
-If I have to wrangle with cardinality limits org-wide by advocating for `action: drop` on histograms, or disabling prometheus operator enriched pod labels (which interact multiplicatively with histogram buckets), then this seems like a simpler and more maintainable solution for one person.
+If I have to wrangle with cardinality limits org-wide, run `action: drop` on big histograms, disabling prometheus operator enriched pod labels (which interact multiplicatively with histogram buckets), or create charts to multiply prometheuses, then this all seems more maintainable than `receive`.
 
 I'll post later on specifically how to minimally run a prometheus in a homelab setting without any of this faff, but I need a break from this first.
