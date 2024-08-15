@@ -135,13 +135,15 @@ Beyond this, this component is nice; seemingly not bad in terms of utilisation, 
 
 ## Speculation
 
+..on why it performs like this, and on whether we are expecting too much from this setup.
+
 ### Removing Colocation
 
 This is tiny brain post-rationalisation, but maybe having a big block of memory directly available for 3 purposes (scrape / storage / eval) without having to go through 3 hops and buffer points (ruler → query → receive) is a big deal.
 
 ### Split Receivers
 
-There is a lot more complexity under the surface of for actually running `receive`, well. I ran the basic setup, and probably paid for it.
+There is a lot more complexity under the surface of for actually running `receive` well. I ran the basic setup, and probably paid for it.
 
 For people that need to go deeper; there's a [split receiver setup](https://github.com/thanos-io/thanos/blob/release-0.22/docs/proposals-accepted/202012-receive-split.md), a [third-party controller to manage its hashring](https://github.com/observatorium/thanos-receive-controller) that people [recommend to avoid write downtime](https://github.com/thanos-io/thanos/issues/6784) (not a problem I even noticed) which people [claim will double my utilisation again](https://github.com/thanos-io/thanos/issues/7054#issuecomment-1933270766).
 
@@ -203,6 +205,8 @@ This is the "unscaling" approach I run in my homelab. Granted it is easier to ju
 - Drop most of kubelet metrics (most metrics are unused by dashboards or mixin alerts)
 
 I'll probably explore this approach in more detail later on, because I think it's the most sensible one; dilligence on the home court avoids all the complexity.
+
+In the mean time, post is on [mastodon](https://hachyderm.io/@clux/112967786148145839), source is in the [probes repo](https://github.com/clux/probes/blob/main/content/post/2024-09-15-thanos-receive-scale-fail.md).
 
 ## Future
 
