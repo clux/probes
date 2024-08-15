@@ -77,7 +77,7 @@ Unfortunately, the performance from this setup (after weeks of tuning) was still
 
 ### Benchmark
 
-Comparison is made using prometheus [v2.53.1](https://github.com/prometheus/prometheus/releases/tag/v2.53.1) and thanos [0.36.0](https://github.com/thanos-io/thanos/releases/tag/v0.36.0) and consider `mean` utilisation measurements from cadvisor metrics on a cluster with a `~2M` time series per prometheus replica. We only consider the biggest statefulsets (receive, prometheus/agent, ruler, storegw). In either setup `receive` or `prometheus` were running on a `3d` local retention.
+Comparison is made using prometheus [v2.53.1](https://github.com/prometheus/prometheus/releases/tag/v2.53.1) and thanos [0.36.0](https://github.com/thanos-io/thanos/releases/tag/v0.36.0) and consider `mean` utilisation measurements from cadvisor metrics on a cluster with a `~2.5M` time series per prometheus replica. We only consider the biggest statefulsets (receive, prometheus/agent, ruler, storegw). In either setup `receive` or `prometheus` were running on a `3d` local retention.
 
 ### Results
 
@@ -144,8 +144,6 @@ Perhaps needless to say, I did not try this mode. If the system performs badly w
 
 Having a big block of memory directly available for 3 components (scrape → eval / local storage) without having to to through 3 network hops / buffer points (ruler → query → receive) is probably a big deal in retrospect.
 
-Maybe the better way forward for scaling is not to twist prometheus into something it's not - creating a staggeringly complex system - but by making more prometheuses. Going down such an approach would mean scraping kubelet metrics multiple times, but maybe this can be improved with instance specific servicemonitors that filter on the namespaces the prometheus is concerned with..
-
 ### Bigger Evaluation Window
 
 There is a chance that a good portion of the `ruler` time has come from going through `thanos-query`. This was a deliberate choice so that people could write alerts referencing more than `3d` (local retention) worth of data to do more advanced rules for anomaly detection. This __should not__ have impacted most of our rules since most do not do this type of long range computations..
@@ -158,8 +156,6 @@ Agent mode on the prometheus side seems perhaps more geared to network gapped / 
 
 It’s possible that other solutions perform better / are better suited, e.g. grafana mimir. I really cannot say.
 
-It’s also possible that we could instead go harder on metric limits (histogram limitations / native histograms / dropping pod enrichment) than to follow over-complicated, inefficient, and costly (to run) solutions to a problem that can be perhaps more easily managed by better dilligence on our own field.
-
 ## Confusing Agent Promise
 
 Perhaps the most confusing thing to me is that **agent mode does not act like an agent**.
@@ -168,13 +164,37 @@ You cannot run it as a `DaemonSet`, you merely split the monolith out into a dis
 
 On the grafana cloud side, the [grafana agent](https://grafana.com/docs/agent/latest/static/operation-guide/) did [support running as a daemonset](https://github.com/grafana/agent/blob/c281c76df02b7b1ce4d3c0192915628343f4c897/operations/helm/charts/grafana-agent/templates/controllers/daemonset.yaml), but [it is now EOL](https://grafana.com/blog/2024/04/09/grafana-agent-to-grafana-alloy-opentelemetry-collector-faq/) anyway.
 
-In either case, the biggest problem isn't the scraping, it's the local storage (receive/prom) for fast evaluation of rules / alerts. There is [prometheus operator's sharding suggestion](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/shards-and-replicas.md) that can help partition this, but you need label management, and uneven shard request (cpu/mem) management (due to some shards scraping more metrics and thus having more load), so it's definitely on the more manual side.
-
 It’s been *only* 3 years since [agent mode was announced](https://prometheus.io/blog/2021/11/16/agent/). Now, 2 years later the whole [remote write protocol is being updated](https://github.com/prometheus/prometheus/issues/13105) and [just landed in prometheus](https://github.com/prometheus/prometheus/releases/tag/v2.54.0).
 
 So who knows what the future brings here. It might be another couple of years before new remote write gets propagated through the thanos ecosysystem.
 
-Perhaps it's better to just lean on the classic thanos split and keep reducing local prometheus `retention` time down to a single day or lower (if you dare risk sidecar failures being irrecoverable).
+## Alternatives
+
+### Sharding
+
+Maybe the better way forward for scaling is not to twist prometheus into something it's not - creating a staggeringly complex system - but by making more prometheuses.
+
+There is [prometheus operator's sharding suggestion](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/shards-and-replicas.md) that can help partition a classic prometheus, but you do need partitionl/label management, and uneven shard request (cpu/mem) management (due to some shards scraping more metrics and thus having more load), so it's definitely on the more manual side.
+
+You would also need to split kubelet metrics across namespaces (or whatever you use as your shard) via some templated servicemonitor, and you'd need a bunch of templated datasources in your master grafana that your dashboards would need to be parametrised for. Maybe you also need one cluster prometheus that can scrape all the kubelet metrics for cluster-wide views...
+
+Not impossible, but clearly also an amount of faff. This is standard configuration faff though; not distributed systems faff.
+
+### Lowering Local Retention
+
+If the problem is delaying scaling up to something complex, we could also lean on the classic thanos split and keep reducing local prometheus `retention` time down to a single day or lower (as long as you are quick on detecting sidecar failures so you don't lose data).
+
+This is a temporary solution. On my homelab I can run `30d` retention, but with 5M time series I need `3d`.
+
+### Cardinality Enforcement
+
+This is the approach I run in my homelab. Granted it is easier to justify there, but there are real concrete steps you can do to really reduce the prometheus utilisation:
+
+- drop big histograms / move to native histograms
+- dropping pod enrichment (big replica counts generally multiply cardinality from histograms otherwise)
+- Monitor your ingestion: `by (job)`, before and after relabellings, put alerts on ingested numbers
+- Make sure everyone uses `ServiceMonitor` so above step is feasible
+- Drop most of kubelet metrics (most metrics are unused by dashboards or mixin alerts)
 
 ## Future
 
@@ -184,6 +204,6 @@ No matter how you slice it, agent mode with thanos is certainly a complex beast 
 
 At this point, I am more than happy to throw in the towel on `receive` + `agent` **if only for complexity reasons**. If the stack becomes so complex that the entire thing cannot be maintained if one key person leaves, then I would consider that a failure. This was hard enough to explain before `receive` and agent mode.
 
-If I have to wrangle with cardinality limits org-wide, run `action: drop` on big histograms, disabling prometheus operator enriched pod labels (which interact multiplicatively with histogram buckets), or create charts to multiply prometheuses, then this all seems more maintainable than `receive`.
+If I have to wrangle with cardinality limits org-wide, run `action: drop` on big histograms, disabling prometheus operator label enrichment, or create charts to multiply prometheuses, then this all seems more maintainable than `receive`.
 
-I'll post later on specifically how to minimally run a prometheus in a homelab setting without any of this faff, but I need a break from this first.
+I'll post later on specifically how to minimally run a prometheus in a homelab setting (spoiler more home dilligence over complexity) without any of this faff, but I need a break from this first.
