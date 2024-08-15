@@ -130,10 +130,6 @@
         <lastmod>2024-08-11</lastmod>
     </url>
     <url>
-        <loc>https://clux.dev/post/2024-09-13-thanos-misadventures-with-scaling/</loc>
-        <lastmod>2024-09-13</lastmod>
-    </url>
-    <url>
         <loc>https://clux.dev/post/shipcat-retrospective/</loc>
         <lastmod>2023-09-28</lastmod>
     </url>
@@ -180,12 +176,6 @@
         <loc>https://clux.dev/tags/pkm/</loc>
     </url>
     <url>
-        <loc>https://clux.dev/tags/prometheus/</loc>
-    </url>
-    <url>
         <loc>https://clux.dev/tags/rust/</loc>
-    </url>
-    <url>
-        <loc>https://clux.dev/tags/thanos/</loc>
     </url>
 </urlset>

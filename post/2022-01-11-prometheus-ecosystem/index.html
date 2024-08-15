@@ -55,7 +55,7 @@
     <article>
       <h1><a href="https://clux.dev/post/2022-01-11-prometheus-ecosystem/">Prometheus Stack Review</a></h1>
 
-      <span class="s95"> clux <span class="rpad"></span> January 11, 2022 <span class="rpad"></span> [<a href="https://clux.dev/categories/software/">software</a>] #<a href="https://clux.dev/tags/kubernetes/">kubernetes</a>  #<a href="https://clux.dev/tags/observability/">observability</a>  #<a href="https://clux.dev/tags/prometheus/">prometheus</a> </span>
+      <span class="s95"> clux <span class="rpad"></span> January 11, 2022 <span class="rpad"></span> [<a href="https://clux.dev/categories/software/">software</a>] #<a href="https://clux.dev/tags/kubernetes/">kubernetes</a>  #<a href="https://clux.dev/tags/observability/">observability</a> </span>
 
     
 
@@ -326,8 +326,8 @@
 <p>This component also will <strong>also</strong> suddenly spike in both CPU and memory when users start doing big queries on historical data (i.e. further back in time than prometheus' <code>retention</code>), so a similar HPA to thanos query to scale on CPU works reasonably well:</p>
 <p><a href="/imgs/prometheus/thanos-store-usage.png"><img src="/imgs/prometheus/thanos-store-usage.png" alt="thanos store cpu and memory usage" /></a></p>
 <h3 id="thanos-ruler"><a rel="noopener" target="_blank" href="https://thanos.io/tip/components/rule.md/">Thanos Ruler</a></h3>
-<p>An <strong>optional</strong> rule evaluation / alerting analogue. Not pictured in the current image because it's not really needed in the normal thanos setup (see the next <a href="/tags/prometheus/">#prometheus</a> post for how this could be used).
-This is a bit more <strong>niche</strong> than the rule evaluation in prometheus itself, because rule evalution on the prometheus side already gets stored as metrics in the long term storage. The only reasons you need this is if you need to alert / evaluate rules on the federated level (e.g. to answer whether you have a high error rate across all production clusters / prometheus sets), or need long term metrics in the evaluation phase for anomaly detection.</p>
+<p>An <strong>optional</strong> rule evaluation / alerting analogue.</p>
+<p>This is a bit more <strong>niche</strong> than the rule evaluation in prometheus itself, because rule evalution on the prometheus side essentially gets stored as metrics in the long term storage. The only reason you need this is if you need to alert on / create evaluation rules on a federated level (e.g. to answer whether you have a high error rate across all production clusters / prometheus sets).</p>
 <p>If you need the alerting part, then you have another component that talks to <code>alertmanager</code> 🙃.</p>
 <p>Can run in a stateful mode - presenting a prometheus compatible store api that the querier can hit for rule results - or statelessly; persisting rule results to s3.</p>
 <h3 id="thanos-compactor"><a rel="noopener" target="_blank" href="https://thanos.io/tip/components/compact.md/">Thanos Compactor</a></h3>
