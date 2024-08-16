@@ -145,7 +145,7 @@ This is tiny brain post-rationalisation, but maybe having a big block of memory 
 
 There is a lot more complexity under the surface of for actually running `receive` well. I ran the basic setup, and probably paid for it.
 
-For people that need to go deeper; there's a [split receiver setup](https://github.com/thanos-io/thanos/blob/release-0.22/docs/proposals-accepted/202012-receive-split.md), a [third-party controller to manage its hashring](https://github.com/observatorium/thanos-receive-controller) that people [recommend to avoid write downtime](https://github.com/thanos-io/thanos/issues/6784) (not a problem I even noticed) which people [claim will double my utilisation again](https://github.com/thanos-io/thanos/issues/7054#issuecomment-1933270766).
+For people that need to go deeper; there's a [split receiver setup](https://github.com/thanos-io/thanos/blob/release-0.22/docs/proposals-accepted/202012-receive-split.md), and a [third-party controller to manage its hashring](https://github.com/observatorium/thanos-receive-controller) that people [recommend to avoid write downtime](https://github.com/thanos-io/thanos/issues/6784) (not a problem I even noticed). By using it right, supposedly we get to [double the utilisation again](https://github.com/thanos-io/thanos/issues/7054#issuecomment-1933270766).
 
 My lazy take here is that if the system performs badly with replication factor 1, the prospect of more complexity and a futher utilisation increase is not particularly inviting. Even if such a system scales, paying your way out of it with this much pointless compute resources feels wrong.
 
