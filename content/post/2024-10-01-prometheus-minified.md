@@ -17,13 +17,15 @@ Prometheus does not need to be hugely complicated, nor a massive resource hog, p
 ## Background
 My last [#prometheus](/tags/prometheus/) posts have been exclusively about large scale production setups, and the difficulties this pulls in.
 
-I would like to argue that these difficulties are largely self-imposed, and a result of poor cardinality control.
+I would like to argue that these difficulties are largely self-imposed, and a combination result of missing [cardinality control](https://promcon.io/2019-munich/slides/containing-your-cardinality.pdf) and [induced demand](https://en.wikipedia.org/wiki/Induced_demand).
 
 ## Signals, Symptoms & Causes
 
-Why do we originally install a metrics system at all? We want to have insights into a couple of key **signals**. At the very basic level you want to tell if your "service is down", because you want to be able to use it. That's the main, user-facing signal. Setup something that test if the service responds with a `2XX`, and alert on deviations. You [don't even need](https://www.checklyhq.com/product/api-monitoring/) prometheus for this.
+To illustrate this, let's try to answer the (perhaps obvious question): **why do you install a metrics system at all?**
 
-However, while you can do basic sanity outside the cluster, you don't have a view of __utilisation and saturation__ (i.e. [USE Method](https://www.brendangregg.com/usemethod.html)), so you cannot predict upcoming failures via say:
+Primarily; we want to be able to track and get notified on changes to key **signals**. At the very basic level you want to tell if your "service is down", because you want to be able to use it. That's the main, user-facing signal. Setup something that test if the service responds with a `2XX`, and alert on deviations. You [don't even need](https://www.checklyhq.com/product/api-monitoring/) prometheus for this.
+
+However, while you can do basic sanity outside the cluster, you don't have a view of __utilisation and saturation__ (from e.g. [USE Method](https://www.brendangregg.com/usemethod.html)), so you cannot predict upcoming failures via say:
 
 - message queues full (rejected work)
 - high cpu utilisation (degraded latency)
@@ -36,7 +38,7 @@ You can argue a little more idealistically about whether you should only be "awa
 
 ## How Many Signals
 
-Let's do some basic and simplified enumeration maths on how many signals you actually want to properly identify failures quickly.
+Let's do some simplified enumeration maths on how many signals you actually want to properly identify failures quickly.
 
 ### Compute Utilisation/Saturation
 Consider the example of a cluster with 200 pods, and 5 nodes.
@@ -48,6 +50,28 @@ Consider the example of a cluster with 200 pods, and 5 nodes.
 So, in theory, we should be able to visualise cluster, node, and pod level utilisation for cpu and memory with only 820 metrics.
 
 > NB: Pods are only found on one node, so `Pod` cardinality does not multiply with `Node` cardinality.
+
+### Kubernetes State Inspection
+For the same cluster setup, it's also reasonable to get error information from pods, deployments,
+
+
+### Calculation Problems
+The problems with expecting this type of perfection in practice is that many metric producers are very inefficient with their production, in everything from minor to major ways:
+
+
+Minor: `job="kube-state-metrics"` denormalising __disjoint phases__ (never letting old/zero phases go out of scope):
+
+```promql
+kube_pod_status_phase{phase="Pending", pod="forgejo-975b98575-fbjz8"} 0
+kube_pod_status_phase{phase="Succeeded", pod="forgejo-975b98575-fbjz8"} 0
+kube_pod_status_phase{phase="Failed", pod="forgejo-975b98575-fbjz8"} 0
+kube_pod_status_phase{phase="Unknown", pod="forgejo-975b98575-fbjz8"} 0
+kube_pod_status_phase{phase="Running", pod="forgejo-975b98575-fbjz8"} 1
+```
+
+This [may get a fix](https://github.com/kubernetes/kube-state-metrics/issues/2380).
+
+
 
 ## Basic Prometheus Setup
 How to deploy a base prometheus:
