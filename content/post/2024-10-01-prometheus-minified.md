@@ -17,9 +17,9 @@ Prometheus does not need to be hugely complicated, nor a massive resource hog, p
 ## Background
 My last [#prometheus](/tags/prometheus/) posts have been exclusively about large scale production setups, and the difficulties this pulls in.
 
-I would like to argue that these difficulties are largely self-imposed, and a combination result of missing [cardinality control](https://promcon.io/2019-munich/slides/containing-your-cardinality.pdf) and [induced demand](https://en.wikipedia.org/wiki/Induced_demand).
+I would like to argue that these difficulties are largely self-imposed, and a combination result of inadequate [cardinality control](https://prometheus.io/docs/practices/instrumentation/#do-not-overuse-labels) and [induced demand](https://en.wikipedia.org/wiki/Induced_demand).
 
-> clux: "You should be able to run a prometheus on your handful-of-machine-sized homelab with <10k time series active, using less than 1G memory, and 1m CPU."
+> 👺: You should be able to run a prometheus on your handful-of-machine-sized homelab with <10k time series active, using less than 512Mi memory, and 10m CPU.
 
 ## Signals, Symptoms & Causes
 
@@ -34,20 +34,20 @@ However, while you can do basic sanity outside the cluster, you don't have a vie
 - **memory utilisation high** :: oom kill imminent
 - **disk space nearing full** :: failures imminent
 
-You can argue a little more idealistically about whether you should only be "aware of something going wrong", or be "aware that something is in a risky state" (e.g. [symptoms not causes](https://cloud.google.com/blog/topics/developers-practitioners/why-focus-symptoms-not-causes)), but you can't avoid utilisation/saturation as a predictor for degraded performance (in the same sense as; you don't wait for a certificate to expire before renewing it).
+You can argue __idealistically__ about whether you should only be "aware of something going wrong", or be "aware that something is in a risky state" (e.g. [symptoms not causes](https://cloud.google.com/blog/topics/developers-practitioners/why-focus-symptoms-not-causes)), but you can't avoid utilisation/saturation as a predictor for degraded performance (in the same sense as; you don't wait for a certificate to expire before renewing it).
 
 ## How Many Signals
 
 > MAIN POINT: You should be able to enumerate the signals that you want to consider (be able to visualise and be used in alerts).
 
-Let's do some simplified enumeration maths on how many signals you actually want to properly identify failures quickly.
+Let's do some simplified **enumeration maths** on **how many signals** you actually want to properly identify failures quickly.
 
 ### Compute Utilisation/Saturation
 Consider the example of a cluster with 200 pods, and 5 nodes.
 
-- Want {utilization,saturation} of cpu/memory :: 2 * 2 = 4
-- Want to see them PER `Pod` :: 200 * 4 = 800
-- Want to see them per `Node` :: 5 * 4 = 20
+- Want {utilization,saturation} of cpu/memory :: 2 * 2 = **4 signals**
+- Want to see them PER `Pod` :: 200 * 4 = **800 signals**
+- Want to see them per `Node` :: 5 * 4 = **20 signals**
 
 So, in theory, we should be able to visualise cluster, node, and pod level utilisation for cpu and memory with only 820 metrics (but likely more if you want to break down node metrics).
 
@@ -61,17 +61,16 @@ If you want to break down things within a node on a more physical level, then yo
 
 Assuming, for simplicity, 10 cores per node, 10 disk devices per node, and 10 network interfaces:
 
-- Want {utilization,saturation,errors} of cpu :: 3*10 * 5 = 60
-- Want {utilization,saturation,errors} for memory :: 3*5 = 15
-- Want {utilisation,saturation,errors} of disks :: 3*10 * 5 = 100
-- Want {utilisation,saturation,errors} of network interfaces :: 10*3 * 5 = 150
+- Want {utilization,saturation,errors} of cpu :: 3*10 * 5 = **60 signals**
+- Want {utilization,saturation,errors} for memory :: 3*5 = **15 signals**
+- Want {utilisation,saturation,errors} of disks :: 3*10 * 5 = **100 signals**
+- Want {utilisation,saturation,errors} of network interfaces :: 10*3 * 5 = **150 signals**
 
-In theory you should be able to get decent node monitoring with less than 400 metrics.
+In theory, you should be able to get decent node monitoring with less than 400 metrics.
 
 ### Limitations
 
-The problems with expecting this type of perfection in practice is that many metric producers are so inefficient / lenient with their output that you can expect a **5x inefficiency factor** to apply to the above in practice.
-
+The problems with expecting this type of perfection in practice is that many metric producers are very inefficient / overly lenient with their output. You can see below for some examples, but without extreme tuning you can generally expect a **5x inefficiency factor** to apply to the above in practice.
 
 <details><summary style="cursor:pointer;color:#0af"><b>Addendum: Inefficiency Examples</b></summary>
 
@@ -110,11 +109,22 @@ Similarly, if you want to support a bunch of the mixin dashboards with container
 
 Ultimately this is a numbers game, and you can sweat over details like the above but the biggest improvement comes from the following tiny-brain advice:
 
+**REDUCE FREQUENCY**
+
+You probably don't need 15s data fidelity / sensitivity in your homelab, so a 1m interval should be fine:
+
+```yaml
+scrapeInterval: 60s
+evaluationInterval: 60s
+```
+
+(any longer and grafana starts to look less clean).
+
 **DROP YOUR HISTOGRAMS**
 
-Histograms easily account for 90% of your metric utilisation, so unless you have a need to see detailed breakdown of tail latencies, do not scrape these metrics. It's the easiest win you'll get in prometheus land.
+Histograms easily account for 90% of your metric utilisation, so unless you have a need to see detailed breakdown of latency distributions, do not ingest these metrics. It's the easiest win you'll get in prometheus land.
 
-Doing this is very simple, wildcard drop them from your servicemonitors:
+Doing this is very simple, wildcard drop them from your `ServiceMonitor` (et al) objects:
 
 ```yaml
       metricRelabelings:
@@ -130,6 +140,7 @@ Doing this is very simple, wildcard drop them from your servicemonitors:
 This number is multiplicative with regular cardinality:
   * `pod` / `node` labels added by prometheus operator :: if 2000 metric per pod, and scaling to 20 pods, now you have 40000 metrics
   * request information added by users (endpoint, route, status, error) :: 5 eps * 10 routes * 8 statuses * 4 errors = 1600 metrics, but with 30 buckets = 48000
+  * See the [Containing Your Cardinality](https://promcon.io/2019-munich/slides/containing-your-cardinality.pdf) talk for more maths details
 
 2. **Inefficiency** 30x multiplied information is a bad way to store a few additional signals
 
@@ -139,30 +150,60 @@ If you want P50s or P99s you can compute these in the app with things like [roll
 
 If you absolutely must use them, decouple them from your other labels, export them once (not for all your pods in a big deployment) so that you can get the answer you need cheaply.
 
-TODO: link to native histograms
-TODO: link to the talk everyone references
+> 👺: This will get better with the [native-histograms feature](https://prometheus.io/docs/prometheus/latest/feature_flags/#native-histograms) (see e.g. [this talk](https://www.youtube.com/watch?v=TgINvIK9SYc)). However, this requires the ecosystem to move on to protobufs and it being propagated into client libraries (and is at the moment still experimental at the [time of writing](https://github.com/prometheus/prometheus/releases/tag/v2.54.1)) despite it being documented [2 years ago](https://github.com/prometheus/prometheus/commit/41035469d32fe8fd436c55846a5b237a86e69dee).
 
 </details>
 
 ## Basic Prometheus Setup
-How to deploy a base prometheus:
-
+Basic prometheus architecture:
 
 [![prometheus architecture diagram](/imgs/prometheus/prometheus-simple.webp)](/imgs/prometheus/prometheus-simple.webp)
 
-This is basically my [2022 company setup](/post/2022-01-11-prometheus-ecosystem/), but with thanos ripped out. If you plan on running this on your own on prem setup, you could also rip out the adapter.
+This is basically my [2022 company setup](/post/2022-01-11-prometheus-ecosystem/), but with thanos ripped out.
+
+## Chart
+
+This type of setup I need all the time, so I have a chart for myself now.
+
+It's just a wrapper chart over [kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack) and provides the following default [values.yaml](https://github.com/clux/homelab/blob/main/charts/promstack/values.yaml).
+You can use it direct with:
+
+```sh
+helm repo add clux https://clux.github.io/homelab
+helm install [RELEASE_NAME] clux/promstack
+```
+
+but I recommend you just take the [values.yaml](https://github.com/clux/homelab/blob/main/charts/promstack/values.yaml) file and run with it in your own similar subchart.
+
+> 👺: You shouldn't trust me for maintenance of this, and you don't want to be any more steps abstracted away from kube-prometheus-stack.
+
+By default the chart does not come with `prometheus-adapter`, but it comes with a light `tempo`.
+
+## Features
 
 ## Cardinality Control
+Drops **97% of kubelet metrics**, configures minimal `kube-state-metrics`, `node-exporter` (with some cli arg configurations and some relabelling based drops) and a few other apps. In the end we have a cluster running with **7000 metrics**.
 
-- kubelet drops
-- apiserver drops
-- bucket drops
-- go drops
+[![cardinality control panel](/imgs/prometheus/cardinality-control.png)](/imgs/prometheus/cardinality-control.png)
 
-grafana free tier is 10k, but default server is 5x that, and 11x if we didn't drop anything.
+It's higher than my idealistic estimate, but the [5x inefficiency factor](#limitations) is real. It can be tuned lower with extra effort, but at this point I am happy. This is low enough that [grafana cloud considers it free](https://grafana.com/pricing/), but is it?
 
-## TODO
+### Low Utilization
 
-- chart with setup
-- factor out URL from charts?
-- own repo for prom repo?
+The end result is a prometheus using <0.01 cores:
+
+[![cpu utilisation panel](/imgs/prometheus/minimal-prom-cpu.png)](/imgs/prometheus/minimal-prom-cpu.png)
+
+with 512Mi memory use:
+
+[![memory utilisation panel](/imgs/prometheus/minimal-prom-mem.png)](/imgs/prometheus/minimal-prom-mem.png)
+
+and this is with **`30d` retention**, mean values over 2 days.
+
+### Extras: Metrics Adapter
+
+If you plan on running this on your own on prem setup, you could also rip out the adapter. For homelab type setups, [keda](https://keda.sh/) is more attractive due to its ability to [scale to zero](https://keda.sh/docs/2.15/reference/scaledobject-spec/#minreplicacount).
+
+### Extras: Dashboards
+
+Some of the screenshots here are from my own homebrew panels. See the future post for these.
