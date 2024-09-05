@@ -68,6 +68,10 @@ Assuming, for simplicity, 10 cores per node, 10 disk devices per node, and 10 ne
 
 In theory, you should be able to get decent node monitoring with less than 400 metrics.
 
+## In Practice
+
+The way to achieve this, unfortunately is not by opting in to signals, but to opting-out of nearly everything. Thus the problems start here.
+
 ### Limitations
 
 The problems with expecting this type of perfection in practice is that many metric producers are very inefficient / overly lenient with their output. You can see below for some examples, but without extreme tuning you can generally expect a **5x inefficiency factor** to apply to the above in practice.
@@ -111,14 +115,14 @@ Ultimately this is a numbers game, and you can sweat over details like the above
 
 **REDUCE FREQUENCY**
 
-You probably don't need 15s data fidelity / sensitivity in your homelab, so a 1m interval should be fine:
+You probably don't need 15s data fidelity / sensitivity in your homelab, so `60s` intervals should be fine:
 
 ```yaml
 scrapeInterval: 60s
 evaluationInterval: 60s
 ```
 
-(any longer and grafana starts to look less clean).
+(above 1m grafana does starts to look less clean).
 
 **DROP YOUR HISTOGRAMS**
 
@@ -154,7 +158,7 @@ If you absolutely must use them, decouple them from your other labels, export th
 
 </details>
 
-## Basic Prometheus Setup
+## Desired Prometheus Setup
 Basic prometheus architecture:
 
 [![prometheus architecture diagram](/imgs/prometheus/prometheus-simple.webp)](/imgs/prometheus/prometheus-simple.webp)
@@ -177,11 +181,15 @@ but I recommend you just take the [values.yaml](https://github.com/clux/homelab/
 
 > 👺: You shouldn't trust me for maintenance of this, and you don't want to be any more steps abstracted away from kube-prometheus-stack.
 
-By default the chart does not come with `prometheus-adapter`, but it comes with a light `tempo`.
-
 ## Features
 
-## Cardinality Control
+By default the chart does not come with `prometheus-adapter`, but it comes with a light `tempo`. Incidental. If you have read this far, you can probably adapt if needed.
+
+> 👺: If you plan on running this on your own homelab setup, you may / may-not want a metric adapter such as the pictured `prometheus-adapter`. [keda](https://keda.sh/) is more attractive if you want to [scale to zero](https://keda.sh/docs/2.15/reference/scaledobject-spec/#minreplicacount).
+
+The selling points here are these two features:
+
+### Cardinality Control
 Drops **97% of kubelet metrics**, configures minimal `kube-state-metrics`, `node-exporter` (with some cli arg configurations and some relabelling based drops) and a few other apps. In the end we have a cluster running with **7000 metrics**.
 
 [![cardinality control panel](/imgs/prometheus/cardinality-control.png)](/imgs/prometheus/cardinality-control.png)
@@ -200,10 +208,10 @@ with 512Mi memory use:
 
 and this is with **`30d` retention**, mean values over 2 days.
 
-### Extras: Metrics Adapter
+### CX Dashboards
 
-If you plan on running this on your own on prem setup, you could also rip out the adapter. For homelab type setups, [keda](https://keda.sh/) is more attractive due to its ability to [scale to zero](https://keda.sh/docs/2.15/reference/scaledobject-spec/#minreplicacount).
+The screenshots here are from my own homebrew panels released separately. See the future post for these.
 
-### Extras: Dashboards
+## Fluff
 
-Some of the screenshots here are from my own homebrew panels. See the future post for these.
+Posted on [mastodon](https://hachyderm.io/@clux/). Feel free to comment / [raise issues](https://github.com/clux/homelab/issues) / [suggest an edit](https://github.com/clux/probes/edit/main/content/post/2024-XX-XX-prometheus-minified.md).
