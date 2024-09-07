@@ -130,6 +130,10 @@
         <lastmod>2024-08-11</lastmod>
     </url>
     <url>
+        <loc>https://clux.dev/post/2024-09-07-prometheus-minified/</loc>
+        <lastmod>2024-09-07</lastmod>
+    </url>
+    <url>
         <loc>https://clux.dev/post/2024-09-15-thanos-misadventures-with-scaling/</loc>
         <lastmod>2024-09-15</lastmod>
     </url>
@@ -160,6 +164,9 @@
     </url>
     <url>
         <loc>https://clux.dev/tags/homebrew/</loc>
+    </url>
+    <url>
+        <loc>https://clux.dev/tags/homelab/</loc>
     </url>
     <url>
         <loc>https://clux.dev/tags/kubernetes/</loc>

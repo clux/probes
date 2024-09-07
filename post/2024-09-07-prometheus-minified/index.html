@@ -1,0 +1,338 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://clux.dev/js/theme.min.js" integrity="sha384-pb++s6uBRKaQv+iAXpgA/H3IlpLZdO14tTwuCI7uXmz4aaZdByoCcM+6BhynMq/1"></script>
+  <link rel="stylesheet" href="https://clux.dev/abridge.css?h=9c32aa3ca76689ee23cf" />
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="base" content="https://clux.dev" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <link rel="manifest" href="https://clux.dev/manifest.min.json" />
+  <link rel="alternate" type="application/atom+xml" title="probes Atom Feed" href="https://clux.dev/atom.xml" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <title>Running a Minimal Prometheus | probes</title>
+  <meta name="author" content="clux" />
+  <meta name="copyright" content="probes" />
+  <meta name="description" content="how to setup an efficient prometheus for small clusters" />
+  <link rel="canonical" href="https://clux.dev/post/2024-09-07-prometheus-minified/" />
+  <meta name="keywords" content="Kubernetes, Cloud, Rust, Theorycraft, Blog" />
+  <script defer src="https://clux.dev/js/abridge.min.js?h=4dbe2f6c7673e0a145f0" integrity="sha384-en9uTP2jQMLjO9fwbuGUKlCZ+kGMvN97ASddcA7mljWRGw70rs3zSMPNIozwGYFU"></script>
+  <noscript><link rel="stylesheet" href="https://clux.dev/nojs.css" /></noscript>
+</head>
+<body>
+  <header>
+    <nav>
+      <div><h1><a href="https://clux.dev" title="probes"><font color="#74c7ec">P</font>robes ↝ cl<font color="#74c7ec">u</font>x</a></h1></div>
+      <div>
+
+        <div>
+          <ul><li><a class="s110" href="https://clux.dev/about/"> About </a></li><li><a class="s110" href="https://clux.dev/post/"> Posts </a></li><li><a class="s110" href="https://clux.dev/categories/"> Categories </a></li><li><a class="s110" href="https://clux.dev/tags/"> Tags </a></li><li><i type="reset" id="mode" class="js svgs adjust"></i></ul>
+        </div>
+
+        <div>
+          <div>
+            <form autocomplete=off class="js" name="goSearch" id="searchbox">
+              <div class="searchd">
+                <input id="searchinput" type="text" placeholder="Search" title="Search" />
+                <button type="submit" title="Search" class="svgs svgm search"></button>
+              </div>
+              <div class="results"><div id="suggestions"></div></div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+  <main>
+    <article>
+      <h1><a href="https://clux.dev/post/2024-09-07-prometheus-minified/">Running a Minimal Prometheus</a></h1>
+
+      <span class="s95"> clux <span class="rpad"></span> September 07, 2024 <span class="rpad"></span> [<a href="https://clux.dev/categories/software/">software</a>] #<a href="https://clux.dev/tags/kubernetes/">kubernetes</a>  #<a href="https://clux.dev/tags/observability/">observability</a>  #<a href="https://clux.dev/tags/prometheus/">prometheus</a>  #<a href="https://clux.dev/tags/homelab/">homelab</a> </span>
+
+    
+
+
+<p>Prometheus does not need to be hugely complicated, nor a massive resource hog, provided you follow some principles.</p>
+<h2 id="background">Background</h2>
+<p>My last <a href="/tags/prometheus/">#prometheus</a> posts have been exclusively about large scale production setups, and the difficulties this pulls in.</p>
+<p>I would like to argue that these difficulties are largely self-imposed, and a combination result of inadequate <a rel="noopener" target="_blank" href="https://prometheus.io/docs/practices/instrumentation/#do-not-overuse-labels">cardinality control</a> and <a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Induced_demand">induced demand</a>.</p>
+<blockquote>
+<p>👺: You should be able to run a prometheus on your handful-of-machine-sized homelab with &lt;10k time series active, using less than 512Mi memory, and 10m CPU.</p>
+</blockquote>
+<details><summary style="cursor:pointer;color:#0af"><b>Disclaimer: Who am I?</b></summary>
+<p><a rel="noopener" target="_blank" href="https://github.com/clux">I</a> am a platform engineer working maintenance of observability infrastructure, and a maintainer of <a rel="noopener" target="_blank" href="https://kube.rs">kube-rs</a> working on rust integration of observability with Kubernetes platforms. My knowledge of prometheus is superficial and mostly based on practical observations around operating it for years. Suggestions or corrections are welcome (links at bottom).</p>
+</details>
+<h2 id="signals-symptoms-causes">Signals, Symptoms &amp; Causes</h2>
+<p>To illustrate this, let's try to answer the (perhaps obvious question): <strong>why do you install a metrics system at all?</strong></p>
+<p>Primarily; we want to be able to track and get notified on changes to key <strong>signals</strong>. At the very basic level you want to tell if your "service is down", because you want to be able to use it. That's the main, user-facing signal. Setup something that test if the service responds with a <code>2XX</code>, and alert on deviations. You <a rel="noopener" target="_blank" href="https://www.checklyhq.com/product/api-monitoring/">don't even need</a> prometheus for this.</p>
+<p>However, while you can do basic sanity outside the cluster, you need <a rel="noopener" target="_blank" href="https://www.brendangregg.com/usemethod.html">utilisation and saturation</a>, to tell you about less obvious / upcoming failures:</p>
+<ul>
+<li><strong>message queues full</strong> :: rejected work</li>
+<li><strong>high cpu utilisation</strong> :: degraded latency</li>
+<li><strong>memory utilisation high</strong> :: oom kill imminent</li>
+<li><strong>disk space nearing full</strong> :: failures imminent</li>
+</ul>
+<p>You can argue <strong>idealistically</strong> about whether you should only be "aware of something going wrong", or be "aware that something is in a risky state" (e.g. <a rel="noopener" target="_blank" href="https://cloud.google.com/blog/topics/developers-practitioners/why-focus-symptoms-not-causes">symptoms not causes</a>), but it's silly to avoid utilisation/saturation as a predictor for degraded performance (in the same sense as; you don't wait for a certificate to expire before renewing it).</p>
+<h2 id="how-many-signals">How Many Signals</h2>
+<blockquote>
+<p>MAIN POINT: You should be able to enumerate the <strong>basic</strong> signals that you want to have visibility of.</p>
+</blockquote>
+<p>Let's do some simplified <strong>enumeration maths</strong> on <strong>how many signals</strong> you actually want to properly identify failures quickly.</p>
+<h3 id="compute-utilisation-saturation">Compute Utilisation/Saturation</h3>
+<p>Consider an <strong>example cluster with 200 pods, and 5 nodes</strong>.</p>
+<ul>
+<li>Want {utilization,saturation} of {cpu,memory} at cluster level :: 2 * 2 = <strong>4 signals</strong></li>
+<li>Want to break these down per <code>Pod</code> :: 200 * 4 = <strong>800 signals</strong></li>
+<li>Want to break these down per <code>Node</code> :: 5 * 4 = <strong>20 signals</strong></li>
+</ul>
+<p>So, in theory, we should be able to visualise cluster, node, and pod level utilisation for cpu and memory with only 820 metrics (but likely more if you want to break down node metrics).</p>
+<blockquote>
+<p>NB: Pods are only found on one node, so <code>Pod</code> cardinality does not multiply with <code>Node</code> cardinality.</p>
+</blockquote>
+<p>These will come from a combination of <a rel="noopener" target="_blank" href="https://github.com/google/cadvisor/blob/master/docs/storage/prometheus.md">cadvisor</a> and <a rel="noopener" target="_blank" href="https://github.com/kubernetes/kube-state-metrics">kube-state-metrics</a>; huge beasts with lots of functionality and way more signals than we need. Depending on how much of the <a rel="noopener" target="_blank" href="https://monitoring.mixins.dev/kubernetes/">kubernetes mixin</a> you want, you may want more signals.</p>
+<h3 id="node-state-breakdown">Node State Breakdown</h3>
+<p>If you want to break down things <strong>within a node</strong> on a more physical level, then you you can also grab <a rel="noopener" target="_blank" href="https://github.com/prometheus/node_exporter">node-exporter</a>.</p>
+<p>Assuming, for simplicity, 10 cores per node, 10 disk devices per node, and 10 network interfaces:</p>
+<ul>
+<li>Want {utilization,saturation,errors} of cpu :: 3*10 * 5 = <strong>60 signals</strong></li>
+<li>Want {utilization,saturation,errors} for memory :: 3*5 = <strong>15 signals</strong></li>
+<li>Want {utilisation,saturation,errors} of disks :: 3*10 * 5 = <strong>100 signals</strong></li>
+<li>Want {utilisation,saturation,errors} of network interfaces :: 10*3 * 5 = <strong>150 signals</strong></li>
+</ul>
+<p>In theory, you should be able to get decent node monitoring with less than 400 metrics.</p>
+<h2 id="in-practice">In Practice</h2>
+<p>Doing this type of enumeration is helpful as a way to tell how close you are to your theoretical 100% optimised system, but how does the number hold up in practice?</p>
+<h3 id="metric-inefficiencies">Metric Inefficiencies</h3>
+<p>The problems with expecting this type of perfection in practice is that many metric producers are very inefficient / overly lenient with their output. You can click on the addendum below for some examples, but without extreme tuning you can generally expect a <strong>5x inefficiency factor</strong> to apply to the above in practice.</p>
+<details><summary style="cursor:pointer;color:#0af"><b>Addendum: Inefficiency Examples</b></summary>
+<p>Minor: <code>job="kube-state-metrics"</code> denormalising <strong>disjoint phases</strong> (never letting old/zero phases go out of scope):</p>
+<pre data-lang="promql" class="language-promql z-code"><code class="language-promql" data-lang="promql"><span class="z-text z-plain">kube_pod_status_phase{phase=&quot;Pending&quot;, pod=&quot;forgejo-975b98575-fbjz8&quot;} 0
+</span><span class="z-text z-plain">kube_pod_status_phase{phase=&quot;Succeeded&quot;, pod=&quot;forgejo-975b98575-fbjz8&quot;} 0
+</span><span class="z-text z-plain">kube_pod_status_phase{phase=&quot;Failed&quot;, pod=&quot;forgejo-975b98575-fbjz8&quot;} 0
+</span><span class="z-text z-plain">kube_pod_status_phase{phase=&quot;Unknown&quot;, pod=&quot;forgejo-975b98575-fbjz8&quot;} 0
+</span><span class="z-text z-plain">kube_pod_status_phase{phase=&quot;Running&quot;, pod=&quot;forgejo-975b98575-fbjz8&quot;} 1
+</span></code></pre>
+<p>This <a rel="noopener" target="_blank" href="https://github.com/kubernetes/kube-state-metrics/issues/2380">may get a fix</a>.</p>
+<p>Annoying: <code>job="node-exporter"</code> putting tons of labels on metrics such as <code>node_cpu_seconds_total</code>:</p>
+<pre data-lang="promql" class="language-promql z-code"><code class="language-promql" data-lang="promql"><span class="z-text z-plain">{cpu=&quot;15&quot;, mode=&quot;idle&quot;} 1
+</span><span class="z-text z-plain">{cpu=&quot;15&quot;, mode=&quot;iowait&quot;} 1
+</span><span class="z-text z-plain">{cpu=&quot;15&quot;, mode=&quot;irq&quot;} 1
+</span><span class="z-text z-plain">{cpu=&quot;15&quot;, mode=&quot;nice&quot;} 1
+</span><span class="z-text z-plain">{cpu=&quot;15&quot;, mode=&quot;softirq&quot;} 1
+</span><span class="z-text z-plain">{cpu=&quot;15&quot;, mode=&quot;steal&quot;} 1
+</span><span class="z-text z-plain">{cpu=&quot;15&quot;, mode=&quot;system&quot;} 1
+</span><span class="z-text z-plain">{cpu=&quot;15&quot;, mode=&quot;user&quot;}
+</span></code></pre>
+<p>and while you can <code>action: labeldrop</code> the <code>cpu</code> breakdown, you can't do the same for <code>mode</code> because the <a rel="noopener" target="_blank" href="https://github.com/prometheus/node_exporter/blob/b9d0932179a0c5b3a8863f3d6cdafe8584cedc8e/docs/node-mixin/rules/rules.libsonnet#L9-L14">standard recording rules depend on mode</a>.</p>
+<p>Similarly, if you want to support a bunch of the mixin dashboards with container level breakdown, you are also forced to grab a bunch of container level info for e.g. <a rel="noopener" target="_blank" href="https://github.com/prometheus-community/helm-charts/blob/71845c4d5795ec552e3ea96036c39dcfb97132ad/charts/kube-prometheus-stack/templates/prometheus/rules-1.14/k8s.rules.container_resource.yaml#L43">k8s.rules.container_resource</a> unless if you want to rewrite the world.</p>
+</details>
+<h3 id="visualising-cardinality">Visualising Cardinality</h3>
+<p>I have a <a rel="noopener" target="_blank" href="https://github.com/clux/homelab/blob/main/dashboards/prometheus.json">dashboard</a> for this with this panel:</p>
+<p><a href="/imgs/prometheus/cardinality-control.png"><img src="/imgs/prometheus/cardinality-control.png" alt="cardinality control panel" /></a></p>
+<p>Shows metrics produced, how many we decided to keep, and a breakdown link leading to <code>topk(50, count({job="JOB-IN-ROW"}) by (__name__))</code>. It's probably the panel that has helped the most in slimming down prometheus.</p>
+<h3 id="outing-out">Outing Out</h3>
+<p>The most unfortunate reality is that this stuff is all opt-out. The <a rel="noopener" target="_blank" href="https://github.com/prometheus-community/helm-charts/blob/ecc58b9baecc43b0d5719ed509a89e7ca5a7e8e3/charts/kube-prometheus-stack/values.yaml#L47-L83">defaults are crazy inclusive</a>, and new versions of exporters introduce new metrics forcing you to watch your usage graph upgrades.</p>
+<p>Thankfully, in a <a rel="noopener" target="_blank" href="https://github.com/clux/homelab">gitops repo</a> this is easy to do (if you <a rel="noopener" target="_blank" href="https://hachyderm.io/@clux/113044641297413034">actually generate your helm templates</a> into a <code>deploy</code> folder) because all your dashboards and recording rules live there.</p>
+<p><strong>Procedure</strong>: Unsure if you need this <code>container_sockets</code> metric? <code>rg container_sockets deploy/</code> and see if anything comes up:</p>
+<ol>
+<li>No hits? <code>action: drop</code>.</li>
+<li>Only used in a dashboard? Do you care about this dashboard? No? <code>action: drop</code>.</li>
+<li>Used in a recording rule? Does the recording rule go towards an alert/dashboard you care about? No? <code>action: drop</code>.</li>
+<li>Partially used in dashboard or recording rule? <code>labeldrop</code> subset.</li>
+</ol>
+<p>Grafana cloud has its own opt-out ML based <a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=ZkXJIQYbUVs">adaptive metrics thing</a> to do this, and while this is probably helpful if you are locked into their cloud, the solution definitely has a <strong>big engineering solution</strong> feel to it:</p>
+<p><img src="/imgs/prometheus/adaptive-metric-power-meme.png" alt="fraction of my power meme comparing grafana adaptive metrics to just a git repo with grep" /></p>
+<h2 id="things-you-don-t-need">Things You Don't Need</h2>
+<h3 id="sub-minute-data-fidelity">Sub Minute Data Fidelity</h3>
+<p>You are probably checking your homelab once every few days at most, so why do you expect you would need 15s/30s data fidelity? You can set <code>60s</code> scrape/eval intervals and be fine:</p>
+<pre data-lang="yaml" class="language-yaml z-code"><code class="language-yaml" data-lang="yaml"><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">scrapeInterval</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">60s</span>
+</span><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">evaluationInterval</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">60s</span>
+</span></code></pre>
+<p>You could go even higher, but above <code>1m</code> grafana does starts to look less clean.</p>
+<p>To compensate, you <a rel="noopener" target="_blank" href="https://github.com/clux/homelab/blob/main/justfile">can hack your mixin dashboards</a> to increase the time window, and set a less aggressive refresh:</p>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> change default refreshes on grafana dashboards to be 1m rather than 10s</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">fd</span></span><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>g</span> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&#39;</span>*.yaml<span class="z-punctuation z-definition z-string z-end z-shell">&#39;</span></span> deploy/promstack/promstack/charts/kube-prometheus-stack/templates/grafana/dashboards-1.14/ <span class="z-punctuation z-separator z-continuation z-line z-shell">\
+</span></span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell">   -</span>x</span> sd <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&#39;</span>&quot;refresh&quot;:&quot;10s&quot;<span class="z-punctuation z-definition z-string z-end z-shell">&#39;</span></span> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&#39;</span>&quot;refresh&quot;:&quot;1m&quot;<span class="z-punctuation z-definition z-string z-end z-shell">&#39;</span></span> <span class="z-meta z-group z-expansion z-brace z-shell"><span class="z-punctuation z-section z-expansion z-brace z-begin z-shell">{</span><span class="z-punctuation z-section z-expansion z-brace z-end z-shell">}</span></span></span>
+</span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> change default time range to be now-12h rather than now-1h on boards that cannot handle 2 days...</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">fd</span></span><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>g</span> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&#39;</span>*.yaml<span class="z-punctuation z-definition z-string z-end z-shell">&#39;</span></span> deploy/promstack/promstack/charts/kube-prometheus-stack/templates/grafana/dashboards-1.14/ <span class="z-punctuation z-separator z-continuation z-line z-shell">\
+</span></span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell">   -</span>x</span> sd <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&#39;</span>&quot;from&quot;:&quot;now-1h&quot;<span class="z-punctuation z-definition z-string z-end z-shell">&#39;</span></span> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&#39;</span>&quot;from&quot;:&quot;now-12h&quot;<span class="z-punctuation z-definition z-string z-end z-shell">&#39;</span></span> <span class="z-meta z-group z-expansion z-brace z-shell"><span class="z-punctuation z-section z-expansion z-brace z-begin z-shell">{</span><span class="z-punctuation z-section z-expansion z-brace z-end z-shell">}</span></span></span>
+</span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> change default time range to be now-2d rather than now-1h on solid dashboards...</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">fd</span></span><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>g</span> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&#39;</span>k8s*.yaml<span class="z-punctuation z-definition z-string z-end z-shell">&#39;</span></span> deploy/promstack/promstack/charts/kube-prometheus-stack/templates/grafana/dashboards-1.14/ <span class="z-punctuation z-separator z-continuation z-line z-shell">\
+</span></span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell">   -</span>x</span> sd <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&#39;</span>&quot;from&quot;:&quot;now-12h&quot;<span class="z-punctuation z-definition z-string z-end z-shell">&#39;</span></span> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&#39;</span>&quot;from&quot;:&quot;now-2d&quot;<span class="z-punctuation z-definition z-string z-end z-shell">&#39;</span></span> <span class="z-meta z-group z-expansion z-brace z-shell"><span class="z-punctuation z-section z-expansion z-brace z-begin z-shell">{</span><span class="z-punctuation z-section z-expansion z-brace z-end z-shell">}</span></span></span>
+</span></code></pre>
+<p>..which is <a rel="noopener" target="_blank" href="https://github.com/clux/homelab/blob/ff02315f3280c8199451160ab82a8e35a48f5cb1/justfile#L36-L51">actually practical</a> if you use <code>helm template</code> rather than <code>helm upgrade</code>.</p>
+<h3 id="kubelet-metrics">Kubelet Metrics</h3>
+<p>97% of kubelet metrics are junk. In a small cluster it's the biggest waste producer in a small cluster, often producing 10x more metrics than anything else. Look at the top 10 metrics they produce with just 1 node and 30 pods:</p>
+<p><a href="/imgs/prometheus/kublet-defaults-1-node.png"><img src="/imgs/prometheus/kublet-defaults-1-node.png" alt="kubelet metrics top 10" /></a></p>
+<p>None of these are useful / contribute towards my above goal. Number 4 and 5 on that list <strong>together</strong> produce more signals than I consume in TOTAL in my actual setup. The <code>kube-prometheus-stack</code> chart does <a rel="noopener" target="_blank" href="https://github.com/prometheus-community/helm-charts/blob/ecc58b9baecc43b0d5719ed509a89e7ca5a7e8e3/charts/kube-prometheus-stack/values.yaml#L1331-L1456">attempt to reduce this somewhat</a>, but it by far too little.</p>
+<h3 id="histograms">Histograms</h3>
+<p>Histograms generally account for a huge percentage of your metric utilisation. On a default <code>kube-prometheus-stack</code> install with one node, the distribution is &gt;70% histograms:</p>
+<p><a href="/imgs/prometheus/histogram-defaults.png"><img src="/imgs/prometheus/histogram-defaults.png" alt="histograms vs non histograms on default kube-prometheus-stack &gt; 70%" /></a></p>
+<p>Of course, this is largely due to <code>kubelet</code> metric inefficiencies, but it's a trend you will see repeated elsewhere (thankfully usually with less eye-watering percentages).</p>
+<p>Unless you have a need to see/debug detailed breakdown of latency distributions, do not ingest or produce these metrics (see addendum for more info). It's the easiest win you'll get in prometheus land; wildcard drop them from your <code>ServiceMonitor</code> (et al) objects:</p>
+<pre data-lang="yaml" class="language-yaml z-code"><code class="language-yaml" data-lang="yaml"><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">metricRelabelings</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">      <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">sourceLabels</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-meta z-flow-sequence z-yaml"><span class="z-punctuation z-definition z-sequence z-begin z-yaml">[</span><span class="z-string z-unquoted z-plain z-in z-yaml">__name__</span><span class="z-punctuation z-definition z-sequence z-end z-yaml">]</span></span>
+</span><span class="z-source z-yaml">        <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">action</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">drop</span>
+</span><span class="z-source z-yaml">        <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">regex</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-quoted z-single z-yaml"><span class="z-punctuation z-definition z-string z-begin z-yaml">&#39;</span>^.*bucket.*<span class="z-punctuation z-definition z-string z-end z-yaml">&#39;</span></span>
+</span></code></pre>
+<details><summary style="cursor:pointer;color:#0af"><b>Addendum: Why does histograms suck?</b></summary>
+<ol>
+<li><strong>Multiplicative Cardinality</strong>: histogram buckets multiply metric cardinality by 5-30x (the number of buckets).</li>
+</ol>
+<p>This number is multiplicative with regular cardinality:</p>
+<ul>
+<li><code>pod</code> / <code>node</code> labels added by prometheus operator :: if 2000 metric per pod, and scaling to 20 pods, now you have 40000 metrics</li>
+<li>request information added by users (endpoint, route, status, error) :: 5 eps * 10 routes * 8 statuses * 4 errors = 1600 metrics, but with 30 buckets = 48000</li>
+<li>See the <a rel="noopener" target="_blank" href="https://promcon.io/2019-munich/slides/containing-your-cardinality.pdf">Containing Your Cardinality</a> talk for more maths details</li>
+</ul>
+<ol start="2">
+<li><strong>Inefficiency</strong> 30x multiplied information is a bad way to store a few additional signals</li>
+</ol>
+<p>If you want P50s or P99s you can compute these in the app with things like <a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Moving_average">rolling averages</a> or rolling quantiles. Some of these are more annoying than others, but there's a lot you can do by just tracking a mean.</p>
+<blockquote>
+<p>Strive for one signal per question where possible.</p>
+</blockquote>
+<p>That said, if you do actually need them, try to decouple them from your other labels (drop pod labels, drop peripheral information) so that you can get the answer you need cheaply. A histogram should answer one question, if your histogram has extra parameters, you can break them down to smaller histograms (addition beats multiplication for cardinality)</p>
+<blockquote>
+<p>👺: Histograms will get better with the <a rel="noopener" target="_blank" href="https://prometheus.io/docs/prometheus/latest/feature_flags/#native-histograms">native-histograms feature</a> (see e.g. <a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=TgINvIK9SYc">this talk</a>). However, this requires the ecosystem to move on to protobufs and it being propagated into client libraries (and is at the moment still experimental at the <a rel="noopener" target="_blank" href="https://github.com/prometheus/prometheus/releases/tag/v2.54.1">time of writing</a>), it's only been <a rel="noopener" target="_blank" href="https://github.com/prometheus/prometheus/commit/41035469d32fe8fd436c55846a5b237a86e69dee">2 years</a> though.</p>
+</blockquote>
+</details>
+<h2 id="a-solution">A Solution</h2>
+<p>Because I keep needing an efficient, low-cost setup for prometheus (that still has the signals I care about), so now here is a chart.</p>
+<p>It's mostly a wrapper chart over <a rel="noopener" target="_blank" href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack">kube-prometheus-stack</a> with aggressive tunings / dropping (of what can't be tuned), and it provides the following default <a rel="noopener" target="_blank" href="https://github.com/clux/homelab/blob/main/charts/promstack/values.yaml">values.yaml</a>.</p>
+<p>You can use it direct with:</p>
+<pre data-lang="sh" class="language-sh z-code"><code class="language-sh" data-lang="sh"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">helm</span></span><span class="z-meta z-function-call z-arguments z-shell"> repo add clux https://clux.github.io/homelab</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">helm</span></span><span class="z-meta z-function-call z-arguments z-shell"> install <span class="z-keyword z-control z-regexp z-set z-begin z-shell">[</span>RELEASE_NAME<span class="z-keyword z-control z-regexp z-set z-end z-shell">]</span> clux/promstack</span>
+</span></code></pre>
+<p>but I recommend you just take/dissect the <a rel="noopener" target="_blank" href="https://github.com/clux/homelab/blob/main/charts/promstack/values.yaml">values.yaml</a> file and run with it in your own similar subchart.</p>
+<blockquote>
+<p>👺: You shouldn't trust me for maintenance of this, and you don't want to be any more steps abstracted away from kube-prometheus-stack.</p>
+</blockquote>
+<h2 id="architecture-diagram">Architecture Diagram</h2>
+<p>The chart is effectively a slimmed down <a href="/post/2022-01-11-prometheus-ecosystem/">2022 company setup</a>; no HA (1 replica everywhere), no <code>thanos</code>, no <code>prometheus-adapter</code>, but a including a lightweight <code>tempo</code> for exemplars:</p>
+<p><a href="/imgs/prometheus/prometheus-simple.png"><img src="/imgs/prometheus/prometheus-simple.png" alt="prometheus architecture diagram" /></a></p>
+<h2 id="features">Features</h2>
+<p>A low-compromises prometheus, all the signals you need at near minimum cost.</p>
+<h3 id="cardinality-control">Cardinality Control</h3>
+<p>Drops <strong>97% of kubelet metrics</strong>, configures minimal <code>kube-state-metrics</code>, <code>node-exporter</code> (with some cli arg configurations and some relabelling based drops) and a few other apps. In the end we have a cluster running with <strong>7000 metrics</strong>.</p>
+<p><a href="/imgs/prometheus/cardinality-control.png"><img src="/imgs/prometheus/cardinality-control.png" alt="cardinality control panel" /></a></p>
+<p>It's higher than my idealistic estimate - particularly considering this is a one node cluster atm. It can definitely be tuned lower with extra effort, but this is a good checkpoint. This is low enough that <a rel="noopener" target="_blank" href="https://grafana.com/pricing/">grafana cloud considers it free</a>. So is it?</p>
+<h3 id="low-utilization">Low Utilization</h3>
+<p>The end result is a prometheus averaging <code>&lt;0.01</code> cores and with <code>&lt;512Mi</code> memory use over a week with <code>30d</code> retention:</p>
+<p><img src="/imgs/prometheus/minimal-prom.png" alt="cpu / memory utilisation 7d means" /></p>
+<h3 id="auxilary-features">Auxilary Features</h3>
+<ol>
+<li>Tempo for <a rel="noopener" target="_blank" href="https://github.com/kube-rs/controller-rs/pull/72#issuecomment-2335150121">exemplars</a>, so we can cross-link from metric panels to grafana's trace viewer.</li>
+<li>Metrics Server for basic HPA scaling and <code>kubectl top</code>.</li>
+</ol>
+<blockquote>
+<p>👺: You technically don't need <code>metrics-server</code> if you are in an unscalable homelab, but having access to <code>kubectl top</code> is nice. Another avenue for homelab scaling is <a rel="noopener" target="_blank" href="https://keda.sh/">keda</a> with its <a rel="noopener" target="_blank" href="https://keda.sh/docs/2.15/reference/scaledobject-spec/#minreplicacount">scale to zero</a> ability.</p>
+</blockquote>
+<h3 id="cx-dashboards">CX Dashboards</h3>
+<p>The screenshots here are from my own homebrew <a rel="noopener" target="_blank" href="https://github.com/clux/homelab/tree/main/dashboards">dashboards</a> released separately. See the future post for these.</p>
+<h2 id="links-comments">Links / Comments</h2>
+<p>Posted on <a rel="noopener" target="_blank" href="https://hachyderm.io/@clux/">mastodon</a>. Feel free to comment / <a rel="noopener" target="_blank" href="https://github.com/clux/homelab/issues">raise issues</a> / <a rel="noopener" target="_blank" href="https://github.com/clux/probes/edit/main/content/post/2024-09-07-prometheus-minified.md">suggest an edit</a>.</p>
+
+      <nav>
+        <div>
+          <a href="https://clux.dev/post/2024-09-15-thanos-misadventures-with-scaling/">&#8249; You Will (Not) Scale Prometheus</a>
+        </div>
+        <div>
+          <a href="https://clux.dev/post/2024-08-11-kubectl-hackery/"> kubectl hackery &#8250;</a>
+        </div>
+      </nav>
+    </article>
+
+    <div class="sblock">
+      <div class="blockdiv sticky">
+        <a class="b s150" href="#">Index</a>
+        <div>
+          <a href="#background">Background</a>
+        </div>
+        <div>
+          <a href="#signals-symptoms-causes">Signals, Symptoms &amp; Causes</a>
+        </div>
+        <div>
+          <a href="#how-many-signals">How Many Signals</a>
+        </div>
+        <div class="hpad">
+          <a href="#compute-utilisation-saturation"><small>- Compute Utilisation&#x2F;Saturation</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#node-state-breakdown"><small>- Node State Breakdown</small></a>
+        </div>
+        <div>
+          <a href="#in-practice">In Practice</a>
+        </div>
+        <div class="hpad">
+          <a href="#metric-inefficiencies"><small>- Metric Inefficiencies</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#visualising-cardinality"><small>- Visualising Cardinality</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#outing-out"><small>- Outing Out</small></a>
+        </div>
+        <div>
+          <a href="#things-you-don-t-need">Things You Don&#x27;t Need</a>
+        </div>
+        <div class="hpad">
+          <a href="#sub-minute-data-fidelity"><small>- Sub Minute Data Fidelity</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#kubelet-metrics"><small>- Kubelet Metrics</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#histograms"><small>- Histograms</small></a>
+        </div>
+        <div>
+          <a href="#a-solution">A Solution</a>
+        </div>
+        <div>
+          <a href="#architecture-diagram">Architecture Diagram</a>
+        </div>
+        <div>
+          <a href="#features">Features</a>
+        </div>
+        <div class="hpad">
+          <a href="#cardinality-control"><small>- Cardinality Control</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#low-utilization"><small>- Low Utilization</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#auxilary-features"><small>- Auxilary Features</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#cx-dashboards"><small>- CX Dashboards</small></a>
+        </div>
+        <div>
+          <a href="#links-comments">Links &#x2F; Comments</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <hr />
+    <div class="c">
+      <nav class="tpad"><div><a type="application/atom+xml" href="https://clux.dev/atom.xml" target="_blank" title="probes Atom Feed"><i type="Button" class="svg rss" title="probes Atom Feed"></i></a><a href="https://hachyderm.io/@clux" target="_blank" title="Mastodon" rel="me"><i type="Button" class="svg mastodon" title="Mastodon"></i></a><a href="https://www.linkedin.com/in/🗑-eirik-albrigtsen-b279863a/" target="_blank" title="LinkedIn"><i type="Button" class="svg linkedin" title="LinkedIn"></i></a><a href="https://github.com/clux/" target="_blank" title="Github"><i type="Button" class="svg github" title="Github"></i></a><a href="https://discord.com/tokio/" target="_blank" title="Discord"><i type="Button" class="svg discord" title="Discord"></i></a><a href="https://www.youtube.com/channel&#x2F;UCLpykMxkxuPUR9CciheipZg" target="_blank" title="YouTube"><i type="Button" class="svg youtube" title="YouTube"></i></a><a href="https://github.com/sponsors/clux/" target="_blank" title="GitHub Sponsor"><i type="Button" class="svg github-sponsor" title="GitHub Sponsor"></i></a></div></nav>
+      <nav class="vpad">
+        <a class="rpad" href="https://clux.dev/about/"> About </a>
+        <a class="rpad" href="https://clux.dev/privacy/"> Privacy </a>
+        <a class="rpad" href="https://clux.dev/sitemap.xml" target="_blank"> Sitemap </a>
+      </nav>
+      <p class="s90">Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a> & <a href="https://github.com/jieiku/abridge/" target="_blank">Abridge</a></p>
+    </div>
+  </footer><span class="topout">
+<span class="topleft"> </span><a href="#" class="top" title="Back to Top"><i class="svgs svgh angu"></i></a>
+</span>
+</body>
+</html>
