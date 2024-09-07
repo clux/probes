@@ -1,15 +1,15 @@
 +++
-date = "2024-10-01"
+date = "2024-09-07"
 description = "how to setup an efficient prometheus for small clusters"
 title = "Running a Minimal Prometheus"
-slug = "2024-10-01-prometheus-minified"
+slug = "2024-09-07-prometheus-minified"
 
 [extra]
 toc = true
 
 [taxonomies]
 categories = ["software"]
-tags = ["kubernetes", "observability", "prometheus"]
+tags = ["kubernetes", "observability", "prometheus", "homelab"]
 +++
 
 Prometheus does not need to be hugely complicated, nor a massive resource hog, provided you follow some principles.
@@ -20,6 +20,12 @@ My last [#prometheus](/tags/prometheus/) posts have been exclusively about large
 I would like to argue that these difficulties are largely self-imposed, and a combination result of inadequate [cardinality control](https://prometheus.io/docs/practices/instrumentation/#do-not-overuse-labels) and [induced demand](https://en.wikipedia.org/wiki/Induced_demand).
 
 > 👺: You should be able to run a prometheus on your handful-of-machine-sized homelab with <10k time series active, using less than 512Mi memory, and 10m CPU.
+
+<details><summary style="cursor:pointer;color:#0af"><b>Disclaimer: Who am I?</b></summary>
+
+[I](https://github.com/clux) am a platform engineer working maintenance of observability infrastructure, and a maintainer of [kube-rs](https://kube.rs) working on rust integration of observability with Kubernetes platforms. My knowledge of prometheus is superficial and mostly based on practical observations around operating it for years. Suggestions or corrections are welcome (links at bottom).
+
+</details>
 
 ## Signals, Symptoms & Causes
 
@@ -160,6 +166,8 @@ fd -g 'k8s*.yaml' deploy/promstack/promstack/charts/kube-prometheus-stack/templa
    -x sd '"from":"now-12h"' '"from":"now-2d"' {}
 ```
 
+..which is [actually practical](https://github.com/clux/homelab/blob/ff02315f3280c8199451160ab82a8e35a48f5cb1/justfile#L36-L51) if you use `helm template` rather than `helm upgrade`.
+
 ### Kubelet Metrics
 
 97% of kubelet metrics are junk. In a small cluster it's the biggest waste producer in a small cluster, often producing 10x more metrics than anything else. Look at the top 10 metrics they produce with just 1 node and 30 pods:
@@ -198,19 +206,19 @@ This number is multiplicative with regular cardinality:
 
 If you want P50s or P99s you can compute these in the app with things like [rolling averages](https://en.wikipedia.org/wiki/Moving_average) or rolling quantiles. Some of these are more annoying than others, but there's a lot you can do by just tracking a mean.
 
-> If you want to answer one question, it can in theory be provided by one signal.
+> Strive for one signal per question where possible.
 
-If you do need them, decouple them from your other labels (drop pod labels, drop peripheral information) so that you can get the answer you need cheaply. A histogram should answer one question, if your histogram has extra parameters, you can break them down to smaller histograms (addition << multiplication for cardinality)
+That said, if you do actually need them, try to decouple them from your other labels (drop pod labels, drop peripheral information) so that you can get the answer you need cheaply. A histogram should answer one question, if your histogram has extra parameters, you can break them down to smaller histograms (addition beats multiplication for cardinality)
 
-> 👺: Histograms will get better with the [native-histograms feature](https://prometheus.io/docs/prometheus/latest/feature_flags/#native-histograms) (see e.g. [this talk](https://www.youtube.com/watch?v=TgINvIK9SYc)). However, this requires the ecosystem to move on to protobufs and it being propagated into client libraries (and is at the moment still experimental at the [time of writing](https://github.com/prometheus/prometheus/releases/tag/v2.54.1)) despite it being documented [2 years ago](https://github.com/prometheus/prometheus/commit/41035469d32fe8fd436c55846a5b237a86e69dee).
+> 👺: Histograms will get better with the [native-histograms feature](https://prometheus.io/docs/prometheus/latest/feature_flags/#native-histograms) (see e.g. [this talk](https://www.youtube.com/watch?v=TgINvIK9SYc)). However, this requires the ecosystem to move on to protobufs and it being propagated into client libraries (and is at the moment still experimental at the [time of writing](https://github.com/prometheus/prometheus/releases/tag/v2.54.1)), it's only been [2 years](https://github.com/prometheus/prometheus/commit/41035469d32fe8fd436c55846a5b237a86e69dee) though.
 
 </details>
 
 ## A Solution
 
-Because I need an efficient, low-cost setup for prom (that still has the signals I care about) all the time, so I have a chart for myself now.
+Because I keep needing an efficient, low-cost setup for prometheus (that still has the signals I care about), so now here is a chart.
 
-It's just a wrapper chart over [kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack) aggressively tuning down production (and dropping what can't be disabled), and it provides the following default [values.yaml](https://github.com/clux/homelab/blob/main/charts/promstack/values.yaml).
+It's mostly a wrapper chart over [kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack) with aggressive tunings / dropping (of what can't be tuned), and it provides the following default [values.yaml](https://github.com/clux/homelab/blob/main/charts/promstack/values.yaml).
 
 You can use it direct with:
 
@@ -219,7 +227,7 @@ helm repo add clux https://clux.github.io/homelab
 helm install [RELEASE_NAME] clux/promstack
 ```
 
-but I recommend you just take the [values.yaml](https://github.com/clux/homelab/blob/main/charts/promstack/values.yaml) file and run with it in your own similar subchart.
+but I recommend you just take/dissect the [values.yaml](https://github.com/clux/homelab/blob/main/charts/promstack/values.yaml) file and run with it in your own similar subchart.
 
 > 👺: You shouldn't trust me for maintenance of this, and you don't want to be any more steps abstracted away from kube-prometheus-stack.
 
@@ -257,6 +265,6 @@ The end result is a prometheus averaging `<0.01` cores and with `<512Mi` memory 
 
 The screenshots here are from my own homebrew [dashboards](https://github.com/clux/homelab/tree/main/dashboards) released separately. See the future post for these.
 
-## Fluff
+## Links / Comments
 
-Posted on [mastodon](https://hachyderm.io/@clux/). Feel free to comment / [raise issues](https://github.com/clux/homelab/issues) / [suggest an edit](https://github.com/clux/probes/edit/main/content/post/2024-XX-XX-prometheus-minified.md).
+Posted on [mastodon](https://hachyderm.io/@clux/). Feel free to comment / [raise issues](https://github.com/clux/homelab/issues) / [suggest an edit](https://github.com/clux/probes/edit/main/content/post/2024-09-07-prometheus-minified.md).
