@@ -1,8 +1,8 @@
 +++
-date = "2024-09-15"
+date = "2024-08-15"
 description = "misadventures with prometheus agent mode with thanos receive"
 title = "You Will (Not) Scale Prometheus"
-slug = "2024-09-15-thanos-misadventures-with-scaling"
+slug = "2024-08-15-thanos-misadventures-with-scaling"
 
 [extra]
 toc = true
