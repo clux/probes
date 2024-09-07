@@ -267,4 +267,4 @@ The screenshots here are from my own homebrew [dashboards](https://github.com/cl
 
 ## Links / Comments
 
-Posted on [mastodon](https://hachyderm.io/@clux/). Feel free to comment / [raise issues](https://github.com/clux/homelab/issues) / [suggest an edit](https://github.com/clux/probes/edit/main/content/post/2024-09-07-prometheus-minified.md).
+Posted on [mastodon](https://hachyderm.io/@clux/113097824893646159). Feel free to comment / [raise issues](https://github.com/clux/homelab/issues) / [suggest an edit](https://github.com/clux/probes/edit/main/content/post/2024-09-07-prometheus-minified.md).
