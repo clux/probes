@@ -265,7 +265,7 @@ The end result is a prometheus averaging `<0.01` cores and with `<512Mi` memory 
 
 ### CX Dashboards
 
-The screenshots here are from my own homebrew [dashboards](https://github.com/clux/homelab/tree/main/dashboards) released separately. See the future post for these.
+The screenshots here are from my own homebrew [cx-dashboards](https://github.com/clux/homelab/tree/main/charts/cx-dashboards) released separately. See the future post for these.
 
 ## Links / Comments
 
