@@ -168,7 +168,7 @@ fd -g 'k8s*.yaml' deploy/promstack/promstack/charts/kube-prometheus-stack/templa
 
 ..which is [actually practical](https://github.com/clux/homelab/blob/ff02315f3280c8199451160ab82a8e35a48f5cb1/justfile#L36-L51) if you use `helm template` rather than `helm upgrade`.
 
-> 👺: Somewhere out there, `jsonnet` users are tearing their eyes out reading this.
+> 👺: Somewhere out there, `jsonnet` users are gouging their eyes out reading this.
 
 ### Most Kubelet Metrics
 
