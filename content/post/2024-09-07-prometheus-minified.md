@@ -17,7 +17,7 @@ Prometheus does not need to be hugely complicated, nor a massive resource hog, p
 ## Background
 My last [#prometheus](/tags/prometheus/) posts have been exclusively about large scale production setups, and the difficulties this pulls in.
 
-I would like to argue that these difficulties are largely self-imposed, and a combination result of inadequate [cardinality control](https://prometheus.io/docs/practices/instrumentation/#do-not-overuse-labels) and [induced demand](https://en.wikipedia.org/wiki/Induced_demand).
+I would like to argue that these difficulties are often self-imposed, and a combination result of inadequate [cardinality control](https://prometheus.io/docs/practices/instrumentation/#do-not-overuse-labels) and [induced demand](https://en.wikipedia.org/wiki/Induced_demand).
 
 > 👺: You should be able to run a prometheus on your handful-of-machine-sized homelab with <10k time series active, using less than 512Mi memory, and 10m CPU.
 
@@ -80,7 +80,7 @@ Doing this type of enumeration is helpful as a way to tell how close you are to 
 
 ### Metric Inefficiencies
 
-The problems with expecting this type of perfection in practice is that many metric producers are very inefficient / overly lenient with their output. You can click on the addendum below for some examples, but without extreme tuning you can generally expect a **5x inefficiency factor** to apply to the above in practice.
+The problems with expecting this type of perfection in practice is that many metric producers are very inefficient / overly lenient with their output. You can click on the addendum below for some examples, but without extreme tuning you can minimally expect a **5x inefficiency factor** to apply to the above in practice.
 
 <details><summary style="cursor:pointer;color:#0af"><b>Addendum: Inefficiency Examples</b></summary>
 
@@ -168,7 +168,9 @@ fd -g 'k8s*.yaml' deploy/promstack/promstack/charts/kube-prometheus-stack/templa
 
 ..which is [actually practical](https://github.com/clux/homelab/blob/ff02315f3280c8199451160ab82a8e35a48f5cb1/justfile#L36-L51) if you use `helm template` rather than `helm upgrade`.
 
-### Kubelet Metrics
+> 👺: Somewhere out there, `jsonnet` users are tearing their eyes out reading this.
+
+### Most Kubelet Metrics
 
 97% of kubelet metrics are junk. In a small cluster it's the biggest waste producer in a small cluster, often producing 10x more metrics than anything else. Look at the top 10 metrics they produce with just 1 node and 30 pods:
 
@@ -216,24 +218,24 @@ That said, if you do actually need them, try to decouple them from your other la
 
 ## A Solution
 
-Because I keep needing an efficient, low-cost setup for prometheus (that still has the signals I care about), so now here is a chart.
+Because I keep needing an efficient, low-cost homelab setup for prometheus (that still has the signals I care about), so now here is a chart.
 
 It's mostly a wrapper chart over [kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack) with aggressive tunings / dropping (of what can't be tuned), and it provides the following default [values.yaml](https://github.com/clux/homelab/blob/main/charts/promstack/values.yaml).
 
-You can use it direct with:
+You __could__ use it directly with:
 
 ```sh
 helm repo add clux https://clux.github.io/homelab
 helm install [RELEASE_NAME] clux/promstack
 ```
 
-but I recommend you just take/dissect the [values.yaml](https://github.com/clux/homelab/blob/main/charts/promstack/values.yaml) file and run with it in your own similar subchart.
+but more sensibly, you can take/dissect the [values.yaml](https://github.com/clux/homelab/blob/main/charts/promstack/values.yaml) file and run with it in your own similar subchart.
 
-> 👺: You shouldn't trust me for maintenance of this, and you don't want to be any more steps abstracted away from kube-prometheus-stack.
+> 👺: You shouldn't trust me for maintenance of this, and you don't want to be any more steps abstracted away from `kube-prometheus-stack`.
 
 ## Architecture Diagram
 
-The chart is effectively a slimmed down [2022 company setup](/post/2022-01-11-prometheus-ecosystem/); no HA (1 replica everywhere), no `thanos`, no `prometheus-adapter`, but a including a lightweight `tempo` for exemplars:
+The chart is effectively a slimmed down [2022 thanos setup](/post/2022-01-11-prometheus-ecosystem/); no HA, no `thanos`, no `prometheus-adapter`, but a including a lightweight `tempo` for exemplars:
 
 [![prometheus architecture diagram](/imgs/prometheus/prometheus-simple.png)](/imgs/prometheus/prometheus-simple.png)
 
