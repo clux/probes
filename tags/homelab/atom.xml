@@ -132,7 +132,7 @@
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;..which is &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;clux&#x2F;homelab&#x2F;blob&#x2F;ff02315f3280c8199451160ab82a8e35a48f5cb1&#x2F;justfile#L36-L51&quot;&gt;actually practical&lt;&#x2F;a&gt; if you use &lt;code&gt;helm template&lt;&#x2F;code&gt; rather than &lt;code&gt;helm upgrade&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;👺: Somewhere out there, &lt;code&gt;jsonnet&lt;&#x2F;code&gt; users are tearing their eyes out reading this.&lt;&#x2F;p&gt;
+&lt;p&gt;👺: Somewhere out there, &lt;code&gt;jsonnet&lt;&#x2F;code&gt; users are gouging their eyes out reading this.&lt;&#x2F;p&gt;
 &lt;&#x2F;blockquote&gt;
 &lt;h3 id=&quot;most-kubelet-metrics&quot;&gt;Most Kubelet Metrics&lt;&#x2F;h3&gt;
 &lt;p&gt;97% of kubelet metrics are junk. In a small cluster it&#x27;s the biggest waste producer in a small cluster, often producing 10x more metrics than anything else. Look at the top 10 metrics they produce with just 1 node and 30 pods:&lt;&#x2F;p&gt;
