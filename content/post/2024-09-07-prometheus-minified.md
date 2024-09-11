@@ -134,7 +134,6 @@ Thankfully, in a [gitops repo](https://github.com/clux/homelab) this is easy to 
 1. No hits? `action: drop`.
 2. Only used in a dashboard? Do you care about this dashboard? No? `action: drop`.
 3. Used in a recording rule? Does the recording rule go towards an alert/dashboard you care about? No? `action: drop`.
-4. Partially used in dashboard or recording rule? `labeldrop` subset.
 
 Grafana cloud has its own opt-out ML based [adaptive metrics thing](https://www.youtube.com/watch?v=ZkXJIQYbUVs) to do this, and while this is probably helpful if you are locked into their cloud, the solution definitely has a __big engineering solution__ feel to it:
 
