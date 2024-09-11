@@ -108,7 +108,6 @@
 &lt;li&gt;No hits? &lt;code&gt;action: drop&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
 &lt;li&gt;Only used in a dashboard? Do you care about this dashboard? No? &lt;code&gt;action: drop&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
 &lt;li&gt;Used in a recording rule? Does the recording rule go towards an alert&#x2F;dashboard you care about? No? &lt;code&gt;action: drop&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
-&lt;li&gt;Partially used in dashboard or recording rule? &lt;code&gt;labeldrop&lt;&#x2F;code&gt; subset.&lt;&#x2F;li&gt;
 &lt;&#x2F;ol&gt;
 &lt;p&gt;Grafana cloud has its own opt-out ML based &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=ZkXJIQYbUVs&quot;&gt;adaptive metrics thing&lt;&#x2F;a&gt; to do this, and while this is probably helpful if you are locked into their cloud, the solution definitely has a &lt;strong&gt;big engineering solution&lt;&#x2F;strong&gt; feel to it:&lt;&#x2F;p&gt;
 &lt;p&gt;&lt;img src=&quot;&#x2F;imgs&#x2F;prometheus&#x2F;adaptive-metric-power-meme.png&quot; alt=&quot;fraction of my power meme comparing grafana adaptive metrics to just a git repo with grep&quot; &#x2F;&gt;&lt;&#x2F;p&gt;

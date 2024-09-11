@@ -146,7 +146,6 @@
 <li>No hits? <code>action: drop</code>.</li>
 <li>Only used in a dashboard? Do you care about this dashboard? No? <code>action: drop</code>.</li>
 <li>Used in a recording rule? Does the recording rule go towards an alert/dashboard you care about? No? <code>action: drop</code>.</li>
-<li>Partially used in dashboard or recording rule? <code>labeldrop</code> subset.</li>
 </ol>
 <p>Grafana cloud has its own opt-out ML based <a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=ZkXJIQYbUVs">adaptive metrics thing</a> to do this, and while this is probably helpful if you are locked into their cloud, the solution definitely has a <strong>big engineering solution</strong> feel to it:</p>
 <p><img src="/imgs/prometheus/adaptive-metric-power-meme.png" alt="fraction of my power meme comparing grafana adaptive metrics to just a git repo with grep" /></p>
