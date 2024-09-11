@@ -84,19 +84,7 @@ The problems with expecting this type of perfection in practice is that many met
 
 <details><summary style="cursor:pointer;color:#0af"><b>Addendum: Inefficiency Examples</b></summary>
 
-Minor: `job="kube-state-metrics"` denormalising __disjoint phases__ (never letting old/zero phases go out of scope):
-
-```promql
-kube_pod_status_phase{phase="Pending", pod="forgejo-975b98575-fbjz8"} 0
-kube_pod_status_phase{phase="Succeeded", pod="forgejo-975b98575-fbjz8"} 0
-kube_pod_status_phase{phase="Failed", pod="forgejo-975b98575-fbjz8"} 0
-kube_pod_status_phase{phase="Unknown", pod="forgejo-975b98575-fbjz8"} 0
-kube_pod_status_phase{phase="Running", pod="forgejo-975b98575-fbjz8"} 1
-```
-
-This [may get a fix](https://github.com/kubernetes/kube-state-metrics/issues/2380).
-
-Annoying: `job="node-exporter"` putting tons of labels on metrics such as `node_cpu_seconds_total`:
+Take for instance, `job="node-exporter"` putting tons of labels on metrics such as `node_cpu_seconds_total`:
 
 ```promql
 {cpu="15", mode="idle"} 1
@@ -109,9 +97,23 @@ Annoying: `job="node-exporter"` putting tons of labels on metrics such as `node_
 {cpu="15", mode="user"}
 ```
 
-and while you can `action: labeldrop` the `cpu` breakdown, you can't do the same for `mode` because the [standard recording rules depend on mode](https://github.com/prometheus/node_exporter/blob/b9d0932179a0c5b3a8863f3d6cdafe8584cedc8e/docs/node-mixin/rules/rules.libsonnet#L9-L14).
+Maybe you dont care about either of these splits, you just want to have a `cpu` total and data for one `mode`.
+
+Well, firstly, it's hard to get rid of `mode` because the [standard recording rules depend on mode](https://github.com/prometheus/node_exporter/blob/b9d0932179a0c5b3a8863f3d6cdafe8584cedc8e/docs/node-mixin/rules/rules.libsonnet#L9-L14). Secondly, while you could try to rid of cpu, there's no great way of doing this without something like [stream aggregation](https://last9.io/blog/streaming-aggregation-vs-recording-rules/) as `labeldrop: cpu` leads to collisions.
 
 Similarly, if you want to support a bunch of the mixin dashboards with container level breakdown, you are also forced to grab a bunch of container level info for e.g. [k8s.rules.container_resource](https://github.com/prometheus-community/helm-charts/blob/71845c4d5795ec552e3ea96036c39dcfb97132ad/charts/kube-prometheus-stack/templates/prometheus/rules-1.14/k8s.rules.container_resource.yaml#L43) unless if you want to rewrite the world.
+
+And on top of this, many of these exporters also export things in very suboptimal ways. E.g. `job="kube-state-metrics"` denormalising __disjoint phases__ (never letting old/zero phases go out of scope):
+
+```promql
+kube_pod_status_phase{phase="Pending", pod="forgejo-975b98575-fbjz8"} 0
+kube_pod_status_phase{phase="Succeeded", pod="forgejo-975b98575-fbjz8"} 0
+kube_pod_status_phase{phase="Failed", pod="forgejo-975b98575-fbjz8"} 0
+kube_pod_status_phase{phase="Unknown", pod="forgejo-975b98575-fbjz8"} 0
+kube_pod_status_phase{phase="Running", pod="forgejo-975b98575-fbjz8"} 1
+```
+
+This particular one [may get a fix](https://github.com/kubernetes/kube-state-metrics/issues/2380) though.
 
 </details>
 
