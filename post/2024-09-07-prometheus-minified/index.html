@@ -113,15 +113,7 @@
 <h3 id="metric-inefficiencies">Metric Inefficiencies</h3>
 <p>The problems with expecting this type of perfection in practice is that many metric producers are very inefficient / overly lenient with their output. You can click on the addendum below for some examples, but without extreme tuning you can minimally expect a <strong>5x inefficiency factor</strong> to apply to the above in practice.</p>
 <details><summary style="cursor:pointer;color:#0af"><b>Addendum: Inefficiency Examples</b></summary>
-<p>Minor: <code>job="kube-state-metrics"</code> denormalising <strong>disjoint phases</strong> (never letting old/zero phases go out of scope):</p>
-<pre data-lang="promql" class="language-promql z-code"><code class="language-promql" data-lang="promql"><span class="z-text z-plain">kube_pod_status_phase{phase=&quot;Pending&quot;, pod=&quot;forgejo-975b98575-fbjz8&quot;} 0
-</span><span class="z-text z-plain">kube_pod_status_phase{phase=&quot;Succeeded&quot;, pod=&quot;forgejo-975b98575-fbjz8&quot;} 0
-</span><span class="z-text z-plain">kube_pod_status_phase{phase=&quot;Failed&quot;, pod=&quot;forgejo-975b98575-fbjz8&quot;} 0
-</span><span class="z-text z-plain">kube_pod_status_phase{phase=&quot;Unknown&quot;, pod=&quot;forgejo-975b98575-fbjz8&quot;} 0
-</span><span class="z-text z-plain">kube_pod_status_phase{phase=&quot;Running&quot;, pod=&quot;forgejo-975b98575-fbjz8&quot;} 1
-</span></code></pre>
-<p>This <a rel="noopener" target="_blank" href="https://github.com/kubernetes/kube-state-metrics/issues/2380">may get a fix</a>.</p>
-<p>Annoying: <code>job="node-exporter"</code> putting tons of labels on metrics such as <code>node_cpu_seconds_total</code>:</p>
+<p>Take for instance, <code>job="node-exporter"</code> putting tons of labels on metrics such as <code>node_cpu_seconds_total</code>:</p>
 <pre data-lang="promql" class="language-promql z-code"><code class="language-promql" data-lang="promql"><span class="z-text z-plain">{cpu=&quot;15&quot;, mode=&quot;idle&quot;} 1
 </span><span class="z-text z-plain">{cpu=&quot;15&quot;, mode=&quot;iowait&quot;} 1
 </span><span class="z-text z-plain">{cpu=&quot;15&quot;, mode=&quot;irq&quot;} 1
@@ -131,8 +123,17 @@
 </span><span class="z-text z-plain">{cpu=&quot;15&quot;, mode=&quot;system&quot;} 1
 </span><span class="z-text z-plain">{cpu=&quot;15&quot;, mode=&quot;user&quot;}
 </span></code></pre>
-<p>and while you can <code>action: labeldrop</code> the <code>cpu</code> breakdown, you can't do the same for <code>mode</code> because the <a rel="noopener" target="_blank" href="https://github.com/prometheus/node_exporter/blob/b9d0932179a0c5b3a8863f3d6cdafe8584cedc8e/docs/node-mixin/rules/rules.libsonnet#L9-L14">standard recording rules depend on mode</a>.</p>
+<p>Maybe you dont care about either of these splits, you just want to have a <code>cpu</code> total and data for one <code>mode</code>.</p>
+<p>Well, firstly, it's hard to get rid of <code>mode</code> because the <a rel="noopener" target="_blank" href="https://github.com/prometheus/node_exporter/blob/b9d0932179a0c5b3a8863f3d6cdafe8584cedc8e/docs/node-mixin/rules/rules.libsonnet#L9-L14">standard recording rules depend on mode</a>. Secondly, while you could try to rid of cpu, there's no great way of doing this without something like <a rel="noopener" target="_blank" href="https://last9.io/blog/streaming-aggregation-vs-recording-rules/">stream aggregation</a> as <code>labeldrop: cpu</code> leads to collisions.</p>
 <p>Similarly, if you want to support a bunch of the mixin dashboards with container level breakdown, you are also forced to grab a bunch of container level info for e.g. <a rel="noopener" target="_blank" href="https://github.com/prometheus-community/helm-charts/blob/71845c4d5795ec552e3ea96036c39dcfb97132ad/charts/kube-prometheus-stack/templates/prometheus/rules-1.14/k8s.rules.container_resource.yaml#L43">k8s.rules.container_resource</a> unless if you want to rewrite the world.</p>
+<p>And on top of this, many of these exporters also export things in very suboptimal ways. E.g. <code>job="kube-state-metrics"</code> denormalising <strong>disjoint phases</strong> (never letting old/zero phases go out of scope):</p>
+<pre data-lang="promql" class="language-promql z-code"><code class="language-promql" data-lang="promql"><span class="z-text z-plain">kube_pod_status_phase{phase=&quot;Pending&quot;, pod=&quot;forgejo-975b98575-fbjz8&quot;} 0
+</span><span class="z-text z-plain">kube_pod_status_phase{phase=&quot;Succeeded&quot;, pod=&quot;forgejo-975b98575-fbjz8&quot;} 0
+</span><span class="z-text z-plain">kube_pod_status_phase{phase=&quot;Failed&quot;, pod=&quot;forgejo-975b98575-fbjz8&quot;} 0
+</span><span class="z-text z-plain">kube_pod_status_phase{phase=&quot;Unknown&quot;, pod=&quot;forgejo-975b98575-fbjz8&quot;} 0
+</span><span class="z-text z-plain">kube_pod_status_phase{phase=&quot;Running&quot;, pod=&quot;forgejo-975b98575-fbjz8&quot;} 1
+</span></code></pre>
+<p>This particular one <a rel="noopener" target="_blank" href="https://github.com/kubernetes/kube-state-metrics/issues/2380">may get a fix</a> though.</p>
 </details>
 <h3 id="visualising-cardinality">Visualising Cardinality</h3>
 <p>I have a <a rel="noopener" target="_blank" href="https://github.com/clux/homelab/blob/main/dashboards/prometheus.json">dashboard</a> for this with this panel:</p>
