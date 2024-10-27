@@ -199,7 +199,7 @@ This is a temporary solution though. On my homelab I can run `30d` retention, bu
 This is the "unscaling" approach I run in my homelab. Granted it is easier to justify there, but there are real concrete steps you can do to really reduce the prometheus utilisation:
 
 - drop big histograms (easy) / move to native histograms (..some day)
-- dropping pod enrichment (big replica counts X histograms = lots of cardinality)
+- dropping pod enrichment (big replica counts X histograms = lots of cardinality, impossible without stream aggregation tho)
 - Monitor your ingestion: `by (job)`, before and after relabellings, put alerts on fixed ingestion numbers
 - Make sure everyone uses `{Service,Pod}Monitor`s so above step is feasible
 - Drop most of kubelet metrics (most metrics are unused by dashboards or mixin alerts)
