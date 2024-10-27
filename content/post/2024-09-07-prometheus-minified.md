@@ -40,7 +40,7 @@ However, while you can do basic sanity outside the cluster, you need [utilisatio
 - **memory utilisation high** :: oom kill imminent
 - **disk space nearing full** :: failures imminent
 
-You can argue __idealistically__ about whether you should only be "aware of something going wrong", or be "aware that something is in a risky state" (e.g. [symptoms not causes](https://cloud.google.com/blog/topics/developers-practitioners/why-focus-symptoms-not-causes)), but it's silly to avoid utilisation/saturation as a predictor for degraded performance (in the same sense as; you don't wait for a certificate to expire before renewing it).
+You can argue __idealistically__ about whether you should only be "aware of something going wrong", or be "aware that something is in a risky state" (e.g. [symptoms not causes](https://cloud.google.com/blog/topics/developers-practitioners/why-focus-symptoms-not-causes)), but utilisation/saturation/errors are ultimately very good indications/predictors for degraded performance, so we will focus on these herein.
 
 ## How Many Signals
 
@@ -137,9 +137,7 @@ Thankfully, in a [gitops repo](https://github.com/clux/homelab) this is easy to 
 2. Only used in a dashboard? Do you care about this dashboard? No? `action: drop`.
 3. Used in a recording rule? Does the recording rule go towards an alert/dashboard you care about? No? `action: drop`.
 
-Grafana cloud has its own opt-out ML based [adaptive metrics thing](https://www.youtube.com/watch?v=ZkXJIQYbUVs) to do this, and while this is probably helpful if you are locked into their cloud, the solution definitely has a __big engineering solution__ feel to it:
-
-![fraction of my power meme comparing grafana adaptive metrics to just a git repo with grep](/imgs/prometheus/adaptive-metric-power-meme.png)
+Grafana cloud has its own opt-out ML based [adaptive metrics thing](https://www.youtube.com/watch?v=ZkXJIQYbUVs) to do this, and it's probably helpful if you are locked into their cloud. The solution definitely has a big engineering solution [feel](/imgs/prometheus/adaptive-metric-power-meme.png) to it, but can't really blame it as it's not like you can easily remove polluting labels from needed metrics these days without causing collisions in OSS prom.
 
 ## Things You Don't Need
 
