@@ -341,7 +341,7 @@ It might be another couple of years before new remote write gets propagated thro
 &lt;p&gt;This is the &quot;unscaling&quot; approach I run in my homelab. Granted it is easier to justify there, but there are real concrete steps you can do to really reduce the prometheus utilisation:&lt;&#x2F;p&gt;
 &lt;ul&gt;
 &lt;li&gt;drop big histograms (easy) &#x2F; move to native histograms (..some day)&lt;&#x2F;li&gt;
-&lt;li&gt;dropping pod enrichment (big replica counts X histograms = lots of cardinality)&lt;&#x2F;li&gt;
+&lt;li&gt;dropping pod enrichment (big replica counts X histograms = lots of cardinality, impossible without stream aggregation tho)&lt;&#x2F;li&gt;
 &lt;li&gt;Monitor your ingestion: &lt;code&gt;by (job)&lt;&#x2F;code&gt;, before and after relabellings, put alerts on fixed ingestion numbers&lt;&#x2F;li&gt;
 &lt;li&gt;Make sure everyone uses &lt;code&gt;{Service,Pod}Monitor&lt;&#x2F;code&gt;s so above step is feasible&lt;&#x2F;li&gt;
 &lt;li&gt;Drop most of kubelet metrics (most metrics are unused by dashboards or mixin alerts)&lt;&#x2F;li&gt;
