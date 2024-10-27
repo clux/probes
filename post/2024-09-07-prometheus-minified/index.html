@@ -80,7 +80,7 @@
 <li><strong>memory utilisation high</strong> :: oom kill imminent</li>
 <li><strong>disk space nearing full</strong> :: failures imminent</li>
 </ul>
-<p>You can argue <strong>idealistically</strong> about whether you should only be "aware of something going wrong", or be "aware that something is in a risky state" (e.g. <a rel="noopener" target="_blank" href="https://cloud.google.com/blog/topics/developers-practitioners/why-focus-symptoms-not-causes">symptoms not causes</a>), but it's silly to avoid utilisation/saturation as a predictor for degraded performance (in the same sense as; you don't wait for a certificate to expire before renewing it).</p>
+<p>You can argue <strong>idealistically</strong> about whether you should only be "aware of something going wrong", or be "aware that something is in a risky state" (e.g. <a rel="noopener" target="_blank" href="https://cloud.google.com/blog/topics/developers-practitioners/why-focus-symptoms-not-causes">symptoms not causes</a>), but utilisation/saturation/errors are ultimately very good indications/predictors for degraded performance, so we will focus on these herein.</p>
 <h2 id="how-many-signals">How Many Signals</h2>
 <blockquote>
 <p>MAIN POINT: You should be able to enumerate the <strong>basic</strong> signals that you want to have visibility of.</p>
@@ -148,8 +148,7 @@
 <li>Only used in a dashboard? Do you care about this dashboard? No? <code>action: drop</code>.</li>
 <li>Used in a recording rule? Does the recording rule go towards an alert/dashboard you care about? No? <code>action: drop</code>.</li>
 </ol>
-<p>Grafana cloud has its own opt-out ML based <a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=ZkXJIQYbUVs">adaptive metrics thing</a> to do this, and while this is probably helpful if you are locked into their cloud, the solution definitely has a <strong>big engineering solution</strong> feel to it:</p>
-<p><img src="/imgs/prometheus/adaptive-metric-power-meme.png" alt="fraction of my power meme comparing grafana adaptive metrics to just a git repo with grep" /></p>
+<p>Grafana cloud has its own opt-out ML based <a rel="noopener" target="_blank" href="https://www.youtube.com/watch?v=ZkXJIQYbUVs">adaptive metrics thing</a> to do this, and it's probably helpful if you are locked into their cloud. The solution definitely has a big engineering solution <a href="/imgs/prometheus/adaptive-metric-power-meme.png">feel</a> to it, but can't really blame it as it's not like you can easily remove polluting labels from needed metrics these days without causing collisions in OSS prom.</p>
 <h2 id="things-you-don-t-need">Things You Don't Need</h2>
 <h3 id="sub-minute-data-fidelity">Sub Minute Data Fidelity</h3>
 <p>You are probably checking your homelab once every few days at most, so why do you expect you would need 15s/30s data fidelity? You can set <code>60s</code> scrape/eval intervals and be fine:</p>
