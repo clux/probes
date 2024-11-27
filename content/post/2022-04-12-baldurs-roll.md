@@ -1057,11 +1057,7 @@ It does looks like there are tools to work with truncated or rectified normals:
 - [formulas for dealing with truncation of a normal distributions](https://en.wikipedia.org/wiki/Truncated_normal_distribution#One_sided_truncation_(of_lower_tail))
 - [cnorm r library](https://rdrr.io/cran/crch/man/cnorm.html) which comes with a [giant pdf](https://cran.r-project.org/web/packages/cNORM/cNORM.pdf) as documentation to help remind you of why we need rustdoc
 
-But this felt like the wrong path to descend, and the path was littered with arcana:
-
-<blockquote class="twitter-tweet" data-dnt="true" data-theme="light"><p lang="en" dir="ltr">ah, yes, just a vector. <a href="https://t.co/RvkpS4h0DX">pic.twitter.com/RvkpS4h0DX</a></p>&mdash; eirik ᐸ&#39;⧖ᐳ (@sszynrae) <a href="https://twitter.com/sszynrae/status/1512161877698174983?ref_src=twsrc%5Etfw">April 7, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-That said. If anyone wants to fill in something here, or link to alternate methods, feel free to PR in something [here](https://github.com/clux/probes/blob/main/content/post/2022-04-12-baldurs-roll.md) or write an [issue](https://github.com/clux/probes/issues).
+But to me, this felt like the wrong path to descend, with too much complexity. That said, if anyone wants to fill in something here, or link to alternate methods, feel free to PR in something [here](https://github.com/clux/probes/blob/main/content/post/2022-04-12-baldurs-roll.md) or write an [issue](https://github.com/clux/probes/issues).
 
 </p>
 </details>

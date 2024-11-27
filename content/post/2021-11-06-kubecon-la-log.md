@@ -68,10 +68,9 @@ prometheus conformance program (vendors need to do things to get "Prometheus Com
 
 > "observability / networking sidecars needs yaml, but ebpf is kernel level."
 
-linkerd people go into limitation of ebpf as a "mesh" in this thread:
-<!--< tweet user="wm" id="1453492551579836417" >-->
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Was a little bummed to see this article earlier this week from some people I respect, which promotes things that I I believe are *not* the future of cloud native security. <a href="https://t.co/U1kdID4NIA">https://t.co/U1kdID4NIA</a></p>&mdash; William Morgan (@wm) <a href="https://twitter.com/wm/status/1453492551579836417?ref_src=twsrc%5Etfw">October 27, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+linkerd people go into limitation of ebpf as a "mesh" in this thread (link dead, rip twitter):
 
+> twitter Oct 27, 2021 @wm: Was a little bummed to see this article earlier this week from some people I respect, which promotes things that I I believe are *not* the future of cloud native security.
 
 similar overview to rakyll's [eBPF in Microservices Observability](https://www.youtube.com/watch?v=SKLA6n3TKL0), which additionally notes the distribution problem with ebpf at the end.
 

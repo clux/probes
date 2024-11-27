@@ -73,7 +73,7 @@ The biggest `Api` improvement recently was the inclusion of the most complicated
 
 Despite the complexities, these details have ended up being generally invisible to the user; you can hit [Api::exec](https://docs.rs/kube/0.51.0/kube/struct.Api.html#method.exec) like any other method, and you'll get the expected streams you can pipe from and pipe to:
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">kube master: optional websocket support for exec/attach with <a href="https://twitter.com/tokio_rs?ref_src=twsrc%5Etfw">@tokio_rs</a> 1.0. Pipe streams to/from k8s pods. <a href="https://t.co/WhSFlPmm60">pic.twitter.com/WhSFlPmm60</a></p>&mdash; eirik ᐸ&#39;aᐳ (@sszynrae) <a href="https://twitter.com/sszynrae/status/1346122892707319810?ref_src=twsrc%5Etfw">January 4, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+> twitter jan 4, 2021 me: kube master: optional websocket support for exec/attach with tokio 1.0. Pipe streams to/from k8s pods
 
 ### kube::Config
 Not to be confused with the file in your home directory, our [Config](https://docs.rs/kube/latest/kube/struct.Config.html) is actually just the relevant parameters we extract from the [kubeconfig file](https://docs.rs/kube/latest/kube/config/struct.Kubeconfig.html) (or [cluster evars](https://docs.rs/kube/latest/kube/struct.Config.html#method.from_cluster_env) when in-cluster), to help us create a `Client`.

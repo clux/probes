@@ -447,7 +447,7 @@ The [syntax needed for this component](https://github.com/kubernetes-sigs/promet
 
 The repository for [prometheus-adapter](https://github.com/kubernetes-sigs/prometheus-adapter) is also not receiving a whole of attention: [almost half](https://github.com/kubernetes-sigs/prometheus-adapter/issues?q=is%3Aissue+is%3Aclosed+label%3Alifecycle%2Frotten) of their closed issues looks like they were closed by kubernetes org's auto-closer bot. You can say many sensible things about this closing practice - on the importance of funding and triagers for open source software - but it ultimately sends a message:
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Unpopular opinion: I think solving issue triage by letting robots auto close issues that were never responded to is a *horrible* way to manage your project and tells users you don&#39;t give a crap about their effort filing bugs :(</p>&mdash; Benjamin Elder (@BenTheElder) <a href="https://twitter.com/BenTheElder/status/1407774856033181696?ref_src=twsrc%5Etfw">June 23, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+> twitter (rip), June 23, 2021, Benjamin Elder (@BenTheElder): Unpopular opinion: I think solving issue triage by letting robots auto close issues that were never responded to is a *horrible* way to manage your project and tells users you don&#39;t give a crap about their effort filing bugs :(
 
 It does have its own [prometheus-community maintained chart](https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-adapter), which is of high quality, but you will need to figure out the templated promql yourself.
 
