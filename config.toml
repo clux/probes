@@ -123,10 +123,11 @@ discord = "tokio" # TODO: wrong domain?
 linkedin = "🗑-eirik-albrigtsen-b279863a"
 github = "clux"
 github_sponsor = "clux"
-# see https://github.com/Jieiku/abridge/issues/94 for social addons
-strava = "49770219" #TODO: not working
 steam = "sszynrae" #TODO: not working
 youtube = "channel/UCLpykMxkxuPUR9CciheipZg"
+# see https://github.com/Jieiku/abridge/issues/94 for social addons, would need to add below
+strava = "49770219"
+utmb = "6315567.eirik.albrigtsen"
 
 
 ###############################################################################
