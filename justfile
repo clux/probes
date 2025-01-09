@@ -13,7 +13,7 @@ build:
 
 update:
   git submodule update --remote themes/abridge
-  # NB: probably need to revert sass changes because we have modifications
+  # NB: revert most sass changes, partials because we have modifications
   rsync themes/abridge/COPY-TO-ROOT-SASS/* sass/
   rsync themes/abridge/package_abridge.js package_abridge.js
   rsync themes/abridge/package.json package.json
