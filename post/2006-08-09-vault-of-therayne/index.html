@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <script src="https://clux.dev/js/theme.min.js" integrity="sha384-pb++s6uBRKaQv+iAXpgA/H3IlpLZdO14tTwuCI7uXmz4aaZdByoCcM+6BhynMq/1"></script>
-  <link rel="stylesheet" href="https://clux.dev/abridge.css?h=9c32aa3ca76689ee23cf" />
+  <link rel="stylesheet" href="https://clux.dev/abridge.css?h=f7d435c7e6e0b8940f75" />
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,14 +24,14 @@
   <meta name="description" content="How to not brute force a dungeon" />
   <link rel="canonical" href="https://clux.dev/post/2006-08-09-vault-of-therayne/" />
   <meta name="keywords" content="Kubernetes, Cloud, Rust, Theorycraft, Blog" />
-  <script defer src="https://clux.dev/js/abridge.min.js?h=4dbe2f6c7673e0a145f0" integrity="sha384-en9uTP2jQMLjO9fwbuGUKlCZ+kGMvN97ASddcA7mljWRGw70rs3zSMPNIozwGYFU"></script>
+  <script defer src="https://clux.dev/js/abridge.min.js?h=e0f9a881a665c86cce9c" integrity="sha384-QF67y7RnPkuDrJNQqn3/7nYxqxWkW/qHI7zN0WTES1aXbf+TotoByRBb835fUE6U"></script>
   <script defer src="https://clux.dev/js/katexbundle.min.js?h=56b2761149aaa1d81994" integrity="sha384-UR0Li9YQWtf8BWhMEkmcKrcYY/Km3tAPQ8+768VhubM14b1z/WljMs8woKF34r2E"></script>
   <noscript><link rel="stylesheet" href="https://clux.dev/nojs.css" /></noscript>
 </head>
 <body>
   <header>
     <nav>
-      <div><h1><a href="https://clux.dev" title="probes"><font color="#74c7ec">P</font>robes ↝ cl<font color="#74c7ec">u</font>x</a></h1></div>
+      <div><big><a href="https://clux.dev" title="probes"><font color="#74c7ec">P</font>robes ↝ cl<font color="#74c7ec">u</font>x</a></big></div>
       <div>
 
         <div>
@@ -63,26 +63,21 @@
 
 
 <p>An easter egg and puzzle solution for <code>Dungeon Siege 2 Broken World</code>.</p>
- 
-<img src="https://clux.dev/imgs/therayne/overview1.jpg" alt="overview1" width="363" height="205" loading="lazy" />
+ <img src="https://clux.dev/imgs/therayne/overview1.jpg" alt="overview1" width="363" height="205" loading="lazy" />
 <p>After doing the first two rooms of the Treasure Hunt quest, you can attempt two additional puzzles of the same type, but these are ridiculously hard. If you made the second one, you have no doubt noticed that these are much trickier than the general lightning reflection puzzle in the original DS2. The third is manageable with a good dose of trial and error - still more than expected for an otherwise mindless hack'n slash game - but the last one is almost impossible.</p>
 <p>So I present a mathematical way to solve it. First three solutions are included for completeness, the method used is at the end.</p>
 <h2 id="r1-square">R1: Square</h2>
 <p>Click each node once.</p>
 <h2 id="r2-square-square">R2: Square + Square</h2>
-<p> 
-<img src="https://clux.dev/imgs/therayne/overview2.jpg" alt="overview2" width="469" height="313" loading="lazy" />
+<p> <img src="https://clux.dev/imgs/therayne/overview2.jpg" alt="overview2" width="469" height="313" loading="lazy" />
 
- 
-<img src="https://clux.dev/imgs/therayne/square-diagram.gif" alt="square-diagram" width="204" height="189" loading="lazy" />
+ <img src="https://clux.dev/imgs/therayne/square-diagram.gif" alt="square-diagram" width="204" height="189" loading="lazy" />
 </p>
 <p>Click nodes $A,C,F,H$ once, in whatever order.</p>
 <h2 id="r3-octagon-square">R3: Octagon + Square</h2>
-<p> 
-<img src="https://clux.dev/imgs/therayne/overview3.jpg" alt="overview3" width="598" height="382" loading="lazy" />
+<p> <img src="https://clux.dev/imgs/therayne/overview3.jpg" alt="overview3" width="598" height="382" loading="lazy" />
 
- 
-<img src="https://clux.dev/imgs/therayne/octagon-diagram.gif" alt="octagon-diagram" width="272" height="265" loading="lazy" />
+ <img src="https://clux.dev/imgs/therayne/octagon-diagram.gif" alt="octagon-diagram" width="272" height="265" loading="lazy" />
 </p>
 <p>Found two solutions here; one from trial and error:
 $B,E,G,I,J,K,L$</p>
@@ -90,11 +85,9 @@ $B,E,G,I,J,K,L$</p>
 $B,C,D,G,I,K,L$</p>
 <h2 id="r4-dodecagon-square">R4: Dodecagon + Square</h2>
 <p>The one that necessitated math.</p>
-<p> 
-<img src="https://clux.dev/imgs/therayne/overview4.jpg" alt="overview4" width="600" height="388" loading="lazy" />
+<p> <img src="https://clux.dev/imgs/therayne/overview4.jpg" alt="overview4" width="600" height="388" loading="lazy" />
 
- 
-<img src="https://clux.dev/imgs/therayne/dodecagon-diagram.gif" alt="dodecagon-diagram" width="275" height="275" loading="lazy" />
+ <img src="https://clux.dev/imgs/therayne/dodecagon-diagram.gif" alt="dodecagon-diagram" width="275" height="275" loading="lazy" />
 </p>
 <p>Derived solution: $B,E,F,G,I,J,K,N,O$</p>
 <p>Developer solution: $B,C,D,E,G,K,P$</p>
@@ -162,7 +155,7 @@ For instance: $f(A)$ inverts A, L, M, O, and P (as shown in the diagram), which 
   <footer>
     <hr />
     <div class="c">
-      <nav class="tpad"><div><a type="application/atom+xml" href="https://clux.dev/atom.xml" target="_blank" title="probes Atom Feed"><i type="Button" class="svg rss" title="probes Atom Feed"></i></a><a href="https://hachyderm.io/@clux" target="_blank" title="Mastodon" rel="me"><i type="Button" class="svg mastodon" title="Mastodon"></i></a><a href="https://www.linkedin.com/in/🗑-eirik-albrigtsen-b279863a/" target="_blank" title="LinkedIn"><i type="Button" class="svg linkedin" title="LinkedIn"></i></a><a href="https://github.com/clux/" target="_blank" title="Github"><i type="Button" class="svg github" title="Github"></i></a><a href="https://discord.com/tokio/" target="_blank" title="Discord"><i type="Button" class="svg discord" title="Discord"></i></a><a href="https://www.youtube.com/channel&#x2F;UCLpykMxkxuPUR9CciheipZg" target="_blank" title="YouTube"><i type="Button" class="svg youtube" title="YouTube"></i></a><a href="https://github.com/sponsors/clux/" target="_blank" title="GitHub Sponsor"><i type="Button" class="svg github-sponsor" title="GitHub Sponsor"></i></a></div></nav>
+      <nav class="tpad"><div><a type="application/atom+xml" href="https://clux.dev/atom.xml" target="_blank" title="probes Atom Feed"><i type="Button" class="svg rss" title="probes Atom Feed"></i></a><a href="https://hachyderm.io/@clux" target="_blank" title="Mastodon" rel="me"><i type="Button" class="svg mastodon" title="Mastodon"></i></a><meta name="fediverse:creator" content="@clux@hachyderm.io"><a href="https://discord.gg&#x2F;tokio/" target="_blank" title="Discord"><i type="Button" class="svg discord" title="Discord"></i></a><a href="https://www.linkedin.com/in/🗑-eirik-albrigtsen-b279863a/" target="_blank" title="LinkedIn"><i type="Button" class="svg linkedin" title="LinkedIn"></i></a><a href="https://github.com/clux/" target="_blank" title="Github"><i type="Button" class="svg github" title="Github"></i></a><a href="https://www.youtube.com/channel&#x2F;UCLpykMxkxuPUR9CciheipZg" target="_blank" title="YouTube"><i type="Button" class="svg youtube" title="YouTube"></i></a><a href="https://github.com/sponsors/clux/" target="_blank" title="GitHub Sponsor"><i type="Button" class="svg github-sponsor" title="GitHub Sponsor"></i></a></div></nav>
       <nav class="vpad">
         <a class="rpad" href="https://clux.dev/about/"> About </a>
         <a class="rpad" href="https://clux.dev/privacy/"> Privacy </a>

@@ -1025,26 +1025,21 @@ The method here is just emulating the pattern we see in the binary representatio
         <id>https://clux.dev/post/2006-08-09-vault-of-therayne/</id>
         
         <content type="html" xml:base="https://clux.dev/post/2006-08-09-vault-of-therayne/">&lt;p&gt;An easter egg and puzzle solution for &lt;code&gt;Dungeon Siege 2 Broken World&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
- 
-&lt;img src=&quot;https:&#x2F;&#x2F;clux.dev&#x2F;imgs&#x2F;therayne&#x2F;overview1.jpg&quot; alt=&quot;overview1&quot; width=&quot;363&quot; height=&quot;205&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+ &lt;img src=&quot;https:&#x2F;&#x2F;clux.dev&#x2F;imgs&#x2F;therayne&#x2F;overview1.jpg&quot; alt=&quot;overview1&quot; width=&quot;363&quot; height=&quot;205&quot; loading=&quot;lazy&quot; &#x2F;&gt;
 &lt;p&gt;After doing the first two rooms of the Treasure Hunt quest, you can attempt two additional puzzles of the same type, but these are ridiculously hard. If you made the second one, you have no doubt noticed that these are much trickier than the general lightning reflection puzzle in the original DS2. The third is manageable with a good dose of trial and error - still more than expected for an otherwise mindless hack&#x27;n slash game - but the last one is almost impossible.&lt;&#x2F;p&gt;
 &lt;p&gt;So I present a mathematical way to solve it. First three solutions are included for completeness, the method used is at the end.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;r1-square&quot;&gt;R1: Square&lt;&#x2F;h2&gt;
 &lt;p&gt;Click each node once.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;r2-square-square&quot;&gt;R2: Square + Square&lt;&#x2F;h2&gt;
-&lt;p&gt; 
-&lt;img src=&quot;https:&#x2F;&#x2F;clux.dev&#x2F;imgs&#x2F;therayne&#x2F;overview2.jpg&quot; alt=&quot;overview2&quot; width=&quot;469&quot; height=&quot;313&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+&lt;p&gt; &lt;img src=&quot;https:&#x2F;&#x2F;clux.dev&#x2F;imgs&#x2F;therayne&#x2F;overview2.jpg&quot; alt=&quot;overview2&quot; width=&quot;469&quot; height=&quot;313&quot; loading=&quot;lazy&quot; &#x2F;&gt;
 
- 
-&lt;img src=&quot;https:&#x2F;&#x2F;clux.dev&#x2F;imgs&#x2F;therayne&#x2F;square-diagram.gif&quot; alt=&quot;square-diagram&quot; width=&quot;204&quot; height=&quot;189&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+ &lt;img src=&quot;https:&#x2F;&#x2F;clux.dev&#x2F;imgs&#x2F;therayne&#x2F;square-diagram.gif&quot; alt=&quot;square-diagram&quot; width=&quot;204&quot; height=&quot;189&quot; loading=&quot;lazy&quot; &#x2F;&gt;
 &lt;&#x2F;p&gt;
 &lt;p&gt;Click nodes $A,C,F,H$ once, in whatever order.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;r3-octagon-square&quot;&gt;R3: Octagon + Square&lt;&#x2F;h2&gt;
-&lt;p&gt; 
-&lt;img src=&quot;https:&#x2F;&#x2F;clux.dev&#x2F;imgs&#x2F;therayne&#x2F;overview3.jpg&quot; alt=&quot;overview3&quot; width=&quot;598&quot; height=&quot;382&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+&lt;p&gt; &lt;img src=&quot;https:&#x2F;&#x2F;clux.dev&#x2F;imgs&#x2F;therayne&#x2F;overview3.jpg&quot; alt=&quot;overview3&quot; width=&quot;598&quot; height=&quot;382&quot; loading=&quot;lazy&quot; &#x2F;&gt;
 
- 
-&lt;img src=&quot;https:&#x2F;&#x2F;clux.dev&#x2F;imgs&#x2F;therayne&#x2F;octagon-diagram.gif&quot; alt=&quot;octagon-diagram&quot; width=&quot;272&quot; height=&quot;265&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+ &lt;img src=&quot;https:&#x2F;&#x2F;clux.dev&#x2F;imgs&#x2F;therayne&#x2F;octagon-diagram.gif&quot; alt=&quot;octagon-diagram&quot; width=&quot;272&quot; height=&quot;265&quot; loading=&quot;lazy&quot; &#x2F;&gt;
 &lt;&#x2F;p&gt;
 &lt;p&gt;Found two solutions here; one from trial and error:
 $B,E,G,I,J,K,L$&lt;&#x2F;p&gt;
@@ -1052,11 +1047,9 @@ $B,E,G,I,J,K,L$&lt;&#x2F;p&gt;
 $B,C,D,G,I,K,L$&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;r4-dodecagon-square&quot;&gt;R4: Dodecagon + Square&lt;&#x2F;h2&gt;
 &lt;p&gt;The one that necessitated math.&lt;&#x2F;p&gt;
-&lt;p&gt; 
-&lt;img src=&quot;https:&#x2F;&#x2F;clux.dev&#x2F;imgs&#x2F;therayne&#x2F;overview4.jpg&quot; alt=&quot;overview4&quot; width=&quot;600&quot; height=&quot;388&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+&lt;p&gt; &lt;img src=&quot;https:&#x2F;&#x2F;clux.dev&#x2F;imgs&#x2F;therayne&#x2F;overview4.jpg&quot; alt=&quot;overview4&quot; width=&quot;600&quot; height=&quot;388&quot; loading=&quot;lazy&quot; &#x2F;&gt;
 
- 
-&lt;img src=&quot;https:&#x2F;&#x2F;clux.dev&#x2F;imgs&#x2F;therayne&#x2F;dodecagon-diagram.gif&quot; alt=&quot;dodecagon-diagram&quot; width=&quot;275&quot; height=&quot;275&quot; loading=&quot;lazy&quot; &#x2F;&gt;
+ &lt;img src=&quot;https:&#x2F;&#x2F;clux.dev&#x2F;imgs&#x2F;therayne&#x2F;dodecagon-diagram.gif&quot; alt=&quot;dodecagon-diagram&quot; width=&quot;275&quot; height=&quot;275&quot; loading=&quot;lazy&quot; &#x2F;&gt;
 &lt;&#x2F;p&gt;
 &lt;p&gt;Derived solution: $B,E,F,G,I,J,K,N,O$&lt;&#x2F;p&gt;
 &lt;p&gt;Developer solution: $B,C,D,E,G,K,P$&lt;&#x2F;p&gt;
