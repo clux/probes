@@ -117,9 +117,13 @@ seo = false # enable or disable seo-related meta tags: opengraph, facebook, twit
 feed = true # this adds the RSS feed icon in the footer.
 #mail = "sszynrae@gmail.com"
 mastodon = "https://hachyderm.io/@clux"
+# manual support for https://blog.joinmastodon.org/2024/07/highlighting-journalism-on-mastodon/
+# https://hachyderm.io/settings/verification
+fediverse = "@clux@hachyderm.io" # fork functionality
+
 #element = "matrix.example.com"
 #kofi = "your-user-name"
-discord = "tokio" # TODO: wrong domain?
+discord = "discord.gg/tokio" # fork functionality
 linkedin = "🗑-eirik-albrigtsen-b279863a"
 github = "clux"
 github_sponsor = "clux"
