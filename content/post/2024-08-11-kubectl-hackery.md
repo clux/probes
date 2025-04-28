@@ -27,7 +27,7 @@ This article contains some stuff that I **hardly ever use**, and would normally 
 For convenience here;
 - `k` and `kg` are aliases: `alias k=kubectl` + `alias kg=kubectl get`
 - `choose` is [choose-rust](https://github.com/theryangeary/choose) (a `cut` / `awk` replacement)
-- `yq` is [whyq](https://github.com/clux/whyq) but the python `yq` should also work
+- `lq` is [lq](https://github.com/clux/lq) but the python `yq` should also work
 - `rg` is [ripgrep](https://github.com/BurntSushi/ripgrep)
 - `numfmt` is [coreutils/numfmt](https://man.archlinux.org/man/core/coreutils/numfmt.1.en)
 
@@ -60,14 +60,14 @@ Requests:
 
 ```sh
 # sum cpu requests across the cluster
-k get pods -A -oyaml | yq '.items[].spec.containers[].resources.requests.cpu' -r | awk 'BEGIN {sum=0} {sum=sum+$1} END {printf "%.0f\n", sum}'
+k get pods -A -oyaml | lq '.items[].spec.containers[].resources.requests.cpu' -r | awk 'BEGIN {sum=0} {sum=sum+$1} END {printf "%.0f\n", sum}'
 # by name:
-k get pods -A -oyaml | yq '.items[] | .metadata.name + " " + .spec.containers[].resources.requests.cpu' -r
+k get pods -A -oyaml | lq '.items[] | .metadata.name + " " + .spec.containers[].resources.requests.cpu' -r
 # top 20 by name
-k get pods -A -oyaml | yq '.items[] | .metadata.name + " " + .spec.containers[].resources.requests.cpu' -r | numfmt --field=2 --from=iec --suffix=000m --to=si --invalid=ignore | sort -hk2 --reverse | head -n 20
+k get pods -A -oyaml | lq '.items[] | .metadata.name + " " + .spec.containers[].resources.requests.cpu' -r | numfmt --field=2 --from=iec --suffix=000m --to=si --invalid=ignore | sort -hk2 --reverse | head -n 20
 
 # how much is overhead from daemonsets:
- k get ds -A -oyaml | yq '.items[].spec.template.spec.containers[].resources.requests.cpu' -r | grep -v null | awk 'BEGIN {sum=0} {sum=sum+$1} END {printf "%.0f\n", sum}'
+ k get ds -A -oyaml | lq '.items[].spec.template.spec.containers[].resources.requests.cpu' -r | grep -v null | awk 'BEGIN {sum=0} {sum=sum+$1} END {printf "%.0f\n", sum}'
 ```
 
 More approachable alternatives here are recommended, in particular the [compute cluster dashboard from kubernetes mixin](https://YOURGRAFANA/d/efa86fd1d0c121a26444b636a3f509a8/), or with the [kubectl-view-allocations](https://github.com/davidB/kubectl-view-allocations) rust cli you can get a nice table:
