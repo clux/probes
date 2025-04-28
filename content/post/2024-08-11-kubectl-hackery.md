@@ -31,7 +31,7 @@ For convenience here;
 - `rg` is [ripgrep](https://github.com/BurntSushi/ripgrep)
 - `numfmt` is [coreutils/numfmt](https://man.archlinux.org/man/core/coreutils/numfmt.1.en)
 
-then the regular gnu stuff like `awk`, `xargs`, `sort`. Some [might need mac alternative names](https://github.com/clux/dotfiles/blob/45a66c14fb67d8e4889d00424faab0fdc4534603/.zshenv#L65) like `gawk` due to them being out of date by default on mac.
+then the regular gnu stuff like `awk`, `xargs`, `sort`. Some [might need mac alternative names](https://github.com/clux/dotfiles/blob/5801a21e74bcd1176fb1168a160ac69321488323/.zshenv#L65) like `gawk` due to them being out of date by default on mac.
 
 ## PVCs
 
