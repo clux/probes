@@ -3,12 +3,19 @@ Disallow:
 Allow: /
 Sitemap: {{ get_url(path="sitemap.xml") }}
 
-# Disallow GPT bots, borrowed from nytimes.com
+User-agent: Amazonbot
+Disallow: /
+
+User-Agent: Applebot
+Disallow: /
 
 User-agent: anthropic-ai
 Disallow: /
 
 User-agent: Bytespider
+Disallow: /
+
+User-agent: CCBot
 Disallow: /
 
 User-agent: ChatGPT-User
@@ -23,6 +30,15 @@ Disallow: /
 User-agent: cohere-ai
 Disallow: /
 
+User-Agent: FacebookBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: ImagesiftBot
+Disallow: /
+
 User-agent: GPTBot
 Disallow: /
 
@@ -34,4 +50,12 @@ User-agent: PerplexityBot
 Disallow: /
 
 User-agent: Scrapy
+Disallow: /
+
+User-agent: Omgilibot
+Disallow: /
+User-agent: Omgili
+Disallow: /
+
+User-agent: YouBot
 Disallow: /
