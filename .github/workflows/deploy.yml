@@ -20,7 +20,7 @@ jobs:
 
       - uses: taiki-e/install-action@v2
         with:
-          tool: zola@0.22.1
+          tool: zola@0.21.0
       - run: zola build
 
       - uses: JamesIves/github-pages-deploy-action@v4
