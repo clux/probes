@@ -123,10 +123,11 @@ fediverse = "@clux@hachyderm.io" # fork functionality
 
 #element = "matrix.example.com"
 #kofi = "your-user-name"
-discord = "discord.gg/tokio" # fork functionality
+discord = "https://discord.gg/tokio" # fork functionality
 linkedin = "🗑-eirik-albrigtsen-b279863a"
 github = "clux"
 github_sponsor = "clux"
+# codeberg = "clux"
 steam = "sszynrae" #TODO: not working
 youtube = "channel/UCLpykMxkxuPUR9CciheipZg"
 # see https://github.com/Jieiku/abridge/issues/94 for social addons, would need to add below
